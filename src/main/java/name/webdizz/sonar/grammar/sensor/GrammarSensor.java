@@ -1,28 +1,24 @@
 package name.webdizz.sonar.grammar.sensor;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
+import name.webdizz.sonar.grammar.rule.GrammarRuleRepository;
+
+import java.io.File;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.Sensor;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.config.Settings;
+import org.sonar.api.resources.JavaFile;
 import org.sonar.api.resources.Project;
+import org.sonar.api.rules.Rule;
+import org.sonar.api.rules.RuleFinder;
+import org.sonar.api.rules.RuleQuery;
+import org.sonar.api.rules.Violation;
 import org.sonar.api.scan.filesystem.FileQuery;
 import org.sonar.api.scan.filesystem.FileType;
 import org.sonar.api.scan.filesystem.ModuleFileSystem;
-import org.sonar.squid.api.SourceFile;
-import org.sonar.squid.recognizer.CodeRecognizer;
-import org.sonar.squid.recognizer.Detector;
-import org.sonar.squid.recognizer.LanguageFootprint;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
 
 public class GrammarSensor implements Sensor {
 
@@ -32,9 +28,12 @@ public class GrammarSensor implements Sensor {
 
     private ModuleFileSystem fileSystem;
 
-    public GrammarSensor(final Settings settings, final ModuleFileSystem fileSystem) {
+    private final RuleFinder ruleFinder;
+
+    public GrammarSensor(final Settings settings, final ModuleFileSystem fileSystem, final RuleFinder ruleFinder) {
         this.settings = settings;
         this.fileSystem = fileSystem;
+        this.ruleFinder = ruleFinder;
     }
 
     @Override
@@ -42,35 +41,28 @@ public class GrammarSensor implements Sensor {
         LOGGER.info("Is about to analyse grammar on project {}", project.getName());
         FileQuery fileQuery = FileQuery.on(FileType.SOURCE);
         List<File> files = fileSystem.files(fileQuery);
-        analyseResources(files);
-        LOGGER.info("Source files: " + files);
+        analyseResources(files, sensorContext);
+        LOGGER.info("Source files: {}", files);
     }
 
-    private void analyseResources(final List<File> files) {
-        Reader reader = null;
+    private void analyseResources(final List<File> files, final SensorContext sensorContext) {
         for (File file : files) {
-            try {
-                reader = new StringReader(FileUtils.readFileToString(file, fileSystem.sourceCharset()));
-                org.sonar.api.resources.File resource = org.sonar.api.resources.File.fromIOFile(file, fileSystem.sourceDirs());
-                SourceFile sourceFile = new SourceFile(resource.getKey(), resource.getName());
+            if ("GrammarSensor.java".equals(file.getName())) {
+                boolean unitTest = false;
+                JavaFile resource = new JavaFile("name.webdizz.sonar.grammar.sensor", "GrammarSensor", unitTest);
+                sensorContext.index(resource);
+                RuleQuery ruleQuery = RuleQuery.create()
+                        .withRepositoryKey(GrammarRuleRepository.REPOSITORY_KEY)
+                        .withConfigKey("first_sonar_grammar_rule_key");
+                Rule rule = ruleFinder.find(ruleQuery);
 
-            } catch (IOException e) {
-                LOGGER.error("Unable to read resource", e);
-            } finally {
-                IOUtils.closeQuietly(reader);
+                Violation violation = Violation.create(rule, resource);
+                violation.setLineId(10);
+                violation.setNew(true);
+                violation.setMessage("hello");
+                sensorContext.saveViolation(violation);
+                break;
             }
-        }
-    }
-
-    class GrammarCodeRecognizer extends CodeRecognizer {
-
-        public GrammarCodeRecognizer() {
-            super(1.0, new LanguageFootprint() {
-                @Override
-                public Set<Detector> getDetectors() {
-                    return Collections.emptySet();
-                }
-            });
         }
     }
 

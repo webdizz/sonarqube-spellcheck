@@ -1,12 +1,14 @@
 package name.webdizz.sonar.grammar;
 
+import name.webdizz.sonar.grammar.rule.GrammarRuleRepository;
 import name.webdizz.sonar.grammar.sensor.GrammarSensor;
-import org.sonar.api.Properties;
-import org.sonar.api.Property;
-import org.sonar.api.SonarPlugin;
 
 import java.util.Arrays;
 import java.util.List;
+
+import org.sonar.api.Properties;
+import org.sonar.api.Property;
+import org.sonar.api.SonarPlugin;
 
 @Properties({
         @Property(
@@ -36,6 +38,7 @@ public class GrammarPlugin extends SonarPlugin {
                 // Definitions
                 GrammarMetrics.class,
                 // Batch
-                GrammarSensor.class);
+                GrammarSensor.class,
+                GrammarRuleRepository.class);
     }
 }

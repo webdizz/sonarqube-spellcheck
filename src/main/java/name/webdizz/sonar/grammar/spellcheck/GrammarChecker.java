@@ -1,12 +1,13 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.base.Strings;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.event.SpellCheckListener;
 import com.swabunga.spell.event.SpellChecker;
 import com.swabunga.spell.event.StringWordTokenizer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -14,12 +15,9 @@ public class GrammarChecker {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarChecker.class);
 
-    private final GrammarDictionaryLoader dictionaryLoader;
-
     private final SpellDictionary dictionary;
 
     public GrammarChecker(final GrammarDictionaryLoader dictionaryLoader) {
-        this.dictionaryLoader = dictionaryLoader;
         dictionary = dictionaryLoader.load();
     }
 

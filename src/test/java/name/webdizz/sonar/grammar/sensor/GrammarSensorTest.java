@@ -8,6 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
+import org.sonar.api.rules.RuleFinder;
 import org.sonar.api.scan.filesystem.FileQuery;
 import org.sonar.api.scan.filesystem.ModuleFileSystem;
 
@@ -30,11 +31,14 @@ public class GrammarSensorTest {
     @Mock
     private SensorContext sensorContext;
 
+    @Mock
+    private RuleFinder ruleFinder;
+
     private GrammarSensor testingInstance;
 
     @Before
     public void setUp() {
-        testingInstance = new GrammarSensor(settings, fileSystem);
+        testingInstance = new GrammarSensor(settings, fileSystem, ruleFinder);
     }
 
     @Test
