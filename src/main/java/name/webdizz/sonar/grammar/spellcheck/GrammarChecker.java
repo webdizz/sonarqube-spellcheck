@@ -15,9 +15,15 @@ public class GrammarChecker {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarChecker.class);
 
-    private final SpellDictionary dictionary;
+    private SpellDictionary dictionary;
+
+    private final GrammarDictionaryLoader dictionaryLoader;
 
     public GrammarChecker(final GrammarDictionaryLoader dictionaryLoader) {
+        this.dictionaryLoader = dictionaryLoader;
+    }
+
+    public void initialize() {
         dictionary = dictionaryLoader.load();
     }
 

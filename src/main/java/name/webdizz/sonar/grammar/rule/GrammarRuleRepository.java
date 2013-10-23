@@ -10,7 +10,7 @@ import org.sonar.api.rules.RuleRepository;
 
 public class GrammarRuleRepository extends RuleRepository {
 
-    public static final String REPOSITORY_NAME = "SonarGrammar";
+    public static final String REPOSITORY_NAME = "Sonar Grammar";
     public static final String REPOSITORY_KEY = "snrgrm";
 
     public GrammarRuleRepository() {
@@ -20,11 +20,11 @@ public class GrammarRuleRepository extends RuleRepository {
 
     @Override
     public List<Rule> createRules() {
-        List<Rule> rules = new ArrayList<Rule>();
-        Rule rule = Rule.create(getKey(), "first_sonar_grammar_rule_key", "first_sonar_grammar_rule_name");
+        List<Rule> rules = new ArrayList<Rule>(1);
+        Rule rule = Rule.create(getKey(), "sonar_grammar_rule", "Sonar Grammar");
         rule.setLanguage(getLanguage());
         rule.setSeverity(RulePriority.BLOCKER);
-        rule.setDescription("grammar rule description");
+        rule.setDescription("Analyses source code for english grammar issues.");
         rule.setStatus(Rule.STATUS_READY);
         rules.add(rule);
         return rules;

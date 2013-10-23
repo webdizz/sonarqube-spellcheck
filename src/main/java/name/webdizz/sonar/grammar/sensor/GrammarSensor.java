@@ -1,6 +1,6 @@
 package name.webdizz.sonar.grammar.sensor;
 
-import name.webdizz.sonar.grammar.rule.GrammarRuleRepository;
+import name.webdizz.sonar.grammar.spellcheck.SourceGrammarAnalyser;
 
 import java.io.File;
 import java.util.List;
@@ -10,12 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.Sensor;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.config.Settings;
-import org.sonar.api.resources.JavaFile;
 import org.sonar.api.resources.Project;
-import org.sonar.api.rules.Rule;
 import org.sonar.api.rules.RuleFinder;
-import org.sonar.api.rules.RuleQuery;
-import org.sonar.api.rules.Violation;
 import org.sonar.api.scan.filesystem.FileQuery;
 import org.sonar.api.scan.filesystem.FileType;
 import org.sonar.api.scan.filesystem.ModuleFileSystem;
@@ -30,10 +26,14 @@ public class GrammarSensor implements Sensor {
 
     private final RuleFinder ruleFinder;
 
+    private SourceGrammarAnalyser grammarAnalyser;
+
     public GrammarSensor(final Settings settings, final ModuleFileSystem fileSystem, final RuleFinder ruleFinder) {
         this.settings = settings;
         this.fileSystem = fileSystem;
         this.ruleFinder = ruleFinder;
+        this.grammarAnalyser = new SourceGrammarAnalyser(ruleFinder, settings);
+        grammarAnalyser.initialize();
     }
 
     @Override
@@ -42,32 +42,23 @@ public class GrammarSensor implements Sensor {
         FileQuery fileQuery = FileQuery.on(FileType.SOURCE);
         List<File> files = fileSystem.files(fileQuery);
         analyseResources(files, sensorContext);
-        LOGGER.info("Source files: {}", files);
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.info("Next source files were processed: {}", files);
+        }
     }
 
     private void analyseResources(final List<File> files, final SensorContext sensorContext) {
         for (File file : files) {
-            if ("GrammarSensor.java".equals(file.getName())) {
-                boolean unitTest = false;
-                JavaFile resource = new JavaFile("name.webdizz.sonar.grammar.sensor", "GrammarSensor", unitTest);
-                sensorContext.index(resource);
-                RuleQuery ruleQuery = RuleQuery.create()
-                        .withRepositoryKey(GrammarRuleRepository.REPOSITORY_KEY)
-                        .withConfigKey("first_sonar_grammar_rule_key");
-                Rule rule = ruleFinder.find(ruleQuery);
-
-                Violation violation = Violation.create(rule, resource);
-                violation.setLineId(10);
-                violation.setNew(true);
-                violation.setMessage("hello");
-                sensorContext.saveViolation(violation);
-                break;
-            }
+            grammarAnalyser.analyseSource(file, sensorContext);
         }
     }
 
     @Override
     public boolean shouldExecuteOnProject(final Project project) {
         return true;
+    }
+
+    public void setGrammarAnalyser(final SourceGrammarAnalyser grammarAnalyser) {
+        this.grammarAnalyser = grammarAnalyser;
     }
 }

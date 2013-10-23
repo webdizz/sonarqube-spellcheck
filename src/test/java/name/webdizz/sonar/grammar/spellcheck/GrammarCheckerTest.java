@@ -1,12 +1,8 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
-import com.swabunga.spell.engine.SpellDictionary;
-import com.swabunga.spell.engine.SpellDictionaryHashMap;
-import com.swabunga.spell.event.SpellCheckEvent;
-import com.swabunga.spell.event.SpellCheckListener;
-import com.swabunga.spell.event.SpellChecker;
-import com.swabunga.spell.event.StringWordTokenizer;
-import com.swabunga.spell.event.WordTokenizer;
+import java.io.File;
+import java.util.List;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +12,13 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.util.List;
+import com.swabunga.spell.engine.SpellDictionary;
+import com.swabunga.spell.engine.SpellDictionaryHashMap;
+import com.swabunga.spell.event.SpellCheckEvent;
+import com.swabunga.spell.event.SpellCheckListener;
+import com.swabunga.spell.event.SpellChecker;
+import com.swabunga.spell.event.StringWordTokenizer;
+import com.swabunga.spell.event.WordTokenizer;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.atLeast;
@@ -29,7 +30,7 @@ import static org.mockito.Mockito.when;
 public class GrammarCheckerTest {
 
     @Mock
-    private GrammarDictionaryLoader dictionary;
+    private GrammarDictionaryLoader dictionaryLoader;
 
     @Mock
     private SpellCheckListener listener;
@@ -38,13 +39,13 @@ public class GrammarCheckerTest {
 
     @Before
     public void setUp() {
-        testingInstance = new GrammarChecker(dictionary);
+        testingInstance = new GrammarChecker(dictionaryLoader);
     }
 
     @Test
     public void shouldCallForDictionaryLoad() {
-        new GrammarChecker(dictionary);
-        verify(dictionary, atLeast(1)).load();
+        new GrammarChecker(dictionaryLoader).initialize();
+        verify(dictionaryLoader, atLeast(1)).load();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -61,10 +62,10 @@ public class GrammarCheckerTest {
     public void shouldSpellCheck() {
         String input = "package name;  class HelloTlansformer { HelloTlansformer(){super();} public void hello(){} \n public void good(){} }";
         SpellDictionary spellDictionary = mock(SpellDictionary.class);
-        when(dictionary.load()).thenReturn(spellDictionary);
+        when(dictionaryLoader.load()).thenReturn(spellDictionary);
 
-        testingInstance = new GrammarChecker(dictionary);
-
+        testingInstance = new GrammarChecker(dictionaryLoader);
+        testingInstance.initialize();
         testingInstance.checkSpelling(input, listener);
         verify(listener, atLeast(1)).spellingError(any(SpellCheckEvent.class));
     }

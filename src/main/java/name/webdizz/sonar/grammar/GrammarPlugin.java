@@ -2,6 +2,7 @@ package name.webdizz.sonar.grammar;
 
 import name.webdizz.sonar.grammar.rule.GrammarRuleRepository;
 import name.webdizz.sonar.grammar.sensor.GrammarSensor;
+import name.webdizz.sonar.grammar.spellcheck.SourceGrammarAnalyser;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,8 +38,9 @@ public class GrammarPlugin extends SonarPlugin {
         return Arrays.asList(
                 // Definitions
                 GrammarMetrics.class,
+                GrammarRuleRepository.class,
+                SourceGrammarAnalyser.class,
                 // Batch
-                GrammarSensor.class,
-                GrammarRuleRepository.class);
+                GrammarSensor.class);
     }
 }
