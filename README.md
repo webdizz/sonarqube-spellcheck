@@ -1,4 +1,4 @@
-sonar-grammar [![Build Status](https://travis-ci.org/webdizz/sonar-grammar.png?branch=master)](https://travis-ci.org/boxenwebdizz/sonar-grammar) 
+sonar-grammar [![Build Status](https://travis-ci.org/webdizz/sonar-grammar.png?branch=master)](https://travis-ci.org/webdizz/sonar-grammar) 
 =============
 
 Sonar Grammar Plugin to provide spell checking of source code. 
