@@ -14,9 +14,9 @@ import org.sonar.api.rules.Violation;
 import com.swabunga.spell.event.SpellCheckEvent;
 import com.swabunga.spell.event.SpellCheckListener;
 
-class LineSpellCheckAction {
+class SpellAction {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(LineSpellCheckAction.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(SpellAction.class);
 
     private int lineNumber;
     private String sourceLine;
@@ -24,7 +24,7 @@ class LineSpellCheckAction {
     private JavaFile resource;
     private GrammarChecker grammarChecker;
 
-    private LineSpellCheckAction() {
+    private SpellAction() {
         super();
     }
 
@@ -59,46 +59,46 @@ class LineSpellCheckAction {
         return suggestionMessage;
     }
 
-    public static class LineSpellCheckActionBuilder {
+    public static class SpellActionBuilder {
         private int lineNumber;
         private String sourceLine;
         private Rule rule;
         private JavaFile resource;
         private GrammarChecker grammarChecker;
 
-        public LineSpellCheckActionBuilder setLineNumber(final int lineNumber) {
+        public SpellActionBuilder setLineNumber(final int lineNumber) {
             this.lineNumber = lineNumber;
             return this;
         }
 
-        public LineSpellCheckActionBuilder setSourceLine(final String sourceLine) {
+        public SpellActionBuilder setSourceLine(final String sourceLine) {
             this.sourceLine = sourceLine;
             return this;
         }
 
-        public LineSpellCheckActionBuilder setRule(final Rule rule) {
+        public SpellActionBuilder setRule(final Rule rule) {
             this.rule = rule;
             return this;
         }
 
-        public LineSpellCheckActionBuilder setResource(final JavaFile resource) {
+        public SpellActionBuilder setResource(final JavaFile resource) {
             this.resource = resource;
             return this;
         }
 
-        public LineSpellCheckActionBuilder setGrammarChecker(final GrammarChecker grammarChecker) {
+        public SpellActionBuilder setGrammarChecker(final GrammarChecker grammarChecker) {
             this.grammarChecker = grammarChecker;
             return this;
         }
 
-        public LineSpellCheckAction build() {
-            LineSpellCheckAction lineSpellCheckAction = new LineSpellCheckAction();
-            lineSpellCheckAction.lineNumber = lineNumber;
-            lineSpellCheckAction.resource = resource;
-            lineSpellCheckAction.rule = rule;
-            lineSpellCheckAction.sourceLine = sourceLine;
-            lineSpellCheckAction.grammarChecker = grammarChecker;
-            return lineSpellCheckAction;
+        public SpellAction build() {
+            SpellAction spellAction = new SpellAction();
+            spellAction.lineNumber = lineNumber;
+            spellAction.resource = resource;
+            spellAction.rule = rule;
+            spellAction.sourceLine = sourceLine;
+            spellAction.grammarChecker = grammarChecker;
+            return spellAction;
         }
     }
 }

@@ -60,20 +60,25 @@ public class SourceGrammarAnalyser implements ServerExtension {
                 if (Strings.isNullOrEmpty(sourceLine)) {
                     continue;
                 }
-                LineSpellCheckAction.LineSpellCheckActionBuilder spellCheckActionBuilder;
-                spellCheckActionBuilder = new LineSpellCheckAction.LineSpellCheckActionBuilder();
-                spellCheckActionBuilder.setLineNumber(lineNumber);
-                spellCheckActionBuilder.setResource(resource);
-                spellCheckActionBuilder.setRule(this.grammarRule);
-                spellCheckActionBuilder.setSourceLine(sourceLine);
-                spellCheckActionBuilder.setGrammarChecker(this.grammarChecker);
-                LineSpellCheckAction spellCheckAction = spellCheckActionBuilder.build();
+                SpellAction spellCheckAction;
+                spellCheckAction = createSpellAction(resource, lineNumber, sourceLine);
                 violations.addAll(spellCheckAction.spellLine());
             }
         } catch (IOException e) {
             LOGGER.error("Unable to read source file", e);
         }
         return violations;
+    }
+
+    private SpellAction createSpellAction(final JavaFile resource, final int lineNumber, final String sourceLine) {
+        SpellAction.SpellActionBuilder spellCheckActionBuilder;
+        spellCheckActionBuilder = new SpellAction.SpellActionBuilder();
+        spellCheckActionBuilder.setLineNumber(lineNumber);
+        spellCheckActionBuilder.setResource(resource);
+        spellCheckActionBuilder.setRule(this.grammarRule);
+        spellCheckActionBuilder.setSourceLine(sourceLine);
+        spellCheckActionBuilder.setGrammarChecker(this.grammarChecker);
+        return spellCheckActionBuilder.build();
     }
 
     private String getPackageNameForSource(final File file) {
