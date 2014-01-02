@@ -1,6 +1,6 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
-import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
+import static com.google.common.base.Preconditions.checkState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.sonar.api.resources.JavaFile;
 import org.sonar.api.rules.Rule;
 import org.sonar.api.rules.Violation;
 
-import com.swabunga.spell.event.SpellCheckEvent;
+import com.google.common.base.Strings;
 import com.swabunga.spell.event.SpellCheckListener;
 
 class SpellAction {
@@ -28,70 +28,56 @@ class SpellAction {
         super();
     }
 
-    public List<Violation> spellLine() {
-        final List<Violation> violations = new ArrayList();
-
-        SpellCheckListener spellCheckListener = new SpellCheckListener() {
-            @Override
-            public void spellingError(final SpellCheckEvent event) {
-                String suggestionMessage = collectSuggestionMessage(event);
-                final Violation violation = Violation.create(rule, resource);
-                violation.setLineId(lineNumber);
-                violation.setMessage(suggestionMessage);
-                violations.add(violation);
-            }
-        };
-        grammarChecker.checkSpelling(sourceLine, spellCheckListener);
-
+    public List<Violation> spell() {
+        final List<Violation> violations = new ArrayList<Violation>();
+        grammarChecker.checkSpelling(sourceLine, createSpellCheckListener(violations));
         return violations;
     }
 
-    private String collectSuggestionMessage(final SpellCheckEvent event) {
-        String suggestionMessage = "Invalid word is: " + event.getInvalidWord();
-        List suggestions = event.getSuggestions();
-        LOGGER.info("MISSPELL WORD: {} at {}", event.getInvalidWord(), event.getWordContextPosition());
-        if (isNotEmpty(suggestions)) {
-            suggestionMessage += "  Suggestions: ";
-            for (Object suggestion : suggestions) {
-                suggestionMessage += suggestion.toString();
-            }
-        }
-        return suggestionMessage;
+    private SpellCheckListener createSpellCheckListener(final List<Violation> violations) {
+        GrammarSpellCheckListener.Builder checkListenerBuilder = new GrammarSpellCheckListener.Builder();
+        checkListenerBuilder.setLineNumber(lineNumber);
+        checkListenerBuilder.setResource(resource);
+        checkListenerBuilder.setViolations(violations);
+        checkListenerBuilder.setRule(rule);
+        return checkListenerBuilder.build();
     }
 
-    public static class SpellActionBuilder {
+    public static class Builder {
         private int lineNumber;
         private String sourceLine;
         private Rule rule;
         private JavaFile resource;
         private GrammarChecker grammarChecker;
 
-        public SpellActionBuilder setLineNumber(final int lineNumber) {
+        public Builder setLineNumber(final int lineNumber) {
             this.lineNumber = lineNumber;
             return this;
         }
 
-        public SpellActionBuilder setSourceLine(final String sourceLine) {
+        public Builder setSourceLine(final String sourceLine) {
             this.sourceLine = sourceLine;
             return this;
         }
 
-        public SpellActionBuilder setRule(final Rule rule) {
+        public Builder setRule(final Rule rule) {
             this.rule = rule;
             return this;
         }
 
-        public SpellActionBuilder setResource(final JavaFile resource) {
+        public Builder setResource(final JavaFile resource) {
             this.resource = resource;
             return this;
         }
 
-        public SpellActionBuilder setGrammarChecker(final GrammarChecker grammarChecker) {
+        public Builder setGrammarChecker(final GrammarChecker grammarChecker) {
             this.grammarChecker = grammarChecker;
             return this;
         }
 
         public SpellAction build() {
+            validate();
+
             SpellAction spellAction = new SpellAction();
             spellAction.lineNumber = lineNumber;
             spellAction.resource = resource;
@@ -100,5 +86,14 @@ class SpellAction {
             spellAction.grammarChecker = grammarChecker;
             return spellAction;
         }
+
+        private void validate() {
+            checkState(grammarChecker != null, "GrammarChecker is required.");
+            checkState(lineNumber > 0, "LineNumber is required.");
+            checkState(rule != null, "Rule is required.");
+            checkState(!Strings.isNullOrEmpty(sourceLine), "SourceLine is required.");
+            checkState(resource != null, "Resource is required.");
+        }
     }
+
 }

@@ -62,7 +62,7 @@ public class SourceGrammarAnalyser implements ServerExtension {
                 }
                 SpellAction spellCheckAction;
                 spellCheckAction = createSpellAction(resource, lineNumber, sourceLine);
-                violations.addAll(spellCheckAction.spellLine());
+                violations.addAll(spellCheckAction.spell());
             }
         } catch (IOException e) {
             LOGGER.error("Unable to read source file", e);
@@ -71,8 +71,8 @@ public class SourceGrammarAnalyser implements ServerExtension {
     }
 
     private SpellAction createSpellAction(final JavaFile resource, final int lineNumber, final String sourceLine) {
-        SpellAction.SpellActionBuilder spellCheckActionBuilder;
-        spellCheckActionBuilder = new SpellAction.SpellActionBuilder();
+        SpellAction.Builder spellCheckActionBuilder;
+        spellCheckActionBuilder = new SpellAction.Builder();
         spellCheckActionBuilder.setLineNumber(lineNumber);
         spellCheckActionBuilder.setResource(resource);
         spellCheckActionBuilder.setRule(this.grammarRule);
