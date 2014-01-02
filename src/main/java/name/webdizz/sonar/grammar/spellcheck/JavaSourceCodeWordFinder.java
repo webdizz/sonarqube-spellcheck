@@ -46,9 +46,6 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
             i = ignore(i, "<code>", "</code>");
             i = ignore(i, "<CODE>", "</CODE>");
             i = ignore(i, '<', '>');
-//            i = ignore(i, '{', '}');
-//            i = ignore(i, '(', ')');
-//            i = ignore(i, '[', ']');
 
             if (i >= text.length()) break search;
             if (i == text.length() - 1) {
@@ -74,6 +71,11 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
                     if (!started && isWordChar(i)) {
                         nextWord.setStart(i);
                         started = true;
+                    } else if (started && !isWordChar(i) && text.substring(nextWord.getStart(), i).length() == 1) {
+                        // ignore variables like i
+                        started = false;
+                        i++;
+                        break;
                     } else if (started && !isWordChar(i)) {
                         nextWord.setText(text.substring(nextWord.getStart(), i));
                         finished = true;

@@ -1,14 +1,13 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.atLeast;
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.Before;
@@ -18,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import junit.framework.Assert;
 
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
@@ -65,7 +65,7 @@ public class GrammarCheckerTest {
     public void shouldSpellCheck() {
         String input = "package name.webdizz.sonar.grammar;\n" +
                 "\n" +
-                "\n import org.sonar.api.measures.CoreMetrics;\n /* commented code */  class HelloTlansformer { HelloTlansformer(){super();} public void hello(){} \n public void good(){}\n return Arrays.asList(\n" +
+                "\n import org.sonar.api.measures.CoreMetrics;\n /* commented code */  class HelloTlansformer { HelloTlansformer(){super();} public void hello(){} \n public void good(){ int i = 0; i++; (e);}\n return Arrays.asList(\n" +
                 "                // Definitions\n" +
                 "                GrammarMetrics.class,\n" +
                 "                GrammarRuleRepository.class); }";
@@ -74,8 +74,15 @@ public class GrammarCheckerTest {
 
         testingInstance = new GrammarChecker(dictionaryLoader);
         testingInstance.initialize();
-        testingInstance.checkSpelling(input, listener);
-        verify(listener, atLeastOnce()).spellingError(any(SpellCheckEvent.class));
+        final AtomicInteger counter = new AtomicInteger(0);
+        testingInstance.checkSpelling(input, new SpellCheckListener() {
+            @Override
+            public void spellingError(final SpellCheckEvent event) {
+                counter.incrementAndGet();
+                LOGGER.info(event.getInvalidWord());
+            }
+        });
+        Assert.assertEquals("Amount of tokens is wrong", 32, counter.get());
     }
 
     private static class GrammarCheckerDemo implements SpellCheckListener {
