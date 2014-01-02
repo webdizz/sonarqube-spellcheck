@@ -1,5 +1,12 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.io.File;
 import java.util.List;
 
@@ -20,14 +27,10 @@ import com.swabunga.spell.event.SpellChecker;
 import com.swabunga.spell.event.StringWordTokenizer;
 import com.swabunga.spell.event.WordTokenizer;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.atLeast;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 @RunWith(MockitoJUnitRunner.class)
 public class GrammarCheckerTest {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(GrammarCheckerTest.class);
 
     @Mock
     private GrammarDictionaryLoader dictionaryLoader;
@@ -60,14 +63,19 @@ public class GrammarCheckerTest {
 
     @Test
     public void shouldSpellCheck() {
-        String input = "package name;  class HelloTlansformer { HelloTlansformer(){super();} public void hello(){} \n public void good(){} }";
+        String input = "package name.webdizz.sonar.grammar;\n" +
+                "\n" +
+                "\n import org.sonar.api.measures.CoreMetrics;\n /* commented code */  class HelloTlansformer { HelloTlansformer(){super();} public void hello(){} \n public void good(){}\n return Arrays.asList(\n" +
+                "                // Definitions\n" +
+                "                GrammarMetrics.class,\n" +
+                "                GrammarRuleRepository.class); }";
         SpellDictionary spellDictionary = mock(SpellDictionary.class);
         when(dictionaryLoader.load()).thenReturn(spellDictionary);
 
         testingInstance = new GrammarChecker(dictionaryLoader);
         testingInstance.initialize();
         testingInstance.checkSpelling(input, listener);
-        verify(listener, atLeast(1)).spellingError(any(SpellCheckEvent.class));
+        verify(listener, atLeastOnce()).spellingError(any(SpellCheckEvent.class));
     }
 
     private static class GrammarCheckerDemo implements SpellCheckListener {
@@ -97,12 +105,12 @@ public class GrammarCheckerTest {
         public void spellingError(final SpellCheckEvent event) {
             List suggestions = event.getSuggestions();
             if (CollectionUtils.isNotEmpty(suggestions)) {
-                LOGGER.info("MISSPELT WORD: {} at {}", event.getInvalidWord(), event.getWordContextPosition());
+                LOGGER.info("MISSPELL WORD: {} at {}", event.getInvalidWord(), event.getWordContextPosition());
                 for (Object suggestion : suggestions) {
                     LOGGER.info("\nSuggested Word: {}", suggestion);
                 }
             } else {
-                LOGGER.info("MISSPELT WORD: {} at {}", event.getInvalidWord(), event.getWordContextPosition());
+                LOGGER.info("MISSPELL WORD: {} at {}", event.getInvalidWord(), event.getWordContextPosition());
                 LOGGER.info("\nNo suggestions");
             }
         }

@@ -39,7 +39,9 @@ class GrammarSpellCheckListener implements SpellCheckListener {
     private String collectSuggestionMessage(final SpellCheckEvent event) {
         String suggestionMessage = "Invalid word is: " + event.getInvalidWord();
         List suggestions = event.getSuggestions();
-        LOGGER.info("MISSPELL WORD: {} at {}", event.getInvalidWord(), event.getWordContextPosition());
+        Object[] args;
+        args = new Object[]{event.getInvalidWord(), event.getWordContextPosition(), resource.getKey()};
+        LOGGER.info("MISSPELL WORD: '{}' at '{}' in '{}'", args);
         if (isNotEmpty(suggestions)) {
             suggestionMessage += "  Suggestions: ";
             for (Object suggestion : suggestions) {

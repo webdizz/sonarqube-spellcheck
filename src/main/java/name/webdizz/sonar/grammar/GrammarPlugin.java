@@ -36,7 +36,8 @@ public class GrammarPlugin extends SonarPlugin {
 
     @Override
     public List getExtensions() {
-        return Arrays.asList(
+        return Arrays
+                .asList(
                 // Definitions
                 GrammarMetrics.class,
                 GrammarRuleRepository.class,

@@ -26,6 +26,7 @@ public class SpellActionTest {
 
     @Mock
     private GrammarChecker grammarChecker;
+    private String sourceLine = SOURCE_LINE;
 
     private SpellAction.Builder builder;
     private SpellAction testingInstance;
@@ -80,12 +81,20 @@ public class SpellActionTest {
 
     @Test
     public void shouldCallGrammarChecker() {
-        createAction();
+        createFullAction();
         testingInstance.spell();
         verify(grammarChecker).checkSpelling(eq(SOURCE_LINE), any(SpellCheckListener.class));
     }
 
-    private void createAction() {
+    @Test
+    public void shouldCallGrammarCheckerForEachPackageNamePart() {
+        sourceLine = "name.webdizz";
+        createFullAction();
+        testingInstance.spell();
+        verify(grammarChecker).checkSpelling(eq(sourceLine), any(SpellCheckListener.class));
+    }
+
+    private void createFullAction() {
         appendActionWithGrammarChecker();
         appendActionWithLineNumber();
         appendActionWithRule();
@@ -107,7 +116,7 @@ public class SpellActionTest {
     }
 
     private void appendActionWithSourceLine() {
-        builder.setSourceLine(SOURCE_LINE);
+        builder.setSourceLine(sourceLine);
     }
 
     private void appendActionWithResource() {

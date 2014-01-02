@@ -30,7 +30,9 @@ class SpellAction {
 
     public List<Violation> spell() {
         final List<Violation> violations = new ArrayList<Violation>();
-        grammarChecker.checkSpelling(sourceLine, createSpellCheckListener(violations));
+        SpellCheckListener spellCheckListener = createSpellCheckListener(violations);
+        grammarChecker.checkSpelling(sourceLine, spellCheckListener);
+        spellCheckListener = null;
         return violations;
     }
 

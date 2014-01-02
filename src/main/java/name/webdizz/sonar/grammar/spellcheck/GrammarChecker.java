@@ -9,7 +9,6 @@ import com.google.common.base.Strings;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.event.SpellCheckListener;
 import com.swabunga.spell.event.SpellChecker;
-import com.swabunga.spell.event.StringWordTokenizer;
 
 public class GrammarChecker {
 
@@ -37,7 +36,10 @@ public class GrammarChecker {
         spellCheck = new SpellChecker(dictionary);
         spellCheck.addSpellCheckListener(spellCheckListener);
         spellCheck.getConfiguration().setInteger("SPELL_THRESHOLD", 1);
-        spellCheck.checkSpelling(new StringWordTokenizer(input));
+        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(input, new JavaSourceCodeWordFinder());
+        spellCheck.checkSpelling(sourceCodeTokenizer);
+        spellCheck.reset();
+        spellCheck = null;
     }
 
 }
