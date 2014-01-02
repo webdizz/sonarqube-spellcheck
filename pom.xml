@@ -14,7 +14,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.buildVersion>3.7</sonar.buildVersion>
+        <sonar.buildVersion>3.7.3</sonar.buildVersion>
         <jdk.min.version>1.6</jdk.min.version>
     </properties>
 
@@ -75,7 +75,6 @@
             <plugin>
                 <groupId>org.codehaus.sonar</groupId>
                 <artifactId>sonar-packaging-maven-plugin</artifactId>
-                <version>1.7</version>
                 <extensions>true</extensions>
                 <configuration>
                     <pluginClass>name.webdizz.sonar.grammar.GrammarPlugin</pluginClass>
@@ -104,6 +103,15 @@
                 </executions>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.sonar</groupId>
+                    <artifactId>sonar-packaging-maven-plugin</artifactId>
+                    <version>1.9</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>

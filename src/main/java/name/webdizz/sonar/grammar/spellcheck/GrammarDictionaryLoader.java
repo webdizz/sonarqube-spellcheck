@@ -1,16 +1,17 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
-import com.google.common.base.Strings;
-import com.swabunga.spell.engine.SpellDictionary;
-import com.swabunga.spell.engine.SpellDictionaryHashMap;
-import name.webdizz.sonar.grammar.GrammarPlugin;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.sonar.api.config.Settings;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.sonar.api.config.Settings;
+import name.webdizz.sonar.grammar.GrammarPlugin;
+
+import com.google.common.base.Strings;
+import com.swabunga.spell.engine.SpellDictionary;
+import com.swabunga.spell.engine.SpellDictionaryHashMap;
 
 public class GrammarDictionaryLoader {
 
@@ -29,8 +30,10 @@ public class GrammarDictionaryLoader {
     public SpellDictionary load() {
         String dictionaryPath = settings.getString(GrammarPlugin.DICTIONARY);
         SpellDictionary spellDictionary = dictionary.get();
-        if (!Strings.isNullOrEmpty(dictionaryPath)) {
+        if (!Strings.isNullOrEmpty(dictionaryPath) && new File(dictionaryPath).exists()) {
             spellDictionary = loadSpellDictionary(dictionaryPath);
+        } else {
+            spellDictionary = loadSpellDictionary(Thread.currentThread().getContextClassLoader().getResource("dict/english.0").getFile());
         }
         return spellDictionary;
     }

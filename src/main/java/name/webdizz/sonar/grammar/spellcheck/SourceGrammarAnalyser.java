@@ -1,13 +1,12 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
-import name.webdizz.sonar.grammar.rule.GrammarRuleRepository;
+import static com.google.common.base.Preconditions.checkArgument;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
@@ -18,26 +17,21 @@ import org.sonar.api.config.Settings;
 import org.sonar.api.resources.JavaFile;
 import org.sonar.api.rules.Rule;
 import org.sonar.api.rules.RuleFinder;
-import org.sonar.api.rules.RuleQuery;
 import org.sonar.api.rules.Violation;
+import name.webdizz.sonar.grammar.rule.RuleFinderHelper;
 
 import com.google.common.base.Strings;
-import com.swabunga.spell.event.SpellCheckEvent;
-import com.swabunga.spell.event.SpellCheckListener;
-
-import static com.google.common.base.Preconditions.checkArgument;
 
 public class SourceGrammarAnalyser implements ServerExtension {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(SourceGrammarAnalyser.class);
 
-    private final RuleFinder ruleFinder;
-
     private GrammarChecker grammarChecker;
+    private final Rule grammarRule;
 
     public SourceGrammarAnalyser(final RuleFinder ruleFinder, final Settings settings) {
-        this.ruleFinder = ruleFinder;
         this.grammarChecker = new GrammarChecker(new GrammarDictionaryLoader(settings));
+        this.grammarRule = RuleFinderHelper.findGrammarRule(ruleFinder);
     }
 
     public void initialize() {
@@ -46,65 +40,44 @@ public class SourceGrammarAnalyser implements ServerExtension {
 
     public List<Violation> analyseSource(final File file, final SensorContext sensorContext) {
         validateArguments(file, sensorContext);
-        Rule rule = findGrammarRule();
 
         String fileName = FilenameUtils.getBaseName(file.getName());
         String packageName = getPackageNameForSource(file);
         JavaFile resource = new JavaFile(packageName, fileName);
         sensorContext.index(resource);
-        List<Violation> violations = collectGrammarViolations(file, rule, resource);
+        List<Violation> violations = collectGrammarViolations(file, resource);
         sensorContext.saveViolations(violations);
         return new ArrayList<Violation>(violations);
     }
 
-    private List<Violation> collectGrammarViolations(final File file, final Rule rule, final JavaFile resource) {
+    private List<Violation> collectGrammarViolations(final File file, final JavaFile resource) {
         final List<Violation> violations = new ArrayList();
         try {
             List<String> sourceLines = FileUtils.readLines(file);
-            int lineNumber = 1;
+            int lineNumber = 0;
             for (String sourceLine : sourceLines) {
-                if (!Strings.isNullOrEmpty(sourceLine)) {
-                    final int currentLineNumber = lineNumber;
-                    grammarChecker.checkSpelling(sourceLine, new SpellCheckListener() {
-                        @Override
-                        public void spellingError(final SpellCheckEvent event) {
-                            List suggestions = event.getSuggestions();
-                            if (CollectionUtils.isNotEmpty(suggestions)) {
-                                LOGGER.info("MISSPELT WORD: {} at {}", event.getInvalidWord(), event.getWordContextPosition());
-                                for (Object suggestion : suggestions) {
-
-                                    final Violation violation = Violation.create(rule, resource);
-                                    violation.setLineId(currentLineNumber);
-                                    violation.setMessage(suggestion.toString());
-                                    violations.add(violation);
-
-                                    LOGGER.info("\nSuggested Word: {}", suggestion);
-                                }
-                            } else {
-                                LOGGER.info("MISSPELT WORD: {} at {}", event.getInvalidWord(), event.getWordContextPosition());
-                                LOGGER.info("\nNo suggestions");
-                            }
-                        }
-                    });
-                }
                 lineNumber++;
+                if (Strings.isNullOrEmpty(sourceLine)) {
+                    continue;
+                }
+                LineSpellCheckAction.LineSpellCheckActionBuilder spellCheckActionBuilder;
+                spellCheckActionBuilder = new LineSpellCheckAction.LineSpellCheckActionBuilder();
+                spellCheckActionBuilder.setLineNumber(lineNumber);
+                spellCheckActionBuilder.setResource(resource);
+                spellCheckActionBuilder.setRule(this.grammarRule);
+                spellCheckActionBuilder.setSourceLine(sourceLine);
+                spellCheckActionBuilder.setGrammarChecker(this.grammarChecker);
+                LineSpellCheckAction spellCheckAction = spellCheckActionBuilder.build();
+                violations.addAll(spellCheckAction.spellLine());
             }
         } catch (IOException e) {
             LOGGER.error("Unable to read source file", e);
         }
-
         return violations;
     }
 
     private String getPackageNameForSource(final File file) {
         return file.getParent().split("src/main/java/")[1].replaceAll("/", ".");
-    }
-
-    private Rule findGrammarRule() {
-        RuleQuery ruleQuery = RuleQuery.create()
-                .withRepositoryKey(GrammarRuleRepository.REPOSITORY_KEY)
-                .withConfigKey("sonar_grammar_rule");
-        return ruleFinder.find(ruleQuery);
     }
 
     private void validateArguments(final File file, final SensorContext sensorContext) {
