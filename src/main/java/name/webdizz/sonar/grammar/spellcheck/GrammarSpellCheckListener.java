@@ -37,18 +37,21 @@ class GrammarSpellCheckListener implements SpellCheckListener {
     }
 
     private String collectSuggestionMessage(final SpellCheckEvent event) {
-        String suggestionMessage = "Invalid word is: " + event.getInvalidWord();
+        String spellMessage = "Invalid word is: '" + event.getInvalidWord() + "'";
         List suggestions = event.getSuggestions();
-        Object[] args;
-        args = new Object[]{event.getInvalidWord(), event.getWordContextPosition(), resource.getKey()};
-        LOGGER.info("MISSPELL WORD: '{}' at '{}' in '{}'", args);
         if (isNotEmpty(suggestions)) {
-            suggestionMessage += "  Suggestions: ";
+            StringBuilder suggestionsMessage = new StringBuilder("\n  Suggestions: ");
             for (Object suggestion : suggestions) {
-                suggestionMessage += suggestion.toString();
+                suggestionsMessage.append(suggestion.toString()).append(", ");
             }
+            spellMessage += suggestionsMessage.substring(0, suggestionsMessage.length() - 2) + ";";
         }
-        return suggestionMessage;
+        if (LOGGER.isInfoEnabled()) {
+            Object[] args;
+            args = new Object[]{spellMessage, event.getWordContextPosition(), resource.getKey()};
+            LOGGER.info("{} at '{}' \n  in '{}'\n ", args);
+        }
+        return spellMessage;
     }
 
     public static class Builder {

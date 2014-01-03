@@ -46,6 +46,7 @@ public class GrammarSpellCheckListenerTest {
         assertFalse("Violations were not created", violations.isEmpty());
     }
 
+
     @Test
     public void shouldCreateViolationWithSuggestion() {
         when(event.getSuggestions()).thenReturn(Lists.newArrayList("Some suggestion"));
