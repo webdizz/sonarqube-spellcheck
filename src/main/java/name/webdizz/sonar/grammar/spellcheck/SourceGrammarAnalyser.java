@@ -28,9 +28,11 @@ public class SourceGrammarAnalyser implements ServerExtension {
 
     private GrammarChecker grammarChecker;
     private final Rule grammarRule;
+    private final Settings settings;
 
     public SourceGrammarAnalyser(final RuleFinder ruleFinder, final Settings settings) {
         this.grammarChecker = new GrammarChecker(new GrammarDictionaryLoader(settings));
+        this.settings = settings;
         this.grammarRule = RuleFinderHelper.findGrammarRule(ruleFinder);
     }
 
@@ -82,7 +84,7 @@ public class SourceGrammarAnalyser implements ServerExtension {
     }
 
     private String getPackageNameForSource(final File file) {
-        return file.getParent().split("src/main/java/")[1].replaceAll("/", ".");
+        return file.getParent().replace(settings.getString("sonar.sources").substring(1), "").substring(1).replaceAll("/", ".");
     }
 
     private void validateArguments(final File file, final SensorContext sensorContext) {

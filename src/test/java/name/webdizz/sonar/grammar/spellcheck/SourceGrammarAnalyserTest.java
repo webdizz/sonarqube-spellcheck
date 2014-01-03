@@ -46,6 +46,7 @@ public class SourceGrammarAnalyserTest {
         when(file.exists()).thenReturn(Boolean.TRUE);
         when(file.getName()).thenReturn("GrammarSensor.java");
         when(file.getParent()).thenReturn("/some_folder/src/main/java/name/webdizz/sonar/grammar/sensor");
+        when(settings.getString("sonar.sources")).thenReturn("/some_folder/src/main/java/");
         testingInstance = new SourceGrammarAnalyser(ruleFinder, settings);
     }
 
