@@ -33,9 +33,10 @@ public class GrammarChecker {
             LOGGER.debug("Is about to check spelling for \n{} \n and record with {}", input, spellCheckListener);
         }
         SpellChecker spellCheck;
-        spellCheck = new SpellChecker(dictionary);
+        spellCheck = new SpellChecker();
         spellCheck.addSpellCheckListener(spellCheckListener);
         spellCheck.getConfiguration().setInteger("SPELL_THRESHOLD", 1);
+        spellCheck.setUserDictionary(dictionary);
         JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(input, new JavaSourceCodeWordFinder());
         spellCheck.checkSpelling(sourceCodeTokenizer);
         spellCheck.reset();
