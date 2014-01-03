@@ -76,6 +76,10 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
                         started = false;
                         i++;
                         break;
+                    } else if (started && Character.isUpperCase(text.charAt(i)) && nextWord.getStart() < i) {
+                        nextWord.setText(text.substring(nextWord.getStart(), i));
+                        finished = true;
+                        break search;
                     } else if (started && !isWordChar(i)) {
                         nextWord.setText(text.substring(nextWord.getStart(), i));
                         finished = true;
@@ -101,6 +105,8 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
 
         if (!started) {
             nextWord = null;
+        } else if (!finished && !wasPackageSeparator && i == text.length() - 1 && isWordChar(i)) {
+            nextWord.setText(text.substring(nextWord.getStart(), i + 1));
         } else if (!finished && !wasPackageSeparator) {
             nextWord.setText(text.substring(nextWord.getStart(), i));
         } else if (!finished && wasPackageSeparator) {

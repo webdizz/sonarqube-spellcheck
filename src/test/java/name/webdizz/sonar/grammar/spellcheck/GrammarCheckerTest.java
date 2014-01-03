@@ -75,7 +75,7 @@ public class GrammarCheckerTest {
                 LOGGER.info(event.getInvalidWord());
             }
         });
-        assertEquals("Amount of tokens is wrong", 32, counter.get());
+        assertEquals("Amount of tokens is wrong", 39, counter.get());
     }
 
 }
