@@ -93,7 +93,8 @@ public class SourceGrammarAnalyser implements ServerExtension {
         if (sonarSourcePath.startsWith(",/")) {
             prePackageName = fileParent.replace(sonarSourcePath.substring(1), "");
         } else {
-            prePackageName = fileParent.split(sonarSourcePath)[1];
+            String[] pathParts = fileParent.split(sonarSourcePath);
+            prePackageName = pathParts.length > 1 ? pathParts[1] : " ";
         }
         return prePackageName.substring(1).replaceAll("/", ".");
     }

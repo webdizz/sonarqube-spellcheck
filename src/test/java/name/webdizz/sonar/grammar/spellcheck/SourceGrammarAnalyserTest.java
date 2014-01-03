@@ -102,6 +102,18 @@ public class SourceGrammarAnalyserTest {
     }
 
     @Test
+    public void shouldIndexSourceCodeResourceMultiModuleProjectCase2() {
+        when(file.getParent()).thenReturn("/some_folder/src/web");
+        when(settings.getString("sonar.sources")).thenReturn("src/web");
+        testingInstance.analyseSource(file, sensorContext);
+        ArgumentCaptor<JavaFile> argument = ArgumentCaptor.forClass(JavaFile.class);
+        verify(sensorContext).index(argument.capture());
+        JavaFile resource = argument.getValue();
+        assertEquals("Resource name is incorrect", "GrammarSensor", resource.getName());
+        assertEquals("Package is incorrect", "[default]", resource.getParent().getName());
+    }
+
+    @Test
     public void shouldCreateGrammarViolations() {
         //TODO: need to clean things up
         when(ruleFinder.find(any(RuleQuery.class))).thenReturn(Rule.create());
