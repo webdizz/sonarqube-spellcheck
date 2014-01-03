@@ -16,6 +16,7 @@ import com.swabunga.spell.engine.SpellDictionaryHashMap;
 public class GrammarDictionaryLoader {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarDictionaryLoader.class);
+    private static final String DEFAULT_DICT_PATH = "dict/english.0";
 
     private final Object locker = new Object();
 
@@ -30,10 +31,10 @@ public class GrammarDictionaryLoader {
     public SpellDictionary load() {
         String dictionaryPath = settings.getString(GrammarPlugin.DICTIONARY);
         SpellDictionary spellDictionary = dictionary.get();
-        if (!Strings.isNullOrEmpty(dictionaryPath) && new File(dictionaryPath).exists()) {
+        if (!Strings.isNullOrEmpty(dictionaryPath)) {
             spellDictionary = loadSpellDictionary(dictionaryPath);
         } else {
-            spellDictionary = loadSpellDictionary(Thread.currentThread().getContextClassLoader().getResource("dict/english.0").getFile());
+            spellDictionary = loadSpellDictionary(Thread.currentThread().getContextClassLoader().getResource(DEFAULT_DICT_PATH).getFile());
         }
         return spellDictionary;
     }
