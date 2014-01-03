@@ -46,7 +46,7 @@ public class SourceGrammarAnalyserTest {
         when(file.exists()).thenReturn(Boolean.TRUE);
         when(file.getName()).thenReturn("GrammarSensor.java");
         when(file.getParent()).thenReturn("/some_folder/src/main/java/name/webdizz/sonar/grammar/sensor");
-        when(settings.getString("sonar.sources")).thenReturn("/some_folder/src/main/java/");
+        when(settings.getString("sonar.sources")).thenReturn(",/some_folder/src/main/java");
         testingInstance = new SourceGrammarAnalyser(ruleFinder, settings);
     }
 
@@ -82,6 +82,17 @@ public class SourceGrammarAnalyserTest {
 
     @Test
     public void shouldIndexSourceCodeResource() {
+        testingInstance.analyseSource(file, sensorContext);
+        ArgumentCaptor<JavaFile> argument = ArgumentCaptor.forClass(JavaFile.class);
+        verify(sensorContext).index(argument.capture());
+        JavaFile resource = argument.getValue();
+        assertEquals("Resource name is incorrect", "GrammarSensor", resource.getName());
+        assertEquals("Package is incorrect", "name.webdizz.sonar.grammar.sensor", resource.getParent().getName());
+    }
+
+    @Test
+    public void shouldIndexSourceCodeResourceMultiModuleProjectCase() {
+        when(settings.getString("sonar.sources")).thenReturn("src/main/java");
         testingInstance.analyseSource(file, sensorContext);
         ArgumentCaptor<JavaFile> argument = ArgumentCaptor.forClass(JavaFile.class);
         verify(sensorContext).index(argument.capture());

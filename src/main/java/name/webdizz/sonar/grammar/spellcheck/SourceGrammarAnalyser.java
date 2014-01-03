@@ -84,7 +84,18 @@ public class SourceGrammarAnalyser implements ServerExtension {
     }
 
     private String getPackageNameForSource(final File file) {
-        return file.getParent().replace(settings.getString("sonar.sources").substring(1), "").substring(1).replaceAll("/", ".");
+        String fileParent = file.getParent();
+        String sonarSourcePath = settings.getString("sonar.sources");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Resolving package name from sonar.sources is: '{}', file directory path is: '{}'", sonarSourcePath, fileParent);
+        }
+        String prePackageName = "";
+        if (sonarSourcePath.startsWith(",/")) {
+            prePackageName = fileParent.replace(sonarSourcePath.substring(1), "");
+        } else {
+            prePackageName = fileParent.split(sonarSourcePath)[1];
+        }
+        return prePackageName.substring(1).replaceAll("/", ".");
     }
 
     private void validateArguments(final File file, final SensorContext sensorContext) {

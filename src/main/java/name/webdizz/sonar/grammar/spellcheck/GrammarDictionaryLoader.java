@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.util.concurrent.atomic.AtomicReference;
@@ -67,8 +69,6 @@ public class GrammarDictionaryLoader {
     private SpellDictionary loadSpellDictionary(final Reader dictionaryReader, final String dictionaryPath) {
         try {
             dictionary.set(new SpellDictionaryHashMap(dictionaryReader));
-                    BufferedReader dictionaryReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-                    dictionary.set(new SpellDictionaryHashMap(dictionaryReader));
             LOGGER.info("Dictionary was loaded.");
         } catch (IOException e) {
             String message = String.format("Unable to load dictionary from %s", dictionaryPath);
