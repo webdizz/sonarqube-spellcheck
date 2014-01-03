@@ -32,7 +32,7 @@ public class GrammarRuleRepositoryTest {
         assertEquals("Key is incorrect", GrammarRuleRepository.REPOSITORY_KEY, actual.getRepositoryKey());
         assertEquals("Name is incorrect", "Sonar Grammar", actual.getName());
         assertEquals("Language is incorrect", Java.KEY, actual.getLanguage());
-        assertEquals("Severity is incorrect", RulePriority.BLOCKER, actual.getSeverity());
+        assertEquals("Severity is incorrect", RulePriority.INFO, actual.getSeverity());
         assertEquals("Status is incorrect", Rule.STATUS_READY, actual.getStatus());
     }
 }

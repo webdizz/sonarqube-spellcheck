@@ -29,7 +29,7 @@ public class GrammarRuleRepository extends RuleRepository {
         List<Rule> rules = new ArrayList<Rule>(1);
         Rule rule = Rule.create(getKey(), SONAR_GRAMMAR_RULE, REPOSITORY_NAME);
         rule.setLanguage(getLanguage());
-        rule.setSeverity(RulePriority.BLOCKER);
+        rule.setSeverity(RulePriority.INFO);
         rule.setDescription("Analyses source code for english grammar issues.");
         rule.setStatus(Rule.STATUS_READY);
         rules.add(rule);
