@@ -1,7 +1,12 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.slf4j.Logger;
@@ -31,22 +36,40 @@ public class GrammarDictionaryLoader {
     public SpellDictionary load() {
         String dictionaryPath = settings.getString(GrammarPlugin.DICTIONARY);
         SpellDictionary spellDictionary = dictionary.get();
-        if (!Strings.isNullOrEmpty(dictionaryPath)) {
-            spellDictionary = loadSpellDictionary(dictionaryPath);
-        } else {
-            spellDictionary = loadSpellDictionary(Thread.currentThread().getContextClassLoader().getResource(DEFAULT_DICT_PATH).getFile());
+        //TODO: use Guava for IO
+        synchronized (locker) {
+            if (null == spellDictionary) {
+                if (!Strings.isNullOrEmpty(dictionaryPath) && new File(dictionaryPath).exists()) {
+                    try {
+                        FileReader fileReader = null;
+                        fileReader = new FileReader(new File(dictionaryPath));
+                        spellDictionary = loadSpellDictionary(fileReader, dictionaryPath);
+                    } catch (FileNotFoundException e) {
+                        throw new UnableToLoadDictionary("There is no file with dictionary.", e);
+                    }
+                } else {
+                    try {
+                        dictionaryPath = "/" + DEFAULT_DICT_PATH;
+                        InputStream inputStream = this.getClass().getResourceAsStream(dictionaryPath);
+
+                        BufferedReader dictionaryReader = null;
+                        dictionaryReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+                        spellDictionary = loadSpellDictionary(dictionaryReader, dictionaryPath);
+                    } catch (UnsupportedEncodingException e) {
+                        throw new UnableToLoadDictionary("Unable to read dictionary file as UTF-8.", e);
+                    }
+                }
+            }
         }
         return spellDictionary;
     }
 
-    private SpellDictionary loadSpellDictionary(final String dictionaryPath) {
+    private SpellDictionary loadSpellDictionary(final Reader dictionaryReader, final String dictionaryPath) {
         try {
-            synchronized (locker) {
-                if (null == dictionary.get()) {
-                    dictionary.set(new SpellDictionaryHashMap(new File(dictionaryPath)));
-                    LOGGER.info("Dictionary was loaded.");
-                }
-            }
+            dictionary.set(new SpellDictionaryHashMap(dictionaryReader));
+                    BufferedReader dictionaryReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+                    dictionary.set(new SpellDictionaryHashMap(dictionaryReader));
+            LOGGER.info("Dictionary was loaded.");
         } catch (IOException e) {
             String message = String.format("Unable to load dictionary from %s", dictionaryPath);
             throw new UnableToLoadDictionary(message, e);

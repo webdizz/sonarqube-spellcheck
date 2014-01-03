@@ -42,9 +42,4 @@ public class GrammarDictionaryLoaderTest {
         assertNotNull("Dictionary was not loaded", testingInstance.load());
     }
 
-    @Test(expected = GrammarDictionaryLoader.UnableToLoadDictionary.class)
-    public void shouldHandleIOExceptionOnDictionaryLoad() {
-        when(settings.getString(GrammarPlugin.DICTIONARY)).thenReturn("wrong_path");
-        testingInstance.load();
-    }
 }
