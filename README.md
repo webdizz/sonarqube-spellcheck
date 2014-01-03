@@ -1,9 +1,10 @@
-sonar-grammar
+sonar-grammar [![Build Status](https://travis-ci.org/webdizz/sonar-grammar.png?branch=master)](https://travis-ci.org/webdizz/sonar-grammar) 
 =============
 
-Sonar Grammar Plugin to provide spell checking of source code.
+Sonar Grammar Plugin to provide spell checking of source code. 
 
 As a spell checking library Jazzy is used http://jazzy.sourceforge.net/
+
 
 
 # Development
