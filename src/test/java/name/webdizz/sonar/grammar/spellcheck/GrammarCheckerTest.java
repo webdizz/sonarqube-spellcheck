@@ -1,15 +1,13 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.io.File;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,15 +15,10 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import junit.framework.Assert;
 
 import com.swabunga.spell.engine.SpellDictionary;
-import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import com.swabunga.spell.event.SpellCheckEvent;
 import com.swabunga.spell.event.SpellCheckListener;
-import com.swabunga.spell.event.SpellChecker;
-import com.swabunga.spell.event.StringWordTokenizer;
-import com.swabunga.spell.event.WordTokenizer;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GrammarCheckerTest {
@@ -82,45 +75,7 @@ public class GrammarCheckerTest {
                 LOGGER.info(event.getInvalidWord());
             }
         });
-        Assert.assertEquals("Amount of tokens is wrong", 32, counter.get());
+        assertEquals("Amount of tokens is wrong", 32, counter.get());
     }
 
-    private static class GrammarCheckerDemo implements SpellCheckListener {
-        private static final Logger LOGGER = LoggerFactory.getLogger(GrammarCheckerDemo.class);
-
-        private static final String DICT_FILE = "dict/english.0";
-
-        private SpellChecker spellCheck;
-
-        public GrammarCheckerDemo(final String input) {
-            try {
-                SpellDictionary dictionary = new SpellDictionaryHashMap(new File(DICT_FILE));
-                LOGGER.info("Dictionary was loaded with custom.");
-
-                spellCheck = new SpellChecker(dictionary);
-                spellCheck.addSpellCheckListener(this);
-                spellCheck.getConfiguration().setInteger("SPELL_THRESHOLD", 1);
-
-                WordTokenizer tokenizer = new StringWordTokenizer(input);
-
-                spellCheck.checkSpelling(tokenizer);
-            } catch (Exception e) {
-                LOGGER.error("There was an error during grammar check", e);
-            }
-        }
-
-        public void spellingError(final SpellCheckEvent event) {
-            List suggestions = event.getSuggestions();
-            if (CollectionUtils.isNotEmpty(suggestions)) {
-                LOGGER.info("MISSPELL WORD: {} at {}", event.getInvalidWord(), event.getWordContextPosition());
-                for (Object suggestion : suggestions) {
-                    LOGGER.info("\nSuggested Word: {}", suggestion);
-                }
-            } else {
-                LOGGER.info("MISSPELL WORD: {} at {}", event.getInvalidWord(), event.getWordContextPosition());
-                LOGGER.info("\nNo suggestions");
-            }
-        }
-
-    }
 }

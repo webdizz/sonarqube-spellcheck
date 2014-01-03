@@ -1,12 +1,15 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
-import name.webdizz.sonar.grammar.rule.GrammarRuleRepository;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -19,12 +22,7 @@ import org.sonar.api.rules.Rule;
 import org.sonar.api.rules.RuleFinder;
 import org.sonar.api.rules.RuleQuery;
 import org.sonar.api.rules.Violation;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import name.webdizz.sonar.grammar.rule.GrammarRuleRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SourceGrammarAnalyserTest {
@@ -92,11 +90,13 @@ public class SourceGrammarAnalyserTest {
     }
 
     @Test
-    @Ignore
     public void shouldCreateGrammarViolations() {
+        //TODO: need to clean things up
+        when(ruleFinder.find(any(RuleQuery.class))).thenReturn(Rule.create());
+        testingInstance = new SourceGrammarAnalyser(ruleFinder, settings);
+        testingInstance.initialize();
         String filePath = getClass().getClassLoader().getResource("./").getPath() + "../../src/main/java" + "/" + SourceGrammarAnalyser.class.getPackage().getName().replaceAll("\\.", "\\/") + "/" + SourceGrammarAnalyser.class.getSimpleName() + ".java";
         File sourceFile = new File(filePath);
-        when(ruleFinder.find(any(RuleQuery.class))).thenReturn(Rule.create());
         List<Violation> violations = testingInstance.analyseSource(sourceFile, sensorContext);
         Violation violation = violations.get(0);
         assertNotNull("Resource was not set", violation.getResource());
