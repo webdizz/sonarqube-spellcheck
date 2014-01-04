@@ -2,7 +2,6 @@ package name.webdizz.sonar.grammar.spellcheck;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -21,20 +20,24 @@ public class JavaSourceCodeWordFinderTest {
 
     @Test
     public void shouldTreatCamelCaseAsSeparateWords() {
-        assertFoundCamelCaseWords("Camel", "Case", " ");
-        assertFoundCamelCaseWords("Java", "World", "");
-        assertFoundCamelCaseWords("Java", "World", ";");
+        assertFoundWords("Camel", "Case", "", " ", "");
+        assertFoundWords("Java", "World", "", "", "");
+        assertFoundWords("Java", "World", "", ";", "");
+        assertFoundWords("wild", "World", "", ";", "");
+        assertFoundWords("IO", "Exception", "", "", "");
     }
 
-    @Ignore
     @Test
     public void shouldTreatConstantsCorrectly() {
-
+        assertFoundWords("CONSTANT", "VALUE", "=", "", "_");
+        assertFoundWords("some", "underscore", " ", " ", "_");
     }
 
-    private void assertFoundCamelCaseWords(final String firstWord, final String secondWord, final String space) {
-        testingInstance.setText(firstWord + secondWord + space);
-        assertEquals("First word is incorrect", firstWord, testingInstance.next().getText());
+    private void assertFoundWords(final String firstWord, final String secondWord, final String headSymbol, final String tailSymbol, final String separator) {
+        String newText = headSymbol + firstWord + separator + secondWord + tailSymbol;
+        testingInstance.setText(newText);
+        String firstFoundWord = testingInstance.next().getText();
+        assertEquals("First word is incorrect", firstWord, firstFoundWord);
         assertEquals("Second word is incorrect", secondWord, testingInstance.next().getText());
     }
 }

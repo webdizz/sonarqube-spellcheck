@@ -38,6 +38,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
         boolean finished = false;
         boolean started = false;
         boolean wasPackageSeparator = false;
+        boolean wasUnderscoreSeparator = false;
 
         search:
         while (i < text.length() && !finished) {
@@ -60,7 +61,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
                     inComment = false;
                     i++;
                     continue search;
-                } else if (isPackageSeparator(i)) {
+                } else if (isPackageSeparator(i) || isUnderscoreSeparator(i)) {
                     i++;
                     continue search;
                 } else if (!isWordChar(i)) {
@@ -76,7 +77,8 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
                         started = false;
                         i++;
                         break;
-                    } else if (started && Character.isUpperCase(text.charAt(i)) && nextWord.getStart() < i) {
+                    } else if (started && Character.isUpperCase(text.charAt(i)) && nextWord.getStart() < i && isCamelCase(i)) {
+                        //camel case
                         nextWord.setText(text.substring(nextWord.getStart(), i));
                         finished = true;
                         break search;
@@ -88,6 +90,12 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
                         nextWord.setText(text.substring(nextWord.getStart(), i));
                         finished = false;
                         wasPackageSeparator = true;
+                        i++;
+                        break search;
+                    } else if (started && isUnderscoreSeparator(i)) {
+                        nextWord.setText(text.substring(nextWord.getStart(), i));
+                        finished = false;
+                        wasUnderscoreSeparator = true;
                         i++;
                         break search;
                     }
@@ -107,6 +115,8 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
             nextWord = null;
         } else if (!finished && !wasPackageSeparator && i == text.length() - 1 && isWordChar(i)) {
             nextWord.setText(text.substring(nextWord.getStart(), i + 1));
+        } else if (!finished && wasUnderscoreSeparator) {
+            nextWord.setText(text.substring(nextWord.getStart(), i - 1));
         } else if (!finished && !wasPackageSeparator) {
             nextWord.setText(text.substring(nextWord.getStart(), i));
         } else if (!finished && wasPackageSeparator) {
@@ -124,10 +134,34 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
     @Override
     protected boolean isWordChar(final int position) {
         boolean isPartOfWord = super.isWordChar(position);
-        if (!isPartOfWord && (text.charAt(position) == '(' || text.charAt(position) == ')' || text.charAt(position) == ';')) {
+        if (!isPartOfWord && (text.charAt(position) == '(' || text.charAt(position) == ')' || text.charAt(position) == ';' || text.charAt(position) == '_')) {
             isPartOfWord = false;
         }
         return isPartOfWord;
+    }
+
+    private boolean isCamelCase(final int position) {
+        boolean result = false;
+        if (position > 1 && text.length() > 2 && position < text.length() - 1) {
+            char curr = text.charAt(position);
+            char before = text.charAt(position - 1);
+            char after = text.charAt(position + 1);
+            result = Character.isLetterOrDigit(before)
+                    && (Character.isLowerCase(before) || Character.isUpperCase(before))
+                    && Character.isLetterOrDigit(after) && Character.isLowerCase(after);
+        }
+        return result;
+    }
+
+    private boolean isUnderscoreSeparator(final int position) {
+        boolean result = false;
+        if (position > 1 && text.length() > 2 && position < text.length() - 1) {
+            char curr = text.charAt(position);
+            char before = text.charAt(position - 1);
+            char after = text.charAt(position + 1);
+            result = Character.isLetterOrDigit(before) && Character.isLetterOrDigit(after) && curr == '_';
+        }
+        return result;
     }
 
     private boolean isPackageSeparator(final int position) {

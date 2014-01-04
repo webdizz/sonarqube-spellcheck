@@ -61,7 +61,12 @@ public class GrammarCheckerTest {
                 "\n import org.sonar.api.measures.CoreMetrics;\n /* commented code */  class HelloTlansformer { HelloTlansformer(){super();} public void hello(){} \n public void good(){ int i = 0; i++; (e);}\n return Arrays.asList(\n" +
                 "                // Definitions\n" +
                 "                GrammarMetrics.class,\n" +
-                "                GrammarRuleRepository.class); }";
+                "                GrammarRuleRepository.class); }" +
+                ".setDescription(\"This is a metric to store a misspelled word in code\")\n" +
+                "            .setDirection(Metric.DIRECTION_WORST)\n" +
+                "            .setQualitative(false)\n" +
+                "            .setDomain(CoreMetrics.DOMAIN_GENERAL)\n" +
+                "            .create(); IOException";
         SpellDictionary spellDictionary = mock(SpellDictionary.class);
         when(dictionaryLoader.load()).thenReturn(spellDictionary);
 
@@ -75,7 +80,7 @@ public class GrammarCheckerTest {
                 LOGGER.info(event.getInvalidWord());
             }
         });
-        assertEquals("Amount of tokens is wrong", 39, counter.get());
+        assertEquals("Amount of tokens is wrong", 62, counter.get());
     }
 
 }
