@@ -1,13 +1,19 @@
-sonar-grammar [![Build Status](https://travis-ci.org/webdizz/sonar-grammar.png?branch=master)](https://travis-ci.org/webdizz/sonar-grammar) 
+sonar-grammar 
 =============
 
 Sonar Grammar Plugin to provide spell checking of source code. 
 
 As a spell checking library Jazzy is used http://jazzy.sourceforge.net/
 
+Status
+------
 
+[![Build Status](https://travis-ci.org/webdizz/sonar-grammar.png?branch=master)](https://travis-ci.org/webdizz/sonar-grammar)  
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/webdizz/sonar-grammar/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-# Development
+Development
+-----------
+
 * **To start Sonar**
 
 ```bash
@@ -20,11 +26,11 @@ export SONAR_RUNNER_OPTS="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:trans
 mvnDebug sonar:sonar
 ```
 
-# Ammend dictionary
+Ammend dictionary
+-----------
 
 There is built in dictionary, however to add additional words here is a bash script to rearrange dictionary.
 To do this - apend new word to **dict/english.0**, run **reprocess_dict.sh** after that copy **dict/english.1** with new word and in correct format to **src/main/resoources/dict/enslish.0**.
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/webdizz/sonar-grammar/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
