@@ -21,6 +21,7 @@ import org.sonar.api.rules.Violation;
 import name.webdizz.sonar.grammar.rule.RuleFinderHelper;
 
 import com.google.common.base.Strings;
+import java.util.Arrays;
 
 public class SourceGrammarAnalyser implements ServerExtension {
 
@@ -84,19 +85,28 @@ public class SourceGrammarAnalyser implements ServerExtension {
     }
 
     private String getPackageNameForSource(final File file) {
-        String fileParent = file.getParent();
+        final String fileParentPath = file.getParent();
         String sonarSourcePath = settings.getString("sonar.sources");
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Resolving package name from sonar.sources is: '{}', file directory path is: '{}'", sonarSourcePath, fileParent);
+            LOGGER.debug("Resolving package name from sonar.sources is: '{}', file directory path is: '{}'", sonarSourcePath, fileParentPath);
         }
-        String prePackageName = "";
-        if (sonarSourcePath.startsWith(",/")) {
-            prePackageName = fileParent.replace(sonarSourcePath.substring(1), "");
-        } else {
-            String[] pathParts = fileParent.split(sonarSourcePath);
-            prePackageName = pathParts.length > 1 ? pathParts[1] : " ";
+        if (sonarSourcePath.startsWith(",")){
+            // path from root
+            sonarSourcePath = sonarSourcePath.substring(1);
+        }else {
+            // path relative to parent
+            final int index;
+            if ((index=fileParentPath.indexOf(sonarSourcePath)) < 0){
+                // in parent sonar-source-path is not exists
+                // empty package name will be returned 
+                return " ";
+            }
+            sonarSourcePath = fileParentPath.substring(0, index + sonarSourcePath.length());
         }
-        return prePackageName.substring(1).replaceAll("/", ".");
+        final File sonarSource = new File(sonarSourcePath).getAbsoluteFile();
+        final List<File> sourceDir = Arrays.asList(new File[]{sonarSource});
+        final JavaFile resource = JavaFile.fromIOFile(file, sourceDir, false);
+        return resource == null ? " " : resource.getParent().getKey();
     }
 
     private void validateArguments(final File file, final SensorContext sensorContext) {
