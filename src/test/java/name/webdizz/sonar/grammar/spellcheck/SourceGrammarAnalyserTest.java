@@ -46,6 +46,7 @@ public class SourceGrammarAnalyserTest {
         when(file.exists()).thenReturn(Boolean.TRUE);
         when(file.getName()).thenReturn("GrammarSensor.java");
         when(file.getParent()).thenReturn("/some_folder/src/main/java/name/webdizz/sonar/grammar/sensor");
+        when(file.getAbsolutePath()).thenReturn("/some_folder/src/main/java/name/webdizz/sonar/grammar/sensor/GrammarSensor.java");
         when(settings.getString("sonar.sources")).thenReturn(",/some_folder/src/main/java");
         testingInstance = new SourceGrammarAnalyser(ruleFinder, settings);
     }
@@ -120,7 +121,7 @@ public class SourceGrammarAnalyserTest {
         testingInstance = new SourceGrammarAnalyser(ruleFinder, settings);
         testingInstance.initialize();
         String filePath = getClass().getClassLoader().getResource("./").getPath() + "../../src/main/java" + "/" + SourceGrammarAnalyser.class.getPackage().getName().replaceAll("\\.", "\\/") + "/" + SourceGrammarAnalyser.class.getSimpleName() + ".java";
-        File sourceFile = new File(filePath);
+        File sourceFile = new File(filePath).getAbsoluteFile();
         List<Violation> violations = testingInstance.analyseSource(sourceFile, sensorContext);
         Violation violation = violations.get(0);
         assertNotNull("Resource was not set", violation.getResource());
