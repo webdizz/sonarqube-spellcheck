@@ -1,0 +1,67 @@
+package name.webdizz.sonar.grammar.sensor;
+
+import com.swabunga.spell.event.SpellCheckEvent;
+import com.swabunga.spell.event.SpellCheckListener;
+import java.util.List;
+import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Class-trigger to react to grammar spell violations
+ *
+ *
+ * @author Oleg_Sopilnyak1
+ */
+class GrammarViolationTrigger implements SpellCheckListener {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(GrammarViolationTrigger.class);
+
+    private final GrammarIssuesWrapper lineWrapper;
+
+    public GrammarViolationTrigger(final GrammarIssuesWrapper lineWrapper) {
+        this.lineWrapper = lineWrapper;
+    }
+
+    /**
+     * Detected spelling error
+     *
+     * @param event spell-check-event
+     */
+    @Override
+    public void spellingError(final SpellCheckEvent event) {
+        final StringBuilder spellMessageBuilder = new StringBuilder(100);
+        spellMessageBuilder
+                .append("Invalid word is : \'")
+                .append(event.getInvalidWord())
+                .append("\'");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Detected invalid word \'{}\' at Col.{}\nin the line{}", event.getInvalidWord(), event.getWordContextPosition(), lineWrapper.getLine());
+        }
+        final List suggestions;
+        if (isNotEmpty(suggestions = event.getSuggestions())) {
+            spellMessageBuilder.append("\n  Suggestions: ");
+            boolean first = true;
+            for (final Object suggestion : suggestions) {
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.debug("Adding suggestion: {}", suggestion);
+                }
+                if (first) {
+                    spellMessageBuilder.append(suggestion);
+                    first = false;
+                } else {
+                    spellMessageBuilder.append(", ").append(suggestion);
+                }
+            }
+            spellMessageBuilder.append(";");
+        }
+        final String spellMessage = spellMessageBuilder.toString();
+        if (LOGGER.isInfoEnabled()) {
+            Object[] args;
+            args = new Object[]{spellMessage, event.getWordContextPosition(), lineWrapper.getKey()};
+            LOGGER.info("{} at '{}' \n  in '{}'\n ", args);
+        }
+        lineWrapper.incident(spellMessage, event.getWordContextPosition());
+    }
+
+}

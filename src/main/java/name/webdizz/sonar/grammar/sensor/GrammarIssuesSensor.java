@@ -1,7 +1,5 @@
 package name.webdizz.sonar.grammar.sensor;
 
-import com.swabunga.spell.event.SpellCheckEvent;
-import com.swabunga.spell.event.SpellCheckListener;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
@@ -9,7 +7,6 @@ import java.util.concurrent.locks.ReentrantLock;
 import name.webdizz.sonar.grammar.PluginParameter;
 import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
 import name.webdizz.sonar.grammar.spellcheck.GrammarDictionaryLoader;
-import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -55,6 +52,11 @@ public class GrammarIssuesSensor implements Sensor {
     }
 
     @Override
+    public String toString() {
+        return "Grammar Issues";
+    }
+
+    @Override
     public void analyse(Project module, SensorContext context) {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Initialize the GrammarChecker.");
@@ -91,7 +93,7 @@ public class GrammarIssuesSensor implements Sensor {
                     // make copy of wrapper for next line
                     final GrammarIssuesWrapper lineWrapper = wrap(inputFile, line, lineCounter);
                     // checking the line
-                    grammarChecker.checkSpelling(line, new GrammarSpellCheckListener(lineWrapper));
+                    grammarChecker.checkSpelling(line, new GrammarViolationTrigger(lineWrapper));
                 }
                 // increase the lines counter
                 lineCounter++;
@@ -120,38 +122,6 @@ public class GrammarIssuesSensor implements Sensor {
 
         } finally {
             wrapperLock.unlock();
-        }
-    }
-
-    // inner classes
-    private static class GrammarSpellCheckListener implements SpellCheckListener {
-
-        private final GrammarIssuesWrapper lineWrapper;
-
-        public GrammarSpellCheckListener(GrammarIssuesWrapper lineWrapper) {
-            this.lineWrapper = lineWrapper;
-        }
-
-        @Override
-        public void spellingError(SpellCheckEvent event) {
-            final StringBuilder spellMessageBuilder = new StringBuilder("Invalid word is: '")
-                    .append(event.getInvalidWord())
-                    .append("'");
-            String spellMessage = spellMessageBuilder.toString();
-            final List suggestions = event.getSuggestions();
-            if (isNotEmpty(suggestions)) {
-                final StringBuilder suggestionsMessage = new StringBuilder("\n  Suggestions: ");
-                for (final Object suggestion : suggestions) {
-                    suggestionsMessage.append(suggestion.toString()).append(", ");
-                }
-                spellMessage += suggestionsMessage.substring(0, suggestionsMessage.length() - 2) + ";";
-            }
-            if (LOGGER.isInfoEnabled()) {
-                Object[] args;
-                args = new Object[]{spellMessage, event.getWordContextPosition(), lineWrapper.getKey()};
-                LOGGER.info("{} at '{}' \n  in '{}'\n ", args);
-            }
-            lineWrapper.incident(spellMessage, event.getWordContextPosition());
         }
     }
 
