@@ -36,7 +36,8 @@ class GrammarViolationTrigger implements SpellCheckListener {
                 .append(event.getInvalidWord())
                 .append("\'");
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Detected invalid word \'{}\' at Col.{}\nin the line{}", event.getInvalidWord(), event.getWordContextPosition(), lineWrapper.getLine());
+            final Object[] arguments = new Object[]{ event.getInvalidWord(), event.getWordContextPosition(), lineWrapper.getLine()};
+            LOGGER.debug("Detected invalid word \'{}\' at Col.{}\nin the line{}", arguments);
         }
         final List suggestions;
         if (isNotEmpty(suggestions = event.getSuggestions())) {

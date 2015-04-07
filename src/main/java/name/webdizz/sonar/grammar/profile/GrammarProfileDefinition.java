@@ -29,7 +29,8 @@ public class GrammarProfileDefinition extends ProfileDefinition {
 
         final Rule rule = ruleFinder.findByKey(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE);
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("For repository_key {} and rule_key {} found {}", PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE, rule);
+            final Object[] arguments = new Object[]{PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE, rule};
+            LOGGER.debug("For repository_key {} and rule_key {} found {}", arguments);
         }
 
         final ActiveRule activeRulev = profile.activateRule(rule, null);
