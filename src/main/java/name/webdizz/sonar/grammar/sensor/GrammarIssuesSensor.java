@@ -23,7 +23,6 @@ import org.sonar.api.rule.RuleKey;
 /**
  * The sensor for project files
  *
- * @author Oleg_Sopilnyak1
  */
 public class GrammarIssuesSensor implements Sensor {
 
@@ -59,12 +58,21 @@ public class GrammarIssuesSensor implements Sensor {
     @Override
     public void analyse(Project module, SensorContext context) {
         if (LOGGER.isDebugEnabled()) {
+            Object[] arguments = new Object[]{module.getName(), module.getKey(), module.getDescription()};
+            // about module
+            LOGGER.debug("Module name={} key={} description=\"{}\"", arguments);
+            // about context
+            LOGGER.debug("SensorContext {}", context.toString());
+        }
+        if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Initialize the GrammarChecker.");
         }
         grammarChecker.initialize();
+        
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Checking {}-files.", PluginParameter.PROFILE_LANGUAGE);
         }
+        
         for (final InputFile inputFile : fs.inputFiles(fs.predicates().hasLanguage(PluginParameter.PROFILE_LANGUAGE))) {
             processInputFile(inputFile);
         }
@@ -78,28 +86,56 @@ public class GrammarIssuesSensor implements Sensor {
 // private methods
 
     private void processInputFile(final InputFile inputFile) {
-        int lineCounter = 1;
+        if (LOGGER.isDebugEnabled()){
+            LOGGER.debug("Processing input-file {}", inputFile.toString());
+        }
+        // initialize a lines counter
+        int lineNumber = 1;
         try {
             final List<String> code = FileUtils.readLines(inputFile.file());
             if (LOGGER.isDebugEnabled()) {
-                LOGGER.debug("Has read code from {}", inputFile.absolutePath());
+                LOGGER.debug("Has read code-lines from {}\nHave read {} lines.", inputFile.toString(), code.size());
             }
 
             for (final String line : code) {
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug("Line {}:{}", lineCounter, line);
+                    LOGGER.debug("Processing {}:\"{}\"", lineNumber, line);
                 }
-                if (!StringUtils.isEmpty(line)) {
-                    // make copy of wrapper for next line
-                    final GrammarIssuesWrapper lineWrapper = wrap(inputFile, line, lineCounter);
-                    // checking the line
-                    grammarChecker.checkSpelling(line, new GrammarViolationTrigger(lineWrapper));
-                }
-                // increase the lines counter
-                lineCounter++;
+                // processing current line
+                processInputCodeLine(line, inputFile, lineNumber);
+                // increment the lines counter
+                lineNumber++;
             }
         } catch (IOException ex) {
             LOGGER.error("Can't read data from file " + inputFile.absolutePath(), ex);
+        }
+    }
+
+    private void processInputCodeLine(final String line, final InputFile inputFile, int lineNumber) {
+        if (!StringUtils.isEmpty(line)) {
+            // prepare wrapper for the line
+            final GrammarIssuesWrapper lineWrapper = wrap(inputFile, line, lineNumber);
+            
+            if (LOGGER.isDebugEnabled()) {
+                final Object[] argumnets = new Object[]{lineNumber, line, inputFile.toString()};
+                LOGGER.debug("Prepared issues-wrapper for \n {}:\"{}\"\nin{}", argumnets);
+                LOGGER.debug(lineWrapper.toString());
+            }
+            
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("Begin check line \"{}\"", line);
+            }
+            
+            // checking the line
+            grammarChecker.checkSpelling(line, new GrammarViolationTrigger(lineWrapper));
+            
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("End check line \"{}\"", line);
+            }
+        } else {
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("Skipped empty line #{} in {}", lineNumber, inputFile.toString());
+            }
         }
     }
 
@@ -112,7 +148,7 @@ public class GrammarIssuesSensor implements Sensor {
                     .setLine(line)
                     .setLineNumber(lineNumber)
                     .setPerspectives(perspectives)
-                    .setRuleKey(RuleKey.of(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE))
+                    .setRuleKey(RuleKey.of(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE_KEY))
                     .build()
                     : GrammarIssuesWrapper.builder(templateWrapper)
                     .setInputFile(resourse)

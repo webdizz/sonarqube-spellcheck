@@ -5,7 +5,6 @@ import org.sonar.api.CoreProperties;
 /**
  * The pool of constants used in the grammar-plugin
  *
- * @author Oleg_Sopilnyak1
  */
 public interface PluginParameter {
     /**
@@ -32,8 +31,12 @@ public interface PluginParameter {
     /**
      * The name of grammar-rule
      */
-    String SONAR_GRAMMAR_RULE = "sonar_grammar_rule";
+    String SONAR_GRAMMAR_RULE_KEY = "sonar_grammar_rule";
 
+    /**
+     * The name of grammar-rule
+     */
+    String SONAR_GRAMMAR_RULE_NAME = "Grammar Rule";
     /**
      * The description of grammar-rule
      */

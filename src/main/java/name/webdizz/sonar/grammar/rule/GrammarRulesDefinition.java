@@ -9,9 +9,7 @@ import org.sonar.api.rule.Severity;
 import org.sonar.api.server.rule.RulesDefinition;
 
 /**
- * Declare rule metadata in server repository of rules.
- *
- * @author Oleg_Sopilnyak1
+ * Declare rule meta-data in server repository of rules.
  */
 public class GrammarRulesDefinition implements RulesDefinition, BatchExtension {
 
@@ -26,15 +24,15 @@ public class GrammarRulesDefinition implements RulesDefinition, BatchExtension {
     @Override
     public void define(Context context) {
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Making sonar-rules for the Grammar Plugin.");
+            LOGGER.debug("Making sonar-rules for the Grammar Plugin using {}", context.toString());
         }
         final NewRepository repository = context
                 .createRepository(PluginParameter.REPOSITORY_KEY, PluginParameter.PROFILE_LANGUAGE)
                 .setName(PluginParameter.REPOSITORY_NAME);
         
-        final NewRule grammarRule = repository.createRule(PluginParameter.SONAR_GRAMMAR_RULE)
-                .setInternalKey(PluginParameter.SONAR_GRAMMAR_RULE)
-                .setName("Grammar Rule")
+        final NewRule grammarRule = repository.createRule(PluginParameter.SONAR_GRAMMAR_RULE_KEY)
+                .setInternalKey(PluginParameter.SONAR_GRAMMAR_RULE_KEY)
+                .setName(PluginParameter.SONAR_GRAMMAR_RULE_NAME)
                 .setHtmlDescription(PluginParameter.SONAR_GRAMMAR_RULE_DESCRIPTION)
                 .setTags(PluginParameter.REPOSITORY_KEY)
                 .setStatus(RuleStatus.READY)

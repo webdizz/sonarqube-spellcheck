@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 /**
  * Class-trigger to react to grammar spell violations
  *
- *
- * @author Oleg_Sopilnyak1
  */
 class GrammarViolationTrigger implements SpellCheckListener {
 
@@ -39,8 +37,8 @@ class GrammarViolationTrigger implements SpellCheckListener {
             final Object[] arguments = new Object[]{ event.getInvalidWord(), event.getWordContextPosition(), lineWrapper.getLine()};
             LOGGER.debug("Detected invalid word \'{}\' at Col.{}\nin the line{}", arguments);
         }
-        final List suggestions;
-        if (isNotEmpty(suggestions = event.getSuggestions())) {
+        final List suggestions = event.getSuggestions();
+        if (isNotEmpty(suggestions)) {
             spellMessageBuilder.append("\n  Suggestions: ");
             boolean first = true;
             for (final Object suggestion : suggestions) {

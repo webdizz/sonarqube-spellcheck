@@ -1,7 +1,6 @@
 package name.webdizz.sonar.grammar.sensor;
 
 import static com.google.common.base.Preconditions.checkState;
-import java.util.Objects;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +13,10 @@ import org.sonar.api.rule.RuleKey;
 /**
  * Wrapper for one code line to check
  *
- * @author Oleg_Sopilnyak1
  */
 public class GrammarIssuesWrapper {
+
+    public static final String COLUMN_ATTRIBUTE = "Col.";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarIssuesWrapper.class);
 
@@ -37,9 +37,10 @@ public class GrammarIssuesWrapper {
         return lineNumber;
     }
 
-    public String getKey(){
+    public String getKey() {
         return inputFile.absolutePath();
     }
+
     /**
      * Something wrong with wrapped line detected.<BR/>
      * Appropriate issue will be created.
@@ -49,14 +50,15 @@ public class GrammarIssuesWrapper {
      */
     public void incident(final String message, final int column) {
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Reported about incident \"{}\" Col. {}", message, column);
+            final Object[] agrument = new Object[]{message, COLUMN_ATTRIBUTE, column};
+            LOGGER.debug("Reported about incident \"{}\" {}{}", agrument);
         }
         final Issuable issuable = perspectives.as(Issuable.class, inputFile);
         final Issue issue = issuable.newIssueBuilder()
                 .message(message)
                 .line(new Integer(lineNumber))
                 .ruleKey(ruleKey)
-                .attribute("Col.", Integer.toString(column))
+                .attribute(COLUMN_ATTRIBUTE, Integer.toString(column))
                 .build();
         final boolean success = issuable.addIssue(issue);
         if (LOGGER.isDebugEnabled()) {
@@ -84,36 +86,6 @@ public class GrammarIssuesWrapper {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Issue about incident has added {}", success);
         }
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.line);
-        hash = 89 * hash + this.lineNumber;
-        hash = 89 * hash + Objects.hashCode(this.inputFile);
-        hash = 89 * hash + Objects.hashCode(this.ruleKey);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return (obj == null || !(obj instanceof GrammarIssuesWrapper))
-                ? false
-                : equalsWrapper((GrammarIssuesWrapper) obj);
-    }
-
-    public boolean equalsWrapper(GrammarIssuesWrapper other) {
-        if (!Objects.equals(this.line, other.line)) {
-            return false;
-        }
-        if (this.lineNumber != other.lineNumber) {
-            return false;
-        }
-        if (!Objects.equals(this.inputFile, other.inputFile)) {
-            return false;
-        }
-        return Objects.equals(this.ruleKey, other.ruleKey);
     }
 
     @Override

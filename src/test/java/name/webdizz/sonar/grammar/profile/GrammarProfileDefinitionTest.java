@@ -9,15 +9,11 @@ import org.sonar.api.rules.Rule;
 import org.sonar.api.rules.RuleFinder;
 import org.sonar.api.utils.ValidationMessages;
 
-/**
- *
- * @author Oleg_Sopilnyak1
- */
-//@RunWith(PowerMockRunner.class)
-//@PrepareForTest(RulesProfile.class)
 public class GrammarProfileDefinitionTest {
 
     private final RuleFinder ruleFinder = mock(RuleFinder.class);
+    private final GrammarProfileDefinition instance = new GrammarProfileDefinition(ruleFinder);
+    private final Rule rule = prepareMockedRule();
 
     /**
      * Test of createProfile method, of class GrammarProfileDefinition.
@@ -25,25 +21,31 @@ public class GrammarProfileDefinitionTest {
     @Test
     public void testCreateProfile() {
         System.out.println("Testing createProfile");
-        ValidationMessages validationMessages = null;
-        GrammarProfileDefinition instance = new GrammarProfileDefinition(ruleFinder);
-        RulesProfile profile = RulesProfile.create(PluginParameter.PROFILE_NAME, PluginParameter.PROFILE_LANGUAGE);
-        Rule rule = mock(Rule.class);
-        when(rule.getRepositoryKey()).thenReturn(PluginParameter.REPOSITORY_KEY);
-        when(rule.getKey()).thenReturn(PluginParameter.SONAR_GRAMMAR_RULE);
-        when(rule.isEnabled()).thenReturn(Boolean.TRUE);
-        when(ruleFinder.findByKey(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE)).thenReturn(rule);
-
-        RulesProfile result = instance.createProfile(validationMessages);
         
-        assertEquals(profile, result);
+        RulesProfile expected = RulesProfile.create(PluginParameter.PROFILE_NAME, PluginParameter.PROFILE_LANGUAGE);
+
+        RulesProfile result = instance.createProfile(ValidationMessages.create());
+        
+        assertEquals(expected, result);
+        System.out.println("Checking active-rules "+result.getActiveRules());
+        
         assertTrue(result.getActiveRules().size() > 0);
         assertEquals(rule, result.getActiveRules().get(0).getRule());
         assertEquals(rule, result.getActiveRule(rule).getRule());
-        assertEquals(rule, result.getActiveRule(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE).getRule());
+        assertEquals(rule, result.getActiveRule(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE_KEY).getRule());
         
 
         System.out.println("Done.");
+    }
+
+    // private methods
+    private Rule prepareMockedRule() {
+        final Rule mockedRule = mock(Rule.class);
+        when(mockedRule.getRepositoryKey()).thenReturn(PluginParameter.REPOSITORY_KEY);
+        when(mockedRule.getKey()).thenReturn(PluginParameter.SONAR_GRAMMAR_RULE_KEY);
+        when(mockedRule.isEnabled()).thenReturn(Boolean.TRUE);
+        when(ruleFinder.findByKey(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE_KEY)).thenReturn(mockedRule);
+        return mockedRule;
     }
 
 }

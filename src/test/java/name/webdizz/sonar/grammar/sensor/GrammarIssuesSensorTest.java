@@ -22,10 +22,6 @@ import org.sonar.api.issue.Issue;
 import org.sonar.api.resources.Project;
 import org.sonar.api.rule.RuleKey;
 
-/**
- *
- * @author Oleg_Sopilnyak1
- */
 public class GrammarIssuesSensorTest {
 
     private final FileSystem fs = mock(FileSystem.class);

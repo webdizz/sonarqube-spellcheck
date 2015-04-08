@@ -13,8 +13,6 @@ import org.sonar.api.rule.RuleKey;
 
 /**
  * Unit test for GrammarIssuesWrapper
- *
- * @author Oleg_Sopilnyak1
  */
 public class GrammarIssuesWrapperTest {
     
