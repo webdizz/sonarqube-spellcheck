@@ -10,6 +10,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FilePredicate;
 import org.sonar.api.batch.fs.FilePredicates;
@@ -24,19 +26,21 @@ import org.sonar.api.rule.RuleKey;
 
 public class GrammarIssuesSensorTest {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(GrammarIssuesSensorTest.class);
+
     private final FileSystem fs = mock(FileSystem.class);
 
     private final ResourcePerspectives perspectives = mock(ResourcePerspectives.class);
 
     private final Settings settings = mock(Settings.class);
 
-    private final GrammarIssuesSensor instance;
+    private final GrammarIssuesSensor instance = new GrammarIssuesSensor(fs, perspectives, settings);
+
+    ;
 
     public GrammarIssuesSensorTest() {
-        System.out.println("Preparing the instnace to test.");
+        LOGGER.info("Preparing the instnace to test.");
         when(settings.getString(GrammarPlugin.DICTIONARY)).thenReturn(GrammarChecker.DEFAULT_DICT_PATH);
-
-        instance = new GrammarIssuesSensor(fs, perspectives, settings);
     }
 
     /**
@@ -44,7 +48,7 @@ public class GrammarIssuesSensorTest {
      */
     @Test
     public void testAnalyse() {
-        System.out.println("Testing analyse");
+        LOGGER.info("Testing analyse");
         Project module = mock(Project.class);
         SensorContext context = mock(SensorContext.class);
         // fs.inputFiles(fs.predicates().hasLanguage(PluginParameter.PROFILE_LANGUAGE))
@@ -58,6 +62,7 @@ public class GrammarIssuesSensorTest {
         File sourceFile = new File("src/main/java/name/webdizz/sonar/grammar/GrammarPlugin.java");
         assertTrue("Not accessible file for tests " + sourceFile.getAbsolutePath(), sourceFile.exists());
         when(inputFile.file()).thenReturn(sourceFile);
+        when(inputFile.absolutePath()).thenReturn(sourceFile.getAbsolutePath());
         inputFiles.add(inputFile);
 
         Issuable issuable = mock(Issuable.class);
@@ -84,7 +89,7 @@ public class GrammarIssuesSensorTest {
         verify(fs, atLeastOnce()).inputFiles(predicate);
         verify(predicates, atLeastOnce()).hasLanguage(PluginParameter.PROFILE_LANGUAGE);
 
-        System.out.println("Done.");
+        LOGGER.info("Done.");
     }
 
     /**
@@ -92,7 +97,7 @@ public class GrammarIssuesSensorTest {
      */
     @Test
     public void testShouldExecuteOnProject() {
-        System.out.println("Testing shouldExecuteOnProject");
+        LOGGER.info("Testing shouldExecuteOnProject");
         Project project = mock(Project.class);
         // fs.hasFiles(fs.predicates().hasLanguage(PluginParameter.PROFILE_LANGUAGE));
         FilePredicate predicate = mock(FilePredicate.class);
@@ -104,6 +109,7 @@ public class GrammarIssuesSensorTest {
         boolean result;
         result = instance.shouldExecuteOnProject(project);
         assertEquals(true, result);
+
         when(fs.hasFiles(predicate)).thenReturn(Boolean.FALSE);
         result = instance.shouldExecuteOnProject(project);
         assertEquals(false, result);
@@ -112,7 +118,7 @@ public class GrammarIssuesSensorTest {
         verify(fs, atLeast(2)).hasFiles(predicate);
         verify(predicates, atLeast(2)).hasLanguage(PluginParameter.PROFILE_LANGUAGE);
 
-        System.out.println("Done.");
+        LOGGER.info("Done.");
     }
 
 }
