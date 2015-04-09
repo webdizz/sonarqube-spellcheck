@@ -56,7 +56,7 @@ export SONAR_RUNNER_OPTS="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:trans
 mvnDebug sonar:sonar
 ```
 
-Ammend dictionary
+Amend dictionary
 -----------
 
 There is built in dictionary, however to add additional words here is a bash script to rearrange dictionary.
