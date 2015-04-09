@@ -9,28 +9,30 @@ Requirements environment:
 ==========================
 -Java 1.7
 -Maven
--Idea
 -SonarQube(current version 5.1)
 
 SonarQube install steps:
 ========================
-1. Download SonarQube (current version 5.1) from site - http://www.sonarqube.org/downloads/
+1. Download SonarQube (current version 5.1) from  [Sonarqube homepage](http://www.sonarqube.org/downloads/)
 2. Unpack and go to \sonarqube-5.1\bin\ folder
 3. Select you current OS and run sonar(can be ".bat" or ".sh" file)
-4. In browser write -  http://localhost:9000/
-5. Login in sonar as Administrator (login - admin, password - admin)
-6. In Sonar console go to the tab "Quality Profiles". You need to make sure that "Sonar way " stands as the default
+4. In browser go to -  [http://localhost:9000/](http://localhost:9000/)
+5. Login in Sonar as Administrator (login - admin, password - admin)
+6. On Sonar page top menu go to the "Quality Profiles". You need to make sure that "Sonar way " stands as the default
 7. Open terminal(comand line), go to the project that you want to test and write "mvn sonar:sonar" command. For debug use "mvnDebug sonar:sonar" command(port 8000)
-8. After that you can see results on "http://localhost:9000/dashboard/" or follow the link that will give you the command line
+8. After that you can see results on [http://localhost:9000/dashboard/](http://localhost:9000/dashboard/) or follow the link that will be found in bottom command line
 
 Sonar-Grammar-Plugin use:
 =========================
-1. In idea use maven for build project
-2. In "sonar-grammar\target\" folder will be "sonar-grammar-plugin-0.1-SNAPSHOT.jar" file. Copy this file to local SonarQubefolder - "sonarqube-5.1\extensions\plugins\"
+1. Use maven for build project
+2. In "sonar-grammar\target\" folder will be "sonar-grammar-plugin-XXX.jar" file. Copy this file to local SonarQubefolder - "sonarqube-5.1\extensions\plugins\"
 3. Restart local SonarQube
-4. Open SonarQube console - http://localhost:9000/ and login as Administrator(login - admin, password - admin)
+4. Open SonarQube console - [http://localhost:9000/](http://localhost:9000/) and login as Administrator(login - admin, password - admin)
 5. Go to the tab "Quality Profiles" and set Sonar Grammar Profile as Default
-6. Plugin ready for work. You can use step 7-8 from "SonarQube install steps"
+6. (Optional) for check not only grammar plugin but "Sonnar way" and "Grammar" together. Set inheritance for Grammar profile:
+"Quality Profiles" - select "Sonar Grammar Profile" - click "Profile Inheritance" and select  inheritance from "Sonnar way" 
+in drop-down list
+8. Plugin ready for work. You can use step 7-8 from "SonarQube install steps"
 
 
 Status
