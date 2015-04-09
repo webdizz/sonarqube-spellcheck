@@ -3,23 +3,28 @@ package name.webdizz.sonar.grammar.rule;
 import name.webdizz.sonar.grammar.PluginParameter;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.rule.Severity;
 import org.sonar.api.server.rule.RulesDefinition;
 
 public class GrammarRulesDefinitionTest {
-        private final RulesDefinition.Context context = mock(RulesDefinition.Context.class);
-        private final RulesDefinition.NewRepository repository = prepareMockedRulesRepository();
-        
-        private final GrammarRulesDefinition instance = new GrammarRulesDefinition();
-    
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(GrammarRulesDefinitionTest.class);
+
+    private final RulesDefinition.Context context = mock(RulesDefinition.Context.class);
+    private final RulesDefinition.NewRepository repository = prepareMockedRulesRepository();
+
+    private final GrammarRulesDefinition instance = new GrammarRulesDefinition();
+
     /**
      * Test of define method, of class GrammarRulesDefinition.
      */
     @Test
     public void testDefine() {
-        System.out.println("Testing define");
-        
+        LOGGER.info("Testing define");
+
         instance.define(context);
 
         // check behavior
@@ -27,8 +32,8 @@ public class GrammarRulesDefinitionTest {
         verify(repository).setName(PluginParameter.REPOSITORY_NAME);
         verify(repository).createRule(PluginParameter.SONAR_GRAMMAR_RULE_KEY);
         verify(repository).done();
-                
-        System.out.println("Done.");
+
+        LOGGER.info("Done.");
     }
 
     private RulesDefinition.NewRepository prepareMockedRulesRepository() {
@@ -45,5 +50,5 @@ public class GrammarRulesDefinitionTest {
         when(rule.setSeverity(Severity.INFO)).thenReturn(rule);
         return mockedRulesRepository;
     }
-    
+
 }
