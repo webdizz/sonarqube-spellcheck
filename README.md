@@ -7,10 +7,10 @@ As a spell checking library Jazzy is used http://jazzy.sourceforge.net/
 
 Requirements environment:
 ==========================
--Java 1.7
--Maven
--Idea
--SonarQube(current version 5.1)
+1.Java 1.7
+2.Maven
+3.SonarQube(current version 5.1)
+4.Idea
 
 SonarQube install steps:
 ========================
