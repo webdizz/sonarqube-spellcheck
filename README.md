@@ -1,4 +1,4 @@
-sonar-grammar 
+Sonar-grammar
 =============
 
 Sonar Grammar Plugin to provide spell checking of source code. 
@@ -7,9 +7,9 @@ As a spell checking library Jazzy is used http://jazzy.sourceforge.net/
 
 Requirements environment:
 ==========================
-- Java 1.7
-- Maven
-- SonarQube(current version 5.1)
+1. Java 1.7
+2. Maven
+3. SonarQube(current version 5.1)
 
 SonarQube install steps:
 ========================
