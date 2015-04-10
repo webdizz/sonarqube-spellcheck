@@ -9,7 +9,7 @@ Status
 [![Build Status](https://travis-ci.org/webdizz/sonar-grammar.png?branch=master)](https://travis-ci.org/webdizz/sonar-grammar)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/webdizz/sonar-grammar/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-Requirements environment:
+Environment requirements:
 -------------------------
 1. [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.7
 2. [Maven](https://maven.apache.org/)
