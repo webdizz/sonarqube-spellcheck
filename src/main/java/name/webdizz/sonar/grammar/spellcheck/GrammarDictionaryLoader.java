@@ -19,13 +19,14 @@ import name.webdizz.sonar.grammar.GrammarPlugin;
 import com.google.common.base.Strings;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class GrammarDictionaryLoader {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarDictionaryLoader.class);
-    private static final String DEFAULT_DICT_PATH = "dict/english.0";
 
-    private final Object locker = new Object();
+    private final Lock locker = new ReentrantLock();
 
     private Settings settings;
 
@@ -39,7 +40,8 @@ public class GrammarDictionaryLoader {
         String dictionaryPath = settings.getString(GrammarPlugin.DICTIONARY);
         SpellDictionary spellDictionary = dictionary.get();
         //TODO: use Guava for IO
-        synchronized (locker) {
+        try {
+            locker.lock();
             if (null == spellDictionary) {
                 if (!Strings.isNullOrEmpty(dictionaryPath) && new File(dictionaryPath).exists()) {
                     try {
@@ -51,7 +53,7 @@ public class GrammarDictionaryLoader {
                     }
                 } else {
                     try {
-                        dictionaryPath = "/" + DEFAULT_DICT_PATH;
+                        dictionaryPath = "/" + GrammarChecker.DEFAULT_DICT_PATH;
                         InputStream inputStream = this.getClass().getResourceAsStream(dictionaryPath);
 
                         BufferedReader dictionaryReader = null;
@@ -62,8 +64,10 @@ public class GrammarDictionaryLoader {
                     }
                 }
             }
+            return spellDictionary;
+        } finally {
+            locker.unlock();
         }
-        return spellDictionary;
     }
 
     private SpellDictionary loadSpellDictionary(final Reader dictionaryReader, final String dictionaryPath) {
@@ -78,6 +82,7 @@ public class GrammarDictionaryLoader {
     }
 
     static class UnableToLoadDictionary extends RuntimeException {
+
         UnableToLoadDictionary(final String message, final Throwable cause) {
             super(message, cause);
         }

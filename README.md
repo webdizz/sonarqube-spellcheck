@@ -1,9 +1,7 @@
-sonar-grammar 
+Sonar-grammar
 =============
 
-Sonar Grammar Plugin to provide spell checking of source code. 
-
-As a spell checking library Jazzy is used http://jazzy.sourceforge.net/
+SonarQube Grammar Plugin to provide spell checking of source code. 
 
 Status
 ------
@@ -11,26 +9,31 @@ Status
 [![Build Status](https://travis-ci.org/webdizz/sonar-grammar.png?branch=master)](https://travis-ci.org/webdizz/sonar-grammar)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/webdizz/sonar-grammar/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-Development
------------
+Environment requirements:
+-------------------------
+1. [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.7
+2. [Maven](https://maven.apache.org/)
+3. [SonarQube](http://www.sonarqube.org/) (current version 5.1)
 
-* **To start Sonar**
+Development Set Up:
+-------------------
+1. Download [SonarQube](http://www.sonarqube.org/) (current version 5.1) from  [SonarQube homepage](http://www.sonarqube.org/downloads/)
+2. Unpack and go to **sonarqube-5.1/bin** folder
+3. Enable the development mode on server : add ```bash sonar.dev=true``` to **sonarqube-5.1/conf/sonar.properties**
+4. Select you current OS and run [SonarQube](http://www.sonarqube.org/) (can be ".bat" or ".sh" file)
+5. In browser go to - [http://localhost:9000/](http://localhost:9000/)
+6. Login in [SonarQube](http://www.sonarqube.org/) as Administrator (login - **admin**, password - **admin**)
+7. On [SonarQube](http://www.sonarqube.org/) page top menu go to the "Quality Profiles". You need to make sure that "Sonar way " stands as the default
 
-```bash
-mvn install org.codehaus.sonar:sonar-dev-maven-plugin:start-war -Dsonar.runtimeVersion=3.7.3 -Djava.io.tmpdir=/tmp
-```
-* **To debug** in another console
+Development:
+------------
+1. Make some code changes
+2. **Build** and **install** the plugin : ```bash mvn package org.codehaus.sonar:sonar-dev-maven-plugin::upload -DsonarHome=sonarqube-5.1 -DsonarUrl=http://localhost:9000```
+3. Restart [SonarQube](http://www.sonarqube.org/)
+4. To perform grammar analysis go to the project that you want to test and write ```bash mvn sonar:sonar``` command, for debug use ```bash mvnDebug sonar:sonar``` command (by default debug port is **8000**)
+5. After that you can see results on [http://localhost:9000/dashboard/](http://localhost:9000/dashboard/) or follow the link that will be found in bottom command line
 
-```bash
-export SONAR_RUNNER_OPTS="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000"
-mvnDebug sonar:sonar
-```
-
-Ammend dictionary
------------
-
+Amend dictionary:
+-----------------
 There is built in dictionary, however to add additional words here is a bash script to rearrange dictionary.
-To do this - apend new word to **dict/english.0**, run **reprocess_dict.sh** after that copy **dict/english.1** with new word and in correct format to **src/main/resoources/dict/enslish.0**.
-
-
-
+To do this - append new word to **dict/english.0**, run **reprocess_dict.sh** after that copy **dict/english.1** with new word and in correct format to **src/main/resources/dict/english.0**.
