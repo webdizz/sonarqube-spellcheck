@@ -1,48 +1,55 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.common.base.Strings;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.event.SpellCheckListener;
 import com.swabunga.spell.event.SpellChecker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class GrammarChecker {
+import static com.google.common.base.Preconditions.checkArgument;
 
-    public static final String DEFAULT_DICT_PATH = "dict/english.0";
+public class GrammarChecker
+{
+  public static final String DEFAULT_DICT_PATH = "dict/english.0";
+  private static final Logger LOGGER = LoggerFactory.getLogger( GrammarChecker.class );
+  private final GrammarDictionaryLoader dictionaryLoader;
+  private SpellDictionary dictionary;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GrammarChecker.class);
+  public GrammarChecker( final GrammarDictionaryLoader dictionaryLoader )
+  {
+    this.dictionaryLoader = dictionaryLoader;
+  }
 
-    private SpellDictionary dictionary;
+  public void initialize()
+  {
+    dictionary = dictionaryLoader.load();
+  }
 
-    private final GrammarDictionaryLoader dictionaryLoader;
+  public void checkSpelling( final String input, final SpellCheckListener spellCheckListener )
+  {
+    checkParametersForNullOrEmpty( input, spellCheckListener );
+    if( LOGGER.isDebugEnabled() )
+      LOGGER.debug( "Is about to check spelling for \n{} \n and record with {}", input, spellCheckListener );
 
-    public GrammarChecker(final GrammarDictionaryLoader dictionaryLoader) {
-        this.dictionaryLoader = dictionaryLoader;
-    }
+    SpellChecker spellCheck = createSpellChecker( spellCheckListener );
+    JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer( input, new JavaSourceCodeWordFinder() );
+    spellCheck.checkSpelling( sourceCodeTokenizer );
+    spellCheck.reset();
+  }
 
-    public void initialize() {
-        dictionary = dictionaryLoader.load();
-    }
+  private void checkParametersForNullOrEmpty( String input, SpellCheckListener spellCheckListener )
+  {
+    checkArgument( spellCheckListener != null, "Cannot proceed with spell checking without SpellCheckListener" );
+    checkArgument( !Strings.isNullOrEmpty( input ), "Cannot proceed with spell checking for empty input" );
+  }
 
-    public void checkSpelling(final String input, final SpellCheckListener spellCheckListener) {
-        checkArgument(spellCheckListener != null, "Cannot proceed with spell checking without SpellCheckListener");
-        checkArgument(!Strings.isNullOrEmpty(input), "Cannot proceed with spell checking for empty input");
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Is about to check spelling for \n{} \n and record with {}", input, spellCheckListener);
-        }
-        SpellChecker spellCheck;
-        spellCheck = new SpellChecker();
-        spellCheck.addSpellCheckListener(spellCheckListener);
-        spellCheck.getConfiguration().setInteger("SPELL_THRESHOLD", 1);
-        spellCheck.setUserDictionary(dictionary);
-        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(input, new JavaSourceCodeWordFinder());
-        spellCheck.checkSpelling(sourceCodeTokenizer);
-        spellCheck.reset();
-        spellCheck = null;
-    }
-
+  private SpellChecker createSpellChecker( SpellCheckListener spellCheckListener )
+  {
+    SpellChecker spellCheck = new SpellChecker();
+    spellCheck.addSpellCheckListener( spellCheckListener );
+    spellCheck.getConfiguration().setInteger( "SPELL_THRESHOLD", 1 );
+    spellCheck.setUserDictionary( dictionary );
+    return spellCheck;
+  }
 }
