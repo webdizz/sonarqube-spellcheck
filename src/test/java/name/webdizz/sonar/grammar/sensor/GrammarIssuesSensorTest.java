@@ -1,15 +1,8 @@
 package name.webdizz.sonar.grammar.sensor;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import name.webdizz.sonar.grammar.GrammarPlugin;
 import name.webdizz.sonar.grammar.PluginParameter;
-import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.SensorContext;
@@ -18,11 +11,18 @@ import org.sonar.api.batch.fs.FilePredicates;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
 import org.sonar.api.issue.Issuable;
 import org.sonar.api.issue.Issue;
 import org.sonar.api.resources.Project;
 import org.sonar.api.rule.RuleKey;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.*;
 
 public class GrammarIssuesSensorTest {
 
@@ -32,16 +32,7 @@ public class GrammarIssuesSensorTest {
 
     private final ResourcePerspectives perspectives = mock(ResourcePerspectives.class);
 
-    private final Settings settings = mock(Settings.class);
-
-    private final GrammarIssuesSensor instance = new GrammarIssuesSensor(fs, perspectives, settings);
-
-    ;
-
-    public GrammarIssuesSensorTest() {
-        LOGGER.info("Preparing the instnace to test.");
-        when(settings.getString(GrammarPlugin.DICTIONARY)).thenReturn(GrammarChecker.DEFAULT_DICT_PATH);
-    }
+    private final GrammarIssuesSensor instance = new GrammarIssuesSensor(fs, perspectives);
 
     /**
      * Test of analyse method, of class GrammarIssuesSensor.

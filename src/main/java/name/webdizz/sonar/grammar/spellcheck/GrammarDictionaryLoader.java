@@ -1,26 +1,21 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import java.util.concurrent.atomic.AtomicReference;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.sonar.api.config.Settings;
-import name.webdizz.sonar.grammar.GrammarPlugin;
-
 import com.google.common.base.Strings;
+import com.google.common.io.InputSupplier;
+import com.google.common.io.Resources;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.net.URL;
+import java.util.Properties;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class GrammarDictionaryLoader {
 
@@ -28,16 +23,12 @@ public class GrammarDictionaryLoader {
 
     private final Lock locker = new ReentrantLock();
 
-    private Settings settings;
-
     private AtomicReference<SpellDictionary> dictionary = new AtomicReference<SpellDictionary>();
 
-    public GrammarDictionaryLoader(final Settings settings) {
-        this.settings = settings;
-    }
 
     public SpellDictionary load() {
-        String dictionaryPath = settings.getString(GrammarPlugin.DICTIONARY);
+        Properties properties = checkNotNull(readProperties("sonnar.grammar.properties"), "Unable to read plugin properties file.");
+        String dictionaryPath =properties.getProperty("dictionary.default.path");
         SpellDictionary spellDictionary = dictionary.get();
         //TODO: use Guava for IO
         try {
@@ -79,6 +70,19 @@ public class GrammarDictionaryLoader {
             throw new UnableToLoadDictionary(message, e);
         }
         return dictionary.get();
+    }
+    private Properties readProperties(String configFileName) {
+        Properties properties = null;
+        try {
+        URL url = Resources.getResource(configFileName);
+        InputSupplier<InputStream> inputSupplier = Resources.newInputStreamSupplier(url);
+
+            properties = new Properties();
+            properties.load(inputSupplier.getInput());
+        } catch (Exception e) {
+            LOGGER.error("Cannot find config file: " + configFileName);
+        }
+        return properties;
     }
 
     static class UnableToLoadDictionary extends RuntimeException {
