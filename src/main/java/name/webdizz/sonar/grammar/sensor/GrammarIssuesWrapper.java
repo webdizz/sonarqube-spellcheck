@@ -17,7 +17,7 @@ import static com.google.common.base.Preconditions.checkState;
  */
 public class GrammarIssuesWrapper {
 
-    public static final String COLUMN_ATTRIBUTE = "Col.";
+    private final String COLUMN_ATTRIBUTE = "Col.";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarIssuesWrapper.class);
 
