@@ -1,9 +1,5 @@
 package name.webdizz.sonar.grammar.sensor;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 import name.webdizz.sonar.grammar.PluginParameter;
 import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
 import name.webdizz.sonar.grammar.spellcheck.GrammarDictionaryLoader;
@@ -16,9 +12,13 @@ import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
 import org.sonar.api.rule.RuleKey;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * The sensor for project files
@@ -39,12 +39,11 @@ public class GrammarIssuesSensor implements Sensor {
      *
      * @param fs
      * @param perspectives
-     * @param settings
      */
-    public GrammarIssuesSensor(FileSystem fs, ResourcePerspectives perspectives, final Settings settings) {
+    public GrammarIssuesSensor(FileSystem fs, ResourcePerspectives perspectives) {
         this.fs = fs;
         this.perspectives = perspectives;
-        this.grammarChecker = new GrammarChecker(new GrammarDictionaryLoader(settings));
+        this.grammarChecker = new GrammarChecker(new GrammarDictionaryLoader());
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Created the bean of grammar sensor.");
         }
