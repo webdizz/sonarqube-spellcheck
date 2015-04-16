@@ -33,10 +33,10 @@ public class GrammarProfileDefinition extends ProfileDefinition {
             LOGGER.debug("For repository_key {} and rule_key {} found {}", arguments);
         }
 
-        final ActiveRule activeRulev = profile.activateRule(rule, null);
+        final ActiveRule activeRule = profile.activateRule(rule, null);
 
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug(" For rule {} activated {}", rule, activeRulev);
+            LOGGER.debug(" For rule {} activated {}", rule, activeRule);
         }
         return profile;
     }

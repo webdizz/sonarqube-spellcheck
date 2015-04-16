@@ -1,6 +1,5 @@
 package name.webdizz.sonar.grammar.sensor;
 
-import static com.google.common.base.Preconditions.checkState;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,13 +9,15 @@ import org.sonar.api.issue.Issuable;
 import org.sonar.api.issue.Issue;
 import org.sonar.api.rule.RuleKey;
 
+import static com.google.common.base.Preconditions.checkState;
+
 /**
  * Wrapper for one code line to check
  *
  */
 public class GrammarIssuesWrapper {
 
-    public static final String COLUMN_ATTRIBUTE = "Col.";
+    private final String COLUMN_ATTRIBUTE = "Col.";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarIssuesWrapper.class);
 
@@ -50,8 +51,8 @@ public class GrammarIssuesWrapper {
      */
     public void incident(final String message, final int column) {
         if (LOGGER.isDebugEnabled()) {
-            final Object[] agrument = new Object[]{message, COLUMN_ATTRIBUTE, column};
-            LOGGER.debug("Reported about incident \"{}\" {}{}", agrument);
+            final Object[] arguments = new Object[]{message, COLUMN_ATTRIBUTE, column};
+            LOGGER.debug("Reported about incident \"{}\" {}{}", arguments);
         }
         final Issuable issuable = perspectives.as(Issuable.class, inputFile);
         final Issue issue = issuable.newIssueBuilder()

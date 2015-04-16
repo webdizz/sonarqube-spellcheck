@@ -1,24 +1,17 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import java.util.concurrent.atomic.AtomicReference;
-
+import com.google.common.base.Charsets;
+import com.google.common.base.Strings;
+import com.google.common.io.Files;
+import com.swabunga.spell.engine.SpellDictionary;
+import com.swabunga.spell.engine.SpellDictionaryHashMap;
+import name.webdizz.sonar.grammar.GrammarPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.config.Settings;
-import name.webdizz.sonar.grammar.GrammarPlugin;
 
-import com.google.common.base.Strings;
-import com.swabunga.spell.engine.SpellDictionary;
-import com.swabunga.spell.engine.SpellDictionaryHashMap;
+import java.io.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -37,17 +30,16 @@ public class GrammarDictionaryLoader {
     }
 
     public SpellDictionary load() {
-        String dictionaryPath = settings.getString(GrammarPlugin.DICTIONARY);
+        String dictionaryPath = settings.getString( GrammarPlugin.DICTIONARY );
         SpellDictionary spellDictionary = dictionary.get();
-        //TODO: use Guava for IO
         try {
             locker.lock();
             if (null == spellDictionary) {
                 if (!Strings.isNullOrEmpty(dictionaryPath) && new File(dictionaryPath).exists()) {
                     try {
-                        FileReader fileReader = null;
-                        fileReader = new FileReader(new File(dictionaryPath));
-                        spellDictionary = loadSpellDictionary(fileReader, dictionaryPath);
+                        BufferedReader bufferedReader = null;
+                        bufferedReader = Files.newReader( new File( dictionaryPath ), Charsets.UTF_8 );
+                        spellDictionary = loadSpellDictionary(bufferedReader, dictionaryPath);
                     } catch (FileNotFoundException e) {
                         throw new UnableToLoadDictionary("There is no file with dictionary.", e);
                     }
@@ -57,9 +49,9 @@ public class GrammarDictionaryLoader {
                         InputStream inputStream = this.getClass().getResourceAsStream(dictionaryPath);
 
                         BufferedReader dictionaryReader = null;
-                        dictionaryReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+                        dictionaryReader = Files.newReader( new File( dictionaryPath ), Charsets.UTF_8 );
                         spellDictionary = loadSpellDictionary(dictionaryReader, dictionaryPath);
-                    } catch (UnsupportedEncodingException e) {
+                    } catch (FileNotFoundException e) {
                         throw new UnableToLoadDictionary("Unable to read dictionary file as UTF-8.", e);
                     }
                 }

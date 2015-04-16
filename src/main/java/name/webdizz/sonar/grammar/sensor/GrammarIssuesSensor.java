@@ -1,9 +1,5 @@
 package name.webdizz.sonar.grammar.sensor;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 import name.webdizz.sonar.grammar.PluginParameter;
 import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
 import name.webdizz.sonar.grammar.spellcheck.GrammarDictionaryLoader;
@@ -19,6 +15,11 @@ import org.sonar.api.component.ResourcePerspectives;
 import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
 import org.sonar.api.rule.RuleKey;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * The sensor for project files
@@ -62,7 +63,7 @@ public class GrammarIssuesSensor implements Sensor {
             // about module
             LOGGER.debug("Module name={} key={} description=\"{}\"", arguments);
             // about context
-            LOGGER.debug("SensorContext {}", context.toString());
+            LOGGER.debug("SensorContext {}", context);
         }
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Initialize the GrammarChecker.");
@@ -87,14 +88,14 @@ public class GrammarIssuesSensor implements Sensor {
 
     private void processInputFile(final InputFile inputFile) {
         if (LOGGER.isDebugEnabled()){
-            LOGGER.debug("Processing input-file {}", inputFile.toString());
+            LOGGER.debug("Processing input-file {}", inputFile);
         }
         // initialize a lines counter
         int lineNumber = 1;
         try {
             final List<String> code = FileUtils.readLines(inputFile.file());
             if (LOGGER.isDebugEnabled()) {
-                LOGGER.debug("Has read code-lines from {}\nHave read {} lines.", inputFile.toString(), code.size());
+                LOGGER.debug("Has read code-lines from {}\nHave read {} lines.", inputFile, code.size());
             }
 
             for (final String line : code) {
@@ -117,8 +118,8 @@ public class GrammarIssuesSensor implements Sensor {
             final GrammarIssuesWrapper lineWrapper = wrap(inputFile, line, lineNumber);
             
             if (LOGGER.isDebugEnabled()) {
-                final Object[] argumnets = new Object[]{lineNumber, line, inputFile.toString()};
-                LOGGER.debug("Prepared issues-wrapper for \n {}:\"{}\"\nin{}", argumnets);
+                final Object[] arguments = new Object[]{lineNumber, line, inputFile};
+                LOGGER.debug("Prepared issues-wrapper for \n {}:\"{}\"\nin{}", arguments);
                 LOGGER.debug(lineWrapper.toString());
             }
             
@@ -134,7 +135,7 @@ public class GrammarIssuesSensor implements Sensor {
             }
         } else {
             if (LOGGER.isDebugEnabled()) {
-                LOGGER.debug("Skipped empty line #{} in {}", lineNumber, inputFile.toString());
+                LOGGER.debug("Skipped empty line #{} in {}", lineNumber, inputFile);
             }
         }
     }
