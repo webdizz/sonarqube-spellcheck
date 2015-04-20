@@ -37,21 +37,17 @@ public class GrammarDictionaryLoader {
             if (null == spellDictionary) {
                 if (!Strings.isNullOrEmpty(dictionaryPath) && new File(dictionaryPath).exists()) {
                     try {
-                        BufferedReader bufferedReader = null;
-                        bufferedReader = Files.newReader( new File( dictionaryPath ), Charsets.UTF_8 );
+                        BufferedReader bufferedReader = Files.newReader( new File( dictionaryPath ), Charsets.UTF_8 );
                         spellDictionary = loadSpellDictionary(bufferedReader, dictionaryPath);
                     } catch (FileNotFoundException e) {
                         throw new UnableToLoadDictionary("There is no file with dictionary.", e);
                     }
                 } else {
-                    try {
+                    try (InputStream inputStream = this.getClass().getResourceAsStream(dictionaryPath)){
                         dictionaryPath = "/" + GrammarChecker.DEFAULT_DICT_PATH;
-                        InputStream inputStream = this.getClass().getResourceAsStream(dictionaryPath);
-
-                        BufferedReader dictionaryReader = null;
-                        dictionaryReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+                        BufferedReader dictionaryReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
                         spellDictionary = loadSpellDictionary(dictionaryReader, dictionaryPath);
-                    } catch (UnsupportedEncodingException e) {
+                    } catch (IOException e) {
                         throw new UnableToLoadDictionary("Unable to read dictionary file as UTF-8.", e);
                     }
                 }
