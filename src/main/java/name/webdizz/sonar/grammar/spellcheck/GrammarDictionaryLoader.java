@@ -36,22 +36,17 @@ public class GrammarDictionaryLoader {
             locker.lock();
             if (null == spellDictionary) {
                 if (!Strings.isNullOrEmpty(dictionaryPath) && new File(dictionaryPath).exists()) {
-                    try {
-                        BufferedReader bufferedReader = null;
-                        bufferedReader = Files.newReader( new File( dictionaryPath ), Charsets.UTF_8 );
-                        spellDictionary = loadSpellDictionary(bufferedReader, dictionaryPath);
-                    } catch (FileNotFoundException e) {
+                    try (BufferedReader bufferedReader = Files.newReader( new File( dictionaryPath ), Charsets.UTF_8 )){
+                         spellDictionary = loadSpellDictionary(bufferedReader, dictionaryPath);
+                    } catch (IOException e) {
                         throw new UnableToLoadDictionary("There is no file with dictionary.", e);
                     }
                 } else {
-                    try {
-                        dictionaryPath = "/" + GrammarChecker.DEFAULT_DICT_PATH;
-                        InputStream inputStream = this.getClass().getResourceAsStream(dictionaryPath);
-
-                        BufferedReader dictionaryReader = null;
-                        dictionaryReader = Files.newReader( new File( dictionaryPath ), Charsets.UTF_8 );
+                    dictionaryPath = "/" + GrammarChecker.DEFAULT_DICT_PATH;
+                    try (InputStream inputStream = this.getClass().getResourceAsStream(dictionaryPath);
+                         BufferedReader dictionaryReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"))){
                         spellDictionary = loadSpellDictionary(dictionaryReader, dictionaryPath);
-                    } catch (FileNotFoundException e) {
+                    } catch (IOException e) {
                         throw new UnableToLoadDictionary("Unable to read dictionary file as UTF-8.", e);
                     }
                 }
