@@ -6,6 +6,7 @@ import com.google.common.io.Files;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import name.webdizz.sonar.grammar.GrammarPlugin;
+import name.webdizz.sonar.grammar.exceptions.UnableToLoadDictionary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.config.Settings;
@@ -66,12 +67,5 @@ public class GrammarDictionaryLoader {
             throw new UnableToLoadDictionary(message, e);
         }
         return dictionary.get();
-    }
-
-    static class UnableToLoadDictionary extends RuntimeException {
-
-        UnableToLoadDictionary(final String message, final Throwable cause) {
-            super(message, cause);
-        }
     }
 }
