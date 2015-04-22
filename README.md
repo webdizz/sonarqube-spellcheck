@@ -37,4 +37,4 @@ Development and run:
 Amend dictionary:
 -----------------
 There is built in dictionary, however to add additional words here is a bash script to rearrange dictionary.
-To do this - append new word to **dict/english.0**, run **reprocess_dict.sh** after that copy **dict/english.1** with new word and in correct format to **src/main/resources/dict/english.0**.
+To do this - append new word to **src/main/resources/dict/english.0**, run **reprocess_dict.sh** after that copy **src/main/resources/dict/english.1** with new word and in correct format to **src/main/resources/dict/english.0**.
