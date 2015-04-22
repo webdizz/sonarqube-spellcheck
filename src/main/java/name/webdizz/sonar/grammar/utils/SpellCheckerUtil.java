@@ -1,14 +1,11 @@
 package name.webdizz.sonar.grammar.utils;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import name.webdizz.sonar.grammar.exceptions.UnableToLoadDictionary;
+import name.webdizz.sonar.grammar.spellcheck.SpellCheckerFactory;
 
 import com.swabunga.spell.engine.Configuration;
-import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import com.swabunga.spell.engine.Word;
 import com.swabunga.spell.event.SpellChecker;
 import com.swabunga.spell.event.StringWordTokenizer;
@@ -18,37 +15,9 @@ import com.swabunga.spell.event.StringWordTokenizer;
  * <a href="http://jazzy.sourceforge.net/">Jazzy</a> for spell checking.
  */
 public class SpellCheckerUtil {
-    private SpellDictionaryHashMap dictionary = null;
-    private SpellChecker spellChecker = null;
-    private String dictionaryPath = "/dict/english.0";
+    private SpellChecker spellChecker = new SpellCheckerFactory().getSpellChecker();
 
     public SpellCheckerUtil() {
-        loadMainDictionary();
-        spellChecker = new SpellChecker(dictionary);
-        setSpellCheckerConfigs();
-    }
-
-    private void loadMainDictionary() {
-        try {
-            dictionary = new SpellDictionaryHashMap(new InputStreamReader(SpellCheckerUtil.class.getResourceAsStream(dictionaryPath)));
-        } catch (IOException e) {
-            throw new UnableToLoadDictionary("Dictionary file not found.", e);
-        }
-    }
-
-    private void setSpellCheckerConfigs() {
-        getSpellCheckerConfig().setBoolean(Configuration.SPELL_IGNOREMIXEDCASE, false);
-        getSpellCheckerConfig().setBoolean(Configuration.SPELL_IGNOREUPPERCASE, true);
-        getSpellCheckerConfig().setBoolean(Configuration.SPELL_IGNOREDIGITWORDS, true);
-        getSpellCheckerConfig().setBoolean(Configuration.SPELL_IGNOREINTERNETADDRESSES, true);
-    }
-
-    private Configuration getSpellCheckerConfig() {
-        return spellChecker.getConfiguration();
-    }
-
-    public SpellChecker getSpellChecker() {
-        return spellChecker;
     }
 
     /**
@@ -82,6 +51,10 @@ public class SpellCheckerUtil {
             }
         }
         return correct;
+    }
+
+    private Configuration getSpellCheckerConfig() {
+        return spellChecker.getConfiguration();
     }
 
     /**
