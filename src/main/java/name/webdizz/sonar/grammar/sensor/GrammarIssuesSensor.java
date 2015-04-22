@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.Sensor;
 import org.sonar.api.batch.SensorContext;
+import org.sonar.api.batch.fs.FilePredicate;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.component.ResourcePerspectives;
@@ -31,7 +32,7 @@ public class GrammarIssuesSensor implements Sensor {
     private final ResourcePerspectives perspectives;
     private final GrammarChecker grammarChecker;
     private final Lock wrapperLock = new ReentrantLock();
-    private GrammarIssuesWrapper templateWrapper = null;
+    private GrammarIssuesWrapper templateWrapper;
 
     /**
      * Use of IoC to get FileSystem
@@ -50,11 +51,6 @@ public class GrammarIssuesSensor implements Sensor {
     }
 
     @Override
-    public String toString() {
-        return "Grammar Issues";
-    }
-
-    @Override
     public void analyse(Project module, SensorContext context) {
         if (LOGGER.isDebugEnabled()) {
             logWhenAnalyse(module, context);
@@ -64,10 +60,16 @@ public class GrammarIssuesSensor implements Sensor {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Checking {}-files.", PluginParameter.PROFILE_LANGUAGE);
         }
-
-        for (final InputFile inputFile : fileSystem.inputFiles(fileSystem.predicates().hasLanguage(PluginParameter.PROFILE_LANGUAGE))) {
+        FilePredicate languagePredicate = fileSystem.predicates().hasLanguage(PluginParameter.PROFILE_LANGUAGE);
+        for (final InputFile inputFile : fileSystem.inputFiles(languagePredicate)) {
             processInputFile(inputFile);
         }
+    }
+
+    @Override
+    public boolean shouldExecuteOnProject(Project project) {
+        // This sensor is executed only when there are Java files
+        return fileSystem.hasFiles(fileSystem.predicates().hasLanguage(PluginParameter.PROFILE_LANGUAGE));
     }
 
     private void logWhenAnalyse(final Project module, final SensorContext context) {
@@ -75,12 +77,6 @@ public class GrammarIssuesSensor implements Sensor {
         LOGGER.debug("Module name={} key={} description=\"{}\"", arguments);
         LOGGER.debug("SensorContext {}", context);
         LOGGER.debug("Initialize the GrammarChecker.");
-    }
-
-    @Override
-    public boolean shouldExecuteOnProject(Project project) {
-        // This sensor is executed only when there are Java files
-        return fileSystem.hasFiles(fileSystem.predicates().hasLanguage(PluginParameter.PROFILE_LANGUAGE));
     }
 
     private void processInputFile(final InputFile inputFile) {
@@ -154,6 +150,11 @@ public class GrammarIssuesSensor implements Sensor {
                 .setLine(line)
                 .setLineNumber(lineNumber)
                 .build();
+    }
+
+    @Override
+    public String toString() {
+        return "Grammar Issues";
     }
 
 }

@@ -12,7 +12,7 @@ import com.swabunga.spell.event.SpellChecker;
 
 public class GrammarChecker {
 
-    public static final String DEFAULT_DICT_PATH = "dict/english.0";
+    public static final String DEFAULT_DICT_PATH = "src/main/resources/dict/english.0";
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarChecker.class);
     private SpellDictionary dictionary;
     private final GrammarDictionaryLoader dictionaryLoader;

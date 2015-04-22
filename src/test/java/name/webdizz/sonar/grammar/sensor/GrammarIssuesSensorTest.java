@@ -1,126 +1,67 @@
 package name.webdizz.sonar.grammar.sensor;
 
-import name.webdizz.sonar.grammar.GrammarPlugin;
-import name.webdizz.sonar.grammar.PluginParameter;
-import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
-import org.junit.Test;
-import org.mockito.Mockito;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.sonar.api.batch.SensorContext;
-import org.sonar.api.batch.fs.FilePredicate;
-import org.sonar.api.batch.fs.FilePredicates;
-import org.sonar.api.batch.fs.FileSystem;
-import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
-import org.sonar.api.issue.Issuable;
-import org.sonar.api.issue.Issue;
-import org.sonar.api.resources.Project;
-import org.sonar.api.rule.RuleKey;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.*;
+import org.junit.Test;
+import org.sonar.api.batch.SensorContext;
+import org.sonar.api.batch.fs.FilePredicate;
+import org.sonar.api.batch.fs.InputFile;
+import org.sonar.api.batch.fs.internal.DefaultFileSystem;
+import org.sonar.api.batch.fs.internal.DefaultInputFile;
+import org.sonar.api.component.ResourcePerspectives;
+import org.sonar.api.config.Settings;
+import org.sonar.api.resources.Project;
+
+import com.google.common.collect.Lists;
 
 public class GrammarIssuesSensorTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GrammarIssuesSensorTest.class);
 
-    private final FileSystem fs = mock(FileSystem.class);
+    private final DefaultFileSystem fileSystem = createFileSystem();
 
     private final ResourcePerspectives perspectives = mock(ResourcePerspectives.class);
 
     private final Settings settings = mock(Settings.class);
 
-    private final GrammarIssuesSensor instance = new GrammarIssuesSensor(fs, perspectives, settings);
+    private final GrammarIssuesSensor testingInstance = new GrammarIssuesSensor(fileSystem, perspectives, settings);
+    private final Project module = new Project("sonar-grammar");
+    private final SensorContext context = mock(SensorContext.class);
 
+    @Test
+    public void shouldListInputFilesDuringAnalysis() throws Exception {
+        testingInstance.analyse(module, context);
 
-    public GrammarIssuesSensorTest() {
-        LOGGER.info("Preparing the instance to test.");
-        when(settings.getString(GrammarPlugin.DICTIONARY)).thenReturn(GrammarChecker.DEFAULT_DICT_PATH);
+        verify(fileSystem, atLeastOnce()).inputFiles(any(FilePredicate.class));
     }
 
-    /**
-     * Test of analyse method, of class GrammarIssuesSensor.
-     */
     @Test
-    public void testAnalyse() {
-        LOGGER.info("Testing analyse");
-        Project module = mock(Project.class);
-        SensorContext context = mock(SensorContext.class);
-        // fs.inputFiles(fs.predicates().hasLanguage(PluginParameter.PROFILE_LANGUAGE))
-        FilePredicate predicate = mock(FilePredicate.class);
-        FilePredicates predicates = mock(FilePredicates.class);
-        when(fs.predicates()).thenReturn(predicates);
-        when(predicates.hasLanguage(PluginParameter.PROFILE_LANGUAGE)).thenReturn(predicate);
-        List<InputFile> inputFiles = new ArrayList<>();
-        when(fs.inputFiles(predicate)).thenReturn(inputFiles);
-        InputFile inputFile = mock(InputFile.class);
-        File sourceFile = new File("src/main/java/name/webdizz/sonar/grammar/GrammarPlugin.java");
-        assertTrue("Not accessible file for tests " + sourceFile.getAbsolutePath(), sourceFile.exists());
-        when(inputFile.file()).thenReturn(sourceFile);
-        when(inputFile.absolutePath()).thenReturn(sourceFile.getAbsolutePath());
-        inputFiles.add(inputFile);
+    public void shouldProcessInputFileDuringAnalysis() throws Exception {
+        InputFile inputFile = createInputFile();
+        List<InputFile> inputFiles = Lists.newArrayList(inputFile);
+        when(fileSystem.inputFiles(any(FilePredicate.class))).thenReturn(inputFiles);
 
-        Issuable issuable = mock(Issuable.class);
-        Issuable.IssueBuilder builder = mock(Issuable.IssueBuilder.class);
-        Issue issue = mock(Issue.class);
-        when(issuable.newIssueBuilder()).thenReturn(builder);
-        when(builder.attribute(anyString(), anyString())).thenReturn(builder);
-        when(builder.effortToFix(anyDouble())).thenReturn(builder);
-        when(builder.line(anyInt())).thenReturn(builder);
-        when(builder.message(anyString())).thenReturn(builder);
-        when(builder.reporter(anyString())).thenReturn(builder);
-        when(builder.ruleKey(Mockito.<RuleKey>anyObject())).thenReturn(builder);
-        when(builder.severity(anyString())).thenReturn(builder);
-        when(builder.build()).thenReturn(issue);
+        testingInstance.analyse(module, context);
 
-        when(perspectives.as(Issuable.class, inputFile)).thenReturn(issuable);
-
-        instance.analyse(module, context);
-
-        // check the behavior
-        verify(issuable, atLeastOnce()).addIssue(issue);
-        verify(builder, atLeastOnce()).build();
-        verify(inputFile).file();
-        verify(fs, atLeastOnce()).inputFiles(predicate);
-        verify(predicates, atLeastOnce()).hasLanguage(PluginParameter.PROFILE_LANGUAGE);
-
-        LOGGER.info("Done.");
+        verify(inputFile, atLeastOnce()).file();
     }
 
-    /**
-     * Test of shouldExecuteOnProject method, of class GrammarIssuesSensor.
-     */
-    @Test
-    public void testShouldExecuteOnProject() {
-        LOGGER.info("Testing shouldExecuteOnProject");
-        Project project = mock(Project.class);
-        // fs.hasFiles(fs.predicates().hasLanguage(PluginParameter.PROFILE_LANGUAGE));
-        FilePredicate predicate = mock(FilePredicate.class);
-        FilePredicates predicates = mock(FilePredicates.class);
-        when(fs.predicates()).thenReturn(predicates);
-        when(predicates.hasLanguage(PluginParameter.PROFILE_LANGUAGE)).thenReturn(predicate);
-        when(fs.hasFiles(predicate)).thenReturn(Boolean.TRUE);
+    private InputFile createInputFile() {
+        InputFile inputFile = spy(new DefaultInputFile(module.key(), "GrammarPlugin.java"));
+        ((DefaultInputFile) inputFile).setModuleBaseDir(fileSystem.baseDirPath());
+        return inputFile;
+    }
 
-        boolean result;
-        result = instance.shouldExecuteOnProject(project);
-        assertEquals(true, result);
-
-        when(fs.hasFiles(predicate)).thenReturn(Boolean.FALSE);
-        result = instance.shouldExecuteOnProject(project);
-        assertEquals(false, result);
-
-        // check the behavior
-        verify(fs, atLeast(2)).hasFiles(predicate);
-        verify(predicates, atLeast(2)).hasLanguage(PluginParameter.PROFILE_LANGUAGE);
-
-        LOGGER.info("Done.");
+    private DefaultFileSystem createFileSystem() {
+        File sourceFile = new File("src/main/java/name/webdizz/sonar/grammar");
+        return spy(new DefaultFileSystem(sourceFile));
     }
 
 }
