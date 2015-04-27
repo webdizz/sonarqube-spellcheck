@@ -68,7 +68,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
                     i++;
                     continue search;
                 }
-                while (i < text.length() - 1) {
+                while (i < text.length()) {
                     if (!started && isWordChar(i)) {
                         nextWord.setStart(i);
                         started = true;
@@ -100,7 +100,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
                         break search;
                     }
 
-                    currentLetter = text.charAt(++i);
+                    currentLetter = text.charAt(i++);
                 }
 
             } else if (currentLetter == '*') {
@@ -134,7 +134,8 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
     @Override
     protected boolean isWordChar(final int position) {
         boolean isPartOfWord = super.isWordChar(position);
-        if (!isPartOfWord && (text.charAt(position) == '(' || text.charAt(position) == ')' || text.charAt(position) == ';' || text.charAt(position) == '_')) {
+        if (!isPartOfWord && (text.charAt(position) == '(' || text.charAt(position) == ')' || text.charAt(position) == ';' || text.charAt(position) == '_')
+                || Character.isDigit(text.charAt(position))) {
             isPartOfWord = false;
         }
         return isPartOfWord;
@@ -170,6 +171,13 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
             char before = text.charAt(position - 1);
             char after = text.charAt(position + 1);
             return Character.isLetterOrDigit(before) && Character.isLetterOrDigit(after) && curr == '.';
+        }
+        return false;
+    }
+
+    private boolean isDigit(final int position) {
+        if (position > 1 && text.length() > 2 && position < text.length()) {
+            return Character.isDigit(text.charAt(position));
         }
         return false;
     }

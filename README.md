@@ -28,7 +28,7 @@ Development Set Up:
 Development and run:
 ------------
 1. Make some code changes
-2. **Build** and **install** the plugin : ```bash mvn package org.codehaus.sonar:sonar-dev-maven-plugin::upload -DsonarHome=sonarqube-5.1 -DsonarUrl=http://localhost:9000```
+2. **Build** and **install** the plugin : ```bash mvn package org.codehaus.sonar:sonar-dev-maven-plugin::upload -DsonarHome={sonarqube-5.1} -DsonarUrl=http://localhost:9000``` . Use correct location of Sonarqube for the parameter -DsonarHome, for example ```-DsonarHome=d:\Sonar5.1```
 3. Restart [SonarQube](http://www.sonarqube.org/)
 4. Change on [SonarQube](http://www.sonarqube.org/) page top menu "Quality Profiles" ```Sonar Grammar Profile``` to default. 
 5. To perform grammar analysis go to the project that you want to test and write ```bash mvn sonar:sonar``` command (for Windows machines use ```mvn sonar:sonar```), for debug use ```bash mvnDebug sonar:sonar``` command (by default debug port is **8000**)
