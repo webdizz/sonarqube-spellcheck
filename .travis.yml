@@ -2,8 +2,7 @@ language: java
 jdk:
 - oraclejdk7
 script: mvn clean install
-after_success: curl -T target/*.jar -uwebdizz:$BINTRAY_KEY
-  https://api.bintray.com/content/webdizz/sonarqube-plugins/sonarqube-grammar/0.1.$TRAVIS_BUILD_NUMBER/sonarqube-grammar-0.1.$TRAVIS_BUILD_NUMBER.jar
+after_success: if [ $TRAVIS_SECURE_ENV_VARS ]; then curl -T target/*.jar -uwebdizz:$BINTRAY_KEY https://api.bintray.com/content/webdizz/sonarqube-plugins/sonarqube-grammar/0.1.$TRAVIS_BUILD_NUMBER/sonarqube-grammar-0.1.$TRAVIS_BUILD_NUMBER.jar; fi
 env:
   global:
     secure: J4RofQ145XHb9wrFwrFtUF0SaUdDZFQZFKjWblJONJAvwyKmv8I8UxXY59zmoUD3KsqOOg4oV6wvxhC2H2/vDFUZ1eGMcHqj0Nw4s59aCRhX+QeUmzBar6mtSJqxd3Cl7QSvl+vTaJ+DNFVHakG2rs6XvifqsXMNHqq+RDlEzSk=
