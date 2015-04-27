@@ -85,6 +85,11 @@
             <artifactId>guava</artifactId>
             <version>18.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.codehaus.sonar</groupId>
+            <artifactId>sonar-core</artifactId>
+            <version>5.1</version>
+        </dependency>
     </dependencies>
 
     <build>

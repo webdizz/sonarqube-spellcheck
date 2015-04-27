@@ -13,31 +13,21 @@ import java.util.Arrays;
 import java.util.List;
 
 @Properties({
-    @Property(
-            key = GrammarPlugin.EXCLUSION,
-            name = "Exclusion Property",
-            description = "Defines resources to be excluded from analysis",
-            defaultValue = ""),
-    @Property(
-            key = GrammarPlugin.INCLUSION,
-            name = "Inclusion Property",
-            description = "Defines resources to be included for analysis",
-            defaultValue = ""),
-    @Property(
-            key = GrammarPlugin.DICTIONARY,
-            name = "Dictionary path",
-            description = "Defines resources to be included for analysis",
-            defaultValue = "dict/english.0"),
-    @Property(
-            key = GrammarPlugin.HOST_PORT,
-            name = "Sonar host and port",
-            description = "Host:port",
-            defaultValue = "localhost:9000"),
-    @Property(
-            key = GrammarPlugin.CREDENTIAL,
-            name = "Admin credential ",
-            description = "login:password",
-            defaultValue = "admin:admin")
+        @Property(
+                key = GrammarPlugin.EXCLUSION,
+                name = "Exclusion Property",
+                description = "Defines resources to be excluded from analysis",
+                defaultValue = ""),
+        @Property(
+                key = GrammarPlugin.INCLUSION,
+                name = "Inclusion Property",
+                description = "Defines resources to be included for analysis",
+                defaultValue = ""),
+        @Property(
+                key = GrammarPlugin.DICTIONARY,
+                name = "Dictionary path",
+                description = "Defines resources to be included for analysis",
+                defaultValue = "dict/english.0")
 })
 public class GrammarPlugin extends SonarPlugin {
 
