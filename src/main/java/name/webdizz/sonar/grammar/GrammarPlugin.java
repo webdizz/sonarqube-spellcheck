@@ -1,14 +1,16 @@
 package name.webdizz.sonar.grammar;
 
-import java.util.Arrays;
-import java.util.List;
+import name.webdizz.sonar.grammar.issue.tracking.GrammarActionDefinition;
+import name.webdizz.sonar.grammar.issue.tracking.LinkFunction;
 import name.webdizz.sonar.grammar.profile.GrammarProfileDefinition;
-
+import name.webdizz.sonar.grammar.rule.GrammarRulesDefinition;
+import name.webdizz.sonar.grammar.sensor.GrammarIssuesSensor;
 import org.sonar.api.Properties;
 import org.sonar.api.Property;
 import org.sonar.api.SonarPlugin;
-import name.webdizz.sonar.grammar.rule.GrammarRulesDefinition;
-import name.webdizz.sonar.grammar.sensor.GrammarIssuesSensor;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Properties({
     @Property(
@@ -25,13 +27,25 @@ import name.webdizz.sonar.grammar.sensor.GrammarIssuesSensor;
             key = GrammarPlugin.DICTIONARY,
             name = "Dictionary path",
             description = "Defines resources to be included for analysis",
-            defaultValue = "dict/english.0")})
+            defaultValue = "dict/english.0"),
+    @Property(
+            key = GrammarPlugin.HOST_PORT,
+            name = "Sonar host and port",
+            description = "Host:port",
+            defaultValue = "localhost:9000"),
+    @Property(
+            key = GrammarPlugin.CREDENTIAL,
+            name = "Admin credential ",
+            description = "login:password",
+            defaultValue = "admin:admin")
+})
 public class GrammarPlugin extends SonarPlugin {
 
     public static final String EXCLUSION = "sonar.grammar.exclusion";
     public static final String INCLUSION = "sonar.grammar.inclusion";
     public static final String DICTIONARY = "sonar.grammar.dictionary";
-    public static final String PLUGIN_NAME = "Sonar Grammar";
+    public static final String HOST_PORT = "sonar.host.port";
+    public static final String CREDENTIAL = "sonar.admin.credential";
 
     @Override
     public List getExtensions() {
@@ -41,8 +55,12 @@ public class GrammarPlugin extends SonarPlugin {
                         GrammarProfileDefinition.class,
                         // Metrics
                         GrammarMetrics.class,
-                        // Sensor
-                        GrammarIssuesSensor.class
+                        // Sensors
+                        GrammarIssuesSensor.class,
+                        //Issue review
+                        LinkFunction.class,
+                        GrammarActionDefinition.class
+
                 );
     }
 }
