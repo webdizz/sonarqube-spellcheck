@@ -27,15 +27,19 @@ import java.util.List;
                 key = GrammarPlugin.DICTIONARY,
                 name = "Dictionary path",
                 description = "Defines resources to be included for analysis",
-                defaultValue = "dict/english.0")
+                defaultValue = "dict/english.0"),
+        @Property(
+                key = PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY,
+                name = "Alternative dictionary",
+                description = "Alternative dictionary",
+                defaultValue = " ")
+
 })
 public class GrammarPlugin extends SonarPlugin {
 
     public static final String EXCLUSION = "sonar.grammar.exclusion";
     public static final String INCLUSION = "sonar.grammar.inclusion";
     public static final String DICTIONARY = "sonar.grammar.dictionary";
-    public static final String HOST_PORT = "sonar.host.port";
-    public static final String CREDENTIAL = "sonar.admin.credential";
 
     @Override
     public List getExtensions() {

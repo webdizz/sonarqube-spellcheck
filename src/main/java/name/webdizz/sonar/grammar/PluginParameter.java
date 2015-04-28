@@ -61,5 +61,5 @@ public interface PluginParameter {
     /**
      * manual dictionary name
      */
-    String MANUAL_DICT = "AnotherDictionary";
+    String ALTERNATIVE_DICTIONARY_PROPERTY_KEY = "sonar.alternative.dictionary";
 }

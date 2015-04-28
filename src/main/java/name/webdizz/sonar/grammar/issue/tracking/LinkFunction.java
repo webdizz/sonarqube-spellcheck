@@ -6,8 +6,11 @@ import org.slf4j.LoggerFactory;
 import org.sonar.api.ServerExtension;
 import org.sonar.api.issue.action.Function;
 import org.sonar.core.properties.PropertiesDao;
+import org.sonar.core.properties.PropertyDto;
 
-import static name.webdizz.sonar.grammar.PluginParameter.MANUAL_DICT;
+import java.util.HashMap;
+
+import static name.webdizz.sonar.grammar.PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY;
 
 public class LinkFunction implements Function, ServerExtension {
 
@@ -20,14 +23,16 @@ public class LinkFunction implements Function, ServerExtension {
 
     @Override
     public void execute(Context context) {
-        String word = getMistakeWord(context.issue().message(), PluginParameter.ERROR_DESCRIPTION);
-        try {
-            String dictionary = propertiesDao.selectGlobalProperty(MANUAL_DICT).getValue();
-            LOGGER.info("Adding word {} to dictionary",  word);
-            propertiesDao.updateProperties(MANUAL_DICT, dictionary, dictionary + "," + word);
-        } catch (Exception e) {
-            throw new IllegalStateException("Can't save word to dictionary" + e.getMessage());
-        }
+        final String word = getMistakeWord(context.issue().message(), PluginParameter.ERROR_DESCRIPTION);
+            PropertyDto propertyDto = propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY);
+            if (propertyDto == null){
+                LOGGER.info("Creating new Dictionary. Adding word '{}' to it.", word);
+                propertiesDao.saveGlobalProperties(new HashMap<String, String>(){{put(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, word);}});
+            } else{
+                LOGGER.info("Adding word '{}' to dictionary.", word);
+                String dictionary  = propertyDto.getValue();
+                propertiesDao.updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, dictionary , dictionary + "," + word);
+            }
     }
 
     private String getMistakeWord(String message, String errDescription) {
