@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Properties({
+<<<<<<< HEAD
         @Property(
                 key = GrammarPlugin.EXCLUSION,
                 name = "Exclusion Property",
@@ -35,11 +36,14 @@ import java.util.List;
                 defaultValue = " ")
 
 })
+
 public class GrammarPlugin extends SonarPlugin {
 
     public static final String EXCLUSION = "sonar.grammar.exclusion";
     public static final String INCLUSION = "sonar.grammar.inclusion";
     public static final String DICTIONARY = "sonar.grammar.dictionary";
+    public static final String PLUGIN_NAME = "Sonar Grammar";
+    public static final String MIN_WORD_LENGTH = "sonar.minimum.word.length";
 
     @Override
     public List getExtensions() {

@@ -17,8 +17,8 @@ public class GrammarChecker {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarChecker.class);
     private SpellDictionary dictionary;
-    private final GrammarDictionaryLoader dictionaryLoader;
     private Optional<SpellDictionaryHashMap> alternateDictionary;
+    private GrammarDictionaryLoader dictionaryLoader;
 
     public GrammarChecker(final GrammarDictionaryLoader dictionaryLoader) {
         this.dictionaryLoader = dictionaryLoader;
@@ -32,7 +32,8 @@ public class GrammarChecker {
     public void checkSpelling(final String inputLine, final SpellCheckListener spellCheckListener) {
         parametersValidation(inputLine, spellCheckListener);
         SpellChecker spellCheck = createSpellChecker(spellCheckListener);
-        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(inputLine, new JavaSourceCodeWordFinder());
+        JavaSourceCodeWordFinder javaSourceCodeWordFinder = new JavaSourceCodeWordFinder();
+        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(inputLine,javaSourceCodeWordFinder);
         spellCheck.checkSpelling(sourceCodeTokenizer);
         spellCheck.reset();
     }

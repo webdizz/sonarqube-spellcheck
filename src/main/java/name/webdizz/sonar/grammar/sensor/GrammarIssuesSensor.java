@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import name.webdizz.sonar.grammar.GrammarPlugin;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -33,6 +34,7 @@ public class GrammarIssuesSensor implements Sensor {
     private final GrammarChecker grammarChecker;
     private final Lock wrapperLock = new ReentrantLock();
     private GrammarIssuesWrapper templateWrapper;
+    private final int minimumWordLengths;
 
     /**
      * Use of IoC to get FileSystem
@@ -44,7 +46,8 @@ public class GrammarIssuesSensor implements Sensor {
     public GrammarIssuesSensor(FileSystem fileSystem, ResourcePerspectives perspectives, final Settings settings) {
         this.fileSystem = fileSystem;
         this.perspectives = perspectives;
-        this.grammarChecker = new GrammarChecker(new GrammarDictionaryLoader(settings));
+        this.minimumWordLengths=Integer.parseInt(settings.getString(GrammarPlugin.MIN_WORD_LENGTH));
+        this.grammarChecker = new GrammarChecker(new GrammarDictionaryLoader(settings),minimumWordLengths);
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Created the bean of grammar sensor.");
         }
