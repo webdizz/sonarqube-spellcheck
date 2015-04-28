@@ -15,9 +15,11 @@ import java.util.Map;
 
 import static name.webdizz.sonar.grammar.PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY;
 import static name.webdizz.sonar.grammar.PluginParameter.ERROR_DESCRIPTION;
+import static name.webdizz.sonar.grammar.PluginParameter.SEPARATOR_CHAR;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -33,6 +35,7 @@ public class LinkFunctionTest {
     Issue issue;
 
     private static final String FIRST_WORD = "existWord";
+    private static final String UNSORTED_WORD = "zoo";
     private static final String NEW_WORD = "newWord";
 
     @Before
@@ -41,7 +44,6 @@ public class LinkFunctionTest {
         when(context.issue()).thenReturn(issue);
         when(issue.message()).thenReturn(ERROR_DESCRIPTION + NEW_WORD + "'");
     }
-
 
     @Test
     public void shouldCreateandUpdateNewPropertyWhenMethodInvoke() {
@@ -66,6 +68,31 @@ public class LinkFunctionTest {
         //when
         linkFunction.execute(context);
         //then
-        verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, FIRST_WORD, FIRST_WORD + "," + NEW_WORD);
+        verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, FIRST_WORD, FIRST_WORD + SEPARATOR_CHAR + NEW_WORD);
     }
+
+    @Test
+    public void shouldSortPropertyWhenUpdatIt() {
+        //given
+        propertyDto.setValue(UNSORTED_WORD);
+        when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
+        //when
+        linkFunction.execute(context);
+        //then
+        verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, UNSORTED_WORD, NEW_WORD + SEPARATOR_CHAR + UNSORTED_WORD);
+    }
+
+    @Test
+    public void shouldNotAddWordWhenWordIsNotUnique() {
+        //given
+        propertyDto.setValue(NEW_WORD);
+        when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
+        //when
+        linkFunction.execute(context);
+        //then
+        verify(propertiesDao).selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY);
+        verifyNoMoreInteractions(propertiesDao);
+    }
+
+
 }

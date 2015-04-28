@@ -63,6 +63,7 @@ public interface PluginParameter {
      */
     String ALTERNATIVE_DICTIONARY_PROPERTY_KEY = "sonar.alternative.dictionary";
 
+
     /**
      * exclusion word list
      **/
@@ -83,4 +84,9 @@ public interface PluginParameter {
      **/
     String MIN_WORD_LENGTH = "sonar.minimum.word.length";
 
+
+    /**
+     * Separator for store alternate dictionary
+     */
+    String SEPARATOR_CHAR = ",";
 }
