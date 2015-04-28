@@ -12,12 +12,10 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
     private int minimumWordLength;
     private Settings settings;
 
-    public JavaSourceCodeWordFinder() {
-        super();
-    }
 
-    public JavaSourceCodeWordFinder(final String searchText, final Settings settings) {
-        super(searchText);
+
+    public JavaSourceCodeWordFinder(final Settings settings) {
+        super();
         this.settings=settings;
     }
 
@@ -191,6 +189,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
     private boolean isWordLessThenMinLenght(final Word word) {
         return word.length() < minimumWordLength;
     }
+
 
     public void setMinimumWordLength(int minimumWordLength) {
         this.minimumWordLength = minimumWordLength;
