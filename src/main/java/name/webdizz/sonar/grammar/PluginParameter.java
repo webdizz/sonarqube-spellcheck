@@ -61,13 +61,35 @@ public interface PluginParameter {
      * manual dictionary name
      */
     String ALTERNATIVE_DICTIONARY_PROPERTY_KEY = "sonar.alternative.dictionary";
+
+
+    /**
+     * exclusion word list
+     **/
+    String EXCLUSION = "sonar.grammar.exclusion";
+
+    /**
+     * list of words to be included to main dictionary
+     **/
+    String INCLUSION = "sonar.grammar.inclusion";
+
     /**
      * Separator for store alternate dictionary
      */
-    String SEPARATOR_CHAR = ",";
     /**
      * Parameters for set cost of spelling
      */
     int SPELL_THRESHOLD_VALUE = 1;
     String SPELL_THRESHOLD = "SPELL_THRESHOLD";
+
+    /**
+     * minimum word length to be analyzed
+     **/
+    String MIN_WORD_LENGTH = "sonar.minimum.word.length";
+
+
+    /**
+     * Separator for store alternate dictionary
+     */
+    String SEPARATOR_CHAR = ",";
 }
