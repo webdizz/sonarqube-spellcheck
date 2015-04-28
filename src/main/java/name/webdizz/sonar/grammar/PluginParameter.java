@@ -62,4 +62,8 @@ public interface PluginParameter {
      * manual dictionary name
      */
     String ALTERNATIVE_DICTIONARY_PROPERTY_KEY = "sonar.alternative.dictionary";
+    /**
+     * Separator for store alternate dictionary
+     */
+    String SEPARATOR_CHAR = ",";
 }
