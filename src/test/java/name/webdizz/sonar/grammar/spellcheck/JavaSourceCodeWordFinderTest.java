@@ -11,6 +11,7 @@ public class JavaSourceCodeWordFinderTest {
     private String ERROR_MESSAGE = "This text has errors. If there are no errors, we expect 'errorsSize = -1'";
     private SpellChecker spellChecker = new SpellCheckerFactory().getSpellChecker();
     private SpellDictionary dictionary = new GrammarDictionaryLoader().loadMainDictionary();
+    private int minimumWordLength = 4;
 
     @Test
     public void shouldCheckCamelCaseNameAndReturnMinusOneThatMeansNoErrorTest() throws Exception {
@@ -28,7 +29,7 @@ public class JavaSourceCodeWordFinderTest {
 
     @Test
     public void shouldCheckCamelCaseNameAndReturnThreeErrorTest() throws Exception {
-        String testLine = "myyWrongCameeelNameeTest";
+        String testLine = "myyyyWrongCameeelNameeTest";
         int errorsSize = getErrorsSize(testLine);
         assertEquals("Wrong error size. Expected = 3", 3, errorsSize);
     }
@@ -42,20 +43,55 @@ public class JavaSourceCodeWordFinderTest {
 
     @Test
     public void shouldCheckMixedNameAndReturnTwoErrorTest() throws Exception {
-        String testLine = "myyWrong111CameeelTeest";
+        String testLine = "myyyyWrong111CameeelTeest";
         int errorsSize = getErrorsSize(testLine);
         assertEquals("Wrong error size. Expected = 2", 2, errorsSize);
     }
 
     @Test
     public void shouldCheckMixedNameAndReturnTreeErrorTest() throws Exception {
-        String testLine = "myyWrong111NaameCameeelTeest";
+        String testLine = "myyyyWrong111NaameCameeelTeest";
         int errorsSize = getErrorsSize(testLine);
         assertEquals("Wrong error size. Expected = 3", 3, errorsSize);
     }
 
+    @Test
+    public void shouldCheckMinWordLengthAndSkipWordsWithSizeLessThenDefined() throws Exception {
+        minimumWordLength = 3;
+        String testLine = "tru.Test.package";
+
+        int errorsSize = getErrorsSize(testLine);
+
+        assertEquals("Wrong error size. Expected = 1", 1, errorsSize);
+    }
+
+
+    @Test
+    public void shouldCheckMinWordLengthAndSkipALLWordsWithSizeLessThenDefined() throws Exception {
+        minimumWordLength = 4;
+        String testLine = "er.wrn.Test.package";
+
+        int errorsSize = getErrorsSize(testLine);
+
+        assertEquals("Wrong error size. Expected = -1", -1, errorsSize);
+    }
+
+
+    @Test
+    public void shouldCheckALLWordsGreaterThenSizeOfMinimumWordLengthVariable() throws Exception {
+        minimumWordLength = 2;
+        String testLine = "ert.wrn.Tesst.package";
+
+        int errorsSize = getErrorsSize(testLine);
+
+        assertEquals("Wrong error size. Expected = 3", 3, errorsSize);
+    }
+
     private int getErrorsSize(String testLine) {
-        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(testLine, new JavaSourceCodeWordFinder());
+
+        JavaSourceCodeWordFinder javaSourceCodeWordFinder =  new JavaSourceCodeWordFinder();
+        javaSourceCodeWordFinder.setMinimumWordLength(minimumWordLength);
+        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(testLine,javaSourceCodeWordFinder);
         spellChecker.setUserDictionary(dictionary);
         return spellChecker.checkSpelling(sourceCodeTokenizer);
     }

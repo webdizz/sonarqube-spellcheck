@@ -15,10 +15,12 @@ public class GrammarChecker {
     public static final String DEFAULT_DICT_PATH = "src/main/resources/dict/english.0";
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarChecker.class);
     private SpellDictionary dictionary;
-    private final GrammarDictionaryLoader dictionaryLoader;
+    private GrammarDictionaryLoader dictionaryLoader;
+    private int minimumWordLengths;
 
-    public GrammarChecker(final GrammarDictionaryLoader dictionaryLoader) {
+    public GrammarChecker(final GrammarDictionaryLoader dictionaryLoader, int minimumWordLengths) {
         this.dictionaryLoader = dictionaryLoader;
+        this.minimumWordLengths = minimumWordLengths;
     }
 
     public void initialize() {
@@ -28,7 +30,9 @@ public class GrammarChecker {
     public void checkSpelling(final String inputLine, final SpellCheckListener spellCheckListener) {
         parametersValidation(inputLine, spellCheckListener);
         SpellChecker spellCheck = createSpellChecker(spellCheckListener);
-        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(inputLine, new JavaSourceCodeWordFinder());
+        JavaSourceCodeWordFinder javaSourceCodeWordFinder = new JavaSourceCodeWordFinder();
+        javaSourceCodeWordFinder.setMinimumWordLength(minimumWordLengths);
+        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(inputLine,javaSourceCodeWordFinder);
         spellCheck.checkSpelling(sourceCodeTokenizer);
         spellCheck.reset();
     }

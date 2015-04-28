@@ -6,6 +6,7 @@ import com.swabunga.spell.event.WordNotFoundException;
 
 public class JavaSourceCodeWordFinder extends AbstractWordFinder {
     private boolean inComment;
+    private int minimumWordLength;
 
     public JavaSourceCodeWordFinder() {
         super();
@@ -123,6 +124,10 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
             nextWord.setText(text.substring(nextWord.getStart(), i - 1));
         }
 
+        if (isWordLessThenMinLenght(currentWord)) {
+           currentWord.setText("");
+        }
+
         return currentWord;
     }
 
@@ -172,5 +177,13 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
             return Character.isLetterOrDigit(before) && Character.isLetterOrDigit(after) && curr == '.';
         }
         return false;
+    }
+
+    private boolean isWordLessThenMinLenght(final Word word) {
+        return word.length() < minimumWordLength;
+    }
+
+    public void setMinimumWordLength(int minimumWordLength) {
+        this.minimumWordLength = minimumWordLength;
     }
 }

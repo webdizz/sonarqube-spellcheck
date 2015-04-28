@@ -25,13 +25,19 @@ import name.webdizz.sonar.grammar.sensor.GrammarIssuesSensor;
             key = GrammarPlugin.DICTIONARY,
             name = "Dictionary path",
             description = "Defines resources to be included for analysis",
-            defaultValue = "dict/english.0")})
+            defaultValue = "dict/english.0"),
+    @Property(
+            key = GrammarPlugin.MIN_WORD_LENGTH,
+            name = "Minimum word length",
+            description = "Defines minimum word length to analyse",
+            defaultValue = "4")})
 public class GrammarPlugin extends SonarPlugin {
 
     public static final String EXCLUSION = "sonar.grammar.exclusion";
     public static final String INCLUSION = "sonar.grammar.inclusion";
     public static final String DICTIONARY = "sonar.grammar.dictionary";
     public static final String PLUGIN_NAME = "Sonar Grammar";
+    public static final String MIN_WORD_LENGTH = "sonar.minimum.word.length";
 
     @Override
     public List getExtensions() {

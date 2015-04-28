@@ -10,6 +10,8 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.util.List;
 
+import name.webdizz.sonar.grammar.GrammarPlugin;
+import org.junit.Before;
 import org.junit.Test;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FilePredicate;
@@ -31,9 +33,17 @@ public class GrammarIssuesSensorTest {
 
     private final Settings settings = mock(Settings.class);
 
-    private final GrammarIssuesSensor testingInstance = new GrammarIssuesSensor(fileSystem, perspectives, settings);
-    private final Project module = new Project("sonar-grammar");
     private final SensorContext context = mock(SensorContext.class);
+
+    private final Project module = new Project("sonar-grammar");
+
+    private GrammarIssuesSensor testingInstance = null;
+
+    @Before
+    public void init() {
+        when(settings.getString(GrammarPlugin.MIN_WORD_LENGTH)).thenReturn("3");
+        testingInstance = new GrammarIssuesSensor(fileSystem, perspectives, settings);
+    }
 
     @Test
     public void shouldListInputFilesDuringAnalysis() throws Exception {
