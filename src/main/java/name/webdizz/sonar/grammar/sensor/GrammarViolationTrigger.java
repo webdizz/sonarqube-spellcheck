@@ -2,10 +2,13 @@ package name.webdizz.sonar.grammar.sensor;
 
 import com.swabunga.spell.event.SpellCheckEvent;
 import com.swabunga.spell.event.SpellCheckListener;
-import java.util.List;
-import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
+import name.webdizz.sonar.grammar.PluginParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+
+import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
 
 /**
  * Class-trigger to react to grammar spell violations
@@ -30,7 +33,7 @@ class GrammarViolationTrigger implements SpellCheckListener {
     public void spellingError(final SpellCheckEvent event) {
         final StringBuilder spellMessageBuilder = new StringBuilder(100);
         spellMessageBuilder
-                .append("Invalid word is : \'")
+                .append(PluginParameter.ERROR_DESCRIPTION)
                 .append(event.getInvalidWord())
                 .append("\'");
         if (LOGGER.isDebugEnabled()) {
