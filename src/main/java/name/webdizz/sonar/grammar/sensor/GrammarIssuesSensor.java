@@ -32,12 +32,18 @@ public class GrammarIssuesSensor implements Sensor {
     private final GrammarChecker grammarChecker;
     private final Lock wrapperLock = new ReentrantLock();
     private GrammarIssuesWrapper templateWrapper;
+    private final int minimumWordLengths;
 
 
     public GrammarIssuesSensor(FileSystem fileSystem, ResourcePerspectives perspectives, final GrammarChecker grammarChecker) {
         this.fileSystem = fileSystem;
         this.perspectives = perspectives;
+<<<<<<< HEAD
         this.grammarChecker = grammarChecker;
+=======
+        this.minimumWordLengths=Integer.parseInt(settings.getString(GrammarPlugin.MIN_WORD_LENGTH));
+        this.grammarChecker = new GrammarChecker(new GrammarDictionaryLoader(settings),minimumWordLengths);
+>>>>>>> Added configurable property of minimum word length to analyse
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Created the bean of grammar sensor.");
         }

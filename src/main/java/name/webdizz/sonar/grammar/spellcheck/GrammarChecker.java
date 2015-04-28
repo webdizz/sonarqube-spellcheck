@@ -10,10 +10,10 @@ import com.google.common.base.Strings;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import com.swabunga.spell.event.SpellChecker;
+import org.sonar.api.BatchExtension;
 
 import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD;
 import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD_VALUE;
-import org.sonar.api.BatchExtension;
 
 public class GrammarChecker implements BatchExtension {
 
@@ -39,7 +39,7 @@ public class GrammarChecker implements BatchExtension {
     public void checkSpelling(final String inputLine, final SpellCheckListener spellCheckListener) {
         parametersValidation(inputLine, spellCheckListener);
         SpellChecker spellCheck = createSpellChecker(spellCheckListener);
-        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(inputLine,javaSourceCodeWordFinder);
+        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(inputLine, javaSourceCodeWordFinder);
         spellCheck.checkSpelling(sourceCodeTokenizer);
         spellCheck.reset();
     }

@@ -26,16 +26,6 @@ public class GrammarDictionaryLoader implements BatchExtension {
     private AtomicReference<SpellDictionary> dictionary = new AtomicReference<>();
     private String dictionaryPath = "/dict/english.0";
 
-    public GrammarDictionaryLoader() {
-    }
-
-    public GrammarDictionaryLoader(final Settings settings) {
-        this.settings = settings;
-    }
-
-    SpellDictionary loadMainDictionary() {
-    private Settings settings;
-
     public GrammarDictionaryLoader(Settings settings) {
         this.settings = settings;
 

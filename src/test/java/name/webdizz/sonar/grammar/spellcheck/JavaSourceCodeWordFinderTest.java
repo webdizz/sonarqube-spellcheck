@@ -34,6 +34,7 @@ public class JavaSourceCodeWordFinderTest {
 
     }
 
+
     @DataPoints("validDigitWords")
     public static String[] validDigitWords = new String[] {"word1", "word12", "convert2String", "convert23String",
             "4wordsWithDigits", "14wordsWithDigits"};
@@ -120,8 +121,7 @@ public class JavaSourceCodeWordFinderTest {
 
     private int getErrorsSize(String testLine) {
 
-        JavaSourceCodeWordFinder javaSourceCodeWordFinder =  new JavaSourceCodeWordFinder();
-        javaSourceCodeWordFinder.setMinimumWordLength(minimumWordLength);
+        JavaSourceCodeWordFinder javaSourceCodeWordFinder =  new JavaSourceCodeWordFinder(settings);
         JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(testLine,javaSourceCodeWordFinder);
         spellChecker.setUserDictionary(dictionary);
         return spellChecker.checkSpelling(sourceCodeTokenizer);

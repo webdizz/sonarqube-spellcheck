@@ -5,6 +5,9 @@ import name.webdizz.sonar.grammar.issue.tracking.LinkFunction;
 import name.webdizz.sonar.grammar.profile.GrammarProfileDefinition;
 import name.webdizz.sonar.grammar.rule.GrammarRulesDefinition;
 import name.webdizz.sonar.grammar.sensor.GrammarIssuesSensor;
+import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
+import name.webdizz.sonar.grammar.spellcheck.GrammarDictionaryLoader;
+import name.webdizz.sonar.grammar.spellcheck.JavaSourceCodeWordFinder;
 import org.sonar.api.Properties;
 import org.sonar.api.Property;
 import org.sonar.api.SonarPlugin;
@@ -35,6 +38,7 @@ import java.util.List;
                 defaultValue = " ")
 
 })
+
 
 public class GrammarPlugin extends SonarPlugin {
 

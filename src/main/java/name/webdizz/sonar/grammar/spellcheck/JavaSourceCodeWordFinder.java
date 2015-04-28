@@ -4,17 +4,18 @@ import com.swabunga.spell.event.AbstractWordFinder;
 import com.swabunga.spell.event.Word;
 import com.swabunga.spell.event.WordNotFoundException;
 import org.sonar.api.BatchExtension;
+import org.sonar.api.config.Settings;
 
 public class JavaSourceCodeWordFinder extends AbstractWordFinder implements BatchExtension {
     private boolean inComment;
     private int minimumWordLength;
+    private Settings settings;
 
-    public JavaSourceCodeWordFinder() {
+
+
+    public JavaSourceCodeWordFinder(final Settings settings) {
         super();
-    }
-
-    public JavaSourceCodeWordFinder(final String searchText) {
-        super(searchText);
+        this.settings=settings;
     }
 
     /**
@@ -178,6 +179,11 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
             return Character.isLetterOrDigit(before) && Character.isLetterOrDigit(after) && curr == '.';
         }
         return false;
+    }
+
+
+    public void setMinimumWordLength(int minimumWordLength) {
+        this.minimumWordLength = minimumWordLength;
     }
 
     private boolean isDigit(final int position) {
