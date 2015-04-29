@@ -16,12 +16,10 @@ import org.sonar.api.batch.fs.FilePredicate;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
 import org.sonar.api.rule.RuleKey;
 import name.webdizz.sonar.grammar.PluginParameter;
 import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
-import name.webdizz.sonar.grammar.spellcheck.GrammarDictionaryLoader;
 
 /**
  * The sensor for project files
