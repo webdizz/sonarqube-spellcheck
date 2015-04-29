@@ -2,7 +2,7 @@ package name.webdizz.sonar.grammar.spellcheck;
 
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
-import name.webdizz.sonar.grammar.GrammarPlugin;
+import name.webdizz.sonar.grammar.PluginParameter;
 import name.webdizz.sonar.grammar.exceptions.UnableToLoadDictionary;
 import name.webdizz.sonar.grammar.utils.SpellCheckerUtil;
 import org.sonar.api.BatchExtension;
@@ -22,7 +22,7 @@ public class GrammarDictionaryLoader implements BatchExtension {
     private String dictionaryPath;
 
     public GrammarDictionaryLoader(Settings settings) {
-        dictionaryPath = settings.getString(GrammarPlugin.DICTIONARY);
+        dictionaryPath = settings.getString(PluginParameter.DICTIONARY_PATH);
     }
 
     public SpellDictionary loadMainDictionary() {

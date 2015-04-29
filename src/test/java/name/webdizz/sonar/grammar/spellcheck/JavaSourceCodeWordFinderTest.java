@@ -2,7 +2,7 @@ package name.webdizz.sonar.grammar.spellcheck;
 
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.event.SpellChecker;
-import name.webdizz.sonar.grammar.GrammarPlugin;
+import name.webdizz.sonar.grammar.PluginParameter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.theories.DataPoints;
@@ -29,7 +29,7 @@ public class JavaSourceCodeWordFinderTest {
 
     @Before
     public void init(){
-        when(settings.getString(GrammarPlugin.DICTIONARY)).thenReturn("/dict/english.0");
+        when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("/dict/english.0");
         dictionary = new GrammarDictionaryLoader(settings).loadMainDictionary();
 
     }

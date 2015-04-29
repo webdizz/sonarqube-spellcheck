@@ -3,7 +3,7 @@ package name.webdizz.sonar.grammar.spellcheck;
 import com.swabunga.spell.event.AbstractWordFinder;
 import com.swabunga.spell.event.Word;
 import com.swabunga.spell.event.WordNotFoundException;
-import name.webdizz.sonar.grammar.GrammarPlugin;
+import name.webdizz.sonar.grammar.PluginParameter;
 import org.sonar.api.BatchExtension;
 import org.sonar.api.config.Settings;
 
@@ -30,7 +30,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
      */
     public Word next() {
         if (settings != null) {
-            minimumWordLength = settings.getInt(GrammarPlugin.MIN_WORD_LENGTH);
+            minimumWordLength = settings.getInt(PluginParameter.MIN_WORD_LENGTH);
         }
 
         if (nextWord == null) {
