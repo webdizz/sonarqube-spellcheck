@@ -11,6 +11,7 @@ import java.io.File;
 import java.util.List;
 
 import name.webdizz.sonar.grammar.GrammarPlugin;
+import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
 import org.junit.Before;
 import org.junit.Test;
 import org.sonar.api.batch.SensorContext;
@@ -31,9 +32,9 @@ public class GrammarIssuesSensorTest {
 
     private final ResourcePerspectives perspectives = mock(ResourcePerspectives.class);
 
-    private final Settings settings = mock(Settings.class);
-
     private final SensorContext context = mock(SensorContext.class);
+
+    private final GrammarChecker grammarChecker = mock(GrammarChecker.class);
 
     private final Project module = new Project("sonar-grammar");
 
@@ -41,8 +42,7 @@ public class GrammarIssuesSensorTest {
 
     @Before
     public void init() {
-        when(settings.getString(GrammarPlugin.MIN_WORD_LENGTH)).thenReturn("3");
-        testingInstance = new GrammarIssuesSensor(fileSystem, perspectives, settings);
+        testingInstance = new GrammarIssuesSensor(fileSystem, perspectives, grammarChecker);
     }
 
     @Test

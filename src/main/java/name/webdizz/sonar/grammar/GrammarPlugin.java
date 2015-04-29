@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import name.webdizz.sonar.grammar.profile.GrammarProfileDefinition;
 
+import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
+import name.webdizz.sonar.grammar.spellcheck.GrammarDictionaryLoader;
+import name.webdizz.sonar.grammar.spellcheck.JavaSourceCodeWordFinder;
 import org.sonar.api.Properties;
 import org.sonar.api.Property;
 import org.sonar.api.SonarPlugin;
@@ -25,7 +28,7 @@ import name.webdizz.sonar.grammar.sensor.GrammarIssuesSensor;
             key = GrammarPlugin.DICTIONARY,
             name = "Dictionary path",
             description = "Defines resources to be included for analysis",
-            defaultValue = "dict/english.0"),
+            defaultValue = "/dict/english.0"),
     @Property(
             key = GrammarPlugin.MIN_WORD_LENGTH,
             name = "Minimum word length",
@@ -48,7 +51,10 @@ public class GrammarPlugin extends SonarPlugin {
                         // Metrics
                         GrammarMetrics.class,
                         // Sensor
-                        GrammarIssuesSensor.class
+                        GrammarIssuesSensor.class,
+                        GrammarChecker.class,
+                        GrammarDictionaryLoader.class,
+                        JavaSourceCodeWordFinder.class
                 );
     }
 }
