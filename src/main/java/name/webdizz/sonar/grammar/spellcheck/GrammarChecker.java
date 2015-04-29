@@ -6,14 +6,11 @@ import com.google.common.base.Optional;
 import com.swabunga.spell.event.SpellCheckListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.common.base.Strings;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import com.swabunga.spell.event.SpellChecker;
-
 import org.sonar.api.BatchExtension;
-
 import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD;
 import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD_VALUE;
 
