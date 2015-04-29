@@ -30,28 +30,27 @@ public class LinkFunction implements Function, ServerExtension {
     public void execute(Context context) {
         final String word = getMistakeWord(context.issue().message(), PluginParameter.ERROR_DESCRIPTION);
         PropertyDto propertyDto = propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY);
-        if (propertyDto != null) {
-            String dictionary = propertyDto.getValue();
-            ArrayList<String> wordList = new ArrayList<>(Arrays.asList(dictionary.split(SEPARATOR_CHAR)));
-            writeSortedIfUnique(word, dictionary, wordList);
-        } else {
+        if (propertyDto == null) {
             LOGGER.info("Creating new Dictionary. Adding word '{}' to it.", word);
             propertiesDao.saveGlobalProperties(new HashMap<String, String>() {{
                 put(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, word);
             }});
-
+        } else {
+            String dictionary = propertyDto.getValue();
+            ArrayList<String> wordList = new ArrayList<>(Arrays.asList(dictionary.split(SEPARATOR_CHAR)));
+            writeSortedIfUnique(word, dictionary, wordList);
         }
     }
 
     private void writeSortedIfUnique(String word, String dictionary, ArrayList<String> wordList) {
-        if (!wordList.contains(word)) {
+        if (wordList.contains(word)) {
+            LOGGER.info("Don't add. Word  '{}' is already in dictionary.", word);
+        } else {
             wordList.add(word);
             Collections.sort(wordList);
             String sortedDictionary = StringUtils.join(wordList, SEPARATOR_CHAR);
             propertiesDao.updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, dictionary, sortedDictionary);
             LOGGER.info("Added word '{}' to dictionary.", word);
-        } else {
-            LOGGER.info("Don't add. Word  '{}' is already in dictionary.", word);
         }
     }
 
