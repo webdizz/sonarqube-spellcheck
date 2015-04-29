@@ -36,20 +36,19 @@ import java.util.List;
                 name = "Dictionary path",
                 description = "Defines resources to be included for analysis",
                 defaultValue = "/dict/english.0"),
+
+        @Property(
+                key = PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY,
+                name = "Alternative dictionary",
+                description = "Alternative dictionary",
+                defaultValue = " "),
         @Property(
                 key = PluginParameter.MIN_WORD_LENGTH,
                 name = "Minimum word length",
                 description = "Defines minimum word length to analyse",
                 defaultValue = "4"),
-        @Property(
-                key = PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY,
-                name = "Alternative dictionary",
-                description = "Alternative dictionary",
-                defaultValue = " ")})
-
-
+})
 public class GrammarPlugin extends SonarPlugin {
-
     @Override
     public List getExtensions() {
         return Arrays
