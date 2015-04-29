@@ -56,7 +56,7 @@ public class GrammarDictionaryLoader {
             try {
                 result = Optional.of(new SpellDictionaryHashMap(reader));
             } catch (IOException e) {
-                throw new UnableToLoadDictionary("There is no file with dictionary.", e);
+                throw new UnableToLoadDictionary("Can't load alternate dictionary.", e);
             }
         }
         return result;
