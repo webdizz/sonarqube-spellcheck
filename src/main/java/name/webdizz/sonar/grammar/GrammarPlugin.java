@@ -1,39 +1,48 @@
 package name.webdizz.sonar.grammar;
 
-import java.util.Arrays;
-import java.util.List;
+import name.webdizz.sonar.grammar.issue.tracking.GrammarActionDefinition;
+import name.webdizz.sonar.grammar.issue.tracking.LinkFunction;
 import name.webdizz.sonar.grammar.profile.GrammarProfileDefinition;
 
 import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
 import name.webdizz.sonar.grammar.spellcheck.GrammarDictionaryLoader;
 import name.webdizz.sonar.grammar.spellcheck.JavaSourceCodeWordFinder;
+import name.webdizz.sonar.grammar.rule.GrammarRulesDefinition;
+import name.webdizz.sonar.grammar.sensor.GrammarIssuesSensor;
 import org.sonar.api.Properties;
 import org.sonar.api.Property;
 import org.sonar.api.SonarPlugin;
-import name.webdizz.sonar.grammar.rule.GrammarRulesDefinition;
-import name.webdizz.sonar.grammar.sensor.GrammarIssuesSensor;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Properties({
-    @Property(
-            key = GrammarPlugin.EXCLUSION,
-            name = "Exclusion Property",
-            description = "Defines resources to be excluded from analysis",
-            defaultValue = ""),
-    @Property(
-            key = GrammarPlugin.INCLUSION,
-            name = "Inclusion Property",
-            description = "Defines resources to be included for analysis",
-            defaultValue = ""),
-    @Property(
-            key = GrammarPlugin.DICTIONARY,
-            name = "Dictionary path",
-            description = "Defines resources to be included for analysis",
-            defaultValue = "/dict/english.0"),
-    @Property(
-            key = GrammarPlugin.MIN_WORD_LENGTH,
-            name = "Minimum word length",
-            description = "Defines minimum word length to analyse",
-            defaultValue = "4")})
+        @Property(
+                key = GrammarPlugin.EXCLUSION,
+                name = "Exclusion Property",
+                description = "Defines resources to be excluded from analysis",
+                defaultValue = ""),
+        @Property(
+                key = GrammarPlugin.INCLUSION,
+                name = "Inclusion Property",
+                description = "Defines resources to be included for analysis",
+                defaultValue = ""),
+        @Property(
+                key = GrammarPlugin.DICTIONARY,
+                name = "Dictionary path",
+                description = "Defines resources to be included for analysis",
+                defaultValue = "/dict/english.0"),
+        @Property(
+                key = GrammarPlugin.MIN_WORD_LENGTH,
+                name = "Minimum word length",
+                description = "Defines minimum word length to analyse",
+                defaultValue = "4"),
+        @Property(
+                key = PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY,
+                name = "Alternative dictionary",
+                description = "Alternative dictionary",
+                defaultValue = " ")})
+
 public class GrammarPlugin extends SonarPlugin {
 
     public static final String EXCLUSION = "sonar.grammar.exclusion";
@@ -54,7 +63,11 @@ public class GrammarPlugin extends SonarPlugin {
                         GrammarIssuesSensor.class,
                         GrammarChecker.class,
                         GrammarDictionaryLoader.class,
-                        JavaSourceCodeWordFinder.class
+                        JavaSourceCodeWordFinder.class,
+                        //Issue review
+                        LinkFunction.class,
+                        GrammarActionDefinition.class
+
                 );
     }
 }

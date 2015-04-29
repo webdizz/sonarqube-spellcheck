@@ -1,12 +1,10 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
-import com.sonar.sslr.api.Grammar;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import name.webdizz.sonar.grammar.GrammarPlugin;
 import name.webdizz.sonar.grammar.exceptions.UnableToLoadDictionary;
 import name.webdizz.sonar.grammar.utils.SpellCheckerUtil;
-import org.picocontainer.annotations.Inject;
 import org.sonar.api.BatchExtension;
 import org.sonar.api.config.Settings;
 
