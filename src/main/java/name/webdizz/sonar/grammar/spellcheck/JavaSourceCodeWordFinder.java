@@ -3,8 +3,9 @@ package name.webdizz.sonar.grammar.spellcheck;
 import com.swabunga.spell.event.AbstractWordFinder;
 import com.swabunga.spell.event.Word;
 import com.swabunga.spell.event.WordNotFoundException;
+import org.sonar.api.BatchExtension;
 
-public class JavaSourceCodeWordFinder extends AbstractWordFinder {
+public class JavaSourceCodeWordFinder extends AbstractWordFinder implements BatchExtension {
     private boolean inComment;
     private int minimumWordLength;
 

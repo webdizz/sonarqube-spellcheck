@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @Properties({
-<<<<<<< HEAD
         @Property(
                 key = GrammarPlugin.EXCLUSION,
                 name = "Exclusion Property",

@@ -2,24 +2,37 @@ package name.webdizz.sonar.grammar.spellcheck;
 
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.event.SpellChecker;
+import name.webdizz.sonar.grammar.GrammarPlugin;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.FromDataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
+import org.sonar.api.config.Settings;
 
 import static com.swabunga.spell.event.SpellChecker.SPELLCHECK_OK;
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 
 @RunWith(Theories.class)
 public class JavaSourceCodeWordFinderTest {
     private String ERROR_MESSAGE = "This text has errors. If there are no errors, we expect 'errorsSize = -1'";
+    private Settings settings = mock(Settings.class);
     private SpellChecker spellChecker = new SpellCheckerFactory().getSpellChecker();
-    private SpellDictionary dictionary = new GrammarDictionaryLoader().loadMainDictionary();
+    private SpellDictionary dictionary;
     private int minimumWordLength = 4;
+
+    @Before
+    public void init(){
+        when(settings.getString(GrammarPlugin.DICTIONARY)).thenReturn("/dict/english.0");
+        dictionary = new GrammarDictionaryLoader(settings).loadMainDictionary();
+
+    }
 
     @DataPoints("validDigitWords")
     public static String[] validDigitWords = new String[] {"word1", "word12", "convert2String", "convert23String",

@@ -34,20 +34,12 @@ public class GrammarIssuesSensor implements Sensor {
     private final GrammarChecker grammarChecker;
     private final Lock wrapperLock = new ReentrantLock();
     private GrammarIssuesWrapper templateWrapper;
-    private final int minimumWordLengths;
 
-    /**
-     * Use of IoC to get FileSystem
-     *
-     * @param fileSystem
-     * @param perspectives
-     * @param settings
-     */
-    public GrammarIssuesSensor(FileSystem fileSystem, ResourcePerspectives perspectives, final Settings settings) {
+
+    public GrammarIssuesSensor(FileSystem fileSystem, ResourcePerspectives perspectives, final GrammarChecker grammarChecker) {
         this.fileSystem = fileSystem;
         this.perspectives = perspectives;
-        this.minimumWordLengths=Integer.parseInt(settings.getString(GrammarPlugin.MIN_WORD_LENGTH));
-        this.grammarChecker = new GrammarChecker(new GrammarDictionaryLoader(settings),minimumWordLengths);
+        this.grammarChecker = grammarChecker;
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Created the bean of grammar sensor.");
         }
