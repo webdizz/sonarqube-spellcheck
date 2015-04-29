@@ -1,7 +1,9 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
+import com.google.common.base.Optional;
 import com.google.common.base.Strings;
 import com.swabunga.spell.engine.SpellDictionary;
+import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import com.swabunga.spell.event.SpellCheckListener;
 import com.swabunga.spell.event.SpellChecker;
 import org.slf4j.Logger;
@@ -14,6 +16,7 @@ public class GrammarChecker {
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarChecker.class);
     private SpellDictionary dictionary;
     private final GrammarDictionaryLoader dictionaryLoader;
+    private Optional<SpellDictionaryHashMap> alternateDictionary;
 
     public GrammarChecker(final GrammarDictionaryLoader dictionaryLoader) {
         this.dictionaryLoader = dictionaryLoader;
@@ -21,6 +24,7 @@ public class GrammarChecker {
 
     public void initialize() {
         dictionary = dictionaryLoader.loadMainDictionary();
+        alternateDictionary = dictionaryLoader.loadAlternateDictionary();
     }
 
     public void checkSpelling(final String inputLine, final SpellCheckListener spellCheckListener) {
@@ -44,6 +48,9 @@ public class GrammarChecker {
         spellCheck.addSpellCheckListener(spellCheckListener);
         spellCheck.getConfiguration().setInteger("SPELL_THRESHOLD", 1);
         spellCheck.setUserDictionary(dictionary);
+        if (alternateDictionary.isPresent()) {
+            spellCheck.addDictionary(alternateDictionary.get());
+        }
         return spellCheck;
     }
 
