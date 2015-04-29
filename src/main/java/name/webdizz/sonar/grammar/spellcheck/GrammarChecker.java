@@ -3,52 +3,30 @@ package name.webdizz.sonar.grammar.spellcheck;
 import com.google.common.base.Optional;
 import static com.google.common.base.Preconditions.checkArgument;
 
-import com.google.common.base.Optional;
 import com.swabunga.spell.event.SpellCheckListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.common.base.Strings;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
-<<<<<<< HEAD
-import com.swabunga.spell.event.SpellCheckListener;
 import com.swabunga.spell.event.SpellChecker;
 
 import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD;
 import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD_VALUE;
-=======
-import com.swabunga.spell.event.SpellChecker;
-
->>>>>>> Add creating alternative dictionary and checking by it
 import org.sonar.api.BatchExtension;
-
-import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD;
-import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD_VALUE;
 
 public class GrammarChecker implements BatchExtension {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarChecker.class);
     private SpellDictionary dictionary;
-<<<<<<< HEAD
     private Optional<SpellDictionaryHashMap> alternateDictionary;
     private GrammarDictionaryLoader dictionaryLoader;
 
     private int minimumWordLengths;
     private JavaSourceCodeWordFinder javaSourceCodeWordFinder;
 
-    public GrammarChecker(final GrammarDictionaryLoader dictionaryLoader, JavaSourceCodeWordFinder javaSourceCodeWordFinder) {
-        this.dictionaryLoader = dictionaryLoader;
-=======
-    private final GrammarDictionaryLoader dictionaryLoader;
-    private Optional<SpellDictionaryHashMap> alternateDictionary;
-    private JavaSourceCodeWordFinder javaSourceCodeWordFinder;
-
-
-
     public GrammarChecker(final GrammarDictionaryLoader dictionaryLoader,
                           JavaSourceCodeWordFinder javaSourceCodeWordFinder) {
->>>>>>> Add creating alternative dictionary and checking by it
         this.javaSourceCodeWordFinder = javaSourceCodeWordFinder;
         this.dictionaryLoader = dictionaryLoader;
     }

@@ -52,6 +52,9 @@ public class LinkFunctionTest {
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(null);
         linkFunction.execute(context);
         verifySaveOnePropertyWithProperlyValue();
+        //then
+        verifySaveOnePropertyWithProperlyValue();
+
     }
 
     @Test

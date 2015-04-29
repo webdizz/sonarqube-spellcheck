@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 import static name.webdizz.sonar.grammar.PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY;
 import static name.webdizz.sonar.grammar.PluginParameter.SEPARATOR_CHAR;
@@ -31,7 +30,11 @@ public class LinkFunction implements Function, ServerExtension {
     public void execute(Context context) {
         final String word = getMistakeWord(context.issue().message(), PluginParameter.ERROR_DESCRIPTION);
         PropertyDto propertyDto = propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY);
-        if (propertyDto == null) {
+        if (propertyDto != null) {
+            String dictionary = propertyDto.getValue();
+            ArrayList<String> wordList = new ArrayList<>(Arrays.asList(dictionary.split(SEPARATOR_CHAR)));
+            writeSortedIfUnique(word, dictionary, wordList);
+        } else {
             LOGGER.info("Creating new Dictionary. Adding word '{}' to it.", word);
             propertiesDao.saveGlobalProperties(new HashMap<String, String>() {{
                 put(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, word);
@@ -54,23 +57,8 @@ public class LinkFunction implements Function, ServerExtension {
             LOGGER.info("Added word '{}' to dictionary.", word);
         }
 
-            String dictionary = propertyDto.getValue();
-            ArrayList<String> wordList = new ArrayList<>(Arrays.asList(dictionary.split(SEPARATOR_CHAR)));
-            if (!wordList.contains(word)) {
-                wordList.add(word);
-                String sortedDictionary = sort(wordList);
-                propertiesDao.updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, dictionary, sortedDictionary);
-                LOGGER.info("Added word '{}' to dictionary.", word);
-            }else{
-                LOGGER.info("Don't add. Word  '{}' is already in dictionary.", word);
-            }
-        }
     }
 
-    private String sort(List<String> dictionary) {
-        Collections.sort(dictionary);
-        return StringUtils.join(dictionary, SEPARATOR_CHAR);
-    }
 
     private String getMistakeWord(String message, String errDescription) {
         String res = message.replaceFirst(errDescription, "");
