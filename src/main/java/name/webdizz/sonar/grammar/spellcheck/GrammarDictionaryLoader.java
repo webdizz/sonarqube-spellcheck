@@ -1,11 +1,14 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
+import org.sonar.api.BatchExtension;
+
 import com.google.common.base.Optional;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import name.webdizz.sonar.grammar.PluginParameter;
 import name.webdizz.sonar.grammar.exceptions.UnableToLoadDictionary;
 import name.webdizz.sonar.grammar.utils.SpellCheckerUtil;
+
 import org.sonar.api.config.Settings;
 
 import java.io.IOException;
@@ -16,7 +19,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class GrammarDictionaryLoader {
+public class GrammarDictionaryLoader implements BatchExtension {
 
     private final Lock locker = new ReentrantLock();
     private Settings settings;
@@ -31,8 +34,19 @@ public class GrammarDictionaryLoader {
     }
 
     SpellDictionary loadMainDictionary() {
+    private Settings settings;
+
+    public GrammarDictionaryLoader(Settings settings) {
+        this.settings = settings;
+
+    }
+
+
+    public SpellDictionary loadMainDictionary() {
+        String dictionaryPath = settings.getString(PluginParameter.DICTIONARY_PATH);
         SpellDictionary spellDictionary = dictionary.get();
-        try (InputStreamReader wordList = new InputStreamReader(SpellCheckerUtil.class.getResourceAsStream(dictionaryPath))) {
+        try (InputStreamReader wordList = new InputStreamReader
+                (SpellCheckerUtil.class.getResourceAsStream(dictionaryPath))) {
             locker.lock();
             if (null == spellDictionary) {
                 spellDictionary = new SpellDictionaryHashMap(wordList);
@@ -45,6 +59,7 @@ public class GrammarDictionaryLoader {
             locker.unlock();
         }
     }
+
 
     Optional<SpellDictionaryHashMap> loadAlternateDictionary() {
         String alternateDict = settings.getString(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY);
