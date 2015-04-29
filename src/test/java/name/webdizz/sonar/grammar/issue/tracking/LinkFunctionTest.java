@@ -47,45 +47,33 @@ public class LinkFunctionTest {
 
     @Test
     public void shouldCreateandUpdateNewPropertyWhenMethodInvoke() {
-        //given
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(null);
-        //when
         linkFunction.execute(context);
-        //then
         verifySaveOnePropertyWithProperlyValue();
 
     }
 
     @Test
     public void shouldUpdatePropertyWhenItExist() {
-        //given
         propertyDto.setValue(FIRST_WORD);
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
-        //when
         linkFunction.execute(context);
-        //then
         verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, FIRST_WORD, FIRST_WORD + SEPARATOR_CHAR + NEW_WORD);
     }
 
     @Test
     public void shouldSortPropertyWhenUpdatIt() {
-        //given
         propertyDto.setValue(UNSORTED_WORD);
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
-        //when
         linkFunction.execute(context);
-        //then
         verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, UNSORTED_WORD, NEW_WORD + SEPARATOR_CHAR + UNSORTED_WORD);
     }
 
     @Test
     public void shouldNotAddWordWhenWordIsNotUnique() {
-        //given
         propertyDto.setValue(NEW_WORD);
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
-        //when
         linkFunction.execute(context);
-        //then
         verify(propertiesDao).selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY);
         verifyNoMoreInteractions(propertiesDao);
     }
