@@ -4,7 +4,6 @@ import org.sonar.api.CoreProperties;
 
 /**
  * The pool of constants used in the grammar-plugin
- *
  */
 public interface PluginParameter {
     /**
@@ -66,4 +65,9 @@ public interface PluginParameter {
      * Separator for store alternate dictionary
      */
     String SEPARATOR_CHAR = ",";
+    /**
+     * Parameters for set cost of spelling
+     */
+    int SPELL_THRESHOLD_VALUE = 1;
+    String SPELL_THRESHOLD = "SPELL_THRESHOLD";
 }

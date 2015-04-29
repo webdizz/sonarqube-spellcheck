@@ -32,7 +32,7 @@ public class LinkFunctionTest {
     @Mock
     private Function.Context context;
     @Mock
-    Issue issue;
+    private Issue issue;
 
     private static final String FIRST_WORD = "existWord";
     private static final String UNSORTED_WORD = "zoo";
@@ -52,11 +52,7 @@ public class LinkFunctionTest {
         //when
         linkFunction.execute(context);
         //then
-        ArgumentCaptor<Map> property = ArgumentCaptor.forClass(Map.class);
-        verify(propertiesDao).saveGlobalProperties(property.capture());
-        assertTrue(property.getValue().containsKey(ALTERNATIVE_DICTIONARY_PROPERTY_KEY));
-        assertEquals(NEW_WORD, property.getValue().get(ALTERNATIVE_DICTIONARY_PROPERTY_KEY));
-        assertEquals(1, property.getValue().size());
+        verifySaveOnePropertyWithProperlyValue();
 
     }
 
@@ -92,6 +88,15 @@ public class LinkFunctionTest {
         //then
         verify(propertiesDao).selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY);
         verifyNoMoreInteractions(propertiesDao);
+    }
+
+    private void verifySaveOnePropertyWithProperlyValue() {
+        ArgumentCaptor<Map> property = ArgumentCaptor.forClass(Map.class);
+        verify(propertiesDao).saveGlobalProperties(property.capture());
+        assertTrue(property.getValue().containsKey(ALTERNATIVE_DICTIONARY_PROPERTY_KEY));
+        assertEquals(NEW_WORD, property.getValue().get(ALTERNATIVE_DICTIONARY_PROPERTY_KEY));
+        int propertyCount = property.getValue().size();
+        assertEquals(1, propertyCount);
     }
 
 

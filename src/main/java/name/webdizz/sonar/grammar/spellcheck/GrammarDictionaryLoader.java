@@ -30,7 +30,7 @@ public class GrammarDictionaryLoader {
         this.settings = settings;
     }
 
-    public SpellDictionary loadMainDictionary() {
+    SpellDictionary loadMainDictionary() {
         SpellDictionary spellDictionary = dictionary.get();
         try (InputStreamReader wordList = new InputStreamReader(SpellCheckerUtil.class.getResourceAsStream(dictionaryPath))) {
             locker.lock();
@@ -46,19 +46,21 @@ public class GrammarDictionaryLoader {
         }
     }
 
-    public Optional<SpellDictionaryHashMap> loadAlternateDictionary()  {
+    Optional<SpellDictionaryHashMap> loadAlternateDictionary() {
         String alternateDict = settings.getString(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY);
         Reader reader;
+        Optional<SpellDictionaryHashMap> result = Optional.absent();
         if (alternateDict != null) {
             alternateDict = alternateDict.replace(PluginParameter.SEPARATOR_CHAR, "\n");
             reader = new StringReader(alternateDict);
             try {
-                return Optional.of(new SpellDictionaryHashMap(reader));
+                result = Optional.of(new SpellDictionaryHashMap(reader));
             } catch (IOException e) {
                 throw new UnableToLoadDictionary("There is no file with dictionary.", e);
             }
         }
-        return Optional.absent();
-
+        return result;
     }
+
 }
+

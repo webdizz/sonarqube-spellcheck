@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD;
+import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD_VALUE;
 
 public class GrammarChecker {
 
@@ -46,7 +48,7 @@ public class GrammarChecker {
     private SpellChecker createSpellChecker(final SpellCheckListener spellCheckListener) {
         SpellChecker spellCheck = new SpellCheckerFactory().getSpellChecker();
         spellCheck.addSpellCheckListener(spellCheckListener);
-        spellCheck.getConfiguration().setInteger("SPELL_THRESHOLD", 1);
+        spellCheck.getConfiguration().setInteger(SPELL_THRESHOLD, SPELL_THRESHOLD_VALUE);
         spellCheck.setUserDictionary(dictionary);
         if (alternateDictionary.isPresent()) {
             spellCheck.addDictionary(alternateDictionary.get());
