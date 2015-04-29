@@ -3,6 +3,7 @@ package name.webdizz.sonar.grammar.spellcheck;
 import com.swabunga.spell.event.AbstractWordFinder;
 import com.swabunga.spell.event.Word;
 import com.swabunga.spell.event.WordNotFoundException;
+
 import org.sonar.api.BatchExtension;
 import org.sonar.api.config.Settings;
 
