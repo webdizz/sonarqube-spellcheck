@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import name.webdizz.sonar.grammar.GrammarPlugin;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -32,18 +31,12 @@ public class GrammarIssuesSensor implements Sensor {
     private final GrammarChecker grammarChecker;
     private final Lock wrapperLock = new ReentrantLock();
     private GrammarIssuesWrapper templateWrapper;
-    private final int minimumWordLengths;
 
 
     public GrammarIssuesSensor(FileSystem fileSystem, ResourcePerspectives perspectives, final GrammarChecker grammarChecker) {
         this.fileSystem = fileSystem;
         this.perspectives = perspectives;
-<<<<<<< HEAD
         this.grammarChecker = grammarChecker;
-=======
-        this.minimumWordLengths=Integer.parseInt(settings.getString(GrammarPlugin.MIN_WORD_LENGTH));
-        this.grammarChecker = new GrammarChecker(new GrammarDictionaryLoader(settings),minimumWordLengths);
->>>>>>> Added configurable property of minimum word length to analyse
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Created the bean of grammar sensor.");
         }
