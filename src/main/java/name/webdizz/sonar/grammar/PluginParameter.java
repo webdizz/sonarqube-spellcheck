@@ -41,4 +41,25 @@ public interface PluginParameter {
      * The description of grammar-rule
      */
     String SONAR_GRAMMAR_RULE_DESCRIPTION = "Analyses source code for english grammar issues.";
+
+    /**
+     * Error description
+     */
+
+    String ERROR_DESCRIPTION = "Invalid word is : \'";
+
+    /**
+     * Action name for adding to dictionary
+     */
+    String ADD_TO_DICT = "add-to-dict";
+
+    /**
+     * Add  to dictionary link caption
+     */
+    String SONAR_GRAMMAR_ISSUE_DATA_PROPERTY_KEY = "grammar-issue-key";
+
+    /**
+     * manual dictionary name
+     */
+    String ALTERNATIVE_DICTIONARY_PROPERTY_KEY = "sonar.alternative.dictionary";
 }

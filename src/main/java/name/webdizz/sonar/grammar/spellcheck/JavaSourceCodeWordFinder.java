@@ -3,18 +3,22 @@ package name.webdizz.sonar.grammar.spellcheck;
 import com.swabunga.spell.event.AbstractWordFinder;
 import com.swabunga.spell.event.Word;
 import com.swabunga.spell.event.WordNotFoundException;
+import name.webdizz.sonar.grammar.GrammarPlugin;
 import org.sonar.api.BatchExtension;
+import org.sonar.api.config.Settings;
 
 public class JavaSourceCodeWordFinder extends AbstractWordFinder implements BatchExtension {
     private boolean inComment;
     private int minimumWordLength;
+    private Settings settings;
 
     public JavaSourceCodeWordFinder() {
         super();
     }
 
-    public JavaSourceCodeWordFinder(final String searchText) {
+    public JavaSourceCodeWordFinder(final String searchText, final Settings settings) {
         super(searchText);
+        this.settings=settings;
     }
 
     /**
@@ -25,6 +29,9 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
      * @throws com.swabunga.spell.event.WordNotFoundException search string contains no more words.
      */
     public Word next() {
+        if (settings != null) {
+            minimumWordLength = settings.getInt(GrammarPlugin.MIN_WORD_LENGTH);
+        }
 
         if (nextWord == null) {
             throw new WordNotFoundException("No more words found.");
