@@ -5,10 +5,6 @@ import name.webdizz.sonar.grammar.issue.tracking.LinkFunction;
 import name.webdizz.sonar.grammar.profile.GrammarProfileDefinition;
 import name.webdizz.sonar.grammar.rule.GrammarRulesDefinition;
 import name.webdizz.sonar.grammar.sensor.GrammarIssuesSensor;
-
-import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
-import name.webdizz.sonar.grammar.spellcheck.GrammarDictionaryLoader;
-import name.webdizz.sonar.grammar.spellcheck.JavaSourceCodeWordFinder;
 import org.sonar.api.Properties;
 import org.sonar.api.Property;
 import org.sonar.api.SonarPlugin;
@@ -57,13 +53,7 @@ public class GrammarPlugin extends SonarPlugin {
                         GrammarIssuesSensor.class,
                         //Issue review
                         LinkFunction.class,
-                        GrammarActionDefinition.class,
-
-                        // Sensor
-                        GrammarIssuesSensor.class,
-                        GrammarChecker.class,
-                        GrammarDictionaryLoader.class,
-                        JavaSourceCodeWordFinder.class
+                        GrammarActionDefinition.class
                 );
     }
 }
