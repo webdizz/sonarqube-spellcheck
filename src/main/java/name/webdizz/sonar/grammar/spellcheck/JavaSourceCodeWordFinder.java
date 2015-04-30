@@ -191,11 +191,6 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
         return word.length() < minimumWordLength;
     }
 
-
-    public void setMinimumWordLength(int minimumWordLength) {
-        this.minimumWordLength = minimumWordLength;
-    }
-
     private boolean isDigit(final int position) {
         if (position > 1 && text.length() > 2 && position < text.length()) {
             return Character.isDigit(text.charAt(position));

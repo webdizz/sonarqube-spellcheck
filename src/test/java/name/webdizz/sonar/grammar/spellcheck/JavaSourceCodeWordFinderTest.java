@@ -90,6 +90,7 @@ public class JavaSourceCodeWordFinderTest {
     @Test
     public void shouldCheckMinWordLengthAndSkipWordsWithSizeLessThenDefined() throws Exception {
         minimumWordLength = 3;
+        when(settings.getInt(PluginParameter.MIN_WORD_LENGTH)).thenReturn(minimumWordLength);
         String testLine = "tru.Test.package";
 
         int errorsSize = getErrorsSize(testLine);
@@ -101,6 +102,7 @@ public class JavaSourceCodeWordFinderTest {
     @Test
     public void shouldCheckMinWordLengthAndSkipALLWordsWithSizeLessThenDefined() throws Exception {
         minimumWordLength = 4;
+        when(settings.getInt(PluginParameter.MIN_WORD_LENGTH)).thenReturn(minimumWordLength);
         String testLine = "er.wrn.Test.package";
 
         int errorsSize = getErrorsSize(testLine);
@@ -112,6 +114,7 @@ public class JavaSourceCodeWordFinderTest {
     @Test
     public void shouldCheckALLWordsGreaterThenSizeOfMinimumWordLengthVariable() throws Exception {
         minimumWordLength = 2;
+        when(settings.getInt(PluginParameter.MIN_WORD_LENGTH)).thenReturn(minimumWordLength);
         String testLine = "ert.wrn.Tesst.package";
 
         int errorsSize = getErrorsSize(testLine);
@@ -120,7 +123,6 @@ public class JavaSourceCodeWordFinderTest {
     }
 
     private int getErrorsSize(String testLine) {
-
         JavaSourceCodeWordFinder javaSourceCodeWordFinder =  new JavaSourceCodeWordFinder(settings);
         JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(testLine,javaSourceCodeWordFinder);
         spellChecker.setUserDictionary(dictionary);
