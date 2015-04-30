@@ -62,7 +62,7 @@ public class LinkFunctionTest {
     }
 
     @Test
-    public void shouldSortPropertyWhenUpdateIt
+    public void shouldSortPropertyWhenUpdateIt(){
         propertyDto.setValue(UNSORTED_WORD);
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
         linkFunction.execute(context);
