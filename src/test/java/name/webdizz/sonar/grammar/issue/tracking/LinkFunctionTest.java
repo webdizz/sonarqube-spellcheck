@@ -16,8 +16,9 @@ import java.util.Map;
 import static name.webdizz.sonar.grammar.PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY;
 import static name.webdizz.sonar.grammar.PluginParameter.ERROR_DESCRIPTION;
 import static name.webdizz.sonar.grammar.PluginParameter.SEPARATOR_CHAR;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsMapContaining.hasEntry;
+import static org.hamcrest.collection.IsMapWithSize.aMapWithSize;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -50,7 +51,6 @@ public class LinkFunctionTest {
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(null);
         linkFunction.execute(context);
         verifySaveOnePropertyWithProperlyValue();
-
     }
 
     @Test
@@ -62,7 +62,7 @@ public class LinkFunctionTest {
     }
 
     @Test
-    public void shouldSortPropertyWhenUpdatIt() {
+    public void shouldSortPropertyWhenUpdateIt() {
         propertyDto.setValue(UNSORTED_WORD);
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
         linkFunction.execute(context);
@@ -79,13 +79,11 @@ public class LinkFunctionTest {
     }
 
     private void verifySaveOnePropertyWithProperlyValue() {
-        ArgumentCaptor<Map> property = ArgumentCaptor.forClass(Map.class);
-        verify(propertiesDao).saveGlobalProperties(property.capture());
-        assertTrue(property.getValue().containsKey(ALTERNATIVE_DICTIONARY_PROPERTY_KEY));
-        assertEquals(NEW_WORD, property.getValue().get(ALTERNATIVE_DICTIONARY_PROPERTY_KEY));
-        int propertyCount = property.getValue().size();
-        assertEquals(1, propertyCount);
+        ArgumentCaptor<Map> captor = ArgumentCaptor.forClass(Map.class);
+        verify(propertiesDao).saveGlobalProperties(captor.capture());
+        Map<String, String> properties = captor.getValue();
+        assertThat(properties, hasEntry(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, NEW_WORD));
+        assertThat(properties, aMapWithSize(1));
     }
-
 
 }
