@@ -34,7 +34,22 @@ Development and run:
 5. To perform grammar analysis go to the project that you want to test and write ```bash mvn sonar:sonar``` command (for Windows machines use ```mvn sonar:sonar```), for debug use ```bash mvnDebug sonar:sonar``` command (by default debug port is **8000**)
 6. After that you can see results on [http://localhost:9000/dashboard/](http://localhost:9000/dashboard/) or follow the link that will be found in the bottom of command line output
 
-Amend dictionary:
+Add word/amend custom dictionary:
+-----------------
+You can add word to custom dictionary, so next checks cannot select this word as an issue.
+
+1. Login to sonar with **admin rights**.
+2. Go to issue list. At the end of action pane click **More->Add to Dictionary**.
+3. Word will be added to dictionary.
+
+You also can directly edit custom dictionary in Grammar Plugin Settings:
+
+1. Login to sonar with **admin rights**.
+2. Go to **Settings->General Settings->Grammar->Alternative dictionary**.
+3. Edit word list (separate it with comma)
+4. Click Save Grammar Settings
+
+Amend default dictionary:
 -----------------
 There is built in dictionary, however to add additional words here is a bash script to rearrange dictionary.
 To do this - append new word to **src/main/resources/dict/english.0**, run **reprocess_dict.sh** after that copy **src/main/resources/dict/english.1** with new word and in correct format to **src/main/resources/dict/english.0**.
