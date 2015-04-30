@@ -4,6 +4,7 @@ import com.swabunga.spell.event.AbstractWordFinder;
 import com.swabunga.spell.event.Word;
 import com.swabunga.spell.event.WordNotFoundException;
 
+import name.webdizz.sonar.grammar.PluginParameter;
 import org.sonar.api.BatchExtension;
 import org.sonar.api.config.Settings;
 
@@ -27,6 +28,9 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
      * @throws com.swabunga.spell.event.WordNotFoundException search string contains no more words.
      */
     public Word next() {
+        if (settings != null) {
+            minimumWordLength = settings.getInt(PluginParameter.MIN_WORD_LENGTH);
+        }
 
         if (nextWord == null) {
             throw new WordNotFoundException("No more words found.");
@@ -183,8 +187,8 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
     }
 
 
-    public void setMinimumWordLength(int minimumWordLength) {
-        this.minimumWordLength = minimumWordLength;
+    private boolean isWordLessThenMinLenght(final Word word) {
+        return word.length() < minimumWordLength;
     }
 
     private boolean isDigit(final int position) {
@@ -192,11 +196,6 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
             return Character.isDigit(text.charAt(position));
         }
         return false;
+
     }
-
-    private boolean isWordLessThenMinLenght(final Word word) {
-        return word.length() < minimumWordLength;
-    }
-
-
 }

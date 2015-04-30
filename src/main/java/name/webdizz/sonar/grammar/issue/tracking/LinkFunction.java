@@ -30,11 +30,7 @@ public class LinkFunction implements Function, ServerExtension {
     public void execute(Context context) {
         final String word = getMistakeWord(context.issue().message(), PluginParameter.ERROR_DESCRIPTION);
         PropertyDto propertyDto = propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY);
-        if (propertyDto != null) {
-            String dictionary = propertyDto.getValue();
-            ArrayList<String> wordList = new ArrayList<>(Arrays.asList(dictionary.split(SEPARATOR_CHAR)));
-            writeSortedIfUnique(word, dictionary, wordList);
-        } else {
+        if (propertyDto == null) {
             LOGGER.info("Creating new Dictionary. Adding word '{}' to it.", word);
             propertiesDao.saveGlobalProperties(new HashMap<String, String>() {{
                 put(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, word);
@@ -56,9 +52,7 @@ public class LinkFunction implements Function, ServerExtension {
             propertiesDao.updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, dictionary, sortedDictionary);
             LOGGER.info("Added word '{}' to dictionary.", word);
         }
-
     }
-
 
     private String getMistakeWord(String message, String errDescription) {
         String res = message.replaceFirst(errDescription, "");

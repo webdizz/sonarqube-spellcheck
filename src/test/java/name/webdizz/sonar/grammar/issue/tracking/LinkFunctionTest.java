@@ -19,7 +19,6 @@ import static name.webdizz.sonar.grammar.PluginParameter.SEPARATOR_CHAR;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsMapContaining.hasEntry;
 import static org.hamcrest.collection.IsMapWithSize.aMapWithSize;
-
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -52,9 +51,6 @@ public class LinkFunctionTest {
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(null);
         linkFunction.execute(context);
         verifySaveOnePropertyWithProperlyValue();
-        //then
-        verifySaveOnePropertyWithProperlyValue();
-
     }
 
     @Test
@@ -62,22 +58,14 @@ public class LinkFunctionTest {
         propertyDto.setValue(FIRST_WORD);
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
         linkFunction.execute(context);
-        //then
         verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, FIRST_WORD, FIRST_WORD + SEPARATOR_CHAR + NEW_WORD);
     }
 
     @Test
-    public void shouldSortPropertyWhenUpdateIt() {
+    public void shouldSortPropertyWhenUpdateIt
         propertyDto.setValue(UNSORTED_WORD);
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
         linkFunction.execute(context);
-    public void shouldSortPropertyWhenUpdatIt() {
-        //given
-        propertyDto.setValue(UNSORTED_WORD);
-        when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
-        //when
-        linkFunction.execute(context);
-        //then
         verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, UNSORTED_WORD, NEW_WORD + SEPARATOR_CHAR + UNSORTED_WORD);
     }
 
@@ -86,12 +74,6 @@ public class LinkFunctionTest {
         propertyDto.setValue(NEW_WORD);
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
         linkFunction.execute(context);
-        //given
-        propertyDto.setValue(NEW_WORD);
-        when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
-        //when
-        linkFunction.execute(context);
-        //then
         verify(propertiesDao).selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY);
         verifyNoMoreInteractions(propertiesDao);
     }
