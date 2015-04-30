@@ -4,15 +4,20 @@ import com.swabunga.spell.event.AbstractWordFinder;
 import com.swabunga.spell.event.Word;
 import com.swabunga.spell.event.WordNotFoundException;
 
-public class JavaSourceCodeWordFinder extends AbstractWordFinder {
+import name.webdizz.sonar.grammar.PluginParameter;
+import org.sonar.api.BatchExtension;
+import org.sonar.api.config.Settings;
+
+public class JavaSourceCodeWordFinder extends AbstractWordFinder implements BatchExtension {
     private boolean inComment;
+    private int minimumWordLength;
+    private Settings settings;
 
-    public JavaSourceCodeWordFinder() {
+
+
+    public JavaSourceCodeWordFinder(final Settings settings) {
         super();
-    }
-
-    public JavaSourceCodeWordFinder(final String searchText) {
-        super(searchText);
+        this.settings=settings;
     }
 
     /**
@@ -20,10 +25,12 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
      * new Word object corresponding to the next word.
      *
      * @return the next word.
-     * @throws com.swabunga.spell.event.WordNotFoundException
-     *          search string contains no more words.
+     * @throws com.swabunga.spell.event.WordNotFoundException search string contains no more words.
      */
     public Word next() {
+        if (settings != null) {
+            minimumWordLength = settings.getInt(PluginParameter.MIN_WORD_LENGTH);
+        }
 
         if (nextWord == null) {
             throw new WordNotFoundException("No more words found.");
@@ -123,6 +130,10 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
             nextWord.setText(text.substring(nextWord.getStart(), i - 1));
         }
 
+        if (isWordLessThenMinLenght(currentWord)) {
+            currentWord.setText("");
+        }
+
         return currentWord;
     }
 
@@ -175,10 +186,16 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder {
         return false;
     }
 
+
+    private boolean isWordLessThenMinLenght(final Word word) {
+        return word.length() < minimumWordLength;
+    }
+
     private boolean isDigit(final int position) {
         if (position > 1 && text.length() > 2 && position < text.length()) {
             return Character.isDigit(text.charAt(position));
         }
         return false;
+
     }
 }

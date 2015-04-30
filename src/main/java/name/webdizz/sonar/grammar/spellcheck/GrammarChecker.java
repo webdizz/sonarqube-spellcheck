@@ -1,26 +1,38 @@
 package name.webdizz.sonar.grammar.spellcheck;
 
 import com.google.common.base.Optional;
-import com.google.common.base.Strings;
-import com.swabunga.spell.engine.SpellDictionary;
-import com.swabunga.spell.engine.SpellDictionaryHashMap;
+import static com.google.common.base.Preconditions.checkArgument;
+
 import com.swabunga.spell.event.SpellCheckListener;
-import com.swabunga.spell.event.SpellChecker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.google.common.base.Preconditions.checkArgument;
+
+import com.google.common.base.Strings;
+import com.swabunga.spell.engine.SpellDictionary;
+import com.swabunga.spell.engine.SpellDictionaryHashMap;
+import com.swabunga.spell.event.SpellChecker;
+import org.sonar.api.BatchExtension;
+
 import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD;
 import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD_VALUE;
 
-public class GrammarChecker {
+
+public class GrammarChecker implements BatchExtension {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarChecker.class);
     private SpellDictionary dictionary;
-    private final GrammarDictionaryLoader dictionaryLoader;
     private Optional<SpellDictionaryHashMap> alternateDictionary;
+    private GrammarDictionaryLoader dictionaryLoader;
 
-    public GrammarChecker(final GrammarDictionaryLoader dictionaryLoader) {
+    private int minimumWordLengths;
+    private JavaSourceCodeWordFinder javaSourceCodeWordFinder;
+
+
+
+    public GrammarChecker(final GrammarDictionaryLoader dictionaryLoader,
+                          JavaSourceCodeWordFinder javaSourceCodeWordFinder) {
+        this.javaSourceCodeWordFinder = javaSourceCodeWordFinder;
         this.dictionaryLoader = dictionaryLoader;
     }
 
@@ -32,7 +44,7 @@ public class GrammarChecker {
     public void checkSpelling(final String inputLine, final SpellCheckListener spellCheckListener) {
         parametersValidation(inputLine, spellCheckListener);
         SpellChecker spellCheck = createSpellChecker(spellCheckListener);
-        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(inputLine, new JavaSourceCodeWordFinder());
+        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(inputLine, javaSourceCodeWordFinder);
         spellCheck.checkSpelling(sourceCodeTokenizer);
         spellCheck.reset();
     }

@@ -10,6 +10,8 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.util.List;
 
+import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
+import org.junit.Before;
 import org.junit.Test;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FilePredicate;
@@ -17,7 +19,6 @@ import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.fs.internal.DefaultFileSystem;
 import org.sonar.api.batch.fs.internal.DefaultInputFile;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
 
 import com.google.common.collect.Lists;
@@ -29,11 +30,18 @@ public class GrammarIssuesSensorTest {
 
     private final ResourcePerspectives perspectives = mock(ResourcePerspectives.class);
 
-    private final Settings settings = mock(Settings.class);
-
-    private final GrammarIssuesSensor testingInstance = new GrammarIssuesSensor(fileSystem, perspectives, settings);
-    private final Project module = new Project("sonar-grammar");
     private final SensorContext context = mock(SensorContext.class);
+
+    private final GrammarChecker grammarChecker = mock(GrammarChecker.class);
+
+    private final Project module = new Project("sonar-grammar");
+
+    private GrammarIssuesSensor testingInstance = null;
+
+    @Before
+    public void init() {
+        testingInstance = new GrammarIssuesSensor(fileSystem, perspectives, grammarChecker);
+    }
 
     @Test
     public void shouldListInputFilesDuringAnalysis() throws Exception {

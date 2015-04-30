@@ -61,6 +61,8 @@ public interface PluginParameter {
      * manual dictionary name
      */
     String ALTERNATIVE_DICTIONARY_PROPERTY_KEY = "sonar.alternative.dictionary";
+
+
     /**
      * Separator for store alternate dictionary
      */
@@ -70,4 +72,25 @@ public interface PluginParameter {
      */
     int SPELL_THRESHOLD_VALUE = 1;
     String SPELL_THRESHOLD = "SPELL_THRESHOLD";
+
+    /**
+     * exclusion word list
+     **/
+    String EXCLUSION = "sonar.grammar.exclusion";
+
+    /**
+     * list of words to be included to main dictionary
+     **/
+    String INCLUSION = "sonar.grammar.inclusion";
+
+    /**
+     * path to main dictionary
+     **/
+    String DICTIONARY_PATH = "sonar.grammar.dictionary";
+
+    /**
+     * minimum word length to be analyzed
+     **/
+    String MIN_WORD_LENGTH = "sonar.minimum.word.length";
+
 }

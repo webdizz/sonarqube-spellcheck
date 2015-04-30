@@ -14,17 +14,17 @@ import java.util.List;
 
 @Properties({
         @Property(
-                key = GrammarPlugin.EXCLUSION,
+                key = PluginParameter.EXCLUSION,
                 name = "Exclusion Property",
                 description = "Defines resources to be excluded from analysis",
                 defaultValue = ""),
         @Property(
-                key = GrammarPlugin.INCLUSION,
+                key = PluginParameter.INCLUSION,
                 name = "Inclusion Property",
                 description = "Defines resources to be included for analysis",
                 defaultValue = ""),
         @Property(
-                key = GrammarPlugin.DICTIONARY,
+                key = PluginParameter.DICTIONARY_PATH,
                 name = "Dictionary path",
                 description = "Defines resources to be included for analysis",
                 defaultValue = "dict/english.0"),
@@ -35,11 +35,11 @@ import java.util.List;
                 defaultValue = " ")
 
 })
+
+
 public class GrammarPlugin extends SonarPlugin {
 
-    public static final String EXCLUSION = "sonar.grammar.exclusion";
-    public static final String INCLUSION = "sonar.grammar.inclusion";
-    public static final String DICTIONARY = "sonar.grammar.dictionary";
+
 
     @Override
     public List getExtensions() {
@@ -54,7 +54,6 @@ public class GrammarPlugin extends SonarPlugin {
                         //Issue review
                         LinkFunction.class,
                         GrammarActionDefinition.class
-
                 );
     }
 }

@@ -15,12 +15,10 @@ import org.sonar.api.batch.fs.FilePredicate;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
 import org.sonar.api.rule.RuleKey;
 import name.webdizz.sonar.grammar.PluginParameter;
 import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
-import name.webdizz.sonar.grammar.spellcheck.GrammarDictionaryLoader;
 
 /**
  * The sensor for project files
@@ -34,17 +32,11 @@ public class GrammarIssuesSensor implements Sensor {
     private final Lock wrapperLock = new ReentrantLock();
     private GrammarIssuesWrapper templateWrapper;
 
-    /**
-     * Use of IoC to get FileSystem
-     *
-     * @param fileSystem
-     * @param perspectives
-     * @param settings
-     */
-    public GrammarIssuesSensor(FileSystem fileSystem, ResourcePerspectives perspectives, final Settings settings) {
+
+    public GrammarIssuesSensor(FileSystem fileSystem, ResourcePerspectives perspectives, final GrammarChecker grammarChecker) {
         this.fileSystem = fileSystem;
         this.perspectives = perspectives;
-        this.grammarChecker = new GrammarChecker(new GrammarDictionaryLoader(settings));
+        this.grammarChecker = grammarChecker;
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Created the bean of grammar sensor.");
         }
