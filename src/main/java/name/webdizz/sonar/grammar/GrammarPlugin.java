@@ -5,6 +5,9 @@ import name.webdizz.sonar.grammar.issue.tracking.LinkFunction;
 import name.webdizz.sonar.grammar.profile.GrammarProfileDefinition;
 import name.webdizz.sonar.grammar.rule.GrammarRulesDefinition;
 import name.webdizz.sonar.grammar.sensor.GrammarIssuesSensor;
+import name.webdizz.sonar.grammar.spellcheck.GrammarChecker;
+import name.webdizz.sonar.grammar.spellcheck.GrammarDictionaryLoader;
+import name.webdizz.sonar.grammar.spellcheck.JavaSourceCodeWordFinder;
 import org.sonar.api.Properties;
 import org.sonar.api.Property;
 import org.sonar.api.SonarPlugin;
@@ -27,7 +30,7 @@ import java.util.List;
                 key = PluginParameter.DICTIONARY_PATH,
                 name = "Dictionary path",
                 description = "Defines resources to be included for analysis",
-                defaultValue = "dict/english.0"),
+                defaultValue = "/dict/english.0"),
         @Property(
                 key = PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY,
                 name = "Alternative dictionary",
@@ -53,7 +56,11 @@ public class GrammarPlugin extends SonarPlugin {
                         GrammarIssuesSensor.class,
                         //Issue review
                         LinkFunction.class,
-                        GrammarActionDefinition.class
+                        GrammarActionDefinition.class,
+                        JavaSourceCodeWordFinder.class,
+                        GrammarChecker.class,
+                        GrammarDictionaryLoader.class
+
                 );
     }
 }
