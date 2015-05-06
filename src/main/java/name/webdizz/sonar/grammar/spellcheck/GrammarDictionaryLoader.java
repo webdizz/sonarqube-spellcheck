@@ -24,7 +24,6 @@ public class GrammarDictionaryLoader implements BatchExtension {
     private final Lock locker = new ReentrantLock();
     private Settings settings;
     private AtomicReference<SpellDictionary> dictionary = new AtomicReference<>();
-    private String dictionaryPath = "/dict/english.0";
 
     public GrammarDictionaryLoader(Settings settings) {
         this.settings = settings;

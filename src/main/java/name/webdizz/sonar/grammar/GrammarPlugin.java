@@ -10,6 +10,7 @@ import name.webdizz.sonar.grammar.spellcheck.GrammarDictionaryLoader;
 import name.webdizz.sonar.grammar.spellcheck.JavaSourceCodeWordFinder;
 import org.sonar.api.Properties;
 import org.sonar.api.Property;
+import org.sonar.api.PropertyType;
 import org.sonar.api.SonarPlugin;
 
 import java.util.Arrays;
@@ -35,7 +36,14 @@ import java.util.List;
                 key = PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY,
                 name = "Alternative dictionary",
                 description = "Alternative dictionary",
-                defaultValue = " ")
+                defaultValue = " "),
+        @Property(
+                key = PluginParameter.MIN_WORD_LENGTH,
+                name = "Minimum word length",
+                category = "Grammar Checker",
+                type = PropertyType.INTEGER,
+                description = "Defines minimum word length to analyse",
+                defaultValue = "0")
 
 })
 

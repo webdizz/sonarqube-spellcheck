@@ -25,7 +25,6 @@ public class GrammarChecker implements BatchExtension {
     private Optional<SpellDictionaryHashMap> alternateDictionary;
     private GrammarDictionaryLoader dictionaryLoader;
 
-    private int minimumWordLengths;
     private JavaSourceCodeWordFinder javaSourceCodeWordFinder;
 
 
