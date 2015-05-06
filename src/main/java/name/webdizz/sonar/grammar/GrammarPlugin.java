@@ -1,6 +1,5 @@
 package name.webdizz.sonar.grammar;
 
-import com.swabunga.spell.engine.Configuration;
 import name.webdizz.sonar.grammar.issue.tracking.GrammarActionDefinition;
 import name.webdizz.sonar.grammar.issue.tracking.LinkFunction;
 import name.webdizz.sonar.grammar.profile.GrammarProfileDefinition;
@@ -43,21 +42,21 @@ public class GrammarPlugin extends SonarPlugin {
                         SpellCheckerFactory.class,
                         SpellCheckerUtil.class,
 
-                        PropertyDefinition.builder(PluginParameter.MIN_WORD_LENGTH).name("Minimum word length")
+                        PropertyDefinition.builder(PluginParameter.SPELL_MINIMUMWORDLENGTH).name("Minimum word length")
                                 .type(PropertyType.INTEGER).description("Defines minimum word length to analyse")
                                 .defaultValue("0").subCategory("Spell Checker").build(),
-                        PropertyDefinition.builder(Configuration.SPELL_IGNOREMIXEDCASE).name("Ignore mixed case")
+                        PropertyDefinition.builder(PluginParameter.SPELL_IGNOREMIXEDCASE).name("Ignore mixed case")
                                 .type(PropertyType.BOOLEAN).description("Words that have mixed case are not spell " +
                                 "checked, example: 'SpellChecker'").defaultValue("false").subCategory("Spell Checker")
                                 .build(),
-                        PropertyDefinition.builder(Configuration.SPELL_IGNOREUPPERCASE).name("Ignore uppercase")
+                        PropertyDefinition.builder(PluginParameter.SPELL_IGNOREUPPERCASE).name("Ignore uppercase")
                                 .type(PropertyType.BOOLEAN).description("Words that are all upper case are not spell " +
                                 "checked, example: 'CIA'").defaultValue("true").subCategory("Spell Checker").build(),
-                        PropertyDefinition.builder(Configuration.SPELL_IGNOREDIGITWORDS)
+                        PropertyDefinition.builder(PluginParameter.SPELL_IGNOREDIGITWORDS)
                                 .name("Ignore words with digits").type(PropertyType.BOOLEAN)
                                 .description("Words that have digits in them are not spell checked, example: 'mach5'")
                                 .defaultValue("false").subCategory("Spell Checker").build(),
-                        PropertyDefinition.builder(Configuration.SPELL_IGNOREINTERNETADDRESSES)
+                        PropertyDefinition.builder(PluginParameter.SPELL_IGNOREINTERNETADDRESSES)
                                 .name("Ignore words like internet address").type(PropertyType.BOOLEAN)
                                 .description("Words that look like an Internet address are not spell checked, example:" +
                                         " 'http://www.google.com'").defaultValue("true").subCategory("Spell Checker")

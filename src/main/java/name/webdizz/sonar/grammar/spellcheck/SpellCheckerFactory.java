@@ -9,7 +9,7 @@ import org.sonar.api.config.Settings;
 
 public class SpellCheckerFactory implements BatchExtension {
 
-    @Inject
+
     private Settings settings;
 
     public SpellCheckerFactory() {
@@ -23,11 +23,18 @@ public class SpellCheckerFactory implements BatchExtension {
     }
 
     private void setSpellCheckerConfigs(SpellChecker spellChecker) {
-        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREMIXEDCASE, settings.getBoolean(Configuration.SPELL_IGNOREMIXEDCASE));
-        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREUPPERCASE, settings.getBoolean(Configuration.SPELL_IGNOREUPPERCASE));
-        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREDIGITWORDS, settings.getBoolean(Configuration.SPELL_IGNOREDIGITWORDS));
-        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREINTERNETADDRESSES, settings.getBoolean(Configuration.SPELL_IGNOREINTERNETADDRESSES));
+        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREMIXEDCASE, settings.getBoolean(PluginParameter.SPELL_IGNOREMIXEDCASE));
+        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREUPPERCASE, settings.getBoolean(PluginParameter.SPELL_IGNOREUPPERCASE));
+        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREDIGITWORDS, settings.getBoolean(PluginParameter.SPELL_IGNOREDIGITWORDS));
+        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREINTERNETADDRESSES, settings.getBoolean(PluginParameter.SPELL_IGNOREINTERNETADDRESSES));
         spellChecker.getConfiguration().setInteger(PluginParameter.SPELL_THRESHOLD, settings.getInt(PluginParameter.SPELL_THRESHOLD));
     }
+
+
+    @Inject
+    public void setSettings(Settings settings) {
+        this.settings = settings;
+    }
+
 
 }

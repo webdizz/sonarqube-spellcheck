@@ -29,7 +29,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
      */
     public Word next() {
         if (settings != null) {
-            minimumWordLength = settings.getInt(PluginParameter.MIN_WORD_LENGTH);
+            minimumWordLength = settings.getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH);
         }
 
         if (nextWord == null) {

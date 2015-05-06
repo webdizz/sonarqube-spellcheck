@@ -70,8 +70,14 @@ public interface PluginParameter {
     /**
      * Parameters for set cost of spelling
      */
-    int SPELL_THRESHOLD_VALUE = 1;
-    String SPELL_THRESHOLD = "SPELL_THRESHOLD";
+
+
+    //  int SPELL_THRESHOLD_VALUE = 1;
+
+    /** the maximum cost of suggested spelling. Any suggestions that cost more are thrown away
+     * integer greater than 1)
+     */
+    String SPELL_THRESHOLD = "spell.threshold.value";
 
     /**
      * exclusion word list
@@ -90,7 +96,42 @@ public interface PluginParameter {
 
     /**
      * minimum word length to be analyzed
-     **/
-    String MIN_WORD_LENGTH = "sonar.minimum.word.length";
+     */
+    String SPELL_MINIMUMWORDLENGTH = "spell.minimum.word.length";
+
+    /**
+     * words that are all upper case are not spell checked, example: "CIA" <br/>(boolean)
+     */
+    String SPELL_IGNOREUPPERCASE = "spell.ignore.upper.case";
+
+    /**
+     * words that have mixed case are not spell checked, example: "SpellChecker"<br/>(boolean)\
+     */
+    String SPELL_IGNOREMIXEDCASE = "spell.ignore.mixed.case";
+
+    /**
+     * words that look like an Internet address are not spell checked, example: "http://www.google.com" <br/>(boolean)
+     */
+    String SPELL_IGNOREINTERNETADDRESSES = "spell.ignore.internet.address";
+
+    /**
+     * words that have digits in them are not spell checked, example: "mach5" <br/>(boolean)
+     */
+    String SPELL_IGNOREDIGITWORDS = "spell.ignore.digit.words";
+
+    /**
+     * I don't know what this does. It doesn't seem to be used <br/>(boolean)
+     */
+    String SPELL_IGNOREMULTIPLEWORDS = "spell.ignore.multiple.words";
+
+    /**
+     * the first word of a sentence is expected to start with an upper case letter <br/>(boolean)
+     */
+    String SPELL_IGNORESENTENCECAPITALIZATION = "spell.ignore.sentence.capitalization";
+
+    /**
+     * Whether to ignore words that are a single letter (common in programming)
+     */
+    String SPELL_IGNORESINGLELETTERS = "SPELL_IGNORESINGLELETTERS";
 
 }
