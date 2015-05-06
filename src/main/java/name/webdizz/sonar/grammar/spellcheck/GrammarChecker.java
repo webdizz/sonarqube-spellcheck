@@ -3,7 +3,9 @@ package name.webdizz.sonar.grammar.spellcheck;
 import com.google.common.base.Optional;
 import static com.google.common.base.Preconditions.checkArgument;
 
+import com.swabunga.spell.engine.Configuration;
 import com.swabunga.spell.event.SpellCheckListener;
+import name.webdizz.sonar.grammar.PluginParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,14 +15,13 @@ import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import com.swabunga.spell.event.SpellChecker;
 import org.sonar.api.BatchExtension;
-
-import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD;
-import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD_VALUE;
+import org.sonar.api.config.Settings;
 
 
 public class GrammarChecker implements BatchExtension {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarChecker.class);
+    private SpellCheckerFactory spellCheckerFactory;
     private SpellDictionary dictionary;
     private Optional<SpellDictionaryHashMap> alternateDictionary;
     private GrammarDictionaryLoader dictionaryLoader;
@@ -30,7 +31,8 @@ public class GrammarChecker implements BatchExtension {
 
 
     public GrammarChecker(final GrammarDictionaryLoader dictionaryLoader,
-                          JavaSourceCodeWordFinder javaSourceCodeWordFinder) {
+                          JavaSourceCodeWordFinder javaSourceCodeWordFinder, SpellCheckerFactory spellCheckerFactory) {
+        this.spellCheckerFactory = spellCheckerFactory;
         this.javaSourceCodeWordFinder = javaSourceCodeWordFinder;
         this.dictionaryLoader = dictionaryLoader;
     }
@@ -57,14 +59,15 @@ public class GrammarChecker implements BatchExtension {
     }
 
     private SpellChecker createSpellChecker(final SpellCheckListener spellCheckListener) {
-        SpellChecker spellCheck = new SpellCheckerFactory().getSpellChecker();
+        SpellChecker spellCheck = spellCheckerFactory.getSpellChecker();
         spellCheck.addSpellCheckListener(spellCheckListener);
-        spellCheck.getConfiguration().setInteger(SPELL_THRESHOLD, SPELL_THRESHOLD_VALUE);
         spellCheck.setUserDictionary(dictionary);
+
         if (alternateDictionary.isPresent()) {
             spellCheck.addDictionary(alternateDictionary.get());
         }
         return spellCheck;
     }
+
 
 }
