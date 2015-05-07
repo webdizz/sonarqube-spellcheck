@@ -1,5 +1,11 @@
 package name.webdizz.sonar.grammar;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.sonar.api.PropertyType;
+import org.sonar.api.SonarPlugin;
+import org.sonar.api.config.PropertyDefinition;
 import name.webdizz.sonar.grammar.issue.tracking.GrammarActionDefinition;
 import name.webdizz.sonar.grammar.issue.tracking.LinkFunction;
 import name.webdizz.sonar.grammar.profile.GrammarProfileDefinition;
@@ -10,12 +16,6 @@ import name.webdizz.sonar.grammar.spellcheck.GrammarDictionaryLoader;
 import name.webdizz.sonar.grammar.spellcheck.JavaSourceCodeWordFinder;
 import name.webdizz.sonar.grammar.spellcheck.SpellCheckerFactory;
 import name.webdizz.sonar.grammar.utils.SpellCheckerUtil;
-import org.sonar.api.PropertyType;
-import org.sonar.api.SonarPlugin;
-import org.sonar.api.config.PropertyDefinition;
-
-import java.util.Arrays;
-import java.util.List;
 
 
 public class GrammarPlugin extends SonarPlugin {
@@ -44,7 +44,7 @@ public class GrammarPlugin extends SonarPlugin {
 
                         PropertyDefinition.builder(PluginParameter.SPELL_MINIMUMWORDLENGTH).name("Minimum word length")
                                 .type(PropertyType.INTEGER).description("Defines minimum word length to analyse")
-                                .defaultValue("0").subCategory("Spell Checker").build(),
+                                .defaultValue("3").subCategory("Spell Checker").build(),
                         PropertyDefinition.builder(PluginParameter.SPELL_IGNOREMIXEDCASE).name("Ignore mixed case")
                                 .type(PropertyType.BOOLEAN).description("Words that have mixed case are not spell " +
                                 "checked, example: 'SpellChecker'").defaultValue("false").subCategory("Spell Checker")
