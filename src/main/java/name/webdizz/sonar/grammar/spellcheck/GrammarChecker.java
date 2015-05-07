@@ -14,24 +14,22 @@ import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import com.swabunga.spell.event.SpellChecker;
 import org.sonar.api.BatchExtension;
 
-import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD;
-import static name.webdizz.sonar.grammar.PluginParameter.SPELL_THRESHOLD_VALUE;
-
 
 public class GrammarChecker implements BatchExtension {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GrammarChecker.class);
+    private SpellCheckerFactory spellCheckerFactory;
     private SpellDictionary dictionary;
     private Optional<SpellDictionaryHashMap> alternateDictionary;
     private GrammarDictionaryLoader dictionaryLoader;
 
-    private int minimumWordLengths;
     private JavaSourceCodeWordFinder javaSourceCodeWordFinder;
 
 
 
     public GrammarChecker(final GrammarDictionaryLoader dictionaryLoader,
-                          JavaSourceCodeWordFinder javaSourceCodeWordFinder) {
+                          JavaSourceCodeWordFinder javaSourceCodeWordFinder, SpellCheckerFactory spellCheckerFactory) {
+        this.spellCheckerFactory = spellCheckerFactory;
         this.javaSourceCodeWordFinder = javaSourceCodeWordFinder;
         this.dictionaryLoader = dictionaryLoader;
     }
@@ -58,14 +56,15 @@ public class GrammarChecker implements BatchExtension {
     }
 
     private SpellChecker createSpellChecker(final SpellCheckListener spellCheckListener) {
-        SpellChecker spellCheck = new SpellCheckerFactory().getSpellChecker();
+        SpellChecker spellCheck = spellCheckerFactory.getSpellChecker();
         spellCheck.addSpellCheckListener(spellCheckListener);
-        spellCheck.getConfiguration().setInteger(SPELL_THRESHOLD, SPELL_THRESHOLD_VALUE);
         spellCheck.setUserDictionary(dictionary);
+
         if (alternateDictionary.isPresent()) {
             spellCheck.addDictionary(alternateDictionary.get());
         }
         return spellCheck;
     }
+
 
 }

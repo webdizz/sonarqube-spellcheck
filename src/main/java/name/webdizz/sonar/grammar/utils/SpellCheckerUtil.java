@@ -9,15 +9,19 @@ import com.swabunga.spell.engine.Configuration;
 import com.swabunga.spell.engine.Word;
 import com.swabunga.spell.event.SpellChecker;
 import com.swabunga.spell.event.StringWordTokenizer;
+import org.sonar.api.BatchExtension;
 
 /**
  * Provides utility methods for spell checking. Uses an open source API
  * <a href="http://jazzy.sourceforge.net/">Jazzy</a> for spell checking.
  */
-public class SpellCheckerUtil {
-    private SpellChecker spellChecker = new SpellCheckerFactory().getSpellChecker();
+public class SpellCheckerUtil implements BatchExtension {
 
-    public SpellCheckerUtil() {
+    private SpellCheckerFactory spellCheckerFactory;
+    private SpellChecker spellChecker = spellCheckerFactory.getSpellChecker();
+
+    public SpellCheckerUtil(SpellCheckerFactory spellCheckerFactory) {
+        this.spellCheckerFactory=spellCheckerFactory;
     }
 
     /**

@@ -18,25 +18,34 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-
 @RunWith(Theories.class)
 public class JavaSourceCodeWordFinderTest {
     private String ERROR_MESSAGE = "This text has errors. If there are no errors, we expect 'errorsSize = -1'";
     private Settings settings = mock(Settings.class);
-    private SpellChecker spellChecker = new SpellCheckerFactory().getSpellChecker();
+    private SpellChecker spellChecker;
     private SpellDictionary dictionary;
     private int minimumWordLength = 4;
 
     @Before
-    public void init(){
+    public void init() {
         when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("/dict/english.0");
-        dictionary = new GrammarDictionaryLoader(settings).loadMainDictionary();
 
+        when(settings.getBoolean(PluginParameter.SPELL_IGNOREMIXEDCASE)).thenReturn(false);
+        when(settings.getBoolean(PluginParameter.SPELL_IGNOREUPPERCASE)).thenReturn(true);
+        when(settings.getBoolean(PluginParameter.SPELL_IGNOREDIGITWORDS)).thenReturn(false);
+        when(settings.getBoolean(PluginParameter.SPELL_IGNOREINTERNETADDRESSES)).thenReturn(true);
+        when(settings.getInt(PluginParameter.SPELL_THRESHOLD)).thenReturn(1);
+
+        SpellCheckerFactory spellCheckerFactory = new SpellCheckerFactory();
+        spellCheckerFactory.setSettings(settings);
+
+        spellChecker = spellCheckerFactory.getSpellChecker();
+        dictionary = new GrammarDictionaryLoader(settings).loadMainDictionary();
     }
 
 
     @DataPoints("validDigitWords")
-    public static String[] validDigitWords = new String[] {"word1", "word12", "convert2String", "convert23String",
+    public static String[] validDigitWords = new String[]{"word1", "word12", "convert2String", "convert23String",
             "4wordsWithDigits", "14wordsWithDigits"};
 
     @Test
@@ -87,44 +96,33 @@ public class JavaSourceCodeWordFinderTest {
         assertThat(errorsSize).isEqualTo(SPELLCHECK_OK);
     }
 
-    @Test
-    public void shouldCheckMinWordLengthAndSkipWordsWithSizeLessThenDefined() throws Exception {
-        minimumWordLength = 3;
-        when(settings.getInt(PluginParameter.MIN_WORD_LENGTH)).thenReturn(minimumWordLength);
-        String testLine = "tru.Test.package";
-
-        int errorsSize = getErrorsSize(testLine);
-
-        assertEquals("Wrong error size. Expected = 1", 1, errorsSize);
-    }
-
 
     @Test
-    public void shouldCheckMinWordLengthAndSkipALLWordsWithSizeLessThenDefined() throws Exception {
+    public void shouldCheckWordsGreaterThenMinimumWordLengthIsSet() throws Exception {
         minimumWordLength = 4;
-        when(settings.getInt(PluginParameter.MIN_WORD_LENGTH)).thenReturn(minimumWordLength);
-        String testLine = "er.wrn.Test.package";
+        when(settings.getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH)).thenReturn(minimumWordLength);
+        String testLine = "ert.wrn.Tesst.packaage";
 
         int errorsSize = getErrorsSize(testLine);
 
-        assertEquals("Wrong error size. Expected = -1", -1, errorsSize);
+        assertEquals("Wrong error size. Expected = 2", 2, errorsSize);
     }
 
 
     @Test
-    public void shouldCheckALLWordsGreaterThenSizeOfMinimumWordLengthVariable() throws Exception {
-        minimumWordLength = 2;
-        when(settings.getInt(PluginParameter.MIN_WORD_LENGTH)).thenReturn(minimumWordLength);
-        String testLine = "ert.wrn.Tesst.package";
+    public void shouldNotCheckWordsLessThenMinimumWordLengthIsSet() throws Exception {
+        minimumWordLength = 4;
+        when(settings.getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH)).thenReturn(minimumWordLength);
+        String testLine = "erq.zzw.test.package";
 
         int errorsSize = getErrorsSize(testLine);
 
-        assertEquals("Wrong error size. Expected = 3", 3, errorsSize);
+        assertEquals("Wrong error size. Expected = -1",-1, errorsSize);
     }
 
     private int getErrorsSize(String testLine) {
-        JavaSourceCodeWordFinder javaSourceCodeWordFinder =  new JavaSourceCodeWordFinder(settings);
-        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(testLine,javaSourceCodeWordFinder);
+        JavaSourceCodeWordFinder javaSourceCodeWordFinder = new JavaSourceCodeWordFinder(settings);
+        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(testLine, javaSourceCodeWordFinder);
         spellChecker.setUserDictionary(dictionary);
         return spellChecker.checkSpelling(sourceCodeTokenizer);
     }
