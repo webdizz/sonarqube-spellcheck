@@ -106,7 +106,7 @@
                 <artifactId>sonar-packaging-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <pluginClass>name.webdizz.sonar.grammar.GrammarPlugin</pluginClass>
+                    <pluginClass>com.epam.sonarqube.grammar.plugin.GrammarPlugin</pluginClass>
                 </configuration>
             </plugin>
             <plugin>
