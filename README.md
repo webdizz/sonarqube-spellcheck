@@ -1,7 +1,7 @@
-Sonar-grammar
+sonarqube-grammar
 =============
 
-SonarQube Grammar Plugin to provide spell checking of source code. 
+[SonarQube](http://www.sonarqube.org/) Grammar Plugin to provide spell checking of source code. 
 
 Status
 ------
