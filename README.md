@@ -1,12 +1,12 @@
-Sonar-grammar
+sonarqube-grammar
 =============
 
-SonarQube Grammar Plugin to provide spell checking of source code. 
+[SonarQube](http://www.sonarqube.org/) Grammar Plugin to provide spell checking of source code. 
 
 Status
 ------
 
-[![Build Status](https://travis-ci.org/webdizz/sonar-grammar.png?branch=master)](https://travis-ci.org/webdizz/sonar-grammar)
+[![Build Status](https://travis-ci.org/webdizz/sonarqube-grammar.png?branch=master)](https://travis-ci.org/webdizz/sonarqube-grammar)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/webdizz/sonar-grammar/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 Environment requirements:
