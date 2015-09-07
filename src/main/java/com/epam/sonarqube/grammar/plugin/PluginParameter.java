@@ -10,6 +10,7 @@ public interface PluginParameter {
      * The name of sonar-plugin
      */
     String PLUGIN_NAME = "SonarQube Grammar";
+
     /**
      * The name of repository for grammar rules
      */
@@ -19,14 +20,17 @@ public interface PluginParameter {
      * The name of grammar profile
      */
     String PROFILE_NAME = PLUGIN_NAME + " Profile";
+
     /**
      * The language of grammar profile
      */
     String PROFILE_LANGUAGE = CoreProperties.CATEGORY_JAVA;
+
     /**
      * The key of grammar-rules-repository
      */
     String REPOSITORY_KEY = "snrgrm";
+
     /**
      * The name of grammar-rule
      */
@@ -36,6 +40,7 @@ public interface PluginParameter {
      * The name of grammar-rule
      */
     String SONAR_GRAMMAR_RULE_NAME = "Grammar Rule";
+
     /**
      * The description of grammar-rule
      */
@@ -44,7 +49,6 @@ public interface PluginParameter {
     /**
      * Error description
      */
-
     String ERROR_DESCRIPTION = "Invalid word is : \'";
 
     /**
@@ -61,6 +65,7 @@ public interface PluginParameter {
      * Separator for store alternate dictionary
      */
     String SEPARATOR_CHAR = ",";
+
     /**
      * Parameters for set cost of spelling
      */
@@ -85,7 +90,8 @@ public interface PluginParameter {
      */
     String ALTERNATIVE_DICTIONARY_PROPERTY_KEY = "sonarqube-grammar.alternative.dictionary";
 
-    /** the maximum cost of suggested spelling. Any suggestions that cost more are thrown away
+    /**
+     * the maximum cost of suggested spelling. Any suggestions that cost more are thrown away
      * integer greater than 1)
      */
     String SPELL_THRESHOLD = "sonarqube-grammar.spell.threshold.value";
