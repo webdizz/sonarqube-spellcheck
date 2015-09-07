@@ -8,7 +8,7 @@
     <packaging>sonar-plugin</packaging>
     <version>0.1-SNAPSHOT</version>
 
-    <name>SonarQube Grammar</name>
+    <name>Grammar</name>
     <description>SonarQube Grammar Plugin provides capabilities to analyse source code for grammar kind of issues.
     </description>
 

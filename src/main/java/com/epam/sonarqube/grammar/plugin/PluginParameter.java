@@ -9,7 +9,7 @@ public interface PluginParameter {
     /**
      * The name of sonar-plugin
      */
-    String PLUGIN_NAME = "SonarQube Grammar";
+    String PLUGIN_NAME = "Grammar";
 
     /**
      * The name of repository for grammar rules
