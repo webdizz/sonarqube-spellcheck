@@ -10,17 +10,21 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.util.List;
 
-import com.epam.sonarqube.grammar.plugin.spellcheck.GrammarChecker;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FilePredicate;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.fs.internal.DefaultFileSystem;
 import org.sonar.api.batch.fs.internal.DefaultInputFile;
+import org.sonar.api.batch.rule.ActiveRule;
+import org.sonar.api.batch.rule.ActiveRules;
 import org.sonar.api.component.ResourcePerspectives;
 import org.sonar.api.resources.Project;
+import org.sonar.api.rule.RuleKey;
 
+import com.epam.sonarqube.grammar.plugin.spellcheck.GrammarChecker;
 import com.google.common.collect.Lists;
 
 public class GrammarIssuesSensorTest {
@@ -41,12 +45,15 @@ public class GrammarIssuesSensorTest {
     @Before
     public void init() {
         testingInstance = new GrammarIssuesSensor(fileSystem, perspectives, grammarChecker);
+        ActiveRules activeRules = Mockito.mock(ActiveRules.class);
+        ActiveRule activeRule = Mockito.mock(ActiveRule.class);
+        when(activeRules.find(any(RuleKey.class))).thenReturn(activeRule);
+        when(context.activeRules()).thenReturn(activeRules);
     }
 
     @Test
     public void shouldListInputFilesDuringAnalysis() throws Exception {
         testingInstance.analyse(module, context);
-
         verify(fileSystem, atLeastOnce()).inputFiles(any(FilePredicate.class));
     }
 

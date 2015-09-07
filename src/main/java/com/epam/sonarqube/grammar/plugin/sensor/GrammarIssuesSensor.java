@@ -14,9 +14,11 @@ import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FilePredicate;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
+import org.sonar.api.batch.rule.ActiveRule;
 import org.sonar.api.component.ResourcePerspectives;
 import org.sonar.api.resources.Project;
 import org.sonar.api.rule.RuleKey;
+
 import com.epam.sonarqube.grammar.plugin.PluginParameter;
 import com.epam.sonarqube.grammar.plugin.spellcheck.GrammarChecker;
 
@@ -44,6 +46,21 @@ public class GrammarIssuesSensor implements Sensor {
 
     @Override
     public void analyse(Project module, SensorContext context) {
+        ActiveRule grammarRule = context.activeRules().find(RuleKey.of(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE_KEY));
+        if (grammarRule == null) {
+            LOGGER.debug("Grammar rule is not activated, skipping.");
+        } else {
+            doAnalyse(module, context);
+        }
+    }
+
+    @Override
+    public boolean shouldExecuteOnProject(Project project) {
+        // This sensor is executed only when there are Java files
+        return fileSystem.hasFiles(fileSystem.predicates().hasLanguage(PluginParameter.PROFILE_LANGUAGE));
+    }
+
+    private void doAnalyse(Project module, SensorContext context) {
         if (LOGGER.isDebugEnabled()) {
             logWhenAnalyse(module, context);
         }
@@ -56,12 +73,6 @@ public class GrammarIssuesSensor implements Sensor {
         for (final InputFile inputFile : fileSystem.inputFiles(languagePredicate)) {
             processInputFile(inputFile);
         }
-    }
-
-    @Override
-    public boolean shouldExecuteOnProject(Project project) {
-        // This sensor is executed only when there are Java files
-        return fileSystem.hasFiles(fileSystem.predicates().hasLanguage(PluginParameter.PROFILE_LANGUAGE));
     }
 
     private void logWhenAnalyse(final Project module, final SensorContext context) {
