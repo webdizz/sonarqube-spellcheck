@@ -9,7 +9,7 @@ public interface PluginParameter {
     /**
      * The name of sonar-plugin
      */
-    String PLUGIN_NAME = "Sonar Grammar";
+    String PLUGIN_NAME = "SonarQube Grammar";
     /**
      * The name of repository for grammar rules
      */
@@ -83,7 +83,7 @@ public interface PluginParameter {
     /**
      * manual dictionary name
      */
-    String ALTERNATIVE_DICTIONARY_PROPERTY_KEY = "sonarqube-grammar.alternative.dictionary.path";
+    String ALTERNATIVE_DICTIONARY_PROPERTY_KEY = "sonarqube-grammar.alternative.dictionary";
 
     /** the maximum cost of suggested spelling. Any suggestions that cost more are thrown away
      * integer greater than 1)
@@ -114,20 +114,5 @@ public interface PluginParameter {
      * words that have digits in them are not spell checked, example: "mach5" <br/>(boolean)
      */
     String SPELL_IGNOREDIGITWORDS = "sonarqube-grammar.spell.ignore.digit.words";
-
-    /**
-     * I don't know what this does. It doesn't seem to be used <br/>(boolean)
-     */
-    String SPELL_IGNOREMULTIPLEWORDS = "sonarqube-grammar.spell.ignore.multiple.words";
-
-    /**
-     * the first word of a sentence is expected to start with an upper case letter <br/>(boolean)
-     */
-    String SPELL_IGNORESENTENCECAPITALIZATION = "sonarqube-grammar.spell.ignore.sentence.capitalization";
-
-    /**
-     * Whether to ignore words that are a single letter (common in programming)
-     */
-    String SPELL_IGNORESINGLELETTERS = "sonarqube-grammar.spell.ignore.single.letters";
 
 }
