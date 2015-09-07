@@ -26,12 +26,13 @@ Activate Grammar rule for your ```Quality Profiles```
 
 Add word/amend dictionary with custom words:
 --------------------------------
-You can add custom dictionary in Grammar Plugin Settings:
+You can add custom dictionary in ```Grammar Plugin Settings```:
 
-1. Login to sonar with **admin rights**.
-2. Go to ```Settings->General Settings->Grammar->Alternative dictionary```.
-3. Edit word list (separate it with comma)
-4. Click ```Save Grammar Settings```
+1. Go to ```Settings->General Settings->Grammar```.
+    ![Grammar settings](images/grammar_add_word_to_alternative_dictionary_1_1.png)
+2. Add word to textarea ```Alternative dictionary``` (separated with comma)
+    ![Grammar settings](images/grammar_add_word_to_alternative_dictionary_1_2.png)
+3. Click ```Save Grammar Settings```
 
 Development
 ===========
