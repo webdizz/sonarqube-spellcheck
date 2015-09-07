@@ -9,6 +9,28 @@ Status
 [![Build Status](https://travis-ci.org/webdizz/sonarqube-grammar.png?branch=master)](https://travis-ci.org/webdizz/sonarqube-grammar)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/webdizz/sonar-grammar/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
+Usage
+=====
+
+Activate Grammar rule for your ```Quality Profiles```
+--------------------------------
+
+1. Go to ```Quality Profiles``` and click on ```Grammar Profile```' rule 
+
+![Grammar Profile](images/activate_rule_1.png)
+
+Add word/amend dictionary with custom words:
+--------------------------------
+You can add custom dictionary in Grammar Plugin Settings:
+
+1. Login to sonar with **admin rights**.
+2. Go to ```Settings->General Settings->Grammar->Alternative dictionary```.
+3. Edit word list (separate it with comma)
+4. Click ```Save Grammar Settings```
+
+Development
+===========
+
 Environment requirements:
 -------------------------
 1. [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.7
@@ -34,15 +56,6 @@ Development and run:
 5. To perform grammar analysis go to the project that you want to test and write ```bash mvn sonar:sonar``` command (for Windows machines use ```mvn sonar:sonar```), for debug use ```bash mvnDebug sonar:sonar``` command (by default debug port is **8000**)
 6. After that you can see results on [http://localhost:9000/dashboard/](http://localhost:9000/dashboard/) or follow the link that will be found in the bottom of command line output
 7. To analyse using Docker based installation execute ```mvn sonar:sonar -Dsonar.host.url=http://192.168.176.128:9000/ -Dsonar.jdbc.url=jdbc:mysql://192.168.176.128:3306/sonarqube -Dsonar.jdbc.username=sonarqube -Dsonar.jdbc.password=sonarqube```
-
-Add word/amend custom dictionary:
---------------------------------
-You can add custom dictionary in Grammar Plugin Settings:
-
-1. Login to sonar with **admin rights**.
-2. Go to **Settings->General Settings->Grammar->Alternative dictionary**.
-3. Edit word list (separate it with comma)
-4. Click Save Grammar Settings
 
 Amend default dictionary:
 -----------------
