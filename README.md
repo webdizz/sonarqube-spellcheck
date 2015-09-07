@@ -1,7 +1,7 @@
 sonarqube-grammar
 =============
 
-[SonarQube](http://www.sonarqube.org/) Grammar Plugin to provide spell checking of source code. 
+[SonarQube](http://www.sonarqube.org/) Grammar Plugin to provide spell checking of source code (for now only Java). 
 
 Status
 ------
@@ -26,16 +26,17 @@ Development Set Up:
 7. On [SonarQube](http://www.sonarqube.org/) page top menu go to the "Quality Profiles". You need to make sure that "Sonar way " stands as the default
 
 Development and run:
-------------
+-------------------
 1. Make some code changes
 2. **Build** and **install** the plugin : ```bash mvn package org.codehaus.sonar:sonar-dev-maven-plugin::upload -DsonarHome={sonarqube-5.1} -DsonarUrl=http://localhost:9000``` . Use correct location of Sonarqube for the parameter -DsonarHome, for example ```-DsonarHome=d:\Sonar5.1```
 3. Restart [SonarQube](http://www.sonarqube.org/)
 4. Change on [SonarQube](http://www.sonarqube.org/) page top menu "Quality Profiles" ```Sonar Grammar Profile``` to default. 
 5. To perform grammar analysis go to the project that you want to test and write ```bash mvn sonar:sonar``` command (for Windows machines use ```mvn sonar:sonar```), for debug use ```bash mvnDebug sonar:sonar``` command (by default debug port is **8000**)
 6. After that you can see results on [http://localhost:9000/dashboard/](http://localhost:9000/dashboard/) or follow the link that will be found in the bottom of command line output
+7. To analyse using Docker based installation execute ```mvn sonar:sonar -Dsonar.host.url=http://192.168.176.128:9000/ -Dsonar.jdbc.url=jdbc:mysql://192.168.176.128:3306/sonarqube -Dsonar.jdbc.username=sonarqube -Dsonar.jdbc.password=sonarqube```
 
 Add word/amend custom dictionary:
------------------
+--------------------------------
 You can add custom dictionary in Grammar Plugin Settings:
 
 1. Login to sonar with **admin rights**.
