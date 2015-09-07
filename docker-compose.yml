@@ -1,0 +1,23 @@
+sonar:
+  image: webdizz/sonarqube-plugins:5.1.2
+  ports:
+    - 9000:9000
+  links:
+    - db:mysql
+  environment:
+    - SONAR_JDBC_URL=jdbc:mysql://mysql:3306/sonarqube?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
+    - SONAR_DB_USERNAME=sonarqube
+    - SONAR_DB_PASSWORD=sonarqube
+  volumes:
+    - /projects/oss/sonar-grammar-plugin/target/sonarqube-grammar-plugin-0.1-SNAPSHOT.jar:/opt/sonar/extensions/plugins/sonarqube-grammar-0.1.jar
+
+db:
+  image: mysql:5.6
+  hostname: mysql
+  ports:
+    - 3306:3306
+  environment:
+    - MYSQL_ROOT_PASSWORD=mysecretpassword
+    - MYSQL_USER=sonarqube
+    - MYSQL_PASSWORD=sonarqube
+    - MYSQL_DATABASE=sonarqube
