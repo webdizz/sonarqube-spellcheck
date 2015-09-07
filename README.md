@@ -36,13 +36,7 @@ Development and run:
 
 Add word/amend custom dictionary:
 -----------------
-You can add word to custom dictionary, so next checks cannot select this word as an issue.
-
-1. Login to sonar with **admin rights**.
-2. Go to issue list. At the end of action pane click **More->Add to Dictionary**.
-3. Word will be added to dictionary.
-
-You also can directly edit custom dictionary in Grammar Plugin Settings:
+You can add custom dictionary in Grammar Plugin Settings:
 
 1. Login to sonar with **admin rights**.
 2. Go to **Settings->General Settings->Grammar->Alternative dictionary**.
