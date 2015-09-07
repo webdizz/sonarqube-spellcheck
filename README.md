@@ -6,7 +6,7 @@ sonarqube-grammar
 Status
 ------
 
-[![Build Status](https://travis-ci.org/webdizz/sonar-grammar.png?branch=master)](https://travis-ci.org/webdizz/sonar-grammar)
+[![Build Status](https://travis-ci.org/webdizz/sonarqube-grammar.png?branch=master)](https://travis-ci.org/webdizz/sonarqube-grammar)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/webdizz/sonar-grammar/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 Environment requirements:
