@@ -49,7 +49,7 @@ public interface PluginParameter {
     /**
      * Error description
      */
-    String ERROR_DESCRIPTION = "Invalid word is : \'";
+    String ERROR_DESCRIPTION = "Invalid word is: \'";
 
     /**
      * Action name for adding to dictionary

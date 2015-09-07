@@ -1,15 +1,15 @@
 package com.epam.sonarqube.grammar.plugin.sensor;
 
-import com.epam.sonarqube.grammar.plugin.PluginParameter;
-import com.swabunga.spell.event.SpellCheckEvent;
-import com.swabunga.spell.event.SpellCheckListener;
+import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
+
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
-import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
+import com.epam.sonarqube.grammar.plugin.PluginParameter;
+import com.swabunga.spell.event.SpellCheckEvent;
+import com.swabunga.spell.event.SpellCheckListener;
 
 /**
  * Class-trigger to react to grammar spell violations
@@ -59,10 +59,10 @@ class GrammarViolationTrigger implements SpellCheckListener {
             spellMessageBuilder.append(";");
         }
         final String spellMessage = spellMessageBuilder.toString();
-        if (LOGGER.isInfoEnabled()) {
+        if (LOGGER.isDebugEnabled()) {
             Object[] args;
             args = new Object[]{spellMessage, event.getWordContextPosition(), lineWrapper.getKey()};
-            LOGGER.info("{} at '{}' \n  in '{}'\n ", args);
+            LOGGER.debug("{} at '{}' \n  in '{}'\n ", args);
         }
         lineWrapper.incident(spellMessage, event.getWordContextPosition());
     }
