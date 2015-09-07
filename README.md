@@ -16,8 +16,13 @@ Activate Grammar rule for your ```Quality Profiles```
 --------------------------------
 
 1. Go to ```Quality Profiles``` and click on ```Grammar Profile```' rule 
-
-![Grammar Profile](images/activate_rule_1.png)
+    ![Grammar Profile](images/activate_rule_1.png)
+2. Page with ```Grammar Profile``` rules will be opened, here click on ```Grammar Rule``` and then on ```Activate```
+    ![Select Grammar Rule](images/activate_rule_2.png)
+3. In appeared dialog box select required profile to activate rule for and lick ```Activate``` 
+    ![Activate Grammar Rule](images/activate_rule_3.png)
+4. ```Grammar Rule``` will be activated in selected profile, in our case ```Sonar Way``` profile
+    ![Activated Grammar Rule in Sonar Way profile](images/activate_rule_4.png)
 
 Add word/amend dictionary with custom words:
 --------------------------------
