@@ -34,6 +34,16 @@ You can add custom dictionary in ```Grammar Plugin Settings```:
     ![Grammar settings](images/grammar_add_word_to_alternative_dictionary_1_2.png)
 3. Click ```Save Grammar Settings```
 
+Add word/amend dictionary from ```Issue```:
+--------------------------------
+
+1. Go to your projects ```Issues``` tab
+    ![Issues tab](images/grammar_add_word_to_alternative_dictionary_2_1.png)
+2. Select find grammar ```Issue``` that is unknown by plugin, however is OK for your project, click on ```More```->```Add to Dictionary``` 
+    ![Issues tab](images/grammar_add_word_to_alternative_dictionary_2_2.png)
+3. Word will be added to your ```Alternative dictionary```
+    ![Issues tab](images/grammar_add_word_to_alternative_dictionary_2_3.png)
+
 Development
 ===========
 
