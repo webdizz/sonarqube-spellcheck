@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>name.webdizz.sonar</groupId>
-    <artifactId>sonar-grammar-plugin</artifactId>
+    <groupId>com.epam.sonarqube</groupId>
+    <artifactId>sonarqube-grammar-plugin</artifactId>
     <packaging>sonar-plugin</packaging>
     <version>0.1-SNAPSHOT</version>
 
-    <name>Grammar</name>
-    <description>Sonar Grammar Plugin provides capabilities to analyse source code for grammar kind of issues.
+    <name>SonarQube Grammar</name>
+    <description>SonarQube Grammar Plugin provides capabilities to analyse source code for grammar kind of issues.
     </description>
 
     <properties>
