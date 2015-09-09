@@ -24,9 +24,9 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class LinkFunctionTest {
+public class AddWordFromIssueFunctionTest {
 
-    private LinkFunction linkFunction;
+    private AddWordFromIssueFunction addWordFromIssueFunction;
     private PropertyDto propertyDto = new PropertyDto();
     @Mock
     private PropertiesDao propertiesDao;
@@ -41,7 +41,7 @@ public class LinkFunctionTest {
 
     @Before
     public void init() {
-        linkFunction = new LinkFunction(propertiesDao);
+        addWordFromIssueFunction = new AddWordFromIssueFunction(propertiesDao);
         when(context.issue()).thenReturn(issue);
         when(issue.message()).thenReturn(ERROR_DESCRIPTION + NEW_WORD + "'");
     }
@@ -49,7 +49,7 @@ public class LinkFunctionTest {
     @Test
     public void shouldCreateandUpdateNewPropertyWhenMethodInvoke() {
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(null);
-        linkFunction.execute(context);
+        addWordFromIssueFunction.execute(context);
         verifySaveOnePropertyWithProperlyValue();
     }
 
@@ -57,7 +57,7 @@ public class LinkFunctionTest {
     public void shouldUpdatePropertyWhenItExist() {
         propertyDto.setValue(FIRST_WORD);
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
-        linkFunction.execute(context);
+        addWordFromIssueFunction.execute(context);
         verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, FIRST_WORD, FIRST_WORD + SEPARATOR_CHAR + NEW_WORD);
     }
 
@@ -65,7 +65,7 @@ public class LinkFunctionTest {
     public void shouldSortPropertyWhenUpdateIt(){
         propertyDto.setValue(UNSORTED_WORD);
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
-        linkFunction.execute(context);
+        addWordFromIssueFunction.execute(context);
         verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, UNSORTED_WORD, NEW_WORD + SEPARATOR_CHAR + UNSORTED_WORD);
     }
 
@@ -73,7 +73,7 @@ public class LinkFunctionTest {
     public void shouldNotAddWordWhenWordIsNotUnique() {
         propertyDto.setValue(NEW_WORD);
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
-        linkFunction.execute(context);
+        addWordFromIssueFunction.execute(context);
         verify(propertiesDao).selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY);
         verifyNoMoreInteractions(propertiesDao);
     }

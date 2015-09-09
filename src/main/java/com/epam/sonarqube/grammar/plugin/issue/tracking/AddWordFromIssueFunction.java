@@ -1,6 +1,10 @@
 package com.epam.sonarqube.grammar.plugin.issue.tracking;
 
-import com.epam.sonarqube.grammar.plugin.PluginParameter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,17 +13,14 @@ import org.sonar.api.issue.action.Function;
 import org.sonar.core.properties.PropertiesDao;
 import org.sonar.core.properties.PropertyDto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import com.epam.sonarqube.grammar.plugin.PluginParameter;
 
-public class LinkFunction implements Function, ServerExtension {
+public class AddWordFromIssueFunction implements Function, ServerExtension {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LinkFunction.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AddWordFromIssueFunction.class);
     private PropertiesDao propertiesDao;
 
-    public LinkFunction(PropertiesDao propertiesDao) {
+    public AddWordFromIssueFunction(PropertiesDao propertiesDao) {
         this.propertiesDao = propertiesDao;
     }
 

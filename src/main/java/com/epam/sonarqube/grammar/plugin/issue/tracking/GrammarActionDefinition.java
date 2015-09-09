@@ -1,21 +1,22 @@
 package com.epam.sonarqube.grammar.plugin.issue.tracking;
 
-import com.epam.sonarqube.grammar.plugin.PluginParameter;
 import org.sonar.api.ServerExtension;
 import org.sonar.api.issue.action.Actions;
 import org.sonar.api.issue.condition.HasIssuePropertyCondition;
 import org.sonar.api.issue.condition.IsUnResolved;
 import org.sonar.api.issue.condition.NotCondition;
 
+import com.epam.sonarqube.grammar.plugin.PluginParameter;
+
 
 public final class GrammarActionDefinition implements ServerExtension {
 
     private final Actions actions;
-    private final LinkFunction linkFunction;
+    private final AddWordFromIssueFunction addWordFromIssueFunction;
 
-    public GrammarActionDefinition(Actions actions, LinkFunction linkFunction) {
+    public GrammarActionDefinition(Actions actions, AddWordFromIssueFunction addWordFromIssueFunction) {
         this.actions = actions;
-        this.linkFunction = linkFunction;
+        this.addWordFromIssueFunction = addWordFromIssueFunction;
     }
 
     public void start() {
@@ -24,7 +25,7 @@ public final class GrammarActionDefinition implements ServerExtension {
                         new NotCondition(new HasIssuePropertyCondition(PluginParameter.SONAR_GRAMMAR_ISSUE_DATA_PROPERTY_KEY)),
                         new IsUnResolved()
                 )
-                .setFunctions(linkFunction);
+                .setFunctions(addWordFromIssueFunction);
     }
 }
 

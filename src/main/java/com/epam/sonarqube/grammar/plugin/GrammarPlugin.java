@@ -8,7 +8,7 @@ import org.sonar.api.SonarPlugin;
 import org.sonar.api.config.PropertyDefinition;
 
 import com.epam.sonarqube.grammar.plugin.issue.tracking.GrammarActionDefinition;
-import com.epam.sonarqube.grammar.plugin.issue.tracking.LinkFunction;
+import com.epam.sonarqube.grammar.plugin.issue.tracking.AddWordFromIssueFunction;
 import com.epam.sonarqube.grammar.plugin.profile.GrammarProfileDefinition;
 import com.epam.sonarqube.grammar.plugin.rule.GrammarRulesDefinition;
 import com.epam.sonarqube.grammar.plugin.sensor.GrammarIssuesSensor;
@@ -36,7 +36,7 @@ public class GrammarPlugin extends SonarPlugin {
                         // Sensors
                         GrammarIssuesSensor.class,
                         //Issue review
-                        LinkFunction.class,
+                        AddWordFromIssueFunction.class,
                         //Instantiated by IoC as used injection
                         JavaSourceCodeWordFinder.class,
                         GrammarChecker.class,
