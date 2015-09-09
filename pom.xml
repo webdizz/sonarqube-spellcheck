@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.epam.sonarqube</groupId>
-    <artifactId>sonarqube-grammar-plugin</artifactId>
+    <artifactId>sonarqube-spellcheck-plugin</artifactId>
     <packaging>sonar-plugin</packaging>
     <version>0.1-SNAPSHOT</version>
 
-    <name>Grammar</name>
-    <description>SonarQube Grammar Plugin provides capabilities to analyse source code for grammar kind of issues.
+    <name>SpellCheck</name>
+    <description>SonarQube SpellCheck Plugin provides capabilities to perform spell check analysis of source code.
     </description>
 
     <properties>
@@ -106,7 +106,7 @@
                 <artifactId>sonar-packaging-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <pluginClass>com.epam.sonarqube.grammar.plugin.GrammarPlugin</pluginClass>
+                    <pluginClass>com.epam.sonarqube.spellcheck.plugin.SpellCheckPlugin</pluginClass>
                 </configuration>
             </plugin>
             <plugin>
