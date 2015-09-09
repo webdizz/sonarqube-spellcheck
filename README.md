@@ -1,45 +1,45 @@
-sonarqube-grammar
+sonarqube-spellcheck
 =============
 
-[SonarQube](http://www.sonarqube.org/) Grammar Plugin to provide spell checking of source code (for now only Java). 
+[SonarQube](http://www.sonarqube.org/) SpellCheck Plugin to provide spell checking of source code (for now only Java). 
 
 Status
 ------
 
-[![Build Status](https://travis-ci.org/webdizz/sonarqube-grammar.png?branch=master)](https://travis-ci.org/webdizz/sonarqube-grammar)
+[![Build Status](https://travis-ci.org/webdizz/sonarqube-spellcheck.png?branch=master)](https://travis-ci.org/webdizz/sonarqube-spellcheck)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/webdizz/sonar-grammar/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 Usage
 =====
 
-Activate Grammar rule for your ```Quality Profiles```
+Activate SpellCheck rule for your ```Quality Profiles```
 --------------------------------
 
-1. Go to ```Quality Profiles``` and click on ```Grammar Profile```' rule 
-    ![Grammar Profile](images/activate_rule_1.png)
-2. Page with ```Grammar Profile``` rules will be opened, here click on ```Grammar Rule``` and then on ```Activate```
-    ![Select Grammar Rule](images/activate_rule_2.png)
+1. Go to ```Quality Profiles``` and click on ```SpellCheck Profile```' rule 
+    ![SpellCheck Profile](images/activate_rule_1.png)
+2. Page with ```SpellCheck Profile``` rules will be opened, here click on ```SpellCheck Rule``` and then on ```Activate```
+    ![Select SpellCheck Rule](images/activate_rule_2.png)
 3. In appeared dialog box select required profile to activate rule for and lick ```Activate``` 
-    ![Activate Grammar Rule](images/activate_rule_3.png)
-4. ```Grammar Rule``` will be activated in selected profile, in our case ```Sonar Way``` profile
-    ![Activated Grammar Rule in Sonar Way profile](images/activate_rule_4.png)
+    ![Activate SpellCheck Rule](images/activate_rule_3.png)
+4. ```SpellCheck Rule``` will be activated in selected profile, in our case ```Sonar Way``` profile
+    ![Activated SpellCheck Rule in Sonar Way profile](images/activate_rule_4.png)
 
 Add word/amend dictionary with custom words:
 --------------------------------
-You can add custom dictionary in ```Grammar Plugin Settings```:
+You can add custom dictionary in ```SpellCheck Plugin Settings```:
 
-1. Go to ```Settings->General Settings->Grammar```.
-    ![Grammar settings](images/grammar_add_word_to_alternative_dictionary_1_1.png)
+1. Go to ```Settings->General Settings->SpellCheck```.
+    ![SpellCheck settings](images/grammar_add_word_to_alternative_dictionary_1_1.png)
 2. Add word to textarea ```Alternative dictionary``` (separated with comma)
-    ![Grammar settings](images/grammar_add_word_to_alternative_dictionary_1_2.png)
-3. Click ```Save Grammar Settings```
+    ![SpellCheck settings](images/grammar_add_word_to_alternative_dictionary_1_2.png)
+3. Click ```Save SpellCheck Settings```
 
 Add word/amend dictionary from ```Issue```:
 --------------------------------
 
 1. Go to your projects ```Issues``` tab
     ![Issues tab](images/grammar_add_word_to_alternative_dictionary_2_1.png)
-2. Select find grammar ```Issue``` that is unknown by plugin, however is OK for your project, click on ```More```->```Add to Dictionary``` 
+2. Find SpellCheck ```Issue``` of the word that is unknown by plugin, however is OK for your project, click on ```More```->```Add to Dictionary``` 
     ![Issues tab](images/grammar_add_word_to_alternative_dictionary_2_2.png)
 3. Word will be added to your ```Alternative dictionary```
     ![Issues tab](images/grammar_add_word_to_alternative_dictionary_2_3.png)
@@ -68,8 +68,8 @@ Development and run:
 1. Make some code changes
 2. **Build** and **install** the plugin : ```bash mvn package org.codehaus.sonar:sonar-dev-maven-plugin::upload -DsonarHome={sonarqube-5.1} -DsonarUrl=http://localhost:9000``` . Use correct location of Sonarqube for the parameter -DsonarHome, for example ```-DsonarHome=d:\Sonar5.1```
 3. Restart [SonarQube](http://www.sonarqube.org/)
-4. Change on [SonarQube](http://www.sonarqube.org/) page top menu "Quality Profiles" ```Sonar Grammar Profile``` to default. 
-5. To perform grammar analysis go to the project that you want to test and write ```bash mvn sonar:sonar``` command (for Windows machines use ```mvn sonar:sonar```), for debug use ```bash mvnDebug sonar:sonar``` command (by default debug port is **8000**)
+4. Change on [SonarQube](http://www.sonarqube.org/) page top menu "Quality Profiles" ```Sonar SpellCheck Profile``` to default. 
+5. To perform spell check analysis go to the project that you want to test and write ```bash mvn sonar:sonar``` command (for Windows machines use ```mvn sonar:sonar```), for debug use ```bash mvnDebug sonar:sonar``` command (by default debug port is **8000**)
 6. After that you can see results on [http://localhost:9000/dashboard/](http://localhost:9000/dashboard/) or follow the link that will be found in the bottom of command line output
 7. To analyse using Docker based installation execute ```mvn sonar:sonar -Dsonar.host.url=http://192.168.176.128:9000/ -Dsonar.jdbc.url=jdbc:mysql://192.168.176.128:3306/sonarqube -Dsonar.jdbc.username=sonarqube -Dsonar.jdbc.password=sonarqube```
 
