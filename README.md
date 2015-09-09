@@ -1,7 +1,7 @@
 sonarqube-spellcheck
 =============
 
-[SonarQube](http://www.sonarqube.org/) SpellCheck Plugin to provide spell checking of source code (for now only Java). 
+[SonarQube](http://www.sonarqube.org/) SpellCheck Plugin to provide spell checking of source code *(for now only Java supported).* 
 
 Status
 ------
