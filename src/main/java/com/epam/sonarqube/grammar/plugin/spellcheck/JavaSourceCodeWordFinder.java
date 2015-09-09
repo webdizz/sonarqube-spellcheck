@@ -1,12 +1,12 @@
 package com.epam.sonarqube.grammar.plugin.spellcheck;
 
+import org.sonar.api.BatchExtension;
+import org.sonar.api.config.Settings;
+
 import com.epam.sonarqube.grammar.plugin.PluginParameter;
 import com.swabunga.spell.event.AbstractWordFinder;
 import com.swabunga.spell.event.Word;
 import com.swabunga.spell.event.WordNotFoundException;
-
-import org.sonar.api.BatchExtension;
-import org.sonar.api.config.Settings;
 
 public class JavaSourceCodeWordFinder extends AbstractWordFinder implements BatchExtension {
     private boolean inComment;
@@ -130,7 +130,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
             nextWord.setText(text.substring(nextWord.getStart(), i - 1));
         }
 
-        if (isWordLessThenMinLenght(currentWord)) {
+        if (isWordLessThenMinLength(currentWord)) {
             currentWord.setText("");
         }
 
@@ -187,7 +187,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
     }
 
 
-    private boolean isWordLessThenMinLenght(final Word word) {
+    private boolean isWordLessThenMinLength(final Word word) {
         return word.length() < minimumWordLength;
     }
 
