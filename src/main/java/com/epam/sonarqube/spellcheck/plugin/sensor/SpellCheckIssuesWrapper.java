@@ -1,5 +1,7 @@
 package com.epam.sonarqube.spellcheck.plugin.sensor;
 
+import static com.google.common.base.Preconditions.checkState;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,15 +11,14 @@ import org.sonar.api.issue.Issuable;
 import org.sonar.api.issue.Issue;
 import org.sonar.api.rule.RuleKey;
 
-import static com.google.common.base.Preconditions.checkState;
+import com.epam.sonarqube.spellcheck.plugin.PluginParameter;
 
 /**
  * Wrapper for one code line to check
- *
  */
 public class SpellCheckIssuesWrapper {
 
-    private final String COLUMN_ATTRIBUTE = "Col.";
+    private static final String COLUMN_ATTRIBUTE = "Col.";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SpellCheckIssuesWrapper.class);
 
@@ -28,6 +29,35 @@ public class SpellCheckIssuesWrapper {
     private RuleKey ruleKey;
 
     private SpellCheckIssuesWrapper() {
+    }
+
+    /**
+     * Something wrong with wrapped line detected.<BR/>
+     * Appropriate issue will be created.
+     *
+     * @param message        Incident's explanation
+     * @param misspelledWord misspelled word
+     * @param column         column number in wrapped line
+     */
+    public void incident(final String message, final String misspelledWord, final int column) {
+        if (LOGGER.isDebugEnabled()) {
+            final Object[] arguments = new Object[]{message, COLUMN_ATTRIBUTE, column};
+            LOGGER.debug("Reported about incident \"{}\" {}{}", arguments);
+        }
+        final Issuable issuable = perspectives.as(Issuable.class, inputFile);
+
+        final Issue issue = issuable.newIssueBuilder()
+                .message(message)
+                .line(lineNumber)
+                .ruleKey(ruleKey)
+                .attribute(COLUMN_ATTRIBUTE, Integer.toString(column))
+                .attribute(PluginParameter.SONAR_SPELL_CHECK_RULE_ATTRIBUTE, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY)
+                .attribute(PluginParameter.SONAR_SPELL_CHECK_RULE_MISSPELLED_WORD, misspelledWord)
+                .build();
+        final boolean success = issuable.addIssue(issue);
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Issue about incident added {}", success);
+        }
     }
 
     public String getLine() {
@@ -42,59 +72,11 @@ public class SpellCheckIssuesWrapper {
         return inputFile.absolutePath();
     }
 
-    /**
-     * Something wrong with wrapped line detected.<BR/>
-     * Appropriate issue will be created.
-     *
-     * @param message Incident's explanation
-     * @param column column number in wrapped line
-     */
-    public void incident(final String message, final int column) {
-        if (LOGGER.isDebugEnabled()) {
-            final Object[] arguments = new Object[]{message, COLUMN_ATTRIBUTE, column};
-            LOGGER.debug("Reported about incident \"{}\" {}{}", arguments);
-        }
-        final Issuable issuable = perspectives.as(Issuable.class, inputFile);
-        final Issue issue = issuable.newIssueBuilder()
-                .message(message)
-                .line(new Integer(lineNumber))
-                .ruleKey(ruleKey)
-                .attribute(COLUMN_ATTRIBUTE, Integer.toString(column))
-                .build();
-        final boolean success = issuable.addIssue(issue);
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Issue about incident added {}", success);
-        }
-    }
-
-    /**
-     * Something wrong with wrapped line detected.<BR/>
-     * Appropriate issue will be created.
-     *
-     * @param message Incident's explanation
-     */
-    public void incident(final String message) {
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Reported about incident \"{}\"", message);
-        }
-        final Issuable issuable = perspectives.as(Issuable.class, inputFile);
-        final Issue issue = issuable.newIssueBuilder()
-                .message(message)
-                .line(new Integer(lineNumber))
-                .ruleKey(ruleKey)
-                .build();
-        final boolean success = issuable.addIssue(issue);
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Issue about incident has added {}", success);
-        }
-    }
-
     @Override
     public String toString() {
-        return "GrammarIssuesWrapper{" + "line=\"" + line + "\", lineNumber=" + lineNumber + ", ruleKey=" + ruleKey + '}';
+        return "SpellCheckIssuesWrapper{" + "line=\"" + line + "\", lineNumber=" + lineNumber + ", ruleKey=" + ruleKey + '}';
     }
 
-    // private methods
     /**
      * To get the builder of wrapper
      *
@@ -120,7 +102,6 @@ public class SpellCheckIssuesWrapper {
         return new Builder(wrapper);
     }
 
-    // inner classes
     /**
      * Class-builder of wrapper
      */

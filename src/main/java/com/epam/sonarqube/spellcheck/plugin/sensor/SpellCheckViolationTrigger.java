@@ -12,8 +12,7 @@ import com.swabunga.spell.event.SpellCheckEvent;
 import com.swabunga.spell.event.SpellCheckListener;
 
 /**
- * Class-trigger to react to grammar spell violations
- *
+ * Class-trigger to react to spell violations
  */
 class SpellCheckViolationTrigger implements SpellCheckListener {
 
@@ -38,7 +37,7 @@ class SpellCheckViolationTrigger implements SpellCheckListener {
                 .append(event.getInvalidWord())
                 .append("\'");
         if (LOGGER.isDebugEnabled()) {
-            final Object[] arguments = new Object[]{ event.getInvalidWord(), event.getWordContextPosition(), lineWrapper.getLine()};
+            final Object[] arguments = new Object[]{event.getInvalidWord(), event.getWordContextPosition(), lineWrapper.getLine()};
             LOGGER.debug("Detected invalid word \'{}\' at Col.{}\nin the line \"{}\"", arguments);
         }
         final List suggestions = event.getSuggestions();
@@ -64,7 +63,7 @@ class SpellCheckViolationTrigger implements SpellCheckListener {
             args = new Object[]{spellMessage, event.getWordContextPosition(), lineWrapper.getKey()};
             LOGGER.debug("{} at '{}' \n  in '{}'\n ", args);
         }
-        lineWrapper.incident(spellMessage, event.getWordContextPosition());
+        lineWrapper.incident(spellMessage, event.getInvalidWord(), event.getWordContextPosition());
     }
 
 }

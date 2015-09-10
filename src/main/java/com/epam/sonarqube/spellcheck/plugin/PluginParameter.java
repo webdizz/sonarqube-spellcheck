@@ -36,6 +36,10 @@ public interface PluginParameter {
      */
     String SONAR_SPELL_CHECK_RULE_KEY = "sonar_spell_check_rule";
 
+    String SONAR_SPELL_CHECK_RULE_ATTRIBUTE = "type";
+
+    String SONAR_SPELL_CHECK_RULE_MISSPELLED_WORD = "wrong-word";
+
     /**
      * The name of spell-check-rule
      */
