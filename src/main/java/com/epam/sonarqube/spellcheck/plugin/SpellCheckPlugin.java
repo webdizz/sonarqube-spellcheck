@@ -57,7 +57,7 @@ public class SpellCheckPlugin extends SonarPlugin {
 
                         PropertyDefinition.builder(PluginParameter.SPELL_IGNOREDIGITWORDS)
                                 .name("Ignore words with digits").type(PropertyType.BOOLEAN)
-                                .description("Words that have digits in them are not spell checked, example: 'mach5'")
+                                .description("Words that have digits in them are not spell checked, example: 'match5'")
                                 .defaultValue("false").subCategory(SPELL_CHECKER_CATEGORY).build(),
 
                         PropertyDefinition.builder(PluginParameter.SPELL_IGNOREINTERNETADDRESSES)

@@ -3,13 +3,13 @@ package com.epam.sonarqube.spellcheck.plugin.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.epam.sonarqube.spellcheck.plugin.spellcheck.SpellCheckerFactory;
+import org.sonar.api.BatchExtension;
 
+import com.epam.sonarqube.spellcheck.plugin.spellcheck.SpellCheckerFactory;
 import com.swabunga.spell.engine.Configuration;
 import com.swabunga.spell.engine.Word;
 import com.swabunga.spell.event.SpellChecker;
 import com.swabunga.spell.event.StringWordTokenizer;
-import org.sonar.api.BatchExtension;
 
 /**
  * Provides utility methods for spell checking. Uses an open source API
@@ -21,7 +21,7 @@ public class SpellCheckerUtil implements BatchExtension {
     private SpellChecker spellChecker = spellCheckerFactory.getSpellChecker();
 
     public SpellCheckerUtil(SpellCheckerFactory spellCheckerFactory) {
-        this.spellCheckerFactory=spellCheckerFactory;
+        this.spellCheckerFactory = spellCheckerFactory;
     }
 
     /**
@@ -62,10 +62,10 @@ public class SpellCheckerUtil implements BatchExtension {
     }
 
     /**
-     * Takes a misspelt word as an argument and returns an array of suggestions
+     * Takes a misspelled word as an argument and returns an array of suggestions
      * from the dictionary.
      *
-     * @param word Misspelt word for suggestions
+     * @param word Misspelled word for suggestions
      * @return String array of available suggestions from the dictionary
      */
     @SuppressWarnings("unchecked")
@@ -81,22 +81,22 @@ public class SpellCheckerUtil implements BatchExtension {
 
     /**
      * Spell checks all words in the input string and returns an array of
-     * misspelt words. Returns an empty array if all the words are correct.
+     * misspelled words. Returns an empty array if all the words are correct.
      *
      * @param words String of words for spell check
-     * @return string array of misspelt words
+     * @return string array of misspelled words
      */
     public String[] checkAllWords(String words) {
-        List<String> misspeltWords = new ArrayList<String>();
+        List<String> misspelledWords = new ArrayList<String>();
         StringWordTokenizer tokenizer = new StringWordTokenizer(words);
 
         while (tokenizer.hasMoreWords()) {
             String word = tokenizer.nextWord();
             if (!isWordCorrect(word, tokenizer.isNewSentence())) {
-                misspeltWords.add(word);
+                misspelledWords.add(word);
             }
         }
-        return misspeltWords.toArray(new String[0]);
+        return misspelledWords.toArray(new String[0]);
     }
 
     /**
@@ -145,7 +145,7 @@ public class SpellCheckerUtil implements BatchExtension {
      *
      * @param word           single word for mixed case check
      * @param startsSentence True if this word is at the start of a sentence
-     * @return true if it is amixed case word
+     * @return true if it is a mixed case word
      */
     public boolean isMixedCaseWord(String word, boolean startsSentence) {
         int strLen = word.length();

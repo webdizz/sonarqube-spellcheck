@@ -121,7 +121,7 @@ public interface PluginParameter {
     String SPELL_IGNOREINTERNETADDRESSES = "sonarqube-spellcheck.spell.ignore.internet.address";
 
     /**
-     * words that have digits in them are not spell checked, example: "mach5" <br/>(boolean)
+     * words that have digits in them are not spell checked, example: "match5" <br/>(boolean)
      */
     String SPELL_IGNOREDIGITWORDS = "sonarqube-spellcheck.spell.ignore.digit.words";
 
