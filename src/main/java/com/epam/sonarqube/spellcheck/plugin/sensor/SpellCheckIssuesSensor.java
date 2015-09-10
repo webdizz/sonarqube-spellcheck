@@ -138,7 +138,7 @@ public class SpellCheckIssuesSensor implements Sensor {
     }
 
     private SpellCheckIssuesWrapper getGrammarIssuesWrapperWhenNull(final InputFile resource, final String line, final int lineNumber) {
-        return templateWrapper = SpellCheckIssuesWrapper.builder()
+        return SpellCheckIssuesWrapper.builder()
                 .setInputFile(resource)
                 .setLine(line)
                 .setLineNumber(lineNumber)
@@ -157,7 +157,7 @@ public class SpellCheckIssuesSensor implements Sensor {
 
     @Override
     public String toString() {
-        return "Grammar Issues";
+        return "SpellCheck Issues";
     }
 
 }

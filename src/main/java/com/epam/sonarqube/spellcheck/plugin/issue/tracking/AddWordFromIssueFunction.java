@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -19,6 +19,7 @@ import org.sonar.core.properties.PropertiesDao;
 import org.sonar.core.properties.PropertyDto;
 
 import com.epam.sonarqube.spellcheck.plugin.PluginParameter;
+import com.google.common.collect.ImmutableMap;
 
 public class AddWordFromIssueFunction implements Function, ServerExtension {
 
@@ -47,9 +48,9 @@ public class AddWordFromIssueFunction implements Function, ServerExtension {
         PropertyDto propertyDto = propertiesDao.selectGlobalProperty(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY);
         if (propertyDto == null) {
             LOGGER.info("Creating new Dictionary. Adding misspelledWord '{}' to it.", misspelledWord);
-            propertiesDao.saveGlobalProperties(new HashMap<String, String>() {{
-                put(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY, misspelledWord);
-            }});
+            final Map<String, String> pluginProperties;
+            pluginProperties = ImmutableMap.<String, String>builder().put(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY, misspelledWord).build();
+            propertiesDao.saveGlobalProperties(pluginProperties);
         } else {
             String dictionary = propertyDto.getValue();
             ArrayList<String> wordList = new ArrayList<>(Arrays.asList(dictionary.split(PluginParameter.SEPARATOR_CHAR)));

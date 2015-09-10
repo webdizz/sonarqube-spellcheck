@@ -45,18 +45,21 @@ public class SpellCheckIssuesWrapper {
             LOGGER.debug("Reported about incident \"{}\" {}{}", arguments);
         }
         final Issuable issuable = perspectives.as(Issuable.class, inputFile);
-
-        final Issue issue = issuable.newIssueBuilder()
-                .message(message)
-                .line(lineNumber)
-                .ruleKey(ruleKey)
-                .attribute(COLUMN_ATTRIBUTE, Integer.toString(column))
-                .attribute(PluginParameter.SONAR_SPELL_CHECK_RULE_ATTRIBUTE, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY)
-                .attribute(PluginParameter.SONAR_SPELL_CHECK_RULE_MISSPELLED_WORD, misspelledWord)
-                .build();
-        final boolean success = issuable.addIssue(issue);
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Issue about incident added {}", success);
+        if (issuable == null) {
+            LOGGER.error("Issuable was not initialized for InputFile");
+        } else {
+            final Issue issue = issuable.newIssueBuilder()
+                    .message(message)
+                    .line(lineNumber)
+                    .ruleKey(ruleKey)
+                    .attribute(COLUMN_ATTRIBUTE, Integer.toString(column))
+                    .attribute(PluginParameter.SONAR_SPELL_CHECK_RULE_ATTRIBUTE, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY)
+                    .attribute(PluginParameter.SONAR_SPELL_CHECK_RULE_MISSPELLED_WORD, misspelledWord)
+                    .build();
+            final boolean success = issuable.addIssue(issue);
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("Issue about incident added {}", success);
+            }
         }
     }
 
