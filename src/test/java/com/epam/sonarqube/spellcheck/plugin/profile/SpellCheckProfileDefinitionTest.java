@@ -47,16 +47,16 @@ public class SpellCheckProfileDefinitionTest {
         RulesProfile result = instance.createProfile(ValidationMessages.create());
 
         assertTrue(!result.getActiveRules().isEmpty());
-        assertEquals(rule, result.getActiveRule(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE_KEY).getRule());
+        assertEquals(rule, result.getActiveRule(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY).getRule());
     }
 
 
     private Rule prepareMockedRule() {
         final Rule mockedRule = mock(Rule.class);
         when(mockedRule.getRepositoryKey()).thenReturn(PluginParameter.REPOSITORY_KEY);
-        when(mockedRule.getKey()).thenReturn(PluginParameter.SONAR_GRAMMAR_RULE_KEY);
+        when(mockedRule.getKey()).thenReturn(PluginParameter.SONAR_SPELL_CHECK_RULE_KEY);
         when(mockedRule.isEnabled()).thenReturn(Boolean.TRUE);
-        when(ruleFinder.findByKey(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE_KEY)).thenReturn(mockedRule);
+        when(ruleFinder.findByKey(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY)).thenReturn(mockedRule);
         return mockedRule;
     }
 

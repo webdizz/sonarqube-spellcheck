@@ -31,10 +31,10 @@ public class SpellCheckRulesDefinition implements RulesDefinition, BatchExtensio
                 .createRepository(PluginParameter.REPOSITORY_KEY, PluginParameter.PROFILE_LANGUAGE)
                 .setName(PluginParameter.REPOSITORY_NAME);
         
-        final NewRule grammarRule = repository.createRule(PluginParameter.SONAR_GRAMMAR_RULE_KEY)
-                .setInternalKey(PluginParameter.SONAR_GRAMMAR_RULE_KEY)
-                .setName(PluginParameter.SONAR_GRAMMAR_RULE_NAME)
-                .setHtmlDescription(PluginParameter.SONAR_GRAMMAR_RULE_DESCRIPTION)
+        final NewRule grammarRule = repository.createRule(PluginParameter.SONAR_SPELL_CHECK_RULE_KEY)
+                .setInternalKey(PluginParameter.SONAR_SPELL_CHECK_RULE_KEY)
+                .setName(PluginParameter.SONAR_SPELL_CHECK_RULE_NAME)
+                .setHtmlDescription(PluginParameter.SONAR_SPELL_CHECK_RULE_DESCRIPTION)
                 .setTags(PluginParameter.REPOSITORY_KEY)
                 .setStatus(RuleStatus.READY)
                 .setSeverity(Severity.INFO);

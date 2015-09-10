@@ -22,7 +22,7 @@ public final class SpellCheckActionDefinition implements ServerExtension {
     public void start() {
         actions.add(PluginParameter.ADD_TO_DICT)
                 .setConditions(
-                        new NotCondition(new HasIssuePropertyCondition(PluginParameter.SONAR_GRAMMAR_ISSUE_DATA_PROPERTY_KEY)),
+                        new NotCondition(new HasIssuePropertyCondition(PluginParameter.SONAR_SPELL_CHECK_ISSUE_DATA_PROPERTY_KEY)),
                         new IsUnResolved()
                 )
                 .setFunctions(addWordFromIssueFunction);

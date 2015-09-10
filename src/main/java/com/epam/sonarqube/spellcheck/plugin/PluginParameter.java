@@ -3,48 +3,48 @@ package com.epam.sonarqube.spellcheck.plugin;
 import org.sonar.api.CoreProperties;
 
 /**
- * The pool of constants used in the grammar-plugin
+ * The pool of constants used in the spell-check-plugin
  */
 public interface PluginParameter {
     /**
      * The name of sonar-plugin
      */
-    String PLUGIN_NAME = "Grammar";
+    String PLUGIN_NAME = "SpellCheck";
 
     /**
-     * The name of repository for grammar rules
+     * The name of repository for spell-check rules
      */
     String REPOSITORY_NAME = PLUGIN_NAME + " Repository";
 
     /**
-     * The name of grammar profile
+     * The name of spell check profile
      */
     String PROFILE_NAME = PLUGIN_NAME + " Profile";
 
     /**
-     * The language of grammar profile
+     * The language of spell check profile
      */
     String PROFILE_LANGUAGE = CoreProperties.CATEGORY_JAVA;
 
     /**
-     * The key of grammar-rules-repository
+     * The key of spell-check-rules-repository
      */
-    String REPOSITORY_KEY = "snrgrm";
+    String REPOSITORY_KEY = "snrspl";
 
     /**
-     * The name of grammar-rule
+     * The name of spell-check-rule
      */
-    String SONAR_GRAMMAR_RULE_KEY = "sonar_grammar_rule";
+    String SONAR_SPELL_CHECK_RULE_KEY = "sonar_spell_check_rule";
 
     /**
-     * The name of grammar-rule
+     * The name of spell-check-rule
      */
-    String SONAR_GRAMMAR_RULE_NAME = "Grammar Rule";
+    String SONAR_SPELL_CHECK_RULE_NAME = "Spell Check Rule";
 
     /**
-     * The description of grammar-rule
+     * The description of spell-check-rule
      */
-    String SONAR_GRAMMAR_RULE_DESCRIPTION = "Analyses source code for english grammar issues.";
+    String SONAR_SPELL_CHECK_RULE_DESCRIPTION = "Analyses source code for english spell check issues.";
 
     /**
      * Error description
@@ -59,7 +59,7 @@ public interface PluginParameter {
     /**
      * Add  to dictionary link caption
      */
-    String SONAR_GRAMMAR_ISSUE_DATA_PROPERTY_KEY = "grammar-issue-key";
+    String SONAR_SPELL_CHECK_ISSUE_DATA_PROPERTY_KEY = "spell-check-issue-key";
 
     /**
      * Separator for store alternate dictionary

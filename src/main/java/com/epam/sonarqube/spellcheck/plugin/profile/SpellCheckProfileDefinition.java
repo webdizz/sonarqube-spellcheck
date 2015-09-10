@@ -28,9 +28,9 @@ public class SpellCheckProfileDefinition extends ProfileDefinition {
     public RulesProfile createProfile(final ValidationMessages validationMessages) {
         final RulesProfile profile = RulesProfile.create(PluginParameter.PROFILE_NAME, PluginParameter.PROFILE_LANGUAGE);
 
-        final Rule rule = ruleFinder.findByKey(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE_KEY);
+        final Rule rule = ruleFinder.findByKey(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY);
         if (LOGGER.isDebugEnabled()) {
-            final Object[] arguments = new Object[]{PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE_KEY, rule};
+            final Object[] arguments = new Object[]{PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY, rule};
             LOGGER.debug("For repository_key {} and rule_key {} found {}", arguments);
         }
 

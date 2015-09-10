@@ -46,7 +46,7 @@ public class SpellCheckIssuesSensor implements Sensor {
 
     @Override
     public void analyse(Project module, SensorContext context) {
-        ActiveRule grammarRule = context.activeRules().find(RuleKey.of(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE_KEY));
+        ActiveRule grammarRule = context.activeRules().find(RuleKey.of(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY));
         if (grammarRule == null) {
             LOGGER.debug("Grammar rule is not activated, skipping.");
         } else {
@@ -143,7 +143,7 @@ public class SpellCheckIssuesSensor implements Sensor {
                 .setLine(line)
                 .setLineNumber(lineNumber)
                 .setPerspectives(perspectives)
-                .setRuleKey(RuleKey.of(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_GRAMMAR_RULE_KEY))
+                .setRuleKey(RuleKey.of(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY))
                 .build();
     }
 

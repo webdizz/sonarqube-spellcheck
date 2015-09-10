@@ -37,7 +37,7 @@ You can add custom dictionary in ```SpellCheck Plugin Settings```:
 Add word/amend dictionary from ```Issue```:
 --------------------------------
 
-1. Go to your projects ```Issues``` tab
+1. Go to your projects ```Issues``` tab 
     ![Issues tab](images/grammar_add_word_to_alternative_dictionary_2_1.png)
 2. Find SpellCheck ```Issue``` of the word that is unknown by plugin, however is OK for your project, click on ```More```->```Add to Dictionary``` 
     ![Issues tab](images/grammar_add_word_to_alternative_dictionary_2_2.png)
