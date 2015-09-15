@@ -64866,6 +64866,8 @@ acidulous
 
 acing
 
+acked
+
 acknowledge
 
 acknowledged
@@ -71266,6 +71268,8 @@ anywheres
 
 anywise
 
+aop
+
 aopalliance
 
 aorist
@@ -72856,6 +72860,8 @@ arithmeticians
 
 arithmetics
 
+arities
+
 arity
 
 ark
@@ -73055,6 +73061,8 @@ arpeggio
 arpeggio's
 
 arpeggios
+
+arquillian
 
 arr
 
@@ -74558,6 +74566,8 @@ atomicity's
 
 atomics
 
+atomikos
+
 atomisation
 
 atomisation's
@@ -75619,6 +75629,10 @@ autosuggestion
 autosuggestion's
 
 autotransformer
+
+autowired
+
+autowiring
 
 autoworker
 
@@ -83198,6 +83212,8 @@ bloodymindedness
 
 bloom
 
+bloomberg
+
 bloomed
 
 bloomer
@@ -87370,6 +87386,8 @@ brutishness
 
 brutishness's
 
+bst
+
 btree
 
 bu
@@ -89301,6 +89319,8 @@ cacaos
 cache
 
 cache's
+
+cacheable
 
 cached
 
@@ -92200,6 +92220,8 @@ cast
 
 cast's
 
+castable
+
 castanet
 
 castanet's
@@ -94181,6 +94203,8 @@ changeling's
 changelings
 
 changelist
+
+changelog
 
 changeover
 
@@ -98397,6 +98421,8 @@ cloudburst's
 cloudbursts
 
 clouded
+
+cloudfoundry
 
 cloudier
 
@@ -102840,6 +102866,8 @@ confining
 
 confirm
 
+confirmable
+
 confirmation
 
 confirmation's
@@ -105495,6 +105523,8 @@ coped
 coper
 
 copes
+
+copiable
 
 copied
 
@@ -109674,6 +109704,8 @@ crystals
 
 cs's
 
+csv
+
 ctn
 
 ctr
@@ -110581,6 +110613,8 @@ customize
 customized
 
 customizer
+
+customizers
 
 customizes
 
@@ -116075,6 +116109,8 @@ descent
 descent's
 
 descents
+
+descoped
 
 describable
 
@@ -123968,6 +124004,8 @@ dropout's
 
 dropouts
 
+droppable
+
 dropped
 
 dropper
@@ -129048,6 +129086,8 @@ enriched
 
 enricher
 
+enrichers
+
 enriches
 
 enriching
@@ -133421,6 +133461,8 @@ externalizations
 externalize
 
 externalized
+
+externalizer
 
 externalizes
 
@@ -152664,6 +152706,8 @@ hatemonger's
 
 hatemongers
 
+hateoas
+
 hater
 
 hater's
@@ -152940,6 +152984,8 @@ hazed
 
 hazel
 
+hazelcast
+
 hazelnut
 
 hazelnut's
@@ -152973,6 +153019,8 @@ hazing's
 hazings
 
 hazy
+
+hdiv
 
 hdqrs
 
@@ -163414,6 +163462,8 @@ infiltrator's
 
 infiltrators
 
+infinispan
+
 infinite
 
 infinitely
@@ -163663,6 +163713,8 @@ informer's
 informers
 
 informing
+
+informix
 
 informs
 
@@ -168080,6 +168132,10 @@ itemizing
 
 items
 
+iterable
+
+iterables
+
 iterate
 
 iterated
@@ -169173,6 +169229,8 @@ jocundity
 jocundity's
 
 jocundly
+
+joda
 
 jodhpurs
 
@@ -176749,6 +176807,8 @@ logarithmic
 logarithmically
 
 logarithms
+
+logback
 
 logbook
 
@@ -189076,6 +189136,8 @@ multilingual
 
 multilingualism
 
+multimap
+
 multimedia
 
 multimeter
@@ -189095,6 +189157,8 @@ multimillionaires
 multinational
 
 multinationals
+
+multipart
 
 multiparty
 
@@ -194028,6 +194092,8 @@ notional
 
 notionally
 
+notionals
+
 notions
 
 notnull
@@ -194351,6 +194417,8 @@ null
 nullabilities
 
 nullability
+
+nullable
 
 nulled
 
@@ -210076,6 +210144,8 @@ pollens
 
 poller
 
+pollers
+
 pollinate
 
 pollinated
@@ -216407,6 +216477,8 @@ prowling
 prowls
 
 prows
+
+proxied
 
 proxies
 
@@ -224668,6 +224740,8 @@ register's
 
 registered
 
+registerer
+
 registering
 
 registers
@@ -225049,6 +225123,8 @@ reindeer
 reindeer's
 
 reindex
+
+reindexing
 
 reined
 
@@ -226768,6 +226844,8 @@ replay
 
 replay's
 
+replayable
+
 replayed
 
 replaying
@@ -226867,6 +226945,8 @@ repopulating
 report
 
 report's
+
+reportability
 
 reportable
 
@@ -228929,6 +229009,8 @@ retrenchment
 retrenchment's
 
 retrenchments
+
+retriable
 
 retrial
 
@@ -254048,6 +254130,8 @@ submit
 
 submits
 
+submittability
+
 submittable
 
 submitted
@@ -254469,6 +254553,8 @@ subsystem
 subsystem's
 
 subsystems
+
+subtag
 
 subtask
 
@@ -262470,6 +262556,8 @@ throw
 
 throwable
 
+throwables
+
 throwaway
 
 throwaway's
@@ -269390,6 +269478,8 @@ tzarina's
 
 tzarism's
 
+uat
+
 ubiquitous
 
 ubiquitously
@@ -272779,6 +272869,8 @@ uniquely
 uniqueness
 
 uniquer
+
+uniques
 
 uniquest
 
@@ -281200,6 +281292,10 @@ webfoot
 
 webfoot's
 
+webjar
+
+webjars
+
 webmaster
 
 webmasters
@@ -285266,6 +285362,8 @@ xor
 
 xpath
 
+xquery
+
 xref
 
 xreffed
@@ -286355,4 +286453,6 @@ zygotes
 zygotic
 
 zymurgy
+
+zymurgyaccessor
 
