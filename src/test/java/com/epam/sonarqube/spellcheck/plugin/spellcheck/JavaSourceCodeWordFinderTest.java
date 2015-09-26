@@ -3,8 +3,10 @@ package com.epam.sonarqube.spellcheck.plugin.spellcheck;
 import com.epam.sonarqube.spellcheck.plugin.PluginParameter;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.event.SpellChecker;
+import com.swabunga.spell.event.WordNotFoundException;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.FromDataPoints;
@@ -49,6 +51,20 @@ public class JavaSourceCodeWordFinderTest {
     public static String[] validDigitWords = new String[]{"word1", "word12", "convert2String", "convert23String",
             "4wordsWithDigits", "14wordsWithDigits"};
 
+    @Test(expected = WordNotFoundException.class)
+    public void shouldThrowExceptionWhenThereIsNoNextWord() throws Exception {
+        
+        String testLine = "myCamelTestVariable";
+        
+        JavaSourceCodeWordFinder javaSourceCodeWordFinder = new JavaSourceCodeWordFinder(settings);
+        JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(testLine, javaSourceCodeWordFinder);
+        spellChecker.setUserDictionary(dictionary);
+        
+        spellChecker.checkSpelling(sourceCodeTokenizer);
+        
+        javaSourceCodeWordFinder.next(); //WordNotFoundException
+    }
+    
     @Test
     public void shouldCheckCamelCaseNameAndReturnMinusOneThatMeansNoErrorTest() throws Exception {
         String testLine = "myWrongCamelTest";
@@ -127,4 +143,5 @@ public class JavaSourceCodeWordFinderTest {
         spellChecker.setUserDictionary(dictionary);
         return spellChecker.checkSpelling(sourceCodeTokenizer);
     }
+    
 }
