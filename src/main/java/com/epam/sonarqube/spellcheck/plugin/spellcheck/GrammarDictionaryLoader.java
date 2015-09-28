@@ -1,20 +1,21 @@
 package com.epam.sonarqube.spellcheck.plugin.spellcheck;
 
-import org.sonar.api.BatchExtension;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
-import com.epam.sonarqube.spellcheck.plugin.utils.SpellCheckerUtil;
+import org.sonar.api.BatchExtension;
+import org.sonar.api.config.Settings;
+
 import com.epam.sonarqube.spellcheck.plugin.PluginParameter;
 import com.epam.sonarqube.spellcheck.plugin.exceptions.UnableToLoadDictionary;
 import com.google.common.base.Optional;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
-
-import org.sonar.api.config.Settings;
-
-import java.io.*;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class GrammarDictionaryLoader implements BatchExtension {
 
@@ -24,7 +25,6 @@ public class GrammarDictionaryLoader implements BatchExtension {
 
     public GrammarDictionaryLoader(Settings settings) {
         this.settings = settings;
-
     }
 
     public SpellDictionary loadMainDictionary() {
@@ -32,7 +32,7 @@ public class GrammarDictionaryLoader implements BatchExtension {
         SpellDictionary spellDictionary = dictionary.get();
         locker.lock();
         try (InputStreamReader wordList = new InputStreamReader
-                (SpellCheckerUtil.class.getResourceAsStream(dictionaryPath))) {
+                (GrammarDictionaryLoader.class.getResourceAsStream(dictionaryPath))) {
             if (null == spellDictionary) {
                 spellDictionary = new SpellDictionaryHashMap(wordList);
                 dictionary.set(spellDictionary);
