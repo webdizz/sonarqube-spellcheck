@@ -5,6 +5,7 @@ import org.sonar.api.config.Settings;
 
 import com.epam.sonarqube.spellcheck.plugin.PluginParameter;
 import com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.JavaCodeConventionEnglishAutomaton;
+import com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.WordFinderAutomaton;
 import com.swabunga.spell.event.AbstractWordFinder;
 import com.swabunga.spell.event.Word;
 import com.swabunga.spell.event.WordNotFoundException;
@@ -43,7 +44,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements
 
         int beginIndex = currentWord.getEnd();
 
-        JavaCodeConventionEnglishAutomaton automaton = new JavaCodeConventionEnglishAutomaton();
+        WordFinderAutomaton automaton = new JavaCodeConventionEnglishAutomaton();
         automaton.init();
 
         automaton.searchNextWord(text, beginIndex);

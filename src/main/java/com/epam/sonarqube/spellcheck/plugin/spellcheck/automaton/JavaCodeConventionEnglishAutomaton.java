@@ -16,7 +16,7 @@ import com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.states.WordStar
  * Not thread safe.
  *
  */
-public class JavaCodeConventionEnglishAutomaton {
+public class JavaCodeConventionEnglishAutomaton implements WordFinderAutomaton {
 
     private static final String ENGLISH_CAPITAL_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String ENGLISH_SMALL_LETTERS = "abcdefghijklmnopqrstuvwxyz";
@@ -31,6 +31,7 @@ public class JavaCodeConventionEnglishAutomaton {
      * Initialize automaton with states and rules for parsing java source code
      * written in English alphabet
      */
+    @Override
     public void init() {
 
         State stateSkipNonEnglishLetters = new State("SkipNonEnglishLetters");
@@ -95,35 +96,26 @@ public class JavaCodeConventionEnglishAutomaton {
         reset();
     }
 
-    /**
-     * Return start position of word, which was found by previous call of
-     * searchNextWord(...)
-     * 
-     * @return int start position of found word
+    /* (non-Javadoc)
+     * @see com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.WordFinderAutomaton#getWordStart()
      */
+    @Override
     public int getWordStart() {
         return wordStart;
     }
 
-    /**
-     * Return end position of word, which was found by previous call of
-     * searchNextWord(...)
-     * 
-     * @return int end position of found word
+    /* (non-Javadoc)
+     * @see com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.WordFinderAutomaton#getWordEnd()
      */
+    @Override
     public int getWordEnd() {
         return wordEnd;
     }
 
-    /**
-     * Look for next word in given {@code text} starting from position
-     * {@code beginIndex}.
-     * 
-     * @param text
-     *            text, in which method will look for words
-     * @param beginIndex
-     *            the beginning index, inclusive
+    /* (non-Javadoc)
+     * @see com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.WordFinderAutomaton#searchNextWord(java.lang.String, int)
      */
+    @Override
     public void searchNextWord(String text, int beginIndex) {
         reset();
         String tmpText = text + " ";
@@ -148,11 +140,10 @@ public class JavaCodeConventionEnglishAutomaton {
         }
     }
 
-    /**
-     * Checks if previous call of searchNextWord(...) has found a word
-     * 
-     * @return true, if word was found; false - otherwise
+    /* (non-Javadoc)
+     * @see com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.WordFinderAutomaton#hasNextWord()
      */
+    @Override
     public boolean hasNextWord() {
         return wordStart != -1;
     }
