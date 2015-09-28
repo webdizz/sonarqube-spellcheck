@@ -1,21 +1,79 @@
 package com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.states;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
+import com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.JavaCodeConventionEnglishAutomaton;
+
+@RunWith(MockitoJUnitRunner.class)
 public class StateTest {
 
     private State state;
+    
+    @Mock
+    private StateCallback callback;
+    
+    @Mock
+    private JavaCodeConventionEnglishAutomaton automaton;
+    
+    private StateEvent stateEvent;
 
     @Before
     public void init() {
         state = new State("testState");
+        stateEvent = new StateEvent(automaton);
     }
 
+    @Test
+    public void testStateIsNotFinal() throws Exception {
+        assertFalse(state.isFinal());
+    }
+    
+    @Test
+    public void testCallbackCallsBehavior() throws Exception {
+        state = spy(new State("state", callback));
+        
+        state.callback(stateEvent);
+
+        verify(callback).call(stateEvent);
+    }
+
+    @Test
+    public void testWhenCallbackIsNullBehavior() throws Exception {
+        state = spy(new State("state"));
+        state.callback(stateEvent);
+
+        verify(callback, times(0)).call(stateEvent);
+    }
+    
+    @Test
+    public void testConstructorWithTwoParamsName() throws Exception {
+        state = spy(new State("state", callback));
+
+        assertEquals("State: state", state.toString());
+    }
+
+    @Test
+    public void testConstructorWithTwoParamsCallbackCallsBehavior()
+            throws Exception {
+        state = spy(new FinalState("state", callback));
+
+        state.callback(stateEvent);
+
+        verify(callback).call(stateEvent);
+    }
+    
     @Test
     public void testNextWhenTransitionsIsEmpty() throws Exception {
         char anyChar = 'a';

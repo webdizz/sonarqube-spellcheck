@@ -5,21 +5,15 @@ package com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.states;
  */
 public class FinalState extends State {
 
-    private StateCallback callback;
-
     public FinalState(String name) {
         super(name);
+        super.isFinalState = true;
     }
 
     public FinalState(String name, StateCallback callback) {
-        super(name);
-        this.callback = callback;
+        super(name, callback);
+        super.isFinalState = true;
     }
-
-    public void callback() {
-        if (callback != null) {
-            callback.call();
-        }
-    }
+    
 
 }

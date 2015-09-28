@@ -3,7 +3,9 @@ package com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton;
 import com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.states.FinalState;
 import com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.states.State;
 import com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.states.StateCallback;
+import com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.states.StateEvent;
 import com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.states.WordStartState;
+import com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.states.WordStartStateEvent;
 
 /**
  * Breaks java source code into separate words accordingly to Java Code
@@ -35,20 +37,28 @@ public class JavaCodeConventionEnglishAutomaton {
 
         State finalStateRegular = new FinalState("finalRegular");
 
-        final JavaCodeConventionEnglishAutomaton automaton = this;
         State finalStateCapitalLettersAbbreviation = new FinalState(
                 "finalCapitalLettersAbbreviation", new StateCallback() {
                     @Override
-                    public void call() {
-                        automaton.wordEnd--;
+                    public void call(StateEvent stateEvent) {
+                        stateEvent.getAutomaton().wordEnd--;
                     }
                 });
 
+        StateCallback wordStartCallback = new StateCallback() {
+            @Override
+            public void call(StateEvent stateEvent) {
+                if (stateEvent instanceof WordStartStateEvent) {
+                    WordStartStateEvent wordStartStateEvent = (WordStartStateEvent)stateEvent;
+                    wordStartStateEvent.getAutomaton().wordStart = wordStartStateEvent.getIndex() - 1;
+                }
+            }
+        };
         State stateStartSmallLetterWord = new WordStartState(
-                "StartSmallLetterWord");
+                "StartSmallLetterWord", wordStartCallback);
         State stateProcessSmallLetters = new State("ProcessSmallLetters");
         State stateStartCapitalLetterWord = new WordStartState(
-                "StartCapitalLetterWord");
+                "StartCapitalLetterWord", wordStartCallback);
         State stateProcessCapitalLetters = new State("ProcessCapitalLetters");
 
         stateSkipNonEnglishLetters.addTransition(ENGLISH_SMALL_LETTERS,
@@ -123,14 +133,14 @@ public class JavaCodeConventionEnglishAutomaton {
             char ch = tmpText.charAt(i);
 
             if (isWordStartState()) {
-                wordStart = i - 1;
+                current.callback(new WordStartStateEvent(this, i));
             }
             wordEnd = i;
 
             next(ch);
 
             if (isFinalState()) {
-                processFinalState();
+                current.callback(new StateEvent(this));
                 break;
             }
 
@@ -145,10 +155,6 @@ public class JavaCodeConventionEnglishAutomaton {
      */
     public boolean hasNextWord() {
         return wordStart != -1;
-    }
-
-    private void processFinalState() {
-        ((FinalState) current).callback();
     }
 
     private void next(char ch) {
@@ -170,7 +176,7 @@ public class JavaCodeConventionEnglishAutomaton {
      * @return true, if current state is Final; false - otherwise
      */
     private boolean isFinalState() {
-        return current instanceof FinalState;
+        return current.isFinal();
     }
 
     /**

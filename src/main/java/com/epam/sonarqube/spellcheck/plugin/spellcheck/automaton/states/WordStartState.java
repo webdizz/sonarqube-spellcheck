@@ -8,5 +8,9 @@ public class WordStartState extends State {
     public WordStartState(String name) {
         super(name);
     }
+    
+    public WordStartState(String name, StateCallback stateCallback) {
+        super(name, stateCallback);
+    }
 
 }

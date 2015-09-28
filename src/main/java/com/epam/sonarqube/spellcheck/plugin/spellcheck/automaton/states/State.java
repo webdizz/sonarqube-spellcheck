@@ -15,10 +15,19 @@ public class State {
     private Map<Character, State> transitions;
     /* Default transition */
     private State elseState;
+    
+    private StateCallback callback;
+    
+    protected boolean isFinalState = false;
 
     public State(String name) {
         this.name = name;
         this.transitions = new ConcurrentHashMap<Character, State>();
+    }
+    
+    public State(String name, StateCallback callback) {
+        this(name);
+        this.callback = callback;
     }
 
     /**
@@ -74,6 +83,16 @@ public class State {
      */
     public void elseTransition(State state) {
         this.elseState = state;
+    }
+    
+    public void callback(StateEvent stateEvent) {
+        if (callback != null) {
+            callback.call(stateEvent);
+        }
+    }
+    
+    public boolean isFinal() {
+        return isFinalState;
     }
 
     @Override
