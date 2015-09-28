@@ -75,7 +75,7 @@ public class SpellCheckIssuesSensor implements Sensor {
         }
     }
 
-    private void logWhenAnalyse(final Project module, final SensorContext context) {
+    private static void logWhenAnalyse(final Project module, final SensorContext context) {
         Object[] arguments = new Object[]{module.getName(), module.getKey(), module.getDescription()};
         LOGGER.debug("Module name={} key={} description=\"{}\"", arguments);
         LOGGER.debug("SensorContext {}", context);

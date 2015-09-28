@@ -27,6 +27,8 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
      * @return the next word.
      * @throws com.swabunga.spell.event.WordNotFoundException search string contains no more words.
      */
+
+    @Override
     public Word next() {
         if (settings != null) {
             minimumWordLength = settings.getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH);
@@ -38,7 +40,6 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
 
         currentWord.copy(nextWord);
 
-        int current = sentenceIterator.current();
         setSentenceIterator(currentWord);
 
         int i = currentWord.getEnd();
@@ -137,6 +138,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
         return currentWord;
     }
 
+    @Override
     protected void init() {
         super.init();
         inComment = false;
@@ -155,7 +157,6 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements Batc
     private boolean isCamelCase(final int position) {
         boolean result = false;
         if (position > 1 && text.length() > 2 && position < text.length() - 1) {
-            char curr = text.charAt(position);
             char before = text.charAt(position - 1);
             char after = text.charAt(position + 1);
             result = Character.isLetterOrDigit(before)
