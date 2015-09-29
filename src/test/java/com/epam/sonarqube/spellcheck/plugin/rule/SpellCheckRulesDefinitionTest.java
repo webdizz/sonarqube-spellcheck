@@ -1,11 +1,14 @@
 package com.epam.sonarqube.spellcheck.plugin.rule;
 
-import static org.mockito.Mockito.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.spi.LoggingEvent;
+import ch.qos.logback.core.Appender;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.rule.RuleStatus;
@@ -13,6 +16,12 @@ import org.sonar.api.rule.Severity;
 import org.sonar.api.server.rule.RulesDefinition;
 
 import com.epam.sonarqube.spellcheck.plugin.PluginParameter;
+
+import static org.hamcrest.CoreMatchers.any;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 public class SpellCheckRulesDefinitionTest {
 
@@ -23,11 +32,22 @@ public class SpellCheckRulesDefinitionTest {
 
     private final SpellCheckRulesDefinition instance = new SpellCheckRulesDefinition();
 
+    @Mock
+    private Appender mockAppender;
+    //Captor is genericised with ch.qos.logback.classic.spi.LoggingEvent
+    @Captor
+    private ArgumentCaptor<LoggingEvent> captorLoggingEvent;
+
+    @Before
+    public void init(){
+        MockitoAnnotations.initMocks(this);
+    }
+
     /**
      * Test of define method, of class GrammarRulesDefinition.
      */
     @Test
-    public void testDefine() {
+    public void shoulTestBehaviorOfMethodDefine() {
         LOGGER.info("Testing define");
 
         instance.define(context);
@@ -39,6 +59,35 @@ public class SpellCheckRulesDefinitionTest {
         verify(repository).done();
 
         LOGGER.info("Done.");
+    }
+
+    private void initLogger(Level level){
+        final ch.qos.logback.classic.Logger logger = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(SpellCheckRulesDefinition.class);
+        logger.addAppender(mockAppender);
+
+        instance.define(context);
+    }
+
+    @Test
+    public void shouldTestThatLoggerUsedWhenDefineRulesAndLevelIsDebug() {
+        Level level = Level.DEBUG;
+        initLogger(level);
+
+        //Now verify our logging interactions
+        verify(mockAppender, atLeast(1)).doAppend(captorLoggingEvent.capture());
+        //Having a genricised captor means we don't need to cast
+        final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
+        //Check log level is correct
+        assertThat(loggingEvent.getLevel(), is(level));
+    }
+
+    @Test
+    public void shouldTestThatLoggerNeverUsedWhenDefineRulesAndLevelIsNotDebug() {
+        Level level = Level.INFO;
+        initLogger(level);
+
+        //Now verify our logging interactions
+        verify(mockAppender, times(0)).doAppend(any(LoggingEvent.class));
     }
 
     private RulesDefinition.NewRepository prepareMockedRulesRepository() {
