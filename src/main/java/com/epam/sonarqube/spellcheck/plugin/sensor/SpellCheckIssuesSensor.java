@@ -34,8 +34,8 @@ public class SpellCheckIssuesSensor implements Sensor {
     private final Lock wrapperLock = new ReentrantLock();
     private SpellCheckIssuesWrapper templateWrapper;
 
-
-    public SpellCheckIssuesSensor(FileSystem fileSystem, ResourcePerspectives perspectives, final SpellChecker spellChecker) {
+    public SpellCheckIssuesSensor(FileSystem fileSystem, ResourcePerspectives perspectives,
+            final SpellChecker spellChecker) {
         this.fileSystem = fileSystem;
         this.perspectives = perspectives;
         this.spellChecker = spellChecker;
@@ -46,8 +46,9 @@ public class SpellCheckIssuesSensor implements Sensor {
 
     @Override
     public void analyse(Project module, SensorContext context) {
-        ActiveRule grammarRule = context.activeRules().find(RuleKey.of(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY));
-        if (grammarRule == null) {
+        ActiveRule spellCheckRule = context.activeRules()
+                .find(RuleKey.of(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY));
+        if (spellCheckRule == null) {
             LOGGER.debug("Grammar rule is not activated, skipping.");
         } else {
             doAnalyse(module, context);
@@ -76,7 +77,7 @@ public class SpellCheckIssuesSensor implements Sensor {
     }
 
     private static void logWhenAnalyse(final Project module, final SensorContext context) {
-        Object[] arguments = new Object[]{module.getName(), module.getKey(), module.getDescription()};
+        Object[] arguments = new Object[] { module.getName(), module.getKey(), module.getDescription() };
         LOGGER.debug("Module name={} key={} description=\"{}\"", arguments);
         LOGGER.debug("SensorContext {}", context);
         LOGGER.debug("Initialize the GrammarChecker.");
@@ -108,7 +109,7 @@ public class SpellCheckIssuesSensor implements Sensor {
             final SpellCheckIssuesWrapper lineWrapper = createWrapper(inputFile, line, lineNumber);
 
             if (LOGGER.isDebugEnabled()) {
-                final Object[] arguments = new Object[]{lineNumber, line, inputFile};
+                final Object[] arguments = new Object[] { lineNumber, line, inputFile };
                 LOGGER.debug("Prepared issues-wrapper for \n {}:\"{}\"\nin{}", arguments);
                 LOGGER.debug(lineWrapper.toString());
                 LOGGER.debug("Begin check line \"{}\"", line);
@@ -128,8 +129,7 @@ public class SpellCheckIssuesSensor implements Sensor {
     private SpellCheckIssuesWrapper createWrapper(final InputFile resource, final String line, final int lineNumber) {
         wrapperLock.lock();
         try {
-            return (templateWrapper == null)
-                    ? getGrammarIssuesWrapperWhenNull(resource, line, lineNumber)
+            return (templateWrapper == null) ? getGrammarIssuesWrapperWhenNull(resource, line, lineNumber)
                     : getGrammarIssuesWrapper(resource, line, lineNumber);
 
         } finally {
@@ -137,22 +137,18 @@ public class SpellCheckIssuesSensor implements Sensor {
         }
     }
 
-    private SpellCheckIssuesWrapper getGrammarIssuesWrapperWhenNull(final InputFile resource, final String line, final int lineNumber) {
-        return SpellCheckIssuesWrapper.builder()
-                .setInputFile(resource)
-                .setLine(line)
-                .setLineNumber(lineNumber)
+    private SpellCheckIssuesWrapper getGrammarIssuesWrapperWhenNull(final InputFile resource, final String line,
+            final int lineNumber) {
+        return SpellCheckIssuesWrapper.builder().setInputFile(resource).setLine(line).setLineNumber(lineNumber)
                 .setPerspectives(perspectives)
                 .setRuleKey(RuleKey.of(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY))
                 .build();
     }
 
-    private SpellCheckIssuesWrapper getGrammarIssuesWrapper(final InputFile resource, final String line, final int lineNumber) {
-        return SpellCheckIssuesWrapper.builder(templateWrapper)
-                .setInputFile(resource)
-                .setLine(line)
-                .setLineNumber(lineNumber)
-                .build();
+    private SpellCheckIssuesWrapper getGrammarIssuesWrapper(final InputFile resource, final String line,
+            final int lineNumber) {
+        return SpellCheckIssuesWrapper.builder(templateWrapper).setInputFile(resource).setLine(line)
+                .setLineNumber(lineNumber).build();
     }
 
     @Override
