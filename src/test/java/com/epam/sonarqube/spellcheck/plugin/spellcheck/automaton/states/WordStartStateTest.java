@@ -1,6 +1,7 @@
 package com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.states;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -17,58 +18,64 @@ import com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.JavaCodeConvent
 public class WordStartStateTest {
     @Mock
     private StateCallback callback;
-    
+
     private WordStartState wordStartState;
-    
+
     @Mock
     private JavaCodeConventionEnglishAutomaton automaton;
-    
+
     private StateEvent stateEvent;
 
     @Before
     public void init() {
         stateEvent = new StateEvent(automaton);
     }
-    
-    @Test
-    public void testWordStartStateName() throws Exception {
-        wordStartState = new WordStartState("word start state");
 
-        assertEquals("State: word start state", wordStartState.toString());
-    }
-    
     @Test
-    public void testCallbackCallsBehavior() throws Exception {
-        wordStartState = spy(new WordStartState("word start state", callback));
-        
+    public void shouldCallStateCallbackWhenItIsNotNull() throws Exception {
+        String stateName = "word start state";
+        wordStartState = spy(new WordStartState(stateName, callback));
+
         wordStartState.callback(stateEvent);
 
         verify(callback).call(stateEvent);
     }
 
     @Test
-    public void testWhenCallbackIsNullBehavior() throws Exception {
-        wordStartState = spy(new WordStartState("word start state"));
+    public void shouldNotCallStateCallbackWhenItIsNull() throws Exception {
+        String stateName = "word start state";
+        wordStartState = spy(new WordStartState(stateName));
         wordStartState.callback(stateEvent);
 
         verify(callback, times(0)).call(stateEvent);
     }
 
     @Test
-    public void testConstructorWithTwoParamsName() throws Exception {
-        wordStartState = spy(new WordStartState("word start state", callback));
-
-        assertEquals("State: word start state", wordStartState.toString());
-    }
-    
-    @Test
-    public void testConstructorWithTwoParamsCallbackCallsBehavior()
+    public void shouldUseConstructorWithTwoParamsAndSetCorrectStateName()
             throws Exception {
-        wordStartState = spy(new WordStartState("word start state", callback));
+        String stateName = "word start state";
+        String expectedStateName = "State: word start state";
+        wordStartState = spy(new WordStartState(stateName, callback));
 
-        wordStartState.callback(stateEvent);
+        assertEquals(expectedStateName, wordStartState.toString());
+    }
 
-        verify(callback).call(stateEvent);
+    @Test
+    public void shouldUseConstructorWithOneParamAndSetCorrectStateName()
+            throws Exception {
+        String stateName = "word start state";
+        String expectedStateName = "State: word start state";
+        wordStartState = new WordStartState(stateName);
+
+        assertEquals(expectedStateName, wordStartState.toString());
+    }
+
+    @Test
+    public void shouldCheckIfWordStartStateIsFinalAndReturnFalse() throws Exception {
+        String stateName = "word start state";
+        wordStartState = new WordStartState(stateName);
+
+        assertFalse(wordStartState.isFinal());
     }
 
 }

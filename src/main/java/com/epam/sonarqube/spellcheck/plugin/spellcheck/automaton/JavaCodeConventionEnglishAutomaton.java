@@ -13,6 +13,8 @@ import com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.states.WordStar
  * constant declarations, regular words. Accepts only words written in English
  * alphabet, other symbols will be skipped.
  * 
+ * Must call init() before using this automaton.
+ * 
  * Not thread safe.
  *
  */
@@ -26,6 +28,8 @@ public class JavaCodeConventionEnglishAutomaton implements WordFinderAutomaton {
 
     private int wordStart;
     private int wordEnd;
+    
+    private boolean foundNextWord;
 
     /**
      * Initialize automaton with states and rules for parsing java source code
@@ -126,6 +130,7 @@ public class JavaCodeConventionEnglishAutomaton implements WordFinderAutomaton {
 
             if (isWordStartState()) {
                 current.callback(new WordStartStateEvent(this, i));
+                foundNextWord = true;
             }
             wordEnd = i;
 
@@ -145,7 +150,7 @@ public class JavaCodeConventionEnglishAutomaton implements WordFinderAutomaton {
      */
     @Override
     public boolean hasNextWord() {
-        return wordStart != -1;
+        return foundNextWord;
     }
 
     private void next(char ch) {
@@ -157,7 +162,8 @@ public class JavaCodeConventionEnglishAutomaton implements WordFinderAutomaton {
      */
     private void reset() {
         current = init;
-        wordStart = -1;
+        foundNextWord = false;
+        wordStart = 0;
         wordEnd = 0;
     }
 

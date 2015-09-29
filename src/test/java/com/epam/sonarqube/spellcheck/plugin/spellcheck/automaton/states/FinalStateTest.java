@@ -1,13 +1,15 @@
 package com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.states;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
-
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton.JavaCodeConventionEnglishAutomaton;
@@ -18,56 +20,62 @@ public class FinalStateTest {
     private StateCallback callback;
 
     private FinalState finalState;
-    
+
     @Mock
     private JavaCodeConventionEnglishAutomaton automaton;
-    
+
     private StateEvent stateEvent;
 
     @Before
     public void init() {
         stateEvent = new StateEvent(automaton);
     }
-    
+
     @Test
-    public void testCallbackCallsBehavior() throws Exception {
-        finalState = spy(new FinalState("finalState", callback));
-        
+    public void shouldCallStateCallbackWhenItIsNotNull() throws Exception {
+        String stateName = "finalState";
+        finalState = spy(new FinalState(stateName, callback));
+
         finalState.callback(stateEvent);
 
         verify(callback).call(stateEvent);
     }
 
     @Test
-    public void testWhenCallbackIsNullBehavior() throws Exception {
-        finalState = spy(new FinalState("finalState"));
+    public void shouldNotCallStateCallbackWhenItIsNull() throws Exception {
+        String stateName = "finalState";
+        finalState = spy(new FinalState(stateName));
         finalState.callback(stateEvent);
 
         verify(callback, times(0)).call(stateEvent);
     }
 
     @Test
-    public void testConstructorWithTwoParamsName() throws Exception {
-        finalState = spy(new FinalState("finalState", callback));
-
-        assertEquals("State: finalState", finalState.toString());
-    }
-
-    @Test
-    public void testConstructorWithTwoParamsCallbackCallsBehavior()
+    public void shouldUseConstructorWithTwoParamsAndSetCorrectStateName()
             throws Exception {
-        finalState = spy(new FinalState("finalState", callback));
+        String stateName = "finalState";
+        String expectedStateName = "State: finalState";
+        finalState = new FinalState(stateName, callback);
 
-        finalState.callback(stateEvent);
-
-        verify(callback).call(stateEvent);
+        assertEquals(expectedStateName, finalState.toString());
     }
 
     @Test
-    public void testName() throws Exception {
-        finalState = spy(new FinalState("finalState"));
+    public void shouldUseConstructorWithOneParamAndSetCorrectStateName()
+            throws Exception {
+        String stateName = "finalState";
+        String expectedStateName = "State: finalState";
+        finalState = new FinalState(stateName);
 
-        assertEquals("State: finalState", finalState.toString());
+        assertEquals(expectedStateName, finalState.toString());
+    }
+
+    @Test
+    public void shouldCheckIfFinalStateIsFinalAndReturnTrue() throws Exception {
+        String stateName = "finalState";
+        finalState = new FinalState(stateName);
+
+        assertTrue(finalState.isFinal());
     }
 
 }

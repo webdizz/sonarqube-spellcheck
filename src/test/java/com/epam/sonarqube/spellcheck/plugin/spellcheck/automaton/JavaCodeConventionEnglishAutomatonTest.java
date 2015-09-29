@@ -22,32 +22,39 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testInit() throws Exception {
-        assertEquals(-1, automaton.getWordStart());
-        assertEquals(0, automaton.getWordEnd());
+    public void shouldCheckAutomatonAfterInitAndMustHaveDefaultWordBoundsValues() throws Exception {
+        int expectedWordStart = 0;
+        int expectedWordEnd = 0;
+        
+        assertEquals(expectedWordStart, automaton.getWordStart());
+        assertEquals(expectedWordEnd, automaton.getWordEnd());
     }
 
     @Test
-    public void testHasNextWordNoNextWord() throws Exception {
+    public void shouldCheckAutomatonAfterInitAndMustHaveNoNextWord() throws Exception {
         assertFalse(automaton.hasNextWord());
     }
 
     @Test
-    public void testHasNextWordNextWordWasFound() throws Exception {
-        automaton.searchNextWord("word", 0);
+    public void shouldSearchNextWordInTextAndMustFindNextWord() throws Exception {
+        String lineToSearchWord = "variable";
+        int beginIndex = 0;
+        automaton.searchNextWord(lineToSearchWord, beginIndex);
 
         assertTrue(automaton.hasNextWord());
     }
 
     @Test
-    public void testSearchNextWordIndexMoreThanTextLength() throws Exception {
-        automaton.searchNextWord("word", 10);
+    public void shouldSearchNextWordWithIndexMoreThanTextLengthAndMustNotFindNextWord() throws Exception {
+        String lineToSearchWord = "variable";
+        int beginIndexGreaterThanLineLength = 15;
+        automaton.searchNextWord(lineToSearchWord, beginIndexGreaterThanLineLength);
 
         assertFalse(automaton.hasNextWord());
     }
 
     @Test
-    public void testSearchNextWordOneWordOnlySmallLetters() throws Exception {
+    public void shouldFindOneWordOneWordOnlySmallLetters() throws Exception {
         String text = "variable";
         String[] expected = { "variable" };
         String[] actual = parseText(text);
@@ -56,7 +63,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordOneWordFirstLetterCapitalOtherSmall()
+    public void shouldFindOneWordFirstLetterCapitalOtherSmall()
             throws Exception {
         String text = "Variable";
         String[] expected = { "Variable" };
@@ -66,7 +73,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordOneWordOnlyCapitalLetters() throws Exception {
+    public void shouldFindOneWordOnlyCapitalLetters() throws Exception {
         String text = "SQL";
         String[] expected = { "SQL" };
         String[] actual = parseText(text);
@@ -75,7 +82,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordTwoWordsFirstCapitalLetterInEach()
+    public void shouldFindTwoWordsFirstCapitalLetterInEach()
             throws Exception {
         String text = "FinalState";
         String[] expected = { "Final", "State" };
@@ -85,7 +92,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordTwoWordsCamelCase() throws Exception {
+    public void shouldFindTwoWordsCamelCase() throws Exception {
         String text = "finalState";
         String[] expected = { "final", "State" };
         String[] actual = parseText(text);
@@ -94,7 +101,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordPackageName() throws Exception {
+    public void shouldFindFourWordsInPackageName() throws Exception {
         String text = "foo.bar.spellcheck.automaton";
         String[] expected = { "foo", "bar", "spellcheck", "automaton" };
         String[] actual = parseText(text);
@@ -103,7 +110,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordAnnotation() throws Exception {
+    public void shouldFindTwoWordsInAnnotation() throws Exception {
         String text = "@RetentionPolicy";
         String[] expected = { "Retention", "Policy" };
         String[] actual = parseText(text);
@@ -112,7 +119,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordGeneric() throws Exception {
+    public void shouldFindFiveWordsInGeneric() throws Exception {
         String text = "List<UserProfile> userProfiles;";
         String[] expected = { "List", "User", "Profile", "user", "Profiles" };
         String[] actual = parseText(text);
@@ -121,7 +128,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordAbbreviationInClassName() throws Exception {
+    public void shouldFindThreeWordsWithAbbreviationInClassName() throws Exception {
         String text = "JPAUserRepository";
         String[] expected = { "JPA", "User", "Repository" };
         String[] actual = parseText(text);
@@ -130,7 +137,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordAbbreviationInClassNameInMiddle()
+    public void shouldFindThreeWordsWithAbbreviationInClassNameInMiddle()
             throws Exception {
         String text = "UserJPARepository";
         String[] expected = { "User", "JPA", "Repository" };
@@ -140,7 +147,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordAbbreviationOneLetterInClassNameInMiddle()
+    public void shouldFindOneLetterAbbreviationInClassNameInMiddle()
             throws Exception {
         String text = "UserJRepository";
         String[] expected = { "User", "J", "Repository" };
@@ -150,7 +157,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordConstant() throws Exception {
+    public void shouldFindThreeWordsInConstant() throws Exception {
         String text = "MAX_INT_THRESHOLD";
         String[] expected = { "MAX", "INT", "THRESHOLD" };
         String[] actual = parseText(text);
@@ -159,7 +166,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordMixed1() throws Exception {
+    public void shouldFindFourWordsInMixedVariableWithNonEnglishLettersSymbols() throws Exception {
         String text = " _first7Very222Long#@^:$=-'Variable   ";
         String[] expected = { "first", "Very", "Long", "Variable" };
         String[] actual = parseText(text);
@@ -168,7 +175,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordMixed2() throws Exception {
+    public void shouldFindFiveWordsInMixedVariableWithSpaces() throws Exception {
         String text = "	Line with tabs 		and     several       spaces";
         String[] expected = { "Line", "with", "tabs", "and", "several",
                 "spaces" };
@@ -178,7 +185,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordComment() throws Exception {
+    public void shouldFindFiveWordsInComment() throws Exception {
         String text = "/* comment for the method drawCircle() */";
         String[] expected = { "comment", "for", "the", "method", "draw",
                 "Circle" };
@@ -188,7 +195,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordLineComment() throws Exception {
+    public void shouldFindTwoWordsInLineComment() throws Exception {
         String text = "//line comment";
         String[] expected = { "line", "comment" };
         String[] actual = parseText(text);
@@ -197,7 +204,7 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testSearchNextWordUrl() throws Exception {
+    public void shouldFindFourWordsInUrl() throws Exception {
         String text = "http://www.google.com";
         String[] expected = { "http", "www", "google", "com" };
         String[] actual = parseText(text);
@@ -223,17 +230,43 @@ public class JavaCodeConventionEnglishAutomatonTest {
     }
 
     @Test
-    public void testGetWordStart() throws Exception {
-        automaton.searchNextWord("testSingleVariable", 4);
+    public void shouldSearchForNextWordFromStartOfTextAndMustProvideCorrectWordStartBoundary() throws Exception {
+        String lineToSearchWord = "testSingleVariable";
+        int beginIndex = 0;
+        int expectedWordStart = 0;
+        automaton.searchNextWord(lineToSearchWord, beginIndex);
 
-        assertEquals(4, automaton.getWordStart());
+        assertEquals(expectedWordStart, automaton.getWordStart());
     }
-
+    
     @Test
-    public void testGetWordEnd() throws Exception {
-        automaton.searchNextWord("testSingleVariable", 4);
+    public void shouldSearchForNextWordFromMiddleOfTextAndMustProvideCorrectWordStartBoundary() throws Exception {
+        String lineToSearchWord = "testSingleVariable";
+        int beginIndex = 4;
+        int expectedWordStart = 4;
+        automaton.searchNextWord(lineToSearchWord, beginIndex);
 
-        assertEquals(10, automaton.getWordEnd());
+        assertEquals(expectedWordStart, automaton.getWordStart());
+    }
+    
+    @Test
+    public void shouldSearchForNextWordFromStartOfTextAndMustProvideCorrectWordEndBoundary() throws Exception {
+        String lineToSearchWord = "testSingleVariable";
+        int beginIndex = 0;
+        int expectedWordEnd = 4;
+        automaton.searchNextWord(lineToSearchWord, beginIndex);
+
+        assertEquals(expectedWordEnd, automaton.getWordEnd());
+    }
+    
+    @Test
+    public void shouldSearchForNextWordFromMiddleOfTextAndMustProvideCorrectWordEndBoundary() throws Exception {
+        String lineToSearchWord = "testSingleVariable";
+        int beginIndex = 4;
+        int expectedWordEnd = 10;
+        automaton.searchNextWord(lineToSearchWord, beginIndex);
+
+        assertEquals(expectedWordEnd, automaton.getWordEnd());
     }
 
 }

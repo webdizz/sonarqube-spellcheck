@@ -36,13 +36,14 @@ public class StateTest {
     }
 
     @Test
-    public void testStateIsNotFinal() throws Exception {
+    public void shouldCheckIfStateIsFinalAndReturnFalse() throws Exception {
         assertFalse(state.isFinal());
     }
     
     @Test
-    public void testCallbackCallsBehavior() throws Exception {
-        state = spy(new State("state", callback));
+    public void shouldCallStateCallbackWhenItIsNotNull() throws Exception {
+        String stateName = "state";
+        state = spy(new State(stateName, callback));
         
         state.callback(stateEvent);
 
@@ -50,41 +51,45 @@ public class StateTest {
     }
 
     @Test
-    public void testWhenCallbackIsNullBehavior() throws Exception {
-        state = spy(new State("state"));
+    public void shouldNotCallStateCallbackWhenItIsNull() throws Exception {
+        String stateName = "state";
+        state = spy(new State(stateName));
+        
         state.callback(stateEvent);
 
         verify(callback, times(0)).call(stateEvent);
     }
     
     @Test
-    public void testConstructorWithTwoParamsName() throws Exception {
-        state = spy(new State("state", callback));
+    public void shouldUseConstructorWithTwoParamsAndSetCorrectStateName() throws Exception {
+        String stateName = "state";
+        String expectedStateName = "State: state";
+        state = new State(stateName, callback);
 
-        assertEquals("State: state", state.toString());
-    }
-
-    @Test
-    public void testConstructorWithTwoParamsCallbackCallsBehavior()
-            throws Exception {
-        state = spy(new FinalState("state", callback));
-
-        state.callback(stateEvent);
-
-        verify(callback).call(stateEvent);
+        assertEquals(expectedStateName, state.toString());
     }
     
     @Test
-    public void testNextWhenTransitionsIsEmpty() throws Exception {
+    public void shouldUseConstructorWithOneParamAndSetCorrectStateName()
+            throws Exception {
+        String stateName = "state";
+        String expectedStateName = "State: state";
+        state = new FinalState(stateName);
+
+        assertEquals(expectedStateName, state.toString());
+    }
+
+    @Test
+    public void shouldCheckTransitionToNextStateWithEmptyTransitionsMapAndReturnNull() throws Exception {
         char anyChar = 'a';
 
         assertNull(state.next(anyChar));
     }
 
     @Test
-    public void testNextWhenElseTransitionIsEmpty() throws Exception {
+    public void shouldCheckTransitionToNextStateWithOneTransitionInMapAndEmptyElseTransitionAndReturnCorrectNextState() throws Exception {
         char transitionChar = 'a';
-        State expectedState = state;
+        State expectedState = new State("StateTo");
         state.addTransition(transitionChar, expectedState);
 
         State actualState = state.next(transitionChar);
@@ -93,7 +98,7 @@ public class StateTest {
     }
 
     @Test
-    public void testNextWhenElseTransitionNonEmpty() throws Exception {
+    public void shouldCheckTransitionToNextStateWithEmptyTransitionsMapAndFullElseTransitionAndReturnElseTransitionState() throws Exception {
         char transitionChar = 'a';
         State expectedElseState = new State("StateTo");
 
@@ -105,14 +110,14 @@ public class StateTest {
     }
 
     @Test
-    public void testToString() throws Exception {
-        String expectedString = "State: testState";
+    public void shouldCheckToStringAndReturnCorrectValue() throws Exception {
+        String expectedStateToString = "State: testState";
 
-        assertEquals(expectedString, state.toString());
+        assertEquals(expectedStateToString, state.toString());
     }
 
     @Test
-    public void testAddTwoTransitions() throws Exception {
+    public void shouldAddTwoCharTransitionsAndReturnCorrectNextState() throws Exception {
         char transitionChar1 = 'a';
         char transitionChar2 = 'b';
 
@@ -129,7 +134,7 @@ public class StateTest {
     }
 
     @Test
-    public void testAddStringTransitions() throws Exception {
+    public void shouldAddStringTransitionsAndReturnCorrectState() throws Exception {
         String transitions = "abc";
 
         State stateTo = new State("stateTo");
@@ -142,7 +147,7 @@ public class StateTest {
     }
 
     @Test
-    public void testAddTwoStringTransitions() throws Exception {
+    public void shouldAddTwoStringTransitionsAndReturnCorrectState() throws Exception {
         String transitions1 = "ab";
         String transitions2 = "cd";
 

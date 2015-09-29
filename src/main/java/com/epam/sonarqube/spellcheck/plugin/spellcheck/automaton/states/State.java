@@ -8,23 +8,29 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class State {
 
+    /* Flag that shows if this state is final */
+    protected boolean isFinalState = false;
+
     /* Name of state. For logging purposes */
     private String name;
 
     /* Map of all transitions */
     private Map<Character, State> transitions;
+
     /* Default transition */
     private State elseState;
-    
+
+    /*
+     * Callback method of state. Usually called by Automaton which uses this
+     * state
+     */
     private StateCallback callback;
-    
-    protected boolean isFinalState = false;
 
     public State(String name) {
         this.name = name;
         this.transitions = new ConcurrentHashMap<Character, State>();
     }
-    
+
     public State(String name, StateCallback callback) {
         this(name);
         this.callback = callback;
@@ -84,13 +90,26 @@ public class State {
     public void elseTransition(State state) {
         this.elseState = state;
     }
-    
+
+    /**
+     * Call callback method of state.
+     * 
+     * @param stateEvent
+     *            data object, that contains reference to Automaton and other
+     *            related to this callback parameters, which will be used in
+     *            callback
+     */
     public void callback(StateEvent stateEvent) {
         if (callback != null) {
             callback.call(stateEvent);
         }
     }
-    
+
+    /**
+     * Check if this state is final
+     * 
+     * @return boolean true, if state is final; false - otherwise
+     */
     public boolean isFinal() {
         return isFinalState;
     }

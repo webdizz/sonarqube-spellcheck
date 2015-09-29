@@ -12,9 +12,10 @@ public class WordStartStateEventTest {
     private WordStartStateEvent wordStartStateEvent;
 
     @Test
-    public void testGetIndex() throws Exception {
+    public void shouldCreateWordStartStateEventAndReturnProvidedIndex() throws Exception {
         int expectedIndex = 10;
         wordStartStateEvent = new WordStartStateEvent(automaton, expectedIndex);
+        
         assertEquals(expectedIndex, wordStartStateEvent.getIndex());
     }
 

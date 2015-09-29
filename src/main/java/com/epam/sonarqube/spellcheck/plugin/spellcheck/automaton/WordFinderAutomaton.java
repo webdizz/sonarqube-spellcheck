@@ -1,19 +1,25 @@
 package com.epam.sonarqube.spellcheck.plugin.spellcheck.automaton;
 
+/**
+ * Represents Automaton, that breaks source code into separate words.
+ * 
+ * Must call init() before using this automaton.
+ * 
+ */
 public interface WordFinderAutomaton {
 
     /**
      * Initialize automaton with states and rules for parsing source code
      */
-    public void init();
-    
+    void init();
+
     /**
      * Return start position of word, which was found by previous call of
      * searchNextWord(...)
      * 
      * @return int start position of found word
      */
-    public abstract int getWordStart();
+    int getWordStart();
 
     /**
      * Return end position of word, which was found by previous call of
@@ -21,7 +27,7 @@ public interface WordFinderAutomaton {
      * 
      * @return int end position of found word
      */
-    public abstract int getWordEnd();
+    int getWordEnd();
 
     /**
      * Look for next word in given {@code text} starting from position
@@ -32,13 +38,13 @@ public interface WordFinderAutomaton {
      * @param beginIndex
      *            the beginning index, inclusive
      */
-    public abstract void searchNextWord(String text, int beginIndex);
+    void searchNextWord(String text, int beginIndex);
 
     /**
      * Checks if previous call of searchNextWord(...) has found a word
      * 
      * @return true, if word was found; false - otherwise
      */
-    public abstract boolean hasNextWord();
+    boolean hasNextWord();
 
 }
