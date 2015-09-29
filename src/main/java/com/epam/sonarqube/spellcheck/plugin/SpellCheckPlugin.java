@@ -7,16 +7,15 @@ import org.sonar.api.PropertyType;
 import org.sonar.api.SonarPlugin;
 import org.sonar.api.config.PropertyDefinition;
 
-import com.epam.sonarqube.spellcheck.plugin.issue.tracking.SpellCheckActionDefinition;
 import com.epam.sonarqube.spellcheck.plugin.issue.tracking.AddWordFromIssueFunction;
+import com.epam.sonarqube.spellcheck.plugin.issue.tracking.SpellCheckActionDefinition;
 import com.epam.sonarqube.spellcheck.plugin.profile.SpellCheckProfileDefinition;
 import com.epam.sonarqube.spellcheck.plugin.rule.SpellCheckRulesDefinition;
 import com.epam.sonarqube.spellcheck.plugin.sensor.SpellCheckIssuesSensor;
-import com.epam.sonarqube.spellcheck.plugin.spellcheck.SpellChecker;
 import com.epam.sonarqube.spellcheck.plugin.spellcheck.GrammarDictionaryLoader;
 import com.epam.sonarqube.spellcheck.plugin.spellcheck.JavaSourceCodeWordFinder;
+import com.epam.sonarqube.spellcheck.plugin.spellcheck.SpellChecker;
 import com.epam.sonarqube.spellcheck.plugin.spellcheck.SpellCheckerFactory;
-import com.epam.sonarqube.spellcheck.plugin.utils.SpellCheckerUtil;
 
 
 public class SpellCheckPlugin extends SonarPlugin {
@@ -42,7 +41,6 @@ public class SpellCheckPlugin extends SonarPlugin {
                         SpellChecker.class,
                         GrammarDictionaryLoader.class,
                         SpellCheckerFactory.class,
-                        SpellCheckerUtil.class,
 
                         PropertyDefinition.builder(PluginParameter.SPELL_MINIMUMWORDLENGTH).name("Minimum word length")
                                 .type(PropertyType.INTEGER).description("Defines minimum word length to analyse")
