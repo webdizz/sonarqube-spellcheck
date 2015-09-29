@@ -77,6 +77,7 @@ public class SpellCheckProfileDefinitionTest {
     private void initLogger(Level level){
         final Logger logger = (Logger) LoggerFactory.getLogger(SpellCheckProfileDefinition.class);
         logger.addAppender(mockAppender);
+        logger.setLevel(level);
 
         instance.createProfile(ValidationMessages.create());
     }

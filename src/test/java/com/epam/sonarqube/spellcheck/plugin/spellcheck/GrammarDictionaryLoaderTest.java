@@ -2,7 +2,9 @@ package com.epam.sonarqube.spellcheck.plugin.spellcheck;
 
 import com.epam.sonarqube.spellcheck.plugin.PluginParameter;
 import com.epam.sonarqube.spellcheck.plugin.exceptions.UnableToLoadDictionary;
+import com.google.common.base.Optional;
 import com.swabunga.spell.engine.SpellDictionary;
+import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.sonar.api.config.Settings;
@@ -31,7 +33,7 @@ public class GrammarDictionaryLoaderTest {
     }
 
     @Test
-    public void testLoadMainDictionary() throws Exception {
+    public void shouldLoadMainDictionaryFromResources() throws Exception {
         when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("/dict/english.0");
         SpellDictionary dictionary = grammarDictionaryLoader.loadMainDictionary();
 
@@ -39,15 +41,32 @@ public class GrammarDictionaryLoaderTest {
     }
 
     @Test(expected = UnableToLoadDictionary.class)
-    public void testLoadMainDictionaryq() throws Exception {
+    public void shouldThrowExceptionWhenDictionaryPathIsNull() throws Exception {
         when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn(null);
         SpellDictionary dictionary = grammarDictionaryLoader.loadMainDictionary();
+    }
 
-        assertNotNull(dictionary);
+    @Test(expected = UnableToLoadDictionary.class)
+    public void shouldThrowExceptionWhenHaveWrongDictionaryPath() throws Exception {
+        when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("/res/res");
+        SpellDictionary dictionary = grammarDictionaryLoader.loadMainDictionary();
     }
 
     @Test
-    public void testLoadAlternateDictionary() throws Exception {
+    public void shouldLoadAlternateDictionary() throws Exception {
+        when(settings.getString(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn("/dict/english.0");
 
+        Optional<SpellDictionaryHashMap> dictionary = grammarDictionaryLoader.loadAlternateDictionary();
+
+        assertTrue(!dictionary.asSet().isEmpty());
+    }
+
+    @Test
+    public void shouldCreateEmptyDictionaryWhenAlternativeDictionaryPropertyKeyIsNull() throws Exception {
+        when(settings.getString(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(null);
+
+        Optional<SpellDictionaryHashMap> dictionary = grammarDictionaryLoader.loadAlternateDictionary();
+
+        assertTrue(dictionary.asSet().isEmpty());
     }
 }
