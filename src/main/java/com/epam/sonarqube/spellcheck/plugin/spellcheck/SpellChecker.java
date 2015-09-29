@@ -47,7 +47,7 @@ public class SpellChecker implements BatchExtension {
         spellCheck.reset();
     }
 
-    private void parametersValidation(final String inputLine, final SpellCheckListener spellCheckListener) {
+    private static void parametersValidation(final String inputLine, final SpellCheckListener spellCheckListener) {
         checkArgument(spellCheckListener != null, "Cannot proceed with spell checking without SpellCheckListener");
         checkArgument(!Strings.isNullOrEmpty(inputLine), "Cannot proceed with spell checking for empty inputLine");
         if (LOGGER.isDebugEnabled()) {
