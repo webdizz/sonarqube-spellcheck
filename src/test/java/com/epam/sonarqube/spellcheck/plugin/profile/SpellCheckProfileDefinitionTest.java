@@ -2,10 +2,21 @@ package com.epam.sonarqube.spellcheck.plugin.profile;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.mockito.Mockito.*;
 
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.core.Appender;
+import ch.qos.logback.classic.spi.LoggingEvent;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.slf4j.LoggerFactory;
 import org.sonar.api.profiles.RulesProfile;
 import org.sonar.api.rules.Rule;
 import org.sonar.api.rules.RuleFinder;
@@ -19,6 +30,18 @@ public class SpellCheckProfileDefinitionTest {
     private final RuleFinder ruleFinder = mock(RuleFinder.class);
     private final SpellCheckProfileDefinition instance = new SpellCheckProfileDefinition(ruleFinder);
     private final Rule rule = prepareMockedRule();
+
+    @Mock
+    private Appender mockAppender;
+    //Captor is genericised with ch.qos.logback.classic.spi.LoggingEvent
+    @Captor
+    private ArgumentCaptor<LoggingEvent> captorLoggingEvent;
+
+    @Before
+    public void init(){
+        MockitoAnnotations.initMocks(this);
+    }
+
 
     /**
      * Test of createProfile method, of class GrammarProfileDefinition.
@@ -50,6 +73,41 @@ public class SpellCheckProfileDefinitionTest {
         assertEquals(rule, result.getActiveRule(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY).getRule());
     }
 
+    @Test
+    public void shouldTestThatLoggerUsedWhenCreateProfileAndLevelIsDebug() {
+
+        final Logger logger = (Logger) LoggerFactory.getLogger(SpellCheckProfileDefinition.class);
+        logger.addAppender(mockAppender);
+        logger.setLevel(Level.DEBUG);
+
+        instance.createProfile(ValidationMessages.create());
+
+        //Now verify our logging interactions
+        verify(mockAppender, atLeast(1)).doAppend(captorLoggingEvent.capture());
+        //Having a genricised captor means we don't need to cast
+        final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
+        //Check log level is correct
+        assertThat(loggingEvent.getLevel(), is(Level.DEBUG));
+    }
+
+    @Test
+    public void shouldTestThatLoggerNeverUsedWhenCreateProfileAndLevelIsNotDebug() {
+
+        final Logger logger = (Logger) LoggerFactory.getLogger(SpellCheckProfileDefinition.class);
+        logger.addAppender(mockAppender);
+        logger.setLevel(Level.INFO);
+        logger.info("start testing");
+
+        instance.createProfile(ValidationMessages.create());
+
+        //Now verify our logging interactions
+        verify(mockAppender, times(1)).doAppend(captorLoggingEvent.capture());
+        //Having a genricised captor means we don't need to cast
+        final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
+        //Check log level is correct
+        assertThat(loggingEvent.getLevel(), is(Level.INFO));
+        assertThat(loggingEvent.getMessage(), is("start testing"));
+    }
 
     private Rule prepareMockedRule() {
         final Rule mockedRule = mock(Rule.class);
