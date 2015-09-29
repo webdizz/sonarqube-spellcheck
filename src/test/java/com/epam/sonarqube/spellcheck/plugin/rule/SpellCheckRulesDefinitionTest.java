@@ -3,7 +3,6 @@ package com.epam.sonarqube.spellcheck.plugin.rule;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.Appender;
-import com.epam.sonarqube.spellcheck.plugin.profile.SpellCheckProfileDefinition;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -17,8 +16,8 @@ import org.sonar.api.rule.Severity;
 import org.sonar.api.server.rule.RulesDefinition;
 
 import com.epam.sonarqube.spellcheck.plugin.PluginParameter;
-import org.sonar.api.utils.ValidationMessages;
 
+import static org.hamcrest.CoreMatchers.any;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
@@ -62,40 +61,33 @@ public class SpellCheckRulesDefinitionTest {
         LOGGER.info("Done.");
     }
 
-    @Test
-    public void shouldTestThatLoggerUsedWhenDefineRulesAndLevelIsDebug() {
-
+    private void initLogger(Level level){
         final ch.qos.logback.classic.Logger logger = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(SpellCheckRulesDefinition.class);
         logger.addAppender(mockAppender);
-        logger.setLevel(Level.DEBUG);
 
         instance.define(context);
+    }
+
+    @Test
+    public void shouldTestThatLoggerUsedWhenDefineRulesAndLevelIsDebug() {
+        Level level = Level.DEBUG;
+        initLogger(level);
 
         //Now verify our logging interactions
         verify(mockAppender, atLeast(1)).doAppend(captorLoggingEvent.capture());
         //Having a genricised captor means we don't need to cast
         final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
         //Check log level is correct
-        assertThat(loggingEvent.getLevel(), is(Level.DEBUG));
+        assertThat(loggingEvent.getLevel(), is(level));
     }
 
     @Test
     public void shouldTestThatLoggerNeverUsedWhenDefineRulesAndLevelIsNotDebug() {
-
-        final ch.qos.logback.classic.Logger logger = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(SpellCheckRulesDefinition.class);
-        logger.addAppender(mockAppender);
-        logger.setLevel(Level.INFO);
-        logger.info("start testing");
-
-        instance.define(context);
+        Level level = Level.INFO;
+        initLogger(level);
 
         //Now verify our logging interactions
-        verify(mockAppender, times(1)).doAppend(captorLoggingEvent.capture());
-        //Having a genricised captor means we don't need to cast
-        final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
-        //Check log level is correct
-        assertThat(loggingEvent.getLevel(), is(Level.INFO));
-        assertThat(loggingEvent.getMessage(), is("start testing"));
+        verify(mockAppender, times(0)).doAppend(any(LoggingEvent.class));
     }
 
     private RulesDefinition.NewRepository prepareMockedRulesRepository() {

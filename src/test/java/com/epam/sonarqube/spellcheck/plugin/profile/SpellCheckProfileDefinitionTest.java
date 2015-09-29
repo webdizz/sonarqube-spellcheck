@@ -1,5 +1,6 @@
 package com.epam.sonarqube.spellcheck.plugin.profile;
 
+import static org.hamcrest.CoreMatchers.any;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertThat;
@@ -73,40 +74,33 @@ public class SpellCheckProfileDefinitionTest {
         assertEquals(rule, result.getActiveRule(PluginParameter.REPOSITORY_KEY, PluginParameter.SONAR_SPELL_CHECK_RULE_KEY).getRule());
     }
 
-    @Test
-    public void shouldTestThatLoggerUsedWhenCreateProfileAndLevelIsDebug() {
-
+    private void initLogger(Level level){
         final Logger logger = (Logger) LoggerFactory.getLogger(SpellCheckProfileDefinition.class);
         logger.addAppender(mockAppender);
-        logger.setLevel(Level.DEBUG);
 
         instance.createProfile(ValidationMessages.create());
+    }
+
+    @Test
+    public void shouldTestThatLoggerUsedWhenCreateProfileAndLevelIsDebug() {
+        Level level = Level.DEBUG;
+        initLogger(Level.DEBUG);
 
         //Now verify our logging interactions
         verify(mockAppender, atLeast(1)).doAppend(captorLoggingEvent.capture());
         //Having a genricised captor means we don't need to cast
         final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
         //Check log level is correct
-        assertThat(loggingEvent.getLevel(), is(Level.DEBUG));
+        assertThat(loggingEvent.getLevel(), is(level));
     }
 
     @Test
     public void shouldTestThatLoggerNeverUsedWhenCreateProfileAndLevelIsNotDebug() {
-
-        final Logger logger = (Logger) LoggerFactory.getLogger(SpellCheckProfileDefinition.class);
-        logger.addAppender(mockAppender);
-        logger.setLevel(Level.INFO);
-        logger.info("start testing");
-
-        instance.createProfile(ValidationMessages.create());
+        Level level = Level.INFO;
+        initLogger(level);
 
         //Now verify our logging interactions
-        verify(mockAppender, times(1)).doAppend(captorLoggingEvent.capture());
-        //Having a genricised captor means we don't need to cast
-        final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
-        //Check log level is correct
-        assertThat(loggingEvent.getLevel(), is(Level.INFO));
-        assertThat(loggingEvent.getMessage(), is("start testing"));
+        verify(mockAppender, times(0)).doAppend(any(LoggingEvent.class));
     }
 
     private Rule prepareMockedRule() {
