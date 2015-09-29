@@ -12,10 +12,6 @@ public class SpellCheckerFactory implements BatchExtension {
 
     private Settings settings;
 
-    public SpellCheckerFactory() {
-
-    }
-
     public SpellChecker getSpellChecker() {
         SpellChecker spellChecker = new SpellChecker();
         setSpellCheckerConfigs(spellChecker);
