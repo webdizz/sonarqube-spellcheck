@@ -64,6 +64,7 @@ public class SpellCheckRulesDefinitionTest {
     private void initLogger(Level level){
         final ch.qos.logback.classic.Logger logger = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(SpellCheckRulesDefinition.class);
         logger.addAppender(mockAppender);
+        logger.setLevel(level);
 
         instance.define(context);
     }
