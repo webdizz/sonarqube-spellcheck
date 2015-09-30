@@ -64878,6 +64878,8 @@ acidulous
 
 acing
 
+ack
+
 acked
 
 acknowledge
@@ -73616,6 +73618,8 @@ asceticism's
 
 ascetics
 
+ascii
+
 ascorbic
 
 ascot
@@ -74019,6 +74023,8 @@ assertively
 assertiveness
 
 assertiveness's
+
+assertj
 
 asserts
 
@@ -76006,6 +76012,8 @@ await
 
 awaited
 
+awaitility
+
 awaiting
 
 awaits
@@ -76537,6 +76545,10 @@ backlasher
 backlashes
 
 backless
+
+backload
+
+backloader
 
 backlog
 
@@ -78994,6 +79006,8 @@ bazookas
 
 bbl
 
+bdd
+
 bdrm
 
 be
@@ -79141,6 +79155,8 @@ beanstalk
 beanstalk's
 
 beanstalks
+
+beanutils
 
 bear
 
@@ -81119,6 +81135,8 @@ bibliophiles
 bibs
 
 bibulous
+
+bic
 
 bicameral
 
@@ -92660,6 +92678,8 @@ catchers
 
 catches
 
+catchexception
+
 catchier
 
 catchiest
@@ -93243,6 +93263,8 @@ cc
 ccflags
 
 cdata
+
+cds
 
 cease
 
@@ -98022,6 +98044,8 @@ clewing
 
 clews
 
+cli
+
 cliche
 
 cliche's
@@ -98824,6 +98848,8 @@ clxvii
 
 cmake
 
+cmd
+
 cmdline
 
 cnidarian
@@ -99337,6 +99363,8 @@ codebreaker
 codec
 
 coded
+
+codehaus
 
 codeine
 
@@ -99975,6 +100003,8 @@ collateral
 collateral's
 
 collateralise
+
+collateralization
 
 collateralize
 
@@ -107184,7 +107214,11 @@ counterpart
 
 counterpart's
 
+counterparties
+
 counterparts
+
+counterparty
 
 counterpoint
 
@@ -122462,6 +122496,8 @@ doltishness's
 
 dolts
 
+dom
+
 domain
 
 domain's
@@ -128588,6 +128624,8 @@ encryption's
 
 encryptions
 
+encryptor
+
 encryptors
 
 encrypts
@@ -129381,6 +129419,8 @@ enriching
 enrichment
 
 enrichment's
+
+enrichments
 
 enrobed
 
@@ -147328,6 +147368,8 @@ glyph's
 
 glyphs
 
+gmt
+
 gnarl
 
 gnarl's
@@ -152139,6 +152181,8 @@ handkerchiefs
 handle
 
 handle's
+
+handleable
 
 handlebar
 
@@ -165506,6 +165550,8 @@ instance's
 
 instanced
 
+instanceof
+
 instances
 
 instancing
@@ -168786,6 +168832,8 @@ jackrabbits
 
 jacks
 
+jackson
+
 jackstraw
 
 jackstraw's
@@ -168990,6 +169038,8 @@ jars
 
 jasmines
 
+jasypt
+
 jato
 
 jato's
@@ -169118,6 +169168,8 @@ jaywalking
 
 jaywalks
 
+jayway
+
 jazz
 
 jazz's
@@ -169134,7 +169186,11 @@ jazzing
 
 jazzy
 
+jbehave
+
 jcache
+
+jcraft
 
 jct
 
@@ -169638,6 +169694,10 @@ jivesoftware
 
 jiving
 
+jms
+
+jmx
+
 jndi
 
 jnilib
@@ -170102,7 +170162,11 @@ jpdl
 
 jpeg
 
+jqno
+
 jquery
+
+jsch
 
 jsdoc
 
@@ -170111,6 +170175,8 @@ jsessionid
 jshint
 
 json
+
+jsonpath
 
 jubilant
 
@@ -170383,6 +170449,8 @@ juniper's
 junipers
 
 junit
+
+junitparams
 
 junk
 
@@ -172653,6 +172721,8 @@ lambasting
 lambda
 
 lambda's
+
+lambdaj
 
 lambdas
 
@@ -187802,6 +187872,10 @@ monitor
 
 monitor's
 
+monitorable
+
+monitorables
+
 monitored
 
 monitoring
@@ -189774,6 +189848,8 @@ multilingualism
 
 multimap
 
+multimaps
+
 multimedia
 
 multimeter
@@ -190793,6 +190869,8 @@ nacho
 nachos
 
 nack
+
+nacked
 
 nacre
 
@@ -212968,6 +213046,8 @@ praying
 
 prays
 
+pre
+
 preach
 
 preached
@@ -214047,6 +214127,8 @@ preprinting
 preprints
 
 preprocessed
+
+preprocessing
 
 preprocessor
 
@@ -226354,6 +226436,8 @@ relativity
 
 relativity's
 
+relativize
+
 relator's
 
 relaunch
@@ -226769,6 +226853,8 @@ remedially
 remediation
 
 remediation's
+
+remediator
 
 remedied
 
@@ -231679,6 +231765,8 @@ riyals
 rlike
 
 rm
+
+rmi
 
 roached
 
@@ -258470,6 +258558,8 @@ switchover
 
 switchover's
 
+switzerland
+
 swivel
 
 swivel's
@@ -263227,6 +263317,8 @@ thoughtlessness
 thoughtlessness's
 
 thoughts
+
+thoughtworks
 
 thous
 
@@ -268993,6 +269085,8 @@ truncation
 truncation's
 
 truncations
+
+truncator
 
 truncheon
 
@@ -286426,6 +286520,8 @@ xlarge
 
 xliff
 
+xls
+
 xml
 
 xmlbeans
@@ -286454,7 +286550,11 @@ xreffing
 
 xrefs
 
+xsd
+
 xslt
+
+xstream
 
 xterm
 
