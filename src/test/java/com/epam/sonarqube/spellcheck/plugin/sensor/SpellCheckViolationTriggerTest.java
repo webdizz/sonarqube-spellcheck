@@ -78,7 +78,7 @@ public class SpellCheckViolationTriggerTest {
     }
 
     @Test
-    public void shouldTestThatLoggerUsedWhenCreateProfileAndLevelIsDebug() {
+    public void shouldTestThatLoggerUsedWhenTriggerSpellingAndLevelIsDebug() {
         Level level = Level.DEBUG;
         initLogger(Level.DEBUG);
 
@@ -91,7 +91,7 @@ public class SpellCheckViolationTriggerTest {
     }
 
     @Test
-    public void shouldTestThatLoggerNeverUsedWhenCreateProfileAndLevelIsNotDebug() {
+    public void shouldTestThatLoggerNeverUsedWhenTriggerSpellingAndLevelIsNotDebug() {
         Level level = Level.INFO;
         initLogger(level);
 
