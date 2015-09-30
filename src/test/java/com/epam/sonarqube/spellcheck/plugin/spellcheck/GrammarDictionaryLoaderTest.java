@@ -69,4 +69,13 @@ public class GrammarDictionaryLoaderTest {
 
         assertTrue(dictionary.asSet().isEmpty());
     }
+
+    @Test
+    public void shouldReturnTheSameDictionaryWhenCallLoadDictionaryTwoTimes() throws Exception {
+        when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("/dict/english.0");
+        SpellDictionary dictionary = grammarDictionaryLoader.loadMainDictionary();
+        SpellDictionary dictionary2 = grammarDictionaryLoader.loadMainDictionary();
+
+        assertEquals(dictionary, dictionary2);
+    }
 }
