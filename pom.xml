@@ -6,8 +6,7 @@
   <groupId>com.epam.sonarqube</groupId>
   <artifactId>sonarqube-spellcheck-plugin</artifactId>
   <packaging>sonar-plugin</packaging>
-  <!--<version>0.1-SNAPSHOT</version>-->
-  <version>0.1.GA</version>
+  <version>0.2-SNAPSHOT</version>
 
   <name>SpellCheck</name>
   <description>SonarQube SpellCheck Plugin provides capabilities to perform spell check analysis of source code.
