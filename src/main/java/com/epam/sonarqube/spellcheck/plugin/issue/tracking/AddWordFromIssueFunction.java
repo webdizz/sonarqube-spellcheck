@@ -1,7 +1,6 @@
 package com.epam.sonarqube.spellcheck.plugin.issue.tracking;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
@@ -53,7 +52,12 @@ public class AddWordFromIssueFunction implements Function, ServerExtension {
             propertiesDao.saveGlobalProperties(pluginProperties);
         } else {
             String dictionary = propertyDto.getValue();
-            ArrayList<String> wordList = new ArrayList<>(Arrays.asList(dictionary.split(PluginParameter.SEPARATOR_CHAR)));
+            String[] wordArr = dictionary.split(PluginParameter.SEPARATOR_CHAR);
+            ArrayList<String> wordList = new ArrayList<>(wordArr.length);
+            for(String word : wordArr) {
+                wordList.add(word.trim());
+            }
+            
             writeSortedIfUnique(misspelledWord, dictionary, wordList);
         }
     }
@@ -64,7 +68,7 @@ public class AddWordFromIssueFunction implements Function, ServerExtension {
         } else {
             wordList.add(misspelledWord);
             Collections.sort(wordList);
-            String sortedDictionary = StringUtils.join(wordList, PluginParameter.SEPARATOR_CHAR);
+            String sortedDictionary = StringUtils.join(wordList, PluginParameter.EXTENDED_SEPARATOR);
             propertiesDao.updateProperties(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY, dictionary, sortedDictionary);
             LOGGER.info("Added misspelledWord '{}' to dictionary.", misspelledWord);
         }
