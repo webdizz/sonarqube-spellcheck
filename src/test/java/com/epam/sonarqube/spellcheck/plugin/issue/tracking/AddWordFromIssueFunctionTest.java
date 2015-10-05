@@ -3,6 +3,7 @@ package com.epam.sonarqube.spellcheck.plugin.issue.tracking;
 import static com.epam.sonarqube.spellcheck.plugin.PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY;
 import static com.epam.sonarqube.spellcheck.plugin.PluginParameter.ERROR_DESCRIPTION;
 import static com.epam.sonarqube.spellcheck.plugin.PluginParameter.SEPARATOR_CHAR;
+import static com.epam.sonarqube.spellcheck.plugin.PluginParameter.EXTENDED_SEPARATOR;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsMapContaining.hasEntry;
 import static org.hamcrest.collection.IsMapWithSize.aMapWithSize;
@@ -44,6 +45,7 @@ public class AddWordFromIssueFunctionTest {
 
     private static final String FIRST_WORD = "existWord";
     private static final String UNSORTED_WORD = "zoo";
+    private static final String UNSORTED_WORD2 = "zebra";
     private static final String NEW_WORD = "newWord";
     @Mock
     private IssueUpdater issueUpdater;
@@ -68,7 +70,7 @@ public class AddWordFromIssueFunctionTest {
         propertyDto.setValue(FIRST_WORD);
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
         addWordFromIssueFunction.execute(context);
-        verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, FIRST_WORD, FIRST_WORD + SEPARATOR_CHAR + NEW_WORD);
+        verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, FIRST_WORD, FIRST_WORD + EXTENDED_SEPARATOR + NEW_WORD);
     }
 
     @Test
@@ -76,7 +78,27 @@ public class AddWordFromIssueFunctionTest {
         propertyDto.setValue(UNSORTED_WORD);
         when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
         addWordFromIssueFunction.execute(context);
-        verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, UNSORTED_WORD, NEW_WORD + SEPARATOR_CHAR + UNSORTED_WORD);
+        verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, UNSORTED_WORD, NEW_WORD + EXTENDED_SEPARATOR + UNSORTED_WORD);
+    }
+    
+    @Test
+    public void shouldSortPropertyWithWhitespaceWhenUpdateIt() {
+        final String dictionary = UNSORTED_WORD2 + EXTENDED_SEPARATOR + UNSORTED_WORD; 
+        propertyDto.setValue(dictionary);
+        when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
+        addWordFromIssueFunction.execute(context);
+        final String sortedDictionary = NEW_WORD + EXTENDED_SEPARATOR + dictionary; 
+        verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, dictionary, sortedDictionary);
+    }
+    
+    @Test
+    public void shouldSortPropertyWithoutWhitespaceWhenUpdateIt() {
+        final String dictionary = UNSORTED_WORD2 + SEPARATOR_CHAR + UNSORTED_WORD; 
+        propertyDto.setValue(dictionary);
+        when(propertiesDao.selectGlobalProperty(ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(propertyDto);
+        addWordFromIssueFunction.execute(context);
+        final String sortedDictionary = NEW_WORD + EXTENDED_SEPARATOR + UNSORTED_WORD2 + EXTENDED_SEPARATOR + UNSORTED_WORD; 
+        verify(propertiesDao).updateProperties(ALTERNATIVE_DICTIONARY_PROPERTY_KEY, dictionary, sortedDictionary);
     }
 
     @Test

@@ -67,9 +67,16 @@ public abstract class PluginParameter {
     public static final String SONAR_SPELL_CHECK_ISSUE_DATA_PROPERTY_KEY = "spell-check-issue-key";
 
     /**
-     * Separator for store alternate dictionary
+     * Separator for read and split alternate dictionary.
+     * Whitespace in each word will be trimmed, during reading.
      */
     public static final String SEPARATOR_CHAR = ",";
+    
+    /**
+     * Separator for store alternate dictionary
+     */
+    public static final String EXTENDED_SEPARATOR = SEPARATOR_CHAR + " ";
+    
 
     /**
      * Parameters for set cost of spelling
