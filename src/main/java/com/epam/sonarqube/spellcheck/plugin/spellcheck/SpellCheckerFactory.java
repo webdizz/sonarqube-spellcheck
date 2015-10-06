@@ -9,7 +9,6 @@ import org.sonar.api.config.Settings;
 
 public class SpellCheckerFactory implements BatchExtension {
 
-
     private Settings settings;
 
     public SpellChecker getSpellChecker() {
@@ -24,13 +23,17 @@ public class SpellCheckerFactory implements BatchExtension {
         spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREDIGITWORDS, settings.getBoolean(PluginParameter.SPELL_IGNOREDIGITWORDS));
         spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREINTERNETADDRESSES, settings.getBoolean(PluginParameter.SPELL_IGNOREINTERNETADDRESSES));
         spellChecker.getConfiguration().setInteger(PluginParameter.SPELL_THRESHOLD, settings.getInt(PluginParameter.SPELL_THRESHOLD));
+        spellChecker.getConfiguration().setInteger(PluginParameter.SPELL_MINIMUMWORDLENGTH, settings.getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH));
     }
-
 
     @Inject
     public void setSettings(Settings settings) {
         this.settings = settings;
+        
+        this.settings.setProperty(PluginParameter.SPELL_IGNOREMIXEDCASE, false);
+        this.settings.setProperty(PluginParameter.SPELL_IGNOREUPPERCASE, true);
+        this.settings.setProperty(PluginParameter.SPELL_IGNOREDIGITWORDS, false);
+        this.settings.setProperty(PluginParameter.SPELL_IGNOREINTERNETADDRESSES, false);
     }
-
 
 }

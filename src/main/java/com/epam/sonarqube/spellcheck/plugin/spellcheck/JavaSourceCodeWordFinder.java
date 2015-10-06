@@ -41,27 +41,32 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements
         currentWord.copy(nextWord);
 
         setSentenceIterator(currentWord);
-
-        int beginIndex = currentWord.getEnd();
-
-        WordFinderAutomaton automaton = new JavaCodeConventionEnglishAutomaton();
-        automaton.init();
-
-        automaton.searchNextWord(text, beginIndex);
-
-        if (!automaton.hasNextWord()) {
-            nextWord = null;
-        } else {
-            nextWord.setStart(automaton.getWordStart());
-            nextWord.setText(text.substring(automaton.getWordStart(),
-                    automaton.getWordEnd()));
-        }
-
-        if (isWordLessThenMinLength(currentWord)) {
-            currentWord.setText("");
-        }
+        
+        do {
+            nextWord = searchNextWord(nextWord, text);
+        } while (nextWord != null && isWordLessThenMinLength(nextWord));
 
         return currentWord;
+    }
+
+    private Word searchNextWord(Word nextWord, String text) {
+        Word newNextWord = new Word("", 0);
+        int beginIndex = nextWord.getEnd();
+        
+        WordFinderAutomaton automaton = new JavaCodeConventionEnglishAutomaton();
+        automaton.init();
+   
+        automaton.searchNextWord(text, beginIndex);
+   
+        if (!automaton.hasNextWord()) {
+            newNextWord = null;
+        } else {
+            newNextWord.setStart(automaton.getWordStart());
+            newNextWord.setText(text.substring(automaton.getWordStart(),
+                    automaton.getWordEnd()));
+        }
+        
+        return newNextWord;
     }
 
     private boolean isWordLessThenMinLength(final Word word) {
