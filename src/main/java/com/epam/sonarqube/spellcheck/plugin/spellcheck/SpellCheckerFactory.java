@@ -30,8 +30,8 @@ public class SpellCheckerFactory implements BatchExtension {
     public void setSettings(Settings settings) {
         this.settings = settings;
         
+        //parameters for Jazzy spellchecker
         this.settings.setProperty(PluginParameter.SPELL_IGNOREMIXEDCASE, false);
-        this.settings.setProperty(PluginParameter.SPELL_IGNOREUPPERCASE, true);
         this.settings.setProperty(PluginParameter.SPELL_IGNOREDIGITWORDS, false);
         this.settings.setProperty(PluginParameter.SPELL_IGNOREINTERNETADDRESSES, false);
     }
