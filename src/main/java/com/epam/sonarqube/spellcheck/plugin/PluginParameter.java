@@ -54,7 +54,7 @@ public abstract class PluginParameter {
     /**
      * Error description
      */
-    public static final String ERROR_DESCRIPTION = "Invalid word is: \'";
+    public static final String ERROR_DESCRIPTION = " is not a recognised word";
 
     /**
      * Action name for adding to dictionary

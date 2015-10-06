@@ -54,7 +54,7 @@ public class AddWordFromIssueFunctionTest {
     public void init() {
         addWordFromIssueFunction = new AddWordFromIssueFunction(propertiesDao, issueUpdater);
         when(context.issue()).thenReturn(issue);
-        when(issue.message()).thenReturn(ERROR_DESCRIPTION + NEW_WORD + "'");
+        when(issue.message()).thenReturn("'" +  NEW_WORD + "'" + ERROR_DESCRIPTION);
         when(issue.attribute(PluginParameter.SONAR_SPELL_CHECK_RULE_MISSPELLED_WORD)).thenReturn(NEW_WORD);
     }
 
