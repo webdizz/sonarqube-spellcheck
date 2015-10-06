@@ -117,6 +117,15 @@ public class JavaCodeConventionEnglishAutomatonTest {
 
         assertArrayEquals(expected, actual);
     }
+    
+    @Test
+    public void shouldFindFourWordsInAnnotationWithParam() throws Exception {
+        String text = "@SuppressWarnings(\"squid:S1161\")";
+        String[] expected = { "Suppress", "Warnings", "squid", "S" };
+        String[] actual = parseText(text);
+        
+        assertArrayEquals(expected, actual);
+    }
 
     @Test
     public void shouldFindFiveWordsInGeneric() throws Exception {

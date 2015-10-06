@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import org.junit.experimental.theories.Theory;
 import org.sonar.api.config.Settings;
 
 import com.epam.sonarqube.spellcheck.plugin.PluginParameter;
+import com.swabunga.spell.engine.Configuration;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.event.SpellChecker;
 import com.swabunga.spell.event.WordNotFoundException;
@@ -23,22 +25,16 @@ public class JavaSourceCodeWordFinderTest {
     private SpellChecker spellChecker;
     private int minimumWordLength = 4;
     
-    private static Settings settings = mock(Settings.class);
+    private static Settings settings;
     private static SpellDictionary dictionary;
 
     @BeforeClass
     public static void initSettingsAndLoadDictionaryVeryTimeConsuming() {
-        when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("/dict/english.0");
-
-        when(settings.getBoolean(PluginParameter.SPELL_IGNOREMIXEDCASE)).thenReturn(false);
-        when(settings.getBoolean(PluginParameter.SPELL_IGNOREUPPERCASE)).thenReturn(true);
-        when(settings.getBoolean(PluginParameter.SPELL_IGNOREDIGITWORDS)).thenReturn(false);
-        when(settings.getBoolean(PluginParameter.SPELL_IGNOREINTERNETADDRESSES)).thenReturn(true);
-        when(settings.getInt(PluginParameter.SPELL_THRESHOLD)).thenReturn(1);
-
+        createDefaultSettingsMock();
+        
         dictionary = new GrammarDictionaryLoader(settings).loadMainDictionary();
     }
-    
+
     @Before
     public void init() {
         SpellCheckerFactory spellCheckerFactory = new SpellCheckerFactory();
@@ -47,6 +43,11 @@ public class JavaSourceCodeWordFinderTest {
         spellChecker = spellCheckerFactory.getSpellChecker();
     }
 
+    @After
+    public void tearDown() {
+        createDefaultSettingsMock();
+    }
+    
     @Test(expected = WordNotFoundException.class)
     public void shouldThrowExceptionWhenThereIsNoNextWord() throws Exception {
         
@@ -58,7 +59,22 @@ public class JavaSourceCodeWordFinderTest {
         
         spellChecker.checkSpelling(sourceCodeTokenizer);
         
-        javaSourceCodeWordFinder.next(); //WordNotFoundException
+        javaSourceCodeWordFinder.next(); //throws WordNotFoundException
+    }
+    
+    @Test
+    public void shouldCheckWordsGreaterThenMinimumWordLengthWhenIgnoreMixedCaseFlagTurnedOn() throws Exception {
+        minimumWordLength = 3;
+        when(settings.getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH)).thenReturn(minimumWordLength);
+        settings.getBoolean(PluginParameter.SPELL_IGNOREMIXEDCASE); //skip first return value of mocked object
+        when(settings.getBoolean(PluginParameter.SPELL_IGNOREMIXEDCASE)).thenReturn(true);
+        //reinitialize after changing mock for "settings"
+        init();
+        
+        String testLine = " * The pool of constants used in the spell-check-Plugiiin";
+        
+        int errorsSize = getErrorsSize(testLine);
+        assertEquals("Wrong error size. Expected = -1", -1, errorsSize);
     }
     
     @Test
@@ -145,12 +161,34 @@ public class JavaSourceCodeWordFinderTest {
 
         assertEquals("Wrong error size. Expected = -1",-1, errorsSize);
     }
+    
+    @Test
+    public void shouldNotCheckLastWordIfItIsLessThenMinimumWordLength() throws Exception {
+        minimumWordLength = 4;
+        when(settings.getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH)).thenReturn(minimumWordLength);
+        String testLine = "erq.zzw.test.package.wqr";
+
+        int errorsSize = getErrorsSize(testLine);
+
+        assertEquals("Wrong error size. Expected = -1",-1, errorsSize);
+    }
 
     private int getErrorsSize(String testLine) {
         JavaSourceCodeWordFinder javaSourceCodeWordFinder = new JavaSourceCodeWordFinder(settings);
         JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(testLine, javaSourceCodeWordFinder);
         spellChecker.setUserDictionary(dictionary);
         return spellChecker.checkSpelling(sourceCodeTokenizer);
+    }
+    
+    private static void createDefaultSettingsMock() {
+        settings = mock(Settings.class);
+        when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("/dict/english.0");
+
+        when(settings.getBoolean(PluginParameter.SPELL_IGNOREMIXEDCASE)).thenReturn(false);
+        when(settings.getBoolean(PluginParameter.SPELL_IGNOREUPPERCASE)).thenReturn(true);
+        when(settings.getBoolean(PluginParameter.SPELL_IGNOREDIGITWORDS)).thenReturn(false);
+        when(settings.getBoolean(PluginParameter.SPELL_IGNOREINTERNETADDRESSES)).thenReturn(true);
+        when(settings.getInt(PluginParameter.SPELL_THRESHOLD)).thenReturn(1);
     }
     
 }
