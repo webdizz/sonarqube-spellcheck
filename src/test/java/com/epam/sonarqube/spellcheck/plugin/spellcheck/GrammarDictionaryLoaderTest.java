@@ -54,11 +54,26 @@ public class GrammarDictionaryLoaderTest {
 
     @Test
     public void shouldLoadAlternateDictionary() throws Exception {
-        when(settings.getString(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn("/dict/english.0");
+        String altDictionaryProperty = "first,second,third";
+        when(settings.getString(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(altDictionaryProperty);
 
         Optional<SpellDictionaryHashMap> dictionary = grammarDictionaryLoader.loadAlternateDictionary();
 
-        assertTrue(!dictionary.asSet().isEmpty());
+        assertEquals(true, dictionary.get().isCorrect("first"));
+        assertEquals(true, dictionary.get().isCorrect("second"));
+        assertEquals(true, dictionary.get().isCorrect("third"));
+    }
+    
+    @Test
+    public void shouldLoadAlternateDictionaryWithWhitespace() throws Exception {
+        String altDictionaryProperty = "  first , second  ,   third   ";
+        when(settings.getString(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(altDictionaryProperty);
+
+        Optional<SpellDictionaryHashMap> dictionary = grammarDictionaryLoader.loadAlternateDictionary();
+
+        assertEquals(true, dictionary.get().isCorrect("first"));
+        assertEquals(true, dictionary.get().isCorrect("second"));
+        assertEquals(true, dictionary.get().isCorrect("third"));
     }
 
     @Test

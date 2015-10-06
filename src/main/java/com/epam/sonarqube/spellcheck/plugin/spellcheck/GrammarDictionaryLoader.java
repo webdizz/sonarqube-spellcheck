@@ -50,6 +50,7 @@ public class GrammarDictionaryLoader implements BatchExtension {
         Reader reader;
         Optional<SpellDictionaryHashMap> result = Optional.absent();
         if (alternateDict != null) {
+            alternateDict = alternateDict.replace(" ", "");
             alternateDict = alternateDict.replace(PluginParameter.SEPARATOR_CHAR, "\n");
             reader = new StringReader(alternateDict);
             try {
