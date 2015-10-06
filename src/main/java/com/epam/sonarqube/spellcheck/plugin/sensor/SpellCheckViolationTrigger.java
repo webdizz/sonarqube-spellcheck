@@ -33,9 +33,10 @@ class SpellCheckViolationTrigger implements SpellCheckListener {
     public void spellingError(final SpellCheckEvent event) {
         final StringBuilder spellMessageBuilder = new StringBuilder(100);
         spellMessageBuilder
-                .append(PluginParameter.ERROR_DESCRIPTION)
+                .append("\'")
                 .append(event.getInvalidWord())
-                .append("\'");
+                .append("\'")
+                .append(PluginParameter.ERROR_DESCRIPTION);
         if (LOGGER.isDebugEnabled()) {
             final Object[] arguments = new Object[]{event.getInvalidWord(), event.getWordContextPosition(), lineWrapper.getLine()};
             LOGGER.debug("Detected invalid word \'{}\' at Col.{}\nin the line \"{}\"", arguments);
