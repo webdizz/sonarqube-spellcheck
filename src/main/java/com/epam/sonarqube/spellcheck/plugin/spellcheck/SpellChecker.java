@@ -39,12 +39,13 @@ public class SpellChecker implements BatchExtension {
         alternateDictionary = dictionaryLoader.loadAlternateDictionary();
     }
 
-    public void checkSpelling(final String inputLine, final SpellCheckListener spellCheckListener) {
+    public int checkSpelling(final String inputLine, final SpellCheckListener spellCheckListener) {
         parametersValidation(inputLine, spellCheckListener);
         com.swabunga.spell.event.SpellChecker spellCheck = createSpellChecker(spellCheckListener);
         JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(inputLine, javaSourceCodeWordFinder);
-        spellCheck.checkSpelling(sourceCodeTokenizer);
+        int errors = spellCheck.checkSpelling(sourceCodeTokenizer);
         spellCheck.reset();
+        return errors;
     }
 
     private static void parametersValidation(final String inputLine, final SpellCheckListener spellCheckListener) {

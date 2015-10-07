@@ -16,10 +16,12 @@ import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.rule.ActiveRule;
 import org.sonar.api.component.ResourcePerspectives;
+import org.sonar.api.measures.Measure;
 import org.sonar.api.resources.Project;
 import org.sonar.api.rule.RuleKey;
 
 import com.epam.sonarqube.spellcheck.plugin.PluginParameter;
+import com.epam.sonarqube.spellcheck.plugin.metric.SpellCheckMetrics;
 import com.epam.sonarqube.spellcheck.plugin.spellcheck.SpellChecker;
 
 /**
@@ -72,7 +74,13 @@ public class SpellCheckIssuesSensor implements Sensor {
         }
         FilePredicate languagePredicate = fileSystem.predicates().hasLanguage(PluginParameter.PROFILE_LANGUAGE);
         for (final InputFile inputFile : fileSystem.inputFiles(languagePredicate)) {
-            processInputFile(inputFile);
+            double errors = processInputFile(inputFile);
+
+            if (errors > 0) {
+                //populate metrics with count of misspelled words in current file                
+                Measure<Integer> measure = new Measure<Integer>(SpellCheckMetrics.MISSPELLING, errors);
+                context.saveMeasure(inputFile, measure);
+            }
         }
     }
 
@@ -83,10 +91,11 @@ public class SpellCheckIssuesSensor implements Sensor {
         LOGGER.debug("Initialize the GrammarChecker.");
     }
 
-    private void processInputFile(final InputFile inputFile) {
+    private int processInputFile(final InputFile inputFile) {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Processing input-file {}", inputFile);
         }
+        int errorsSum = 0;
         int lineCounter = 1;
         try {
             final List<String> code = FileUtils.readLines(inputFile.file());
@@ -96,15 +105,22 @@ public class SpellCheckIssuesSensor implements Sensor {
                     LOGGER.debug("Has read code-lines from {}\nHave read {} lines.", inputFile, code.size());
                     LOGGER.debug("Processing {}:\"{}\"", lineCounter, line);
                 }
-                processInputCodeCurrentLine(line, inputFile, lineCounter);
+                int errors = processInputCodeCurrentLine(line, inputFile, lineCounter);
+                //filter errors, because it could be less than zero, 
+                //if spellchecker returns error code instead of errors count
+                if (errors > 0) {  
+                    errorsSum += errors;
+                }
                 lineCounter++;
             }
         } catch (IOException ex) {
             LOGGER.error("Can't read data from file " + inputFile.absolutePath(), ex);
         }
+        return errorsSum;
     }
 
-    private void processInputCodeCurrentLine(final String line, final InputFile inputFile, int lineNumber) {
+    private int processInputCodeCurrentLine(final String line, final InputFile inputFile, int lineNumber) {
+        int errors = 0;
         if (!StringUtils.isEmpty(line)) {
             final SpellCheckIssuesWrapper lineWrapper = createWrapper(inputFile, line, lineNumber);
 
@@ -114,7 +130,7 @@ public class SpellCheckIssuesSensor implements Sensor {
                 LOGGER.debug(lineWrapper.toString());
                 LOGGER.debug("Begin check line \"{}\"", line);
             }
-            spellChecker.checkSpelling(line, new SpellCheckViolationTrigger(lineWrapper));
+            errors = spellChecker.checkSpelling(line, new SpellCheckViolationTrigger(lineWrapper));
 
             if (LOGGER.isDebugEnabled()) {
                 LOGGER.debug("End check line \"{}\"", line);
@@ -124,6 +140,7 @@ public class SpellCheckIssuesSensor implements Sensor {
                 LOGGER.debug("Skipped empty line #{} in {}", lineNumber, inputFile);
             }
         }
+        return errors;
     }
 
     private SpellCheckIssuesWrapper createWrapper(final InputFile resource, final String line, final int lineNumber) {

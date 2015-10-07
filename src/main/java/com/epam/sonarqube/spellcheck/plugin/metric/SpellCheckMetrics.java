@@ -1,4 +1,4 @@
-package com.epam.sonarqube.spellcheck.plugin;
+package com.epam.sonarqube.spellcheck.plugin.metric;
 
 
 import org.sonar.api.measures.CoreMetrics;
@@ -10,8 +10,8 @@ import java.util.List;
 
 public class SpellCheckMetrics implements Metrics {
 
-    public static final Metric MISSPELLING = new Metric.Builder("sonar.grammar.misspelling", "Misspelling", Metric.ValueType.STRING)
-            .setDescription("This is a metric to store a misspelled word in code")
+    public static final Metric<Integer> MISSPELLING = new Metric.Builder("sonar.spellcheck.misspelling", "Misspelling", Metric.ValueType.INT)
+            .setDescription("Count of misspelled words")
             .setDirection(Metric.DIRECTION_WORST)
             .setQualitative(false)
             .setDomain(CoreMetrics.DOMAIN_GENERAL)
@@ -19,6 +19,6 @@ public class SpellCheckMetrics implements Metrics {
 
     @Override
     public List<Metric> getMetrics() {
-        return Arrays.asList(MISSPELLING);
+        return Arrays.<Metric>asList(MISSPELLING);
     }
 }
