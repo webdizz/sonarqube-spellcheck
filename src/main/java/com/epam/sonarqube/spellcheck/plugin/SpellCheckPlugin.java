@@ -7,8 +7,10 @@ import org.sonar.api.PropertyType;
 import org.sonar.api.SonarPlugin;
 import org.sonar.api.config.PropertyDefinition;
 
+import com.epam.sonarqube.spellcheck.plugin.decorator.SpellCheckMisspellingDecorator;
 import com.epam.sonarqube.spellcheck.plugin.issue.tracking.AddWordFromIssueFunction;
 import com.epam.sonarqube.spellcheck.plugin.issue.tracking.SpellCheckActionDefinition;
+import com.epam.sonarqube.spellcheck.plugin.metric.SpellCheckMetrics;
 import com.epam.sonarqube.spellcheck.plugin.profile.SpellCheckProfileDefinition;
 import com.epam.sonarqube.spellcheck.plugin.rule.SpellCheckRulesDefinition;
 import com.epam.sonarqube.spellcheck.plugin.sensor.SpellCheckIssuesSensor;
@@ -34,6 +36,8 @@ public class SpellCheckPlugin extends SonarPlugin {
                         SpellCheckMetrics.class,
                         // Sensors
                         SpellCheckIssuesSensor.class,
+                        //Decorators
+                        SpellCheckMisspellingDecorator.class,
                         //Issue review
                         AddWordFromIssueFunction.class,
                         //Instantiated by IoC as used injection

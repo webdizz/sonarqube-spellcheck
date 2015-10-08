@@ -39,12 +39,29 @@ public class SpellChecker implements BatchExtension {
         alternateDictionary = dictionaryLoader.loadAlternateDictionary();
     }
 
-    public void checkSpelling(final String inputLine, final SpellCheckListener spellCheckListener) {
+    /**
+     * This method is called to check the spelling of the words in line.
+     * <p/>
+     * For each invalid word the action listeners will be informed with a new 
+     * SpellCheckEvent.<p>
+     *
+     * @param  inputLine  The line to be spell checked
+     * @param spellCheckListener Listener to be called when an invalid word during spell check process is found
+     * @return the number of errors found
+     */
+    public int checkSpelling(final String inputLine, final SpellCheckListener spellCheckListener) {
         parametersValidation(inputLine, spellCheckListener);
         com.swabunga.spell.event.SpellChecker spellCheck = createSpellChecker(spellCheckListener);
         JavaSourceCodeTokenizer sourceCodeTokenizer = new JavaSourceCodeTokenizer(inputLine, javaSourceCodeWordFinder);
-        spellCheck.checkSpelling(sourceCodeTokenizer);
+        int errors = spellCheck.checkSpelling(sourceCodeTokenizer);
+        
+        //filter errors, because it could be less than zero, 
+        //if spellchecker returns error code instead of errors count
+        if (errors < 0) {
+            errors = 0;
+        }
         spellCheck.reset();
+        return errors;
     }
 
     private static void parametersValidation(final String inputLine, final SpellCheckListener spellCheckListener) {
