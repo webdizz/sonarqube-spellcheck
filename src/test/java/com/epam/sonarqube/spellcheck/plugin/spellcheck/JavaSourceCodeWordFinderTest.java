@@ -15,7 +15,6 @@ import org.junit.experimental.theories.Theory;
 import org.sonar.api.config.Settings;
 
 import com.epam.sonarqube.spellcheck.plugin.PluginParameter;
-import com.swabunga.spell.engine.Configuration;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.event.SpellChecker;
 import com.swabunga.spell.event.WordNotFoundException;
@@ -65,9 +64,9 @@ public class JavaSourceCodeWordFinderTest {
     @Test
     public void shouldCheckWordsGreaterThenMinimumWordLengthWhenIgnoreMixedCaseFlagTurnedOn() throws Exception {
         minimumWordLength = 3;
-        when(settings.getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH)).thenReturn(minimumWordLength);
-        settings.getBoolean(PluginParameter.SPELL_IGNOREMIXEDCASE); //skip first return value of mocked object
-        when(settings.getBoolean(PluginParameter.SPELL_IGNOREMIXEDCASE)).thenReturn(true);
+        when(settings.getInt(PluginParameter.SPELL_MINIMUM_WORD_LENGTH)).thenReturn(minimumWordLength);
+        settings.getBoolean(PluginParameter.SPELL_IGNORE_MIXED_CASE); //skip first return value of mocked object
+        when(settings.getBoolean(PluginParameter.SPELL_IGNORE_MIXED_CASE)).thenReturn(true);
         //reinitialize after changing mock for "settings"
         init();
         
@@ -142,7 +141,7 @@ public class JavaSourceCodeWordFinderTest {
     @Test
     public void shouldCheckWordsGreaterThenMinimumWordLengthIsSet() throws Exception {
         minimumWordLength = 4;
-        when(settings.getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH)).thenReturn(minimumWordLength);
+        when(settings.getInt(PluginParameter.SPELL_MINIMUM_WORD_LENGTH)).thenReturn(minimumWordLength);
         String testLine = "ert.wrn.Tesst.packaage";
 
         int errorsSize = getErrorsSize(testLine);
@@ -154,7 +153,7 @@ public class JavaSourceCodeWordFinderTest {
     @Test
     public void shouldNotCheckWordsLessThenMinimumWordLengthIsSet() throws Exception {
         minimumWordLength = 4;
-        when(settings.getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH)).thenReturn(minimumWordLength);
+        when(settings.getInt(PluginParameter.SPELL_MINIMUM_WORD_LENGTH)).thenReturn(minimumWordLength);
         String testLine = "erq.zzw.test.package";
 
         int errorsSize = getErrorsSize(testLine);
@@ -165,7 +164,7 @@ public class JavaSourceCodeWordFinderTest {
     @Test
     public void shouldNotCheckLastWordIfItIsLessThenMinimumWordLength() throws Exception {
         minimumWordLength = 4;
-        when(settings.getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH)).thenReturn(minimumWordLength);
+        when(settings.getInt(PluginParameter.SPELL_MINIMUM_WORD_LENGTH)).thenReturn(minimumWordLength);
         String testLine = "erq.zzw.test.package.wqr";
 
         int errorsSize = getErrorsSize(testLine);
@@ -184,10 +183,10 @@ public class JavaSourceCodeWordFinderTest {
         settings = mock(Settings.class);
         when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("/dict/english.0");
 
-        when(settings.getBoolean(PluginParameter.SPELL_IGNOREMIXEDCASE)).thenReturn(false);
-        when(settings.getBoolean(PluginParameter.SPELL_IGNOREUPPERCASE)).thenReturn(true);
-        when(settings.getBoolean(PluginParameter.SPELL_IGNOREDIGITWORDS)).thenReturn(false);
-        when(settings.getBoolean(PluginParameter.SPELL_IGNOREINTERNETADDRESSES)).thenReturn(true);
+        when(settings.getBoolean(PluginParameter.SPELL_IGNORE_MIXED_CASE)).thenReturn(false);
+        when(settings.getBoolean(PluginParameter.SPELL_IGNORE_UPPERCASE)).thenReturn(true);
+        when(settings.getBoolean(PluginParameter.SPELL_IGNORE_DIGIT_WORDS)).thenReturn(false);
+        when(settings.getBoolean(PluginParameter.SPELL_IGNORE_INTERNET_ADDRESSES)).thenReturn(true);
     }
     
 }

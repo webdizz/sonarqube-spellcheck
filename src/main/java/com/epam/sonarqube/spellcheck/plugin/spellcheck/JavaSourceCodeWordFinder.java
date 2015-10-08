@@ -31,7 +31,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements
     public Word next() {
         if (settings != null) {
             minimumWordLength = settings
-                    .getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH);
+                    .getInt(PluginParameter.SPELL_MINIMUM_WORD_LENGTH);
         }
 
         if (nextWord == null) {

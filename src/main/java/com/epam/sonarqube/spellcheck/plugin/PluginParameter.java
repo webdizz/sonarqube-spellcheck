@@ -95,27 +95,27 @@ public abstract class PluginParameter {
     /**
      * minimum word length to be analyzed
      */
-    public static final String SPELL_MINIMUMWORDLENGTH = "sonarqube-spellcheck.spell.minimum.word.length";
+    public static final String SPELL_MINIMUM_WORD_LENGTH = "sonarqube-spellcheck.spell.minimum.word.length";
 
     /**
      * words that are all upper case are not spell checked, example: "CIA" <br/>(boolean)
      */
-    public static final String SPELL_IGNOREUPPERCASE = "sonarqube-spellcheck.spell.ignore.upper.case";
+    public static final String SPELL_IGNORE_UPPERCASE = "sonarqube-spellcheck.spell.ignore.upper.case";
 
     /**
      * words that have mixed case are not spell checked, example: "SpellChecker"<br/>(boolean)\
      */
-    public static final String SPELL_IGNOREMIXEDCASE = "sonarqube-spellcheck.spell.ignore.mixed.case";
+    public static final String SPELL_IGNORE_MIXED_CASE = "sonarqube-spellcheck.spell.ignore.mixed.case";
 
     /**
      * words that look like an Internet address are not spell checked, example: "http://www.google.com" <br/>(boolean)
      */
-    public static final String SPELL_IGNOREINTERNETADDRESSES = "sonarqube-spellcheck.spell.ignore.internet.address";
+    public static final String SPELL_IGNORE_INTERNET_ADDRESSES = "sonarqube-spellcheck.spell.ignore.internet.address";
 
     /**
      * words that have digits in them are not spell checked, example: "match5" <br/>(boolean)
      */
-    public static final String SPELL_IGNOREDIGITWORDS = "sonarqube-spellcheck.spell.ignore.digit.words";
+    public static final String SPELL_IGNORE_DIGIT_WORDS = "sonarqube-spellcheck.spell.ignore.digit.words";
 
     private PluginParameter() {
     }
