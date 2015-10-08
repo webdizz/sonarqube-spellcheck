@@ -22,7 +22,6 @@ public class SpellCheckerFactory implements BatchExtension {
         spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREUPPERCASE, settings.getBoolean(PluginParameter.SPELL_IGNOREUPPERCASE));
         spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREDIGITWORDS, settings.getBoolean(PluginParameter.SPELL_IGNOREDIGITWORDS));
         spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREINTERNETADDRESSES, settings.getBoolean(PluginParameter.SPELL_IGNOREINTERNETADDRESSES));
-        spellChecker.getConfiguration().setInteger(PluginParameter.SPELL_THRESHOLD, settings.getInt(PluginParameter.SPELL_THRESHOLD));
         spellChecker.getConfiguration().setInteger(PluginParameter.SPELL_MINIMUMWORDLENGTH, settings.getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH));
     }
 

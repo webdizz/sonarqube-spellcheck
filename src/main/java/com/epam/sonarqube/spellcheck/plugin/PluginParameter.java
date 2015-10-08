@@ -83,16 +83,6 @@ public abstract class PluginParameter {
      */
 
     /**
-     * exclusion word list
-     **/
-    public static final String EXCLUSION = "sonarqube-spellcheck.dictionary.exclusion";
-
-    /**
-     * list of words to be included to main dictionary
-     **/
-    public static final String INCLUSION = "sonarqube-spellcheck.dictionary.inclusion";
-
-    /**
      * path to main dictionary
      **/
     public static final String DICTIONARY_PATH = "sonarqube-spellcheck.dictionary.path";
@@ -101,12 +91,6 @@ public abstract class PluginParameter {
      * manual dictionary name
      */
     public static final String ALTERNATIVE_DICTIONARY_PROPERTY_KEY = "sonarqube-spellcheck.alternative.dictionary";
-
-    /**
-     * the maximum cost of suggested spelling. Any suggestions that cost more are thrown away
-     * integer greater than 1)
-     */
-    public static final String SPELL_THRESHOLD = "sonarqube-spellcheck.spell.threshold.value";
 
     /**
      * minimum word length to be analyzed
