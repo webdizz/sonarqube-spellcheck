@@ -106,11 +106,7 @@ public class SpellCheckIssuesSensor implements Sensor {
                     LOGGER.debug("Processing {}:\"{}\"", lineCounter, line);
                 }
                 int errors = processInputCodeCurrentLine(line, inputFile, lineCounter);
-                //filter errors, because it could be less than zero, 
-                //if spellchecker returns error code instead of errors count
-                if (errors > 0) {  
-                    errorsSum += errors;
-                }
+                errorsSum += errors;
                 lineCounter++;
             }
         } catch (IOException ex) {
