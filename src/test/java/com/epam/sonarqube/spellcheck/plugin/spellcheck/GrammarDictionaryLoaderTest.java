@@ -27,7 +27,6 @@ public class GrammarDictionaryLoaderTest {
         when(settings.getBoolean(PluginParameter.SPELL_IGNOREUPPERCASE)).thenReturn(true);
         when(settings.getBoolean(PluginParameter.SPELL_IGNOREDIGITWORDS)).thenReturn(false);
         when(settings.getBoolean(PluginParameter.SPELL_IGNOREINTERNETADDRESSES)).thenReturn(true);
-        when(settings.getInt(PluginParameter.SPELL_THRESHOLD)).thenReturn(1);
 
         //dictionary = new GrammarDictionaryLoader(settings).loadMainDictionary();
     }

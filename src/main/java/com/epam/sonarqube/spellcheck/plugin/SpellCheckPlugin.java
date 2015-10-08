@@ -50,18 +50,6 @@ public class SpellCheckPlugin extends SonarPlugin {
                                 .type(PropertyType.BOOLEAN).description("Words that are all upper case are not spell checked, example: 'CIA'")
                                 .defaultValue("true").subCategory(SPELL_CHECKER_CATEGORY).build(),
                                 
-                        PropertyDefinition.builder(PluginParameter.SPELL_THRESHOLD).name("Threshold value")
-                                .type(PropertyType.INTEGER).description("The maximum cost of suggested spelling. Any suggestions that cost more are thrown away")
-                                .defaultValue("1").subCategory(SPELL_CHECKER_CATEGORY).build(),
-
-                        PropertyDefinition.builder(PluginParameter.EXCLUSION).name("Exclusions")
-                                .type(PropertyType.STRING).description("Defines resources to be excluded from analysis")
-                                .subCategory(DICTIONARY_CATEGORY).defaultValue("").build(),
-
-                        PropertyDefinition.builder(PluginParameter.INCLUSION).name("Inclusions")
-                                .type(PropertyType.STRING).description("Defines resources to be included for analysis")
-                                .subCategory(DICTIONARY_CATEGORY).defaultValue("").build(),
-
                         PropertyDefinition.builder(PluginParameter.DICTIONARY_PATH).name("Default dictionary path")
                                 .type(PropertyType.STRING).description("Defines default dictionary path")
                                 .defaultValue("/dict/english.0").subCategory(DICTIONARY_CATEGORY).build(),
