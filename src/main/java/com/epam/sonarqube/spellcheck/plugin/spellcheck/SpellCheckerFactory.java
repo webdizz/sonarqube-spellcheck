@@ -18,11 +18,11 @@ public class SpellCheckerFactory implements BatchExtension {
     }
 
     private void setSpellCheckerConfigs(SpellChecker spellChecker) {
-        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREMIXEDCASE, settings.getBoolean(PluginParameter.SPELL_IGNOREMIXEDCASE));
-        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREUPPERCASE, settings.getBoolean(PluginParameter.SPELL_IGNOREUPPERCASE));
-        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREDIGITWORDS, settings.getBoolean(PluginParameter.SPELL_IGNOREDIGITWORDS));
-        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREINTERNETADDRESSES, settings.getBoolean(PluginParameter.SPELL_IGNOREINTERNETADDRESSES));
-        spellChecker.getConfiguration().setInteger(PluginParameter.SPELL_MINIMUMWORDLENGTH, settings.getInt(PluginParameter.SPELL_MINIMUMWORDLENGTH));
+        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREMIXEDCASE, settings.getBoolean(PluginParameter.SPELL_IGNORE_MIXED_CASE));
+        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREUPPERCASE, settings.getBoolean(PluginParameter.SPELL_IGNORE_UPPERCASE));
+        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREDIGITWORDS, settings.getBoolean(PluginParameter.SPELL_IGNORE_DIGIT_WORDS));
+        spellChecker.getConfiguration().setBoolean(Configuration.SPELL_IGNOREINTERNETADDRESSES, settings.getBoolean(PluginParameter.SPELL_IGNORE_INTERNET_ADDRESSES));
+        spellChecker.getConfiguration().setInteger(PluginParameter.SPELL_MINIMUM_WORD_LENGTH, settings.getInt(PluginParameter.SPELL_MINIMUM_WORD_LENGTH));
     }
 
     @Inject
@@ -30,9 +30,9 @@ public class SpellCheckerFactory implements BatchExtension {
         this.settings = settings;
         
         //parameters for Jazzy spellchecker
-        this.settings.setProperty(PluginParameter.SPELL_IGNOREMIXEDCASE, false);
-        this.settings.setProperty(PluginParameter.SPELL_IGNOREDIGITWORDS, false);
-        this.settings.setProperty(PluginParameter.SPELL_IGNOREINTERNETADDRESSES, false);
+        this.settings.setProperty(PluginParameter.SPELL_IGNORE_MIXED_CASE, false);
+        this.settings.setProperty(PluginParameter.SPELL_IGNORE_DIGIT_WORDS, false);
+        this.settings.setProperty(PluginParameter.SPELL_IGNORE_INTERNET_ADDRESSES, false);
     }
 
 }

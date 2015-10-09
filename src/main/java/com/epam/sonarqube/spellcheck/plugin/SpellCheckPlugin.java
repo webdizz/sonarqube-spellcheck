@@ -11,7 +11,6 @@ import com.epam.sonarqube.spellcheck.plugin.decorator.SpellCheckMisspellingDecor
 import com.epam.sonarqube.spellcheck.plugin.issue.tracking.AddWordFromIssueFunction;
 import com.epam.sonarqube.spellcheck.plugin.issue.tracking.SpellCheckActionDefinition;
 import com.epam.sonarqube.spellcheck.plugin.metric.SpellCheckMetrics;
-import com.epam.sonarqube.spellcheck.plugin.profile.SpellCheckProfileDefinition;
 import com.epam.sonarqube.spellcheck.plugin.rule.SpellCheckRulesDefinition;
 import com.epam.sonarqube.spellcheck.plugin.sensor.SpellCheckIssuesSensor;
 import com.epam.sonarqube.spellcheck.plugin.spellcheck.GrammarDictionaryLoader;
@@ -31,7 +30,6 @@ public class SpellCheckPlugin extends SonarPlugin {
                 .asList(// Definitions
                         SpellCheckRulesDefinition.class,
                         SpellCheckActionDefinition.class,
-                        SpellCheckProfileDefinition.class,
                         // Metrics
                         SpellCheckMetrics.class,
                         // Sensors
@@ -46,11 +44,11 @@ public class SpellCheckPlugin extends SonarPlugin {
                         GrammarDictionaryLoader.class,
                         SpellCheckerFactory.class,
 
-                        PropertyDefinition.builder(PluginParameter.SPELL_MINIMUMWORDLENGTH).name("Minimum word length")
+                        PropertyDefinition.builder(PluginParameter.SPELL_MINIMUM_WORD_LENGTH).name("Minimum word length")
                                 .type(PropertyType.INTEGER).description("Defines minimum word length to analyse")
                                 .defaultValue("3").subCategory(SPELL_CHECKER_CATEGORY).build(),
 
-                        PropertyDefinition.builder(PluginParameter.SPELL_IGNOREUPPERCASE).name("Ignore uppercase")
+                        PropertyDefinition.builder(PluginParameter.SPELL_IGNORE_UPPERCASE).name("Ignore uppercase")
                                 .type(PropertyType.BOOLEAN).description("Words that are all upper case are not spell checked, example: 'CIA'")
                                 .defaultValue("true").subCategory(SPELL_CHECKER_CATEGORY).build(),
                                 

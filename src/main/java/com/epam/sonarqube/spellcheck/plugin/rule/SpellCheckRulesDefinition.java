@@ -30,15 +30,18 @@ public class SpellCheckRulesDefinition implements RulesDefinition, BatchExtensio
         final NewRepository repository = context
                 .createRepository(PluginParameter.REPOSITORY_KEY, PluginParameter.PROFILE_LANGUAGE)
                 .setName(PluginParameter.REPOSITORY_NAME);
-        
-        final NewRule grammarRule = repository.createRule(PluginParameter.SONAR_SPELL_CHECK_RULE_KEY)
-                .setInternalKey(PluginParameter.SONAR_SPELL_CHECK_RULE_KEY)
+
+
+        final NewRule grammarRule = repository
+                .createRule(PluginParameter.SONAR_SPELL_CHECK_RULE_KEY)
                 .setName(PluginParameter.SONAR_SPELL_CHECK_RULE_NAME)
                 .setHtmlDescription(PluginParameter.SONAR_SPELL_CHECK_RULE_DESCRIPTION)
                 .setTags(PluginParameter.REPOSITORY_KEY)
                 .setStatus(RuleStatus.READY)
+                .setInternalKey(PluginParameter.SONAR_SPELL_CHECK_RULE_KEY)
                 .setSeverity(Severity.INFO);
-        
+
+
         if (LOGGER.isDebugEnabled()){
             LOGGER.debug("Created new rule:{}", grammarRule);
         }
