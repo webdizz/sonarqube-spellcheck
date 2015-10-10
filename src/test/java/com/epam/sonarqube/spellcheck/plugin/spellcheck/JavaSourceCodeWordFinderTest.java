@@ -62,15 +62,24 @@ public class JavaSourceCodeWordFinderTest {
     }
     
     @Test
-    public void shouldCheckWordsGreaterThenMinimumWordLengthWhenIgnoreMixedCaseFlagTurnedOn() throws Exception {
-        minimumWordLength = 3;
-        when(settings.getInt(PluginParameter.SPELL_MINIMUM_WORD_LENGTH)).thenReturn(minimumWordLength);
-        settings.getBoolean(PluginParameter.SPELL_IGNORE_MIXED_CASE); //skip first return value of mocked object
+    public void shouldIgnoreMixedCaseMisspelledWordAtStartOfSentenceWhenIgnoreMixedCaseFlagTurnedOn() throws Exception {
         when(settings.getBoolean(PluginParameter.SPELL_IGNORE_MIXED_CASE)).thenReturn(true);
         //reinitialize after changing mock for "settings"
         init();
         
-        String testLine = " * The pool of constants used in the spell-check-Plugiiin";
+        String testLine = "Theeee pool of constants used in the spell-check-plugin";
+        
+        int errorsSize = getErrorsSize(testLine);
+        assertEquals("Wrong error size. Expected = -1", -1, errorsSize);
+    }
+    
+    @Test
+    public void shouldIgnoreMixedCaseMisspelledWordInMiddleAndEndOfSentenceWhenIgnoreMixedCaseFlagTurnedOn() throws Exception {
+        when(settings.getBoolean(PluginParameter.SPELL_IGNORE_MIXED_CASE)).thenReturn(true);
+        //reinitialize after changing mock for "settings"
+        init();
+        
+        String testLine = "The pool of constants Errrroor used in the spell-check-plugin Errrorrrrr Errrorororr";
         
         int errorsSize = getErrorsSize(testLine);
         assertEquals("Wrong error size. Expected = -1", -1, errorsSize);
@@ -139,10 +148,10 @@ public class JavaSourceCodeWordFinderTest {
 
 
     @Test
-    public void shouldCheckWordsGreaterThenMinimumWordLengthIsSet() throws Exception {
+    public void shouldCheckWordsGreaterThenMinimumWordLength() throws Exception {
         minimumWordLength = 4;
         when(settings.getInt(PluginParameter.SPELL_MINIMUM_WORD_LENGTH)).thenReturn(minimumWordLength);
-        String testLine = "ert.wrn.Tesst.packaage";
+        String testLine = "ert.wrn.Tesst.packaage.service";
 
         int errorsSize = getErrorsSize(testLine);
 
@@ -151,7 +160,7 @@ public class JavaSourceCodeWordFinderTest {
 
 
     @Test
-    public void shouldNotCheckWordsLessThenMinimumWordLengthIsSet() throws Exception {
+    public void shouldNotCheckWordsLessThenMinimumWordLength() throws Exception {
         minimumWordLength = 4;
         when(settings.getInt(PluginParameter.SPELL_MINIMUM_WORD_LENGTH)).thenReturn(minimumWordLength);
         String testLine = "erq.zzw.test.package";
