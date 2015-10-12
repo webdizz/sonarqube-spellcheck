@@ -24,9 +24,15 @@ ABS
 
 AC
 
+ACCTID
+
+ACCTTYPE
+
 ACLU
 
 ACM
+
+ACPI
 
 ACT
 
@@ -38,7 +44,11 @@ ADC
 
 ADD
 
+ADDSHARE
+
 ADP
+
+AES
 
 AF
 
@@ -64,6 +74,8 @@ AIDSes
 
 AIs
 
+AJP
+
 AK
 
 AL
@@ -71,6 +83,12 @@ AL
 AM
 
 AMA
+
+AMD
+
+AMORTIZEOBJECT
+
+AMQP
 
 ANSI
 
@@ -85,6 +103,14 @@ AOL's
 AP
 
 APB
+
+APC
+
+API
+
+API's
+
+APIs
 
 APO
 
@@ -104,6 +130,8 @@ ASL
 
 ASPCA
 
+ASPM
+
 ATM
 
 ATM's
@@ -115,6 +143,8 @@ ATV
 ATVs
 
 AV
+
+AVAILBAL
 
 AWACS
 
@@ -735,6 +765,8 @@ Aesculapius's
 Aesop
 
 Aesop's
+
+Affero
 
 Afghan
 
@@ -2840,6 +2872,8 @@ Angeleno's
 
 Angelenos
 
+Angeles
+
 Angeli
 
 Angeli's
@@ -3208,6 +3242,8 @@ Anshan
 
 Anshan's
 
+Ansi 
+
 Ansley
 
 Ansley's
@@ -3258,6 +3294,8 @@ Anthony
 
 Anthony's
 
+Antialias
+
 Antichrist
 
 Antichrist's
@@ -3293,6 +3331,8 @@ Antipas
 Antipas's
 
 Antipodes
+
+Antlib 
 
 Antofagasta
 
@@ -4388,6 +4428,8 @@ Asoka
 
 Asoka's
 
+AspectJ
+
 Aspell
 
 Aspell's
@@ -4723,6 +4765,8 @@ Aug
 Aug's
 
 Augean
+
+Augeas
 
 Augie
 
@@ -5152,6 +5196,16 @@ B's
 
 BA
 
+BALAMT
+
+BANKACCTFROM
+
+BANKID
+
+BANKMSGSRSV1
+
+BANKTRANLIST
+
 BASIC
 
 BASICs
@@ -5172,7 +5226,11 @@ BC
 
 BIA
 
+BIND
+
 BIOS
+
+BIRT
 
 BITNET
 
@@ -5190,9 +5248,15 @@ BMW's
 
 BO
 
+BOTHSIDES
+
 BPOE
 
 BR
+
+BRANCHID
+
+BROKERID
 
 BS
 
@@ -5206,7 +5270,15 @@ BTU
 
 BTW
 
+BUYSHARE
+
+BUYSTOCK
+
+BUYTYPE
+
 BYOB
+
+BZ
 
 Ba's
 
@@ -5725,6 +5797,8 @@ Barcelona's
 Barclay
 
 Barclay's
+
+Barcodes 
 
 Bard
 
@@ -8602,6 +8676,8 @@ Bride
 
 Bride's
 
+Bridgelets
+
 Bridgeport
 
 Bridgeport's
@@ -9206,6 +9282,8 @@ Bugatti
 
 Bugatti's
 
+Bugzilla
+
 Buick
 
 Buick's
@@ -9458,6 +9536,8 @@ Buxtehude
 
 Buxtehude's
 
+Bxds
+
 Byblos
 
 Byblos's
@@ -9522,6 +9602,8 @@ CAP
 
 CARE
 
+CAS
+
 CATV
 
 CB
@@ -9529,6 +9611,14 @@ CB
 CBC
 
 CBS
+
+CCACCTFROM
+
+CCMS
+
+CCSTMTRS
+
+CCSTMTTRNRS
 
 CCTV
 
@@ -9550,11 +9640,23 @@ CFC
 
 CFO
 
+CHECKNUM
+
 CIA
 
 CID
 
+CIFS
+
+CLI
+
+CLV
+
+CMAN
+
 CMOS
+
+CN
 
 CNN
 
@@ -9586,15 +9688,35 @@ CPU's
 
 CPUs
 
+CREDITCARDMSGSRSV1
+
+CREDITLIMIT
+
+CREDITLINE
+
 CRT
 
 CRTs
 
+CSP
+
+CSProcessor
+
 CST
+
+CSUNICODE
+
+CSV
 
 CT
 
+CURDEF
+
+CUSIP
+
 CV
+
+CVS
 
 CZ
 
@@ -10776,6 +10898,8 @@ Cass
 
 Cassandra
 
+Cassandra 
+
 Cassandra's
 
 Cassandras
@@ -11740,6 +11864,8 @@ Chechnya
 
 Chechnya's
 
+CheckIn
+
 Cheddar
 
 Cheddar's
@@ -12434,6 +12560,8 @@ Chung's
 
 Chungking's
 
+Chunked
+
 Church
 
 Church's
@@ -12547,6 +12675,8 @@ Cirilo's
 Ciro
 
 Ciro's
+
+Cis
 
 Cissiee
 
@@ -12691,6 +12821,8 @@ Clarke's
 Clary
 
 Clary's
+
+Classname
 
 Claude
 
@@ -12956,6 +13088,8 @@ Clotilda
 
 Clotilda's
 
+CloudForms
+
 Clouseau
 
 Clouseau's
@@ -13045,6 +13179,8 @@ Cocteau
 Cocteau's
 
 Cod's
+
+Codec
 
 Codee
 
@@ -13455,6 +13591,8 @@ Conn's
 Connecticut
 
 Connecticut's
+
+ConnectionFactory
 
 Connemara
 
@@ -13980,6 +14118,8 @@ Corry
 
 Corry's
 
+Cors 
+
 Corsica
 
 Corsica's
@@ -14436,6 +14576,8 @@ Cross
 
 Cross's
 
+Crosstab
+
 Crow
 
 Crow's
@@ -14445,6 +14587,8 @@ Crowley
 Crowley's
 
 Crows
+
+Crsh 
 
 Crucifixion
 
@@ -14503,6 +14647,10 @@ Ctesiphon's
 Cthrine
 
 Cthrine's
+
+Ctrl
+
+Ctx 
 
 Cu
 
@@ -14782,6 +14930,8 @@ D's
 
 DA
 
+DAO
+
 DAR
 
 DARPA
@@ -14789,6 +14939,8 @@ DARPA
 DARPA's
 
 DAT
+
+DBCP
 
 DBMS
 
@@ -14816,21 +14968,35 @@ DECing
 
 DECs
 
+DES
+
 DH
 
+DHCP
+
 DI
+
+DIRECTDEP
+
+DIVIDEND
 
 DJ
 
 DMD
 
+DMS
+
 DMZ
 
 DNA
 
+DNS
+
 DOA
 
 DOB
+
+DOCTYPE
 
 DOD
 
@@ -14840,6 +15006,8 @@ DOS
 
 DOT
 
+DOUBLEENTRY
+
 DP
 
 DPT
@@ -14848,7 +15016,29 @@ DPs
 
 DST
 
+DTACCTUP
+
+DTASOF
+
+DTD
+
+DTEND
+
 DTP
+
+DTPOSTED
+
+DTPROFUP
+
+DTSERVER
+
+DTSETTLE
+
+DTSTART
+
+DTTRADE
+
+DTUSER
 
 DUI
 
@@ -15520,6 +15710,12 @@ Datamation
 
 Datamations
 
+Datasources
+
+Datastax 
+
+Datastore
+
 Datha
 
 Datha's
@@ -15927,6 +16123,8 @@ Delcina's
 Delcine
 
 Delcine's
+
+Delegator
 
 Deleon
 
@@ -16412,6 +16610,8 @@ Dexedrine
 
 Dexedrine's
 
+Dexo
+
 Dexter
 
 Dexter's
@@ -16443,6 +16643,8 @@ Diahann's
 Dial
 
 Dial's
+
+Dialogues
 
 Dian
 
@@ -16722,6 +16924,8 @@ Disraeli
 
 Disraeli's
 
+Distro
+
 Dita
 
 Dita's
@@ -16791,6 +16995,10 @@ Doberman
 Dobro
 
 Dobro's
+
+DocBook
+
+DocBuilder
 
 Doctor
 
@@ -17434,6 +17642,8 @@ Drona
 
 Drona's
 
+Dropwizard 
+
 Dru
 
 Dru's
@@ -17854,13 +18064,21 @@ E
 
 E's
 
+EAP
+
 EC
 
 ECG
 
+ECM
+
+ECS
+
 EDP
 
 EDT
+
+EE
 
 EEC
 
@@ -17878,6 +18096,8 @@ EGA
 
 EGA's
 
+EJBInvokerServlet
+
 EKG
 
 ELF
@@ -17891,6 +18111,8 @@ ENE
 EOE
 
 EPA
+
+EPFL
 
 ER
 
@@ -17906,6 +18128,8 @@ ESPN
 
 EST
 
+ESX
+
 ET
 
 ETA
@@ -17913,6 +18137,8 @@ ETA
 ETD
 
 EU
+
+EXCHANGERATE
 
 Eachelle
 
@@ -18093,6 +18319,10 @@ Ebro's
 Ecclesiastes
 
 Ecclesiastes's
+
+EchoBean
+
+EchoHome
 
 Eco
 
@@ -19624,6 +19854,8 @@ Eros's
 
 Eroses
 
+Errai
+
 Errick
 
 Errick's
@@ -20254,6 +20486,8 @@ Ewing
 
 Ewing's
 
+ExClient
+
 Excalibur
 
 Excalibur's
@@ -20352,6 +20586,10 @@ FBI
 
 FCC
 
+FCK
+
+FCP
+
 FD
 
 FDA
@@ -20368,6 +20606,10 @@ FICA
 
 FIFO
 
+FILEEXTREGEX
+
+FILEVERSION
+
 FL
 
 FM
@@ -20383,6 +20625,10 @@ FOFL
 FORTRAN
 
 FPO
+
+FQDN
+
+FQN
 
 FSLIC
 
@@ -20424,6 +20670,10 @@ Fabio
 
 Fabio's
 
+Facelets
+
+FacesServlet
+
 Fae
 
 Fae's
@@ -20447,6 +20697,8 @@ Fahd's
 Fahrenheit
 
 Fahrenheits
+
+Failover
 
 Faina
 
@@ -21036,6 +21288,8 @@ Fibonacci
 
 Fibonacci's
 
+Fibre
+
 Fichte
 
 Fichte's
@@ -21115,6 +21369,8 @@ Filberte's
 Filberto
 
 Filberto's
+
+Filesystem
 
 Filia
 
@@ -21222,6 +21478,8 @@ Fiorenze
 
 Fiorenze's
 
+Firefox
+
 Firestone
 
 Firestone's
@@ -21241,6 +21499,8 @@ Fisk's
 Fitch
 
 Fitch's
+
+Fitidunicode
 
 Fitz
 
@@ -21474,6 +21734,8 @@ Flss
 
 Flss's
 
+Flushable
+
 Flynn
 
 Flynn's
@@ -21613,6 +21875,8 @@ Fox
 Fox's
 
 Foxes
+
+Fqn 
 
 Fr
 
@@ -22220,7 +22484,13 @@ GE's
 
 GED
 
+GFDL
+
+GFS
+
 GHQ
+
+GHz
 
 GI
 
@@ -22232,6 +22502,10 @@ GMAT
 
 GMT
 
+GMail
+
+GNOME
+
 GNP
 
 GOP
@@ -22240,15 +22514,25 @@ GP
 
 GPA
 
+GPG
+
 GPO
 
 GPSS
 
+GRUB
+
 GSA
+
+GSS
+
+GSSAPI
 
 GTE
 
 GTE's
+
+GTK
 
 GU
 
@@ -22802,6 +23086,8 @@ Gaston
 
 Gaston's
 
+GateIn
+
 Gates
 
 Gatling
@@ -22959,6 +23245,8 @@ Gearalt's
 Gearard
 
 Gearard's
+
+Gedit
 
 Geffen
 
@@ -23540,6 +23828,8 @@ Giffy
 
 Giffy's
 
+Gigabit
+
 Gigi
 
 Gigi's
@@ -23946,6 +24236,8 @@ Glover
 
 Glover's
 
+GlusterFS
+
 Glyn
 
 Glyn's
@@ -24231,6 +24523,8 @@ Goodwin's
 Goodyear
 
 Goodyear's
+
+Google
 
 Gopher
 
@@ -24880,6 +25174,8 @@ Guerrero
 
 Guerrero's
 
+Guestfish
+
 Guevara
 
 Guevara's
@@ -25218,6 +25514,8 @@ HRH
 
 HS
 
+HSQL
+
 HST
 
 HT
@@ -25225,6 +25523,14 @@ HT
 HTML
 
 HTTP
+
+HTTPD
+
+HTTPPASS
+
+HTTPS
+
+HTTPUSER
 
 HUD
 
@@ -25897,6 +26203,8 @@ Hasheem's
 Hashim
 
 Hashim's
+
+Hashtable 
 
 Hasidim
 
@@ -26776,6 +27084,8 @@ Hewlett
 
 Hewlett's
 
+Hexa
+
 Heyerdahl
 
 Heyerdahl's
@@ -27438,6 +27748,8 @@ Horne
 
 Horne's
 
+HornetQ
+
 Horowitz
 
 Horowitz's
@@ -27482,7 +27794,11 @@ Host
 
 Host's
 
+Hostnames
+
 Hosts
+
+HotSpot
 
 Hotpoint
 
@@ -27554,9 +27870,17 @@ Hrothgar
 
 Hrothgar's
 
+HtmlAdaptor
+
 Hts
 
 Hts's
+
+HttpInvoker
+
+HttpInvokers
+
+HttpSession
 
 Huang
 
@@ -27846,6 +28170,8 @@ Hyatt
 
 Hyatt's
 
+Hybris 
+
 Hyde
 
 Hyde's
@@ -27878,6 +28204,10 @@ Hyperion
 
 Hyperion's
 
+Hypervisor
+
+Hypervisors
+
 Hystrix
 
 Hyundai
@@ -27896,6 +28226,8 @@ I'm
 
 I've
 
+I/O
+
 IA
 
 IBM
@@ -27908,15 +28240,25 @@ ICBMs
 
 ICC
 
+ICMP
+
 ICU
 
 ID
+
+IDE
+
+IDM
 
 IDs
 
 IE
 
 IEEE
+
+IFrame
+
+IFrames
 
 IL
 
@@ -27930,15 +28272,45 @@ IMO
 
 IN
 
+INCOMEEXPENSE
+
 INET
 
 INRI
 
 INS
 
+INTUBID
+
+INTUUSERID
+
+INVACCTFROM
+
+INVBANKTRAN
+
+INVBUY
+
+INVSTMTMSGSRSV1
+
+INVSTMTRS
+
+INVSTMTTRNRS
+
+INVTRAN
+
+INVTRANLIST
+
+IOMMU
+
 IOU
 
+IP
+
 IPA
+
+IPTables
+
+IPv
 
 IQ
 
@@ -27950,7 +28322,11 @@ IRS
 
 ISBN
 
+ISIN
+
 ISO
+
+ISS
 
 IT
 
@@ -27965,6 +28341,8 @@ IV
 IVs
 
 Ia's
+
+IaaS
 
 Iaccoca
 
@@ -28099,6 +28477,8 @@ Idelle's
 Idette
 
 Idette's
+
+Ids 
 
 Ieyasu
 
@@ -28292,6 +28672,8 @@ Inchon
 
 Inchon's
 
+Incontext
+
 Incorporated
 
 Ind
@@ -28466,6 +28848,16 @@ Inigo
 
 Inigo's
 
+InitialContext
+
+Initializer
+
+Initializers
+
+Initializers 
+
+Inline
+
 Inna
 
 Inna's
@@ -28487,6 +28879,8 @@ Innsbruck's
 Inonu
 
 Inonu's
+
+Inotify
 
 Inquisition
 
@@ -28521,6 +28915,8 @@ Internets
 Interpol
 
 Interpol's
+
+Introspector 
 
 Inuit
 
@@ -29082,17 +29478,79 @@ J
 
 J's
 
+JAX
+
+JBDC
+
+JBPB
+
+JBoss
+
+JBossAdmin
+
+JBossCache
+
+JBossTS
+
+JCA
+
+JCC
+
+JCE
+
+JCP
+
 JCS
 
+JConnect
+
 JD
+
+JDBC
+
+JDK
+
+JDKs
 
 JFK
 
 JFK's
 
+JGroup
+
+JGroups
+
+JIRA
+
+JMS
+
+JMXInvokerServlet
+
+JMXKernel
+
+JNDI
+
+JNDIFactory
+
+JOSSO
+
 JP
 
+JSF
+
+JSON
+
+JSR
+
+JTA
+
 JV
+
+JVM
+
+JXM
+
+JaasSecurityDomain
 
 Jabez
 
@@ -29704,6 +30162,10 @@ Jasper
 
 Jasper's
 
+JasperReports
+
+JasperServer
+
 Jasun
 
 Jasun's
@@ -29715,6 +30177,14 @@ Jataka's
 Java
 
 Java's
+
+JavaDocs
+
+JavaServer
+
+Javadoc
+
+Javahelp
 
 Javanese
 
@@ -29777,6 +30247,10 @@ Jayson's
 Jazmin
 
 Jazmin's
+
+Jcr 
+
+Jcrop
 
 Jdavie
 
@@ -30974,6 +31448,8 @@ Jozef
 
 Jozef's
 
+Jpa 
+
 Jpn
 
 Jr
@@ -31321,6 +31797,10 @@ KO
 KP
 
 KS
+
+KSM
+
+KVM
 
 KY
 
@@ -32498,6 +32978,8 @@ Ker
 
 Ker's
 
+Kerberos
+
 Kerby
 
 Kerby's
@@ -32753,6 +33235,12 @@ Kial's
 Kickapoo
 
 Kickapoo's
+
+Kickstart
+
+Kickstarting
+
+Kickstarts
 
 Kidd
 
@@ -33864,11 +34352,15 @@ LCD
 
 LCM
 
+LDAP
+
 LDC
 
 LED
 
 LED's
+
+LEDGERBAL
 
 LEDs
 
@@ -33886,6 +34378,8 @@ LOGO
 
 LP
 
+LPAR
+
 LPG
 
 LPN
@@ -33894,7 +34388,13 @@ LPNs
 
 LSAT
 
+LSB
+
 LSD
+
+LUN
+
+LVM
 
 LVN
 
@@ -35400,6 +35900,8 @@ Liberian
 
 Liberians
 
+Libguestfs
+
 Libra
 
 Libra's
@@ -35820,6 +36322,8 @@ Lissy
 
 Lissy's
 
+Listable 
+
 Lister
 
 Lister's
@@ -35964,6 +36468,8 @@ Lobachevsky
 
 Lobachevsky's
 
+Loc 
+
 Lochinvar
 
 Lochinvar's
@@ -36017,6 +36523,8 @@ Loews's
 Logan
 
 Logan's
+
+Login
 
 Lohengrin
 
@@ -36319,6 +36827,8 @@ Lorry's
 Lory
 
 Lory's
+
+Los
 
 Lot
 
@@ -37016,6 +37526,8 @@ MB
 
 MBA
 
+MBR
+
 MC
 
 MCI
@@ -37031,6 +37543,8 @@ ME
 MEGO
 
 MEGOs
+
+MERGESHARE
 
 MFA
 
@@ -37064,15 +37578,29 @@ MIT's
 
 MM
 
+MMMMM
+
 MN
 
 MO
 
+MONEYMRKT
+
 MP
+
+MPM
+
+MPMs
+
+MRG
 
 MRI
 
 MS
+
+MS-DOS
+
+MSFT
 
 MSG
 
@@ -37645,6 +38173,8 @@ Majuro
 Makarios
 
 Makarios's
+
+Makefile
 
 Maker
 
@@ -39374,6 +39904,8 @@ Mauser
 
 Mauser's
 
+Maven
+
 Mavis
 
 Mavis's
@@ -39385,6 +39917,8 @@ Mavra's
 Max
 
 Max's
+
+MaxPermSize
 
 Maxi
 
@@ -40476,6 +41010,8 @@ Meta
 
 Meta's
 
+MetaMatrix
+
 Metamucil
 
 Metamucil's
@@ -40698,6 +41234,8 @@ Micmac's
 
 Micmacs
 
+Microcontainer
+
 Micronesia
 
 Micronesia's
@@ -40725,6 +41263,8 @@ Midas's
 Middleton
 
 Middleton's
+
+Middleware
 
 Mideast
 
@@ -41586,6 +42126,8 @@ Monet
 
 Monet's
 
+MongoDB
+
 Mongol
 
 Mongol's
@@ -41631,6 +42173,8 @@ Monmouth's
 Monongahela
 
 Monongahela's
+
+Monospace
 
 Monro
 
@@ -42206,9 +42750,13 @@ Multan
 
 Multan's
 
+Multi
+
 Multibus
 
 Multibus's
+
+Multicast
 
 Multics
 
@@ -42386,9 +42934,13 @@ Muzak's
 
 Muzaks
 
+Mvc 
+
 My
 
 My's
+
+MySQL
 
 Myanmar
 
@@ -42516,9 +43068,13 @@ NAFTA
 
 NAN
 
+NAS
+
 NASA
 
 NASDAQ
+
+NAT
 
 NATO
 
@@ -42542,6 +43098,8 @@ NE
 
 NEH
 
+NEWFILEUID
+
 NF
 
 NFC
@@ -42554,6 +43112,10 @@ NH
 
 NHL
 
+NIC
+
+NICs
+
 NIH
 
 NIMBY
@@ -42564,6 +43126,8 @@ NLRB
 
 NM
 
+NODEHTTP
+
 NORAD
 
 NORAD's
@@ -42571,6 +43135,8 @@ NORAD's
 NOW
 
 NP
+
+NPIV
 
 NPR
 
@@ -42587,6 +43153,8 @@ NSC
 NSF
 
 NT
+
+NUMA
 
 NV
 
@@ -42705,6 +43273,8 @@ Nam's
 Namath
 
 Namath's
+
+Namespace
 
 Namibia
 
@@ -43426,6 +43996,10 @@ Nestorius
 
 Nestorius's
 
+NetBIOS
+
+NetUnity
+
 Netherlander
 
 Netherlander's
@@ -43459,6 +44033,8 @@ Nettle's
 Netty
 
 Netty's
+
+NetworkManager
 
 Netzahualcoyotl
 
@@ -44388,6 +44964,8 @@ Nubian's
 
 Nukualofa
 
+Nullable
+
 Numbers
 
 Numbers's
@@ -44486,6 +45064,10 @@ OEM's
 
 OEMS
 
+OFXHEADER
+
+OFXSGML
+
 OH
 
 OHSA
@@ -44498,6 +45080,8 @@ OK
 
 OKs
 
+OLDFILEUID
+
 OMB
 
 ON
@@ -44505,6 +45089,8 @@ ON
 OPEC
 
 OR
+
+ORIGCURRENCY
 
 OS
 
@@ -44521,6 +45107,8 @@ OTB
 OTC
 
 OTOH
+
+OU
 
 Oahu
 
@@ -44673,6 +45261,8 @@ Oderberg
 Oderberg's
 
 Oderbergs
+
+Odersky
 
 Odessa
 
@@ -45132,6 +45722,8 @@ Oona
 
 Oona's
 
+Ooops
+
 Oort
 
 Oort's
@@ -45152,6 +45744,20 @@ Opel
 
 Opel's
 
+OpenDS
+
+OpenID
+
+OpenJDK
+
+OpenLDAP
+
+OpenOffice
+
+OpenSSO
+
+OpenShift
+
 Ophelia
 
 Ophelia's
@@ -45171,6 +45777,8 @@ Oppenheimer's
 Oprah
 
 Oprah's
+
+Opteron
 
 Ora
 
@@ -45219,6 +45827,8 @@ Orbadiah's
 Orbison
 
 Orbison's
+
+Orderable
 
 Ordovician
 
@@ -45560,6 +46170,8 @@ Ouija's
 
 Ouijas
 
+Overcommitting
+
 Ovid
 
 Ovid's
@@ -45618,11 +46230,15 @@ PA
 
 PAC
 
+PAE
+
 PARC
 
 PARCs
 
 PASCAL
+
+PAYEEID
 
 PBS
 
@@ -45634,11 +46250,15 @@ PC's
 
 PCB
 
+PCI
+
 PCP
 
 PCs
 
 PD
+
+PDA
 
 PDP
 
@@ -45653,6 +46273,10 @@ PET
 PFC
 
 PG
+
+PHP
+
+PID
 
 PIN
 
@@ -45670,9 +46294,13 @@ PMing
 
 PO
 
+POSIX
+
 POW
 
 PP
+
+PPP
 
 PPS
 
@@ -45681,6 +46309,12 @@ PR
 PRC
 
 PRO
+
+PROXYHOST
+
+PROXYPORT
+
+PRPs
 
 PS
 
@@ -45698,7 +46332,11 @@ PW
 
 PX
 
+PXE
+
 Pa's
+
+PaaS
 
 Paar
 
@@ -45797,6 +46435,8 @@ Paganini's
 Page
 
 Page's
+
+Paginator
 
 Paglia
 
@@ -46053,6 +46693,8 @@ Paraguayans
 Paramaribo
 
 Paramaribo's
+
+Parameterized
 
 Paramount
 
@@ -46407,6 +47049,8 @@ Pb
 Pb's
 
 Pd's
+
+Pdp 
 
 Peabody
 
@@ -46940,6 +47584,8 @@ Pfizer
 
 Pfizer's
 
+PgSQL
+
 PhD
 
 Phaedra
@@ -47188,6 +47834,8 @@ Pickering
 
 Pickering's
 
+PicketLink
+
 Pickett
 
 Pickett's
@@ -47203,6 +47851,8 @@ Pickwick's
 Pict
 
 Pict's
+
+Pid 
 
 Piedmont
 
@@ -47468,6 +48118,8 @@ Pliocene
 
 Pliocenes
 
+Pluggable
+
 Plutarch
 
 Plutarch's
@@ -47493,6 +48145,8 @@ Pocono
 Pocono's
 
 Poconos
+
+Podcasts
 
 Podgorica
 
@@ -47746,6 +48400,12 @@ Portland
 
 Portland's
 
+PortletBridge
+
+PortletMode
+
+PortletSession
+
 Porto
 
 Porto's
@@ -47774,9 +48434,17 @@ Post
 
 Post's
 
+PostScript
+
+PostgreSQL
+
+PostgresSQL
+
 Potemkin
 
 Potemkin's
+
+Potochkin
 
 Potomac
 
@@ -47813,6 +48481,8 @@ Poussin's
 Powell
 
 Powell's
+
+PowerPC
 
 PowerPoint
 
@@ -47864,6 +48534,10 @@ Praxiteles's
 
 Preakness
 
+Preallocated
+
+Preboot
+
 Precambrian
 
 Preminger
@@ -47911,6 +48585,8 @@ Prescott's
 Presley
 
 Presley's
+
+PressGang
 
 Preston
 
@@ -48356,7 +49032,11 @@ QB
 
 QC
 
+QE
+
 QED
+
+QEMU
 
 QM
 
@@ -48387,6 +49067,8 @@ Qiqihar's
 Qom
 
 Qom's
+
+Qpid
 
 Quaalude
 
@@ -48449,6 +49131,8 @@ Quentin's
 Querida
 
 Querida's
+
+QueryHandler
 
 Quetzalcoatl
 
@@ -48548,6 +49232,8 @@ R
 
 R's
 
+RAC
+
 RAF
 
 RAM
@@ -48572,11 +49258,27 @@ RD
 
 RDA
 
+RDB
+
+RDBMS
+
+RDBMSs
+
+REFNUM
+
+REINVESTDIV
+
 REIT
 
 REM
 
+REMOVESHARE
+
 REMs
+
+RESTEasy
+
+RETURNOFCAPITAL
 
 RF
 
@@ -48585,6 +49287,20 @@ RFC
 RFCs
 
 RFD
+
+RHCE
+
+RHCSA
+
+RHEL
+
+RHEV
+
+RHN
+
+RHUA
+
+RHUI
 
 RI
 
@@ -48604,11 +49320,19 @@ ROTC
 
 RP
 
+RPC
+
+RPMs
+
 RR
+
+RSA
 
 RSFSR
 
 RSI
+
+RSS
 
 RSV
 
@@ -48623,6 +49347,8 @@ RTFMed
 RTFMing
 
 RTFMs
+
+RTL
 
 RV
 
@@ -49286,6 +50012,8 @@ Reena
 
 Reena's
 
+Reentrant
+
 Rees
 
 Reese
@@ -49444,6 +50172,8 @@ Remington
 
 Remington's
 
+Remotable
+
 Remus
 
 Remus's
@@ -49504,6 +50234,8 @@ Renault
 
 Renault's
 
+Renderables
+
 Rene
 
 Rene's
@@ -49544,6 +50276,10 @@ Representative
 
 Representatives
 
+Reprovision
+
+Reprovisioning
+
 Republican
 
 Republicanism
@@ -49563,6 +50299,8 @@ Resistance
 Resistance's
 
 Resistances
+
+ResourceBean
 
 Restoration
 
@@ -49807,6 +50545,8 @@ Rice's
 Rich
 
 Rich's
+
+RichFaces
 
 Richard
 
@@ -51274,6 +52014,8 @@ Runnymede
 
 Runnymede's
 
+Runtime
+
 Runyon
 
 Runyon's
@@ -51492,11 +52234,19 @@ SC
 
 SCCS
 
+SCROLLPANE
+
 SCSI
+
+SCV
 
 SD
 
 SDI
+
+SDK
+
+SDKs
 
 SE
 
@@ -51504,11 +52254,31 @@ SEATO
 
 SEC
 
+SECID
+
+SELLSHARE
+
+SELLSTOCK
+
+SELLTYPE
+
+SELinux
+
+SEO
+
 SF
 
 SGML
 
+SHA
+
 SIDS
+
+SIGNONMSGSRSV1
+
+SIMPLEINVEST
+
+SINGLENTRY
 
 SJ
 
@@ -51518,11 +52288,15 @@ SLR
 
 SMTP
 
+SNMP
+
 SO
 
 SOB
 
 SOLID
+
+SONRS
 
 SOP
 
@@ -51534,6 +52308,18 @@ SPCA
 
 SPF
 
+SPLITENTRY
+
+SPLITSHARE
+
+SPM
+
+SPNEGO
+
+SQL
+
+SQLJ
+
 SRO
 
 SS
@@ -51542,7 +52328,15 @@ SSA
 
 SSE
 
+SSH
+
+SSL
+
+SSO
+
 SSS
+
+SSSD
 
 SST
 
@@ -51552,9 +52346,21 @@ ST
 
 STD
 
+STMTTRN
+
+STMTTRNRS
+
 STOL
 
+SUBACCTFUND
+
+SUBACCTSEC
+
 SUV
+
+SVN
+
+SVNTag
 
 SW
 
@@ -52894,6 +53700,8 @@ Sella
 
 Sella's
 
+Sellable 
+
 Selle
 
 Selle's
@@ -52990,6 +53798,8 @@ Seoul
 
 Seoul's
 
+Sep
+
 Sephardi
 
 Sephardi's
@@ -53080,6 +53890,10 @@ Serrano
 
 Serrano's
 
+ServerAddress
+
+ServerImpl
+
 Set
 
 Set's
@@ -53151,6 +53965,8 @@ Shackleton's
 Shadow
 
 Shadow's
+
+Shadowman
 
 Shae
 
@@ -53792,6 +54608,8 @@ Sholom
 
 Sholom's
 
+Shop'in
+
 Short
 
 Short's
@@ -54168,6 +54986,8 @@ Simonne
 
 Simonne's
 
+SimplestHelloWorldPortlet
+
 Simpson
 
 Simpson's
@@ -54332,6 +55152,8 @@ Skopje
 
 Skopje's
 
+Sku 
+
 Sky
 
 Sky's
@@ -54351,6 +55173,8 @@ Skylar's
 Skyler
 
 Skyler's
+
+Skynet
 
 Slade
 
@@ -54555,6 +55379,8 @@ Soho's
 Sol
 
 Sol's
+
+Solaris
 
 Solis
 
@@ -54798,6 +55624,8 @@ Spain's
 
 Spam
 
+Spam 
+
 Spam's
 
 Span
@@ -54940,6 +55768,8 @@ Sq
 
 Sq's
 
+Sql 
+
 Squanto
 
 Squibb
@@ -54955,6 +55785,8 @@ Srinagar's
 Srivijaya
 
 Srivijaya's
+
+Ssl 
 
 St's
 
@@ -55127,6 +55959,8 @@ Staten
 Staten's
 
 States
+
+Statsd 
 
 Stavro
 
@@ -55428,6 +56262,8 @@ Stoppard
 
 Stoppard's
 
+Storages
+
 Storm
 
 Storm's
@@ -55488,6 +56324,8 @@ Strindberg
 
 Strindberg's
 
+StripModelMBeanInfoPolicy
+
 Stromboli
 
 Stromboli's
@@ -55539,6 +56377,12 @@ Suarez's
 Subaru
 
 Subaru's
+
+Subnodes
+
+Subtree
+
+SuckerPassword
 
 Sucre
 
@@ -55986,6 +56830,8 @@ Switzerland
 
 Switzerland's
 
+Sybase
+
 Sybil
 
 Sybil's
@@ -56046,6 +56892,8 @@ Sylvie
 
 Sylvie's
 
+SymLink
+
 Syman
 
 Syman's
@@ -56073,6 +56921,8 @@ Syriac's
 Syrian
 
 Syrians
+
+SysV
 
 Szilard
 
@@ -56118,6 +56968,8 @@ TEirtza
 
 TEirtza's
 
+TFTP
+
 TGIF
 
 THC
@@ -56125,6 +56977,8 @@ THC
 TKO
 
 TLC
+
+TLS
 
 TM
 
@@ -56135,6 +56989,16 @@ TNT
 TOEFL
 
 TQM
+
+TRACEBACK
+
+TRANSACTIONENTRY
+
+TRNAMT
+
+TRNTYPE
+
+TRNUID
 
 TV
 
@@ -56207,6 +57071,8 @@ Tabina's
 Tabitha
 
 Tabitha's
+
+Tablespace
 
 Tabor
 
@@ -56928,6 +57794,8 @@ Teller
 
 Teller's
 
+Telnet 
+
 Telugu
 
 Telugu's
@@ -56943,6 +57811,8 @@ Tempe's
 Templar
 
 Templar's
+
+Templating
 
 Temple
 
@@ -57620,6 +58490,8 @@ Tibetan
 
 Tibetans
 
+Tibjms 
+
 Tibold
 
 Tibold's
@@ -57745,6 +58617,10 @@ Tim's
 Timbuktu
 
 Timbuktu's
+
+Timeline
+
+Timestamp
 
 Timex
 
@@ -57989,6 +58865,8 @@ Toddie's
 Toddy
 
 Toddy's
+
+Todo
 
 Togo
 
@@ -58324,9 +59202,13 @@ Trace
 
 Trace's
 
+Tracebacks
+
 Tracee
 
 Tracee's
+
+Tracepoints
 
 Tracey
 
@@ -58686,6 +59568,8 @@ Trump's
 
 Truth
 
+Tsdb 
+
 Tsimshian
 
 Tsimshian's
@@ -59028,11 +59912,19 @@ UCLA
 
 UCLA's
 
+UCS
+
+UDB
+
+UDP
+
 UFO
 
 UFOs
 
 UHF
+
+UI
 
 UK
 
@@ -59044,6 +59936,12 @@ UNESCO
 
 UNICEF
 
+UNIQUEID
+
+UNIQUEIDTYPE
+
+UNITPRICE
+
 UNIX
 
 UNIX's
@@ -59053,6 +59951,8 @@ UPC
 UPI
 
 UPS
+
+URI
 
 URL
 
@@ -59064,6 +59964,10 @@ USA
 
 USAF
 
+USASCII
+
+USB
+
 USC
 
 USC's
@@ -59071,6 +59975,14 @@ USC's
 USCG
 
 USDA
+
+USEAUTH
+
+USEDPASSWORD
+
+USEPROXY
+
+USERKEY
 
 USG
 
@@ -59093,6 +60005,12 @@ USS
 USSR
 
 UT
+
+UTC
+
+UTF
+
+UUID
 
 UV
 
@@ -59232,13 +60150,19 @@ Una
 
 Una's
 
+Uncomment
+
 Underwood
 
 Underwood's
 
+Unfollow
+
 Ungava
 
 Ungava's
+
+Unicast
 
 Unicode
 
@@ -59247,6 +60171,8 @@ Unicode's
 Unilever
 
 Unilever's
+
+Uninstall
 
 Union
 
@@ -59284,9 +60210,15 @@ Unix
 
 Unixes
 
+Unmount
+
 Unukalhai
 
 Unukalhai's
+
+Unvote
+
+Unwatch
 
 Upanishads
 
@@ -59357,6 +60289,10 @@ Uriel
 Uriel's
 
 Uris
+
+Url 
+
+Urls 
 
 Urquhart
 
@@ -59472,6 +60408,8 @@ VAR
 
 VAT
 
+VATOBJECT
+
 VAX
 
 VAXes
@@ -59479,6 +60417,8 @@ VAXes
 VCR
 
 VD
+
+VDSM
 
 VDT
 
@@ -59506,11 +60446,19 @@ VISTA
 
 VJ
 
+VLAN
+
 VLF
+
+VM
 
 VMS
 
 VMS's
+
+VMware
+
+VNC
 
 VOA
 
@@ -59946,6 +60894,8 @@ Venusian
 
 Venusians
 
+Ver
+
 Vera
 
 Vera's
@@ -60214,6 +61164,8 @@ Vietnam's
 
 Vietnamese
 
+Viewport
+
 Vijayanagar
 
 Vijayanagar's
@@ -60381,6 +61333,10 @@ Virgo
 Virgo's
 
 Virgos
+
+Virtualization
+
+Virtualized
 
 Visa
 
@@ -60632,6 +61588,8 @@ WATS
 
 WC
 
+WCM
+
 WHO
 
 WI
@@ -60639,6 +61597,10 @@ WI
 WNW
 
 WP
+
+WS
+
+WSDL
 
 WSW
 
@@ -61042,6 +62004,8 @@ Web
 
 Web's
 
+WebDAV
+
 Webb
 
 Webb's
@@ -61431,6 +62395,8 @@ Wiggins
 Wigner
 
 Wigner's
+
+Wiki
 
 Wilberforce
 
@@ -62002,6 +62968,8 @@ Wordsworth
 
 Wordsworth's
 
+Workflow
+
 Workman
 
 Workman's
@@ -62144,6 +63112,8 @@ X
 
 X's
 
+XA
+
 XEmacs
 
 XEmacs's
@@ -62152,7 +63122,13 @@ XL
 
 XML
 
+XP
+
 XS
+
+XSD
+
+XSL
 
 XXL
 
@@ -62173,6 +63149,8 @@ Xaviera's
 Xe
 
 Xe's
+
+Xen
 
 Xena
 
@@ -62195,6 +63173,8 @@ Xenophon
 Xenophon's
 
 Xenos
+
+Xeon
 
 Xerox
 
@@ -62238,6 +63218,8 @@ Ximenez
 
 Ximenez's
 
+Xinetd
+
 Xingu
 
 Xingu's
@@ -62252,9 +63234,17 @@ Xmas's
 
 Xmases
 
+Xms
+
+Xmx
+
 Xochipilli
 
 Xochipilli's
+
+Xpath
+
+Xss
 
 Xuzhou
 
@@ -62287,6 +63277,8 @@ YT
 YWCA
 
 YWHA
+
+YYYYMMDDHHMMSS
 
 Yacc
 
@@ -63030,6 +64022,8 @@ Zimbabwean
 
 Zimbabweans
 
+Zimbra
+
 Zimmerman
 
 Zimmerman's
@@ -63409,6 +64403,8 @@ abducts
 abeam
 
 abed
+
+abeldaño
 
 aberrant
 
@@ -63895,6 +64891,8 @@ absolutely
 absoluteness
 
 absoluteness's
+
+absolutepath
 
 absoluter
 
@@ -67054,6 +68052,8 @@ aggregatively
 
 aggregator
 
+aggregator
+
 aggregators
 
 aggression
@@ -67640,7 +68640,11 @@ aitch's
 
 aitches
 
+aivub
+
 ajar
+
+ajax
 
 ajax
 
@@ -67813,6 +68817,8 @@ alehouse
 alehouse's
 
 alehouses
+
+aleksey
 
 alembic
 
@@ -68231,6 +69237,8 @@ alliterations
 alliterative
 
 alliteratively
+
+alloc
 
 alloc
 
@@ -69656,6 +70664,8 @@ analyticity
 
 analytics
 
+analytics
+
 analyzable
 
 analyze
@@ -70570,6 +71580,8 @@ ans
 
 ans's
 
+ansi 
+
 answer
 
 answer's
@@ -71300,6 +72312,8 @@ anyplace
 
 anyschema
 
+anyschema
+
 anything
 
 anythings
@@ -71437,6 +72451,8 @@ aphrodisiac
 aphrodisiac's
 
 aphrodisiacs
+
+api
 
 api
 
@@ -71640,6 +72656,8 @@ app
 
 app's
 
+appModena
+
 appal
 
 appall
@@ -71783,6 +72801,8 @@ appendectomy
 appendectomy's
 
 appended
+
+appender
 
 appender
 
@@ -72696,6 +73716,8 @@ archived
 
 archivelog
 
+archivelog
+
 archiver
 
 archivers
@@ -72780,6 +73802,8 @@ arenas
 
 ares
 
+arg 
+
 argb
 
 argc
@@ -72807,6 +73831,8 @@ argot
 argot's
 
 argots
+
+args
 
 args
 
@@ -72855,6 +73881,8 @@ argyles
 aria
 
 aria's
+
+arial
 
 arial
 
@@ -72921,6 +73949,8 @@ arithmeticians
 arithmetics
 
 arities
+
+arity
 
 arity
 
@@ -73078,6 +74108,8 @@ army
 
 army's
 
+arnout
+
 aroma
 
 aroma's
@@ -73179,6 +74211,10 @@ arrases
 array
 
 array's
+
+arrayclear
+
+arraycopy
 
 arrayed
 
@@ -73646,6 +74682,8 @@ ascriptions
 
 asensitive
 
+asensitive
+
 aseptic
 
 aseptically
@@ -73745,6 +74783,8 @@ asks
 aslant
 
 asleep
+
+asm
 
 asocial
 
@@ -73876,7 +74916,11 @@ aspiring
 
 aspirins
 
+aspnetdb
+
 asps
+
+aspx
 
 ass
 
@@ -74316,6 +75360,8 @@ asterisking
 
 asterisks
 
+asterix
+
 astern
 
 asteroid
@@ -74509,6 +75555,8 @@ asymptotic
 asymptotically
 
 asymptoticly
+
+async
 
 async
 
@@ -74958,6 +76006,8 @@ attorneys
 
 attr
 
+attr
+
 attract
 
 attractable
@@ -75354,6 +76404,8 @@ auteur's
 
 auth
 
+auth
+
 authentic
 
 authentically
@@ -75381,6 +76433,8 @@ authenticators
 authenticity
 
 authenticity's
+
+authid
 
 authid
 
@@ -75466,6 +76520,8 @@ auto
 
 auto's
 
+auto-detect
+
 autobahn
 
 autobahn's
@@ -75496,6 +76552,8 @@ autoboxed
 
 autoboxing
 
+autoboxing
+
 autoclave
 
 autoclave's
@@ -75503,6 +76561,8 @@ autoclave's
 autoclaves
 
 autocollimator
+
+autocommit
 
 autocommit
 
@@ -75568,7 +76628,11 @@ autoed
 
 autoextend
 
+autoextend
+
 autofluorescence
+
+autofs
 
 autograph
 
@@ -75587,6 +76651,8 @@ autoignition's
 autoimmune
 
 autoimmunity
+
+autoincrement
 
 autoincrement
 
@@ -75706,6 +76772,8 @@ autoregressive
 
 autorelease
 
+autorelease
+
 autorepeat
 
 autorepeating
@@ -75714,7 +76782,11 @@ autorepeats
 
 autorotate
 
+autorotate
+
 autos
+
+autosize
 
 autosuggestibility
 
@@ -75885,6 +76957,8 @@ averting
 averts
 
 avg
+
+avi
 
 avian
 
@@ -76106,6 +77180,8 @@ awhiles
 
 awing
 
+awk
+
 awkward
 
 awkwarder
@@ -76146,7 +77222,11 @@ awoken
 
 awry
 
+awt 
+
 ax
+
+axd
 
 axe
 
@@ -76245,6 +77325,8 @@ ayer
 ayers
 
 ayes
+
+ayw
 
 azalea
 
@@ -76386,6 +77468,8 @@ back
 
 back's
 
+back-end
+
 backache
 
 backache's
@@ -76471,6 +77555,10 @@ backdrops
 backed
 
 backend
+
+backend
+
+backends
 
 backer
 
@@ -76735,6 +77823,8 @@ backtab
 backtalk
 
 backtick
+
+backtrace
 
 backtrace
 
@@ -77067,6 +78157,8 @@ baits
 baize
 
 baize's
+
+bak
 
 bake
 
@@ -78002,6 +79094,8 @@ barcaroles
 
 barcode
 
+barcode
+
 bard
 
 bard's
@@ -78440,6 +79534,8 @@ based
 
 basedir
 
+basedir
+
 baseless
 
 baseline
@@ -78492,9 +79588,13 @@ bashfulness's
 
 bashing
 
+bashrc
+
 basic
 
 basically
+
+basicfile
 
 basicfile
 
@@ -78965,6 +80065,8 @@ bayberry
 bayberry's
 
 bayed
+
+bayes
 
 baying
 
@@ -81062,6 +82164,8 @@ bf
 
 bfile
 
+bfile
+
 bhaji
 
 biannual
@@ -81326,6 +82430,8 @@ bigamy's
 
 bigfile
 
+bigfile
+
 bigger
 
 biggest
@@ -81359,6 +82465,8 @@ bight
 bight's
 
 bights
+
+bigint
 
 bigint
 
@@ -81642,6 +82750,8 @@ binaurally
 
 bind
 
+bindable 
+
 binded
 
 binder
@@ -81691,6 +82801,8 @@ bingo
 bingo's
 
 bingos
+
+binlog
 
 binlog
 
@@ -82030,6 +83142,8 @@ birth
 
 birth's
 
+birthdate
+
 birthday
 
 birthday's
@@ -82145,6 +83259,8 @@ bistro's
 bistros
 
 bit
+
+bit rate
 
 bit's
 
@@ -83098,6 +84214,8 @@ blizzard's
 
 blizzards
 
+blktrace
+
 bloat
 
 bloated
@@ -83190,7 +84308,13 @@ blocs
 
 blog
 
+blog
+
 blogger
+
+blogger
+
+blogging
 
 blogging
 
@@ -83811,6 +84935,8 @@ blusterous
 blusters
 
 blustery
+
+bmp
 
 boa
 
@@ -84778,6 +85904,8 @@ bookworms
 
 bool
 
+bool
+
 boolean
 
 booleans
@@ -84867,6 +85995,10 @@ boosting
 boosts
 
 boot
+
+boot loader
+
+bootable
 
 bootblack
 
@@ -86260,11 +87392,15 @@ breakouts
 
 breakpoint
 
+breakpoint
+
 breakpoint's
 
 breakpointed
 
 breakpointing
+
+breakpoints
 
 breakpoints
 
@@ -87534,6 +88670,10 @@ brutishness's
 
 bst
 
+btn
+
+btree
+
 btree
 
 bu
@@ -87798,6 +88938,8 @@ buffs
 
 bug
 
+bug fix
+
 bug's
 
 bugaboo
@@ -87885,6 +89027,10 @@ buildup's
 buildups
 
 built
+
+built-in
+
+builtin
 
 builtin
 
@@ -89220,6 +90366,8 @@ buzzy
 
 bx
 
+bxds
+
 bxs
 
 by
@@ -89313,6 +90461,8 @@ byword
 byword's
 
 bywords
+
+bzip
 
 bzip
 
@@ -89463,6 +90613,8 @@ cacao
 cacao's
 
 cacaos
+
+cacerts
 
 cache
 
@@ -89786,6 +90938,8 @@ calamity's
 
 calc
 
+calc
+
 calcareous
 
 calciferous
@@ -89983,6 +91137,8 @@ callback
 callbacks
 
 called
+
+callee
 
 callee
 
@@ -90430,6 +91586,8 @@ cancel
 
 cancelable
 
+cancelable
+
 canceled
 
 canceler
@@ -90439,6 +91597,8 @@ canceler's
 cancelers
 
 canceling
+
+cancellable
 
 cancellable
 
@@ -91008,6 +92168,8 @@ caparisons
 
 capath
 
+capath
+
 cape
 
 cape's
@@ -91221,6 +92383,8 @@ captained
 captaining
 
 captains
+
+captcha
 
 captcha
 
@@ -92190,6 +93354,8 @@ caryatid's
 
 caryatids
 
+cas
+
 casaba
 
 casaba's
@@ -92325,6 +93491,8 @@ casket's
 caskets
 
 casks
+
+cassandra 
 
 cassava
 
@@ -92523,6 +93691,8 @@ catalepsy's
 cataleptic
 
 cataleptics
+
+catalina 
 
 catalog
 
@@ -93144,6 +94314,8 @@ cavalryman's
 
 cavalrymen
 
+cavanaugh
+
 cave
 
 cave's
@@ -93260,9 +94432,19 @@ cayuse's
 
 cc
 
+ccavanaugh
+
 ccflags
 
+ccflags
+
+cd
+
 cdata
+
+cdata
+
+cdn
 
 cds
 
@@ -93814,6 +94996,8 @@ cephalic
 
 cephalics
 
+cer
+
 ceramic
 
 ceramic's
@@ -94014,9 +95198,17 @@ cetacean
 
 cetaceans
 
+cfg
+
+cfg 
+
 cg
 
+cgi
+
 cglib
+
+chad
 
 chads
 
@@ -94361,6 +95553,8 @@ changeling
 changeling's
 
 changelings
+
+changelist
 
 changelist
 
@@ -94784,6 +95978,8 @@ chars
 
 charset
 
+charset
+
 charsets
 
 chart
@@ -95040,6 +96236,8 @@ cheats
 
 check
 
+check box
+
 check's
 
 checkable
@@ -95051,6 +96249,10 @@ checkbook's
 checkbooks
 
 checkbox
+
+checkbox
+
+checkboxes
 
 checkboxes
 
@@ -95115,6 +96317,8 @@ checkrooms
 checks
 
 checkstyle
+
+checksum
 
 checksum
 
@@ -95864,6 +97068,8 @@ chinwags
 
 chip
 
+chip set
+
 chip's
 
 chipboard
@@ -96044,6 +97250,8 @@ chivy
 
 chivying
 
+chkconfig
+
 chlamydia
 
 chlamydiae
@@ -96113,6 +97321,8 @@ chloroquine
 chloroquine's
 
 chm
+
+chmod
 
 chmod
 
@@ -96421,6 +97631,8 @@ chowing
 chows
 
 chpt
+
+chris
 
 chrism
 
@@ -96814,6 +98026,8 @@ cider's
 
 ciders
 
+cienv
+
 cigar
 
 cigar's
@@ -97158,6 +98372,8 @@ cirrus
 
 cirrus's
 
+cis
+
 cissies
 
 cistern
@@ -97215,6 +98431,8 @@ citrate
 citrate's
 
 citric
+
+citrix
 
 citron
 
@@ -97706,6 +98924,8 @@ classname
 
 classpath
 
+classpath
+
 classroom
 
 classroom's
@@ -97795,6 +99015,8 @@ claymore's
 claymores
 
 clays
+
+clazz
 
 clazz
 
@@ -98076,6 +99298,8 @@ client
 
 client's
 
+client-side
+
 clientele
 
 clientele's
@@ -98332,6 +99556,8 @@ cloaks
 
 clob
 
+clob
+
 clobber
 
 clobbered
@@ -98436,6 +99662,8 @@ clone's
 
 cloneable
 
+cloneable
+
 cloned
 
 cloner
@@ -98464,7 +99692,11 @@ clops
 
 closable
 
+closable
+
 close
+
+closeable
 
 closeable
 
@@ -98686,6 +99918,8 @@ cloyingly
 
 cloys
 
+clr
+
 club
 
 club's
@@ -98850,7 +100084,15 @@ cmake
 
 cmd
 
+cmdlet
+
+cmdlets
+
 cmdline
+
+cmdline
+
+cms
 
 cnidarian
 
@@ -99336,6 +100578,8 @@ coda
 
 coda's
 
+codahale 
+
 codas
 
 codded
@@ -99353,6 +100597,8 @@ coddling
 code
 
 code's
+
+codebase
 
 codebase
 
@@ -99389,6 +100635,8 @@ coder's
 coders
 
 codes
+
+codesign
 
 codesign
 
@@ -100836,9 +102084,13 @@ comma
 
 comma's
 
+comma-delimited
+
 command
 
 command's
+
+command-driven
 
 commandant
 
@@ -100865,6 +102117,8 @@ commanders
 commanding
 
 commandingly
+
+commandline
 
 commandline
 
@@ -102158,6 +103412,8 @@ concatenation's
 
 concatenations
 
+concating
+
 concave
 
 concavely
@@ -103022,7 +104278,11 @@ confidingness
 
 config
 
+config
+
 configprops
+
+configs
 
 configs
 
@@ -103037,6 +104297,10 @@ configuration's
 configurations
 
 configurator
+
+configurator
+
+configurators
 
 configurators
 
@@ -104138,6 +105402,8 @@ conspiring
 
 const
 
+const
+
 constable
 
 constable's
@@ -104990,6 +106256,8 @@ contrasty
 
 contravariant
 
+contravariant
+
 contravene
 
 contravened
@@ -105075,6 +106343,8 @@ contriving
 control
 
 control's
+
+controlfile
 
 controlfile
 
@@ -106536,6 +107806,8 @@ corruptness's
 
 corrupts
 
+cors 
+
 corsage
 
 corsage's
@@ -107564,6 +108836,8 @@ covariances
 
 covariant
 
+covariant
+
 cove
 
 cove's
@@ -107890,7 +109164,11 @@ coziness's
 
 cozy
 
+cp
+
 cpd
+
+cpp
 
 cps
 
@@ -108051,6 +109329,8 @@ cragginess
 cragginess's
 
 crags
+
+craig
 
 cram
 
@@ -108550,6 +109830,8 @@ credo's
 
 credos
 
+creds 
+
 credulity
 
 credulity's
@@ -108609,6 +109891,8 @@ creeping
 creeps
 
 creepy
+
+cref
 
 cremains
 
@@ -109150,6 +110434,8 @@ croissants
 
 cron
 
+cron
+
 crone
 
 crone's
@@ -109251,6 +110537,10 @@ crosier's
 crosiers
 
 cross
+
+cross-platform
+
+cross-site
 
 crossable
 
@@ -109503,6 +110793,8 @@ crowns
 crows
 
 crozier's
+
+crsh 
 
 crucial
 
@@ -109924,7 +111216,17 @@ crystals
 
 cs's
 
+csproj
+
 csrf
+
+css
+
+css
+
+css 
+
+csv
 
 csv
 
@@ -109933,6 +111235,8 @@ ctn
 ctor
 
 ctr
+
+ctrl
 
 ctrl
 
@@ -111728,6 +113032,8 @@ danseuse's
 
 danseuses
 
+dany
+
 dao
 
 dapper
@@ -111794,6 +113100,8 @@ darker
 
 darkest
 
+darkgoldenrod
+
 darkie
 
 darkie's
@@ -111811,6 +113119,8 @@ darkly
 darkness
 
 darkness's
+
+darkred
 
 darkroom
 
@@ -111932,13 +113242,27 @@ databind
 
 datable
 
+datacenter
+
 datafile
+
+datafile
+
+datafiles
 
 datafiles
 
 datagram
 
+datapath
+
 datasource
+
+datasources
+
+datastax 
+
+datastore
 
 date
 
@@ -111973,6 +113297,8 @@ dater's
 daters
 
 dates
+
+datetime
 
 datetime
 
@@ -112037,6 +113363,8 @@ dauphin's
 dauphins
 
 davenports
+
+davide
 
 davit
 
@@ -112148,7 +113476,11 @@ dazzlings
 
 dbcp
 
+dbf
+
 dbl
+
+dd
 
 ddMMyyyy
 
@@ -112179,6 +113511,8 @@ deactivating
 deactivation
 
 deactivation's
+
+deactivator 
 
 dead
 
@@ -112307,6 +113641,10 @@ dealing's
 dealings
 
 dealloc
+
+dealloc
+
+deallocate
 
 deallocate
 
@@ -113172,13 +114510,25 @@ decommissions
 
 decompile
 
+decompile
+
 decompiled
+
+decompiled
+
+decompiler
 
 decompiler
 
 decompilers
 
+decompilers
+
 decompiles
+
+decompiles
+
+decompiling
 
 decompiling
 
@@ -113384,6 +114734,8 @@ decrescendo's
 
 decrescendos
 
+decribed
+
 decried
 
 decries
@@ -113423,6 +114775,8 @@ decryption
 decrypts
 
 decustomised
+
+dedent
 
 dedent
 
@@ -113485,6 +114839,8 @@ deductive
 deductively
 
 deducts
+
+deduplicate
 
 deduplicate
 
@@ -113819,6 +115175,8 @@ deferment
 deferment's
 
 deferments
+
+deferrable
 
 deferrable
 
@@ -114394,6 +115752,8 @@ delegation's
 
 delegations
 
+delegator
+
 deletable
 
 delete
@@ -114509,6 +115869,8 @@ delightfulness
 delighting
 
 delights
+
+delim
 
 deliminator
 
@@ -116078,6 +117440,8 @@ deputy's
 
 deque
 
+deque
+
 dequeue
 
 dequeued
@@ -116124,6 +117488,8 @@ derby
 
 dereference
 
+dereference
+
 dereferenced
 
 dereferencer
@@ -116132,7 +117498,13 @@ dereferencers
 
 dereferences
 
+dereferences
+
 dereferencing
+
+deregistered
+
+deregistration
 
 deregulate
 
@@ -116322,6 +117694,8 @@ desaturated
 
 desc
 
+desc
+
 descale
 
 descaled
@@ -116481,6 +117855,8 @@ deserializable
 deserialization
 
 deserialize
+
+deserialized
 
 deserializer
 
@@ -116859,6 +118235,8 @@ destituteness
 destitution
 
 destitution's
+
+destkeystore
 
 destroy
 
@@ -117268,6 +118646,8 @@ deuteron's
 
 dev
 
+dev
+
 devaluation
 
 devaluation's
@@ -117305,6 +118685,8 @@ devastator
 devastator's
 
 devastators
+
+devel
 
 develop
 
@@ -117709,6 +119091,8 @@ diagrams
 dial
 
 dial's
+
+dial-up
 
 dialect
 
@@ -118932,6 +120316,8 @@ diptych's
 
 diptychs
 
+dir 
+
 dire
 
 direct
@@ -119037,6 +120423,8 @@ dirndl
 dirndl's
 
 dirndls
+
+dirs
 
 dirs
 
@@ -121464,6 +122852,8 @@ distinctness's
 
 distinctrow
 
+distinctrow
+
 distinguish
 
 distinguishable
@@ -121988,6 +123378,8 @@ dizzyingly
 
 django
 
+django
+
 djellaba
 
 djellabah's
@@ -121995,6 +123387,12 @@ djellabah's
 djellabas
 
 dmlc
+
+dmraid
+
+dname
+
+dns
 
 do
 
@@ -122013,6 +123411,10 @@ dobs
 doc
 
 doc's
+
+docbkx
+
+docbook
 
 docent
 
@@ -122138,6 +123540,8 @@ documenting
 
 documents
 
+docx
+
 dodder
 
 doddered
@@ -122203,6 +123607,8 @@ doeskin
 doeskin's
 
 doeskins
+
+doesn 
 
 doesn't
 
@@ -122384,6 +123790,8 @@ doings
 
 dojo
 
+dojo
+
 doldrums
 
 doldrums's
@@ -122495,6 +123903,8 @@ doltishness
 doltishness's
 
 dolts
+
+dom
 
 dom
 
@@ -122665,6 +124075,8 @@ donors
 donottranslate
 
 dons
+
+dont
 
 donut
 
@@ -123019,6 +124431,8 @@ dottiness's
 dotting
 
 double
+
+double-click
 
 doubled
 
@@ -123571,6 +124985,8 @@ drag
 drag's
 
 draggability
+
+draggable
 
 draggable
 
@@ -124326,6 +125742,10 @@ dropsy
 
 dropsy's
 
+dropwizard
+
+dropwizard 
+
 dross
 
 dross's
@@ -124552,9 +125972,23 @@ drywalling
 
 drywalls
 
+ds
+
+dsl 
+
+dtd
+
+dto
+
+dto 
+
+dtrace
+
 dtrace
 
 dual
+
+dual-boot
 
 dualism
 
@@ -124912,6 +126346,8 @@ dumpers
 
 dumpfile
 
+dumpfile
+
 dumpier
 
 dumpies
@@ -125206,6 +126642,8 @@ dustsheets
 
 dusty
 
+dutch
+
 dutches
 
 duteous
@@ -125328,6 +126766,8 @@ dyke's
 
 dylib
 
+dylib
+
 dynamic
 
 dynamical
@@ -125429,6 +126869,12 @@ e'er
 eBay
 
 eBay's
+
+eCryptfs
+
+eXecution
+
+eXo
 
 ea
 
@@ -125910,6 +127356,8 @@ eclogue's
 
 eclogues
 
+ecmdemo
+
 ecocide
 
 ecocide's
@@ -126049,6 +127497,8 @@ eddy
 eddy's
 
 eddying
+
+edelson
 
 edelweiss
 
@@ -126712,6 +128162,8 @@ ejaculations
 
 ejaculatory
 
+ejb 
+
 eject
 
 ejecta
@@ -127176,6 +128628,8 @@ elementary
 
 elements
 
+elems
+
 elephant
 
 elephant's
@@ -127422,7 +128876,11 @@ else's
 
 elseif
 
+elseif
+
 elsewhere
+
+elsif
 
 elsif
 
@@ -128228,7 +129686,11 @@ emptiness
 
 emptiness's
 
+empting 
+
 empty
+
+emptyfile
 
 emptying
 
@@ -128515,6 +129977,8 @@ enclosure
 enclosure's
 
 enclosures
+
+encodable 
 
 encode
 
@@ -129046,6 +130510,8 @@ engaging
 
 engagingly
 
+engelen
+
 engender
 
 engendered
@@ -129362,6 +130828,8 @@ enplaning
 
 enqueue
 
+enqueue
+
 enqueued
 
 enqueues
@@ -129543,6 +131011,8 @@ ensurers
 ensures
 
 ensuring
+
+ent
 
 entail
 
@@ -129906,6 +131376,8 @@ entwining
 
 enum
 
+enum
+
 enumerable
 
 enumerate
@@ -129932,6 +131404,8 @@ enumerators
 
 enums
 
+enums
+
 enunciate
 
 enunciated
@@ -129947,6 +131421,10 @@ enunciation's
 enuresis
 
 enuresis's
+
+env
+
+env 
 
 envelop
 
@@ -130410,6 +131888,8 @@ equalled
 
 equalling
 
+equallogic
+
 equally
 
 equals
@@ -130650,6 +132130,8 @@ erbium's
 
 ere
 
+ereceipt
+
 erect
 
 erected
@@ -130679,6 +132161,8 @@ erectors
 erects
 
 erelong
+
+eremainder
 
 eremite
 
@@ -130863,6 +132347,8 @@ erythrocyte
 erythrocyte's
 
 erythrocytes
+
+esb 
 
 escalate
 
@@ -131196,6 +132682,8 @@ estimator's
 
 estimators
 
+estoppel
+
 estrange
 
 estranged
@@ -131229,6 +132717,8 @@ estuarine
 estuary
 
 estuary's
+
+esx
 
 eta's
 
@@ -131818,6 +133308,8 @@ eves
 
 evex
 
+evex
+
 evict
 
 evictable
@@ -131965,6 +133457,8 @@ ewers
 ewes
 
 ex
+
+exabyte
 
 exacerbate
 
@@ -132117,6 +133611,8 @@ exasperation
 exasperation's
 
 exasperations
+
+exc 
 
 excavate
 
@@ -132490,6 +133986,8 @@ excusing
 
 exe
 
+exe
+
 exec
 
 exec's
@@ -132788,6 +134286,8 @@ exhuming
 
 exif
 
+exif
+
 exigence
 
 exigences
@@ -132859,6 +134359,8 @@ exited
 exiting
 
 exits
+
+exo
 
 exobiology
 
@@ -133520,6 +135022,8 @@ expounds
 
 expr
 
+expr
+
 express
 
 expressed
@@ -133767,6 +135271,8 @@ exterminator
 exterminator's
 
 exterminators
+
+extern 
 
 external
 
@@ -134347,6 +135853,8 @@ facading
 face
 
 face's
+
+facebook
 
 facebook
 
@@ -135688,6 +137196,8 @@ faves
 
 favicon
 
+favicon
+
 favor
 
 favor's
@@ -135703,6 +137213,8 @@ favoring
 favorite
 
 favorite's
+
+favorited
 
 favorites
 
@@ -136129,6 +137641,10 @@ felicity
 feline
 
 felines
+
+felix 
+
+felix  
 
 fell
 
@@ -136682,6 +138198,8 @@ fezzes
 
 ff
 
+fff
+
 fiance
 
 fiance's
@@ -137142,6 +138660,8 @@ filed
 
 filename
 
+filename
+
 filename's
 
 filenames
@@ -137156,9 +138676,17 @@ filers
 
 files
 
+filesep
+
+fileset
+
 fileset
 
 filesets
+
+filesets
+
+filesystem
 
 filesystem
 
@@ -137167,6 +138695,8 @@ filesystems
 filet's
 
 fileupload
+
+fileversion
 
 filial
 
@@ -137391,6 +138921,10 @@ finalize
 finalized
 
 finalizer
+
+finalizer
+
+finalizers
 
 finalizers
 
@@ -137862,6 +139396,8 @@ firs
 
 first
 
+firstboot
+
 firstborn
 
 firstborns
@@ -138038,6 +139574,8 @@ fitfulness
 
 fitfulness's
 
+fitid
+
 fitly
 
 fitment
@@ -138131,6 +139669,8 @@ fixity
 fixity's
 
 fixme
+
+fixpack
 
 fixture
 
@@ -139780,6 +141320,8 @@ fluxes
 
 fluxing
 
+flv
+
 fly
 
 flyable
@@ -140129,6 +141671,8 @@ follow
 followable
 
 followed
+
+followee
 
 follower
 
@@ -140488,6 +142032,8 @@ forages
 
 foraging
 
+forall
+
 foray
 
 foray's
@@ -140583,6 +142129,8 @@ fording
 fords
 
 fore
+
+foreach
 
 foreach
 
@@ -141136,6 +142684,10 @@ forkfuls
 
 forking
 
+forkjoin
+
+forkjoinpool
+
 forklift
 
 forklift's
@@ -141253,6 +142805,8 @@ formativeness
 formats
 
 formatted
+
+formatter
 
 formatter
 
@@ -142216,6 +143770,10 @@ freelancing
 
 freelist
 
+freelist
+
+freelists
+
 freelists
 
 freeload
@@ -142245,6 +143803,8 @@ freemen
 freeness
 
 freephone
+
+freepools
 
 freepools
 
@@ -142678,6 +144238,8 @@ frisks
 
 frisky
 
+frison
+
 frisson
 
 frisson's
@@ -142831,6 +144393,8 @@ frontbenchers
 frontbenches
 
 fronted
+
+frontend
 
 frontend
 
@@ -143098,6 +144662,8 @@ frying
 
 fs
 
+fsck
+
 ft
 
 ftlvariable
@@ -143256,6 +144822,8 @@ fullstops
 
 fulltext
 
+fulltext
+
 fullword
 
 fullword's
@@ -143357,6 +144925,8 @@ fumy
 fun
 
 fun's
+
+func
 
 func
 
@@ -143901,6 +145471,8 @@ fuzziness's
 fuzzing
 
 fuzzy
+
+fwlink
 
 fwy
 
@@ -144553,6 +146125,8 @@ gapingly
 gapings
 
 gaps
+
+gaq
 
 garage
 
@@ -145218,6 +146792,8 @@ gazumps
 
 gdata
 
+gdata
+
 gear
 
 gear's
@@ -145734,6 +147310,8 @@ geochemistry's
 
 geocode
 
+geocode
+
 geode
 
 geode's
@@ -145819,6 +147397,8 @@ geometries
 geometry
 
 geometry's
+
+geometrycollection
 
 geometrycollection
 
@@ -146030,6 +147610,8 @@ gettered
 
 getters
 
+getters
+
 getting
 
 getup
@@ -146215,6 +147797,10 @@ giddiness's
 giddy
 
 giddying
+
+gif
+
+gif
 
 gift
 
@@ -146527,6 +148113,8 @@ gites
 github
 
 gits
+
+giud
 
 giud
 
@@ -147064,6 +148652,8 @@ globally
 
 globals
 
+globals
+
 globbing
 
 globe
@@ -147105,6 +148695,8 @@ globules
 globulin
 
 globulin's
+
+glock
 
 glockenspiel
 
@@ -147933,6 +149525,8 @@ goofing
 goofs
 
 goofy
+
+google
 
 google
 
@@ -149082,6 +150676,8 @@ gravy's
 
 gray
 
+gray-scale
+
 graybeard
 
 graybeard's
@@ -149325,6 +150921,8 @@ gregariously
 gregariousness
 
 gregariousness's
+
+gregorian 
 
 gremlin
 
@@ -150034,6 +151632,8 @@ groves
 
 grow
 
+growable
+
 grower
 
 grower's
@@ -150262,6 +151862,8 @@ gryphon's
 
 gs
 
+gson
+
 gt
 
 guacamole
@@ -150416,6 +152018,8 @@ guest's
 
 guested
 
+guestfish
+
 guesthouse
 
 guesthouse's
@@ -150443,6 +152047,10 @@ guffawed
 guffawing
 
 guffaws
+
+guid
+
+guid
 
 guidance
 
@@ -150561,6 +152169,8 @@ guiltlessness
 guilts
 
 guilty
+
+guimenu
 
 guinea
 
@@ -151198,6 +152808,8 @@ gyves
 
 gyving
 
+gz
+
 gzip
 
 gzipped
@@ -151671,6 +153283,8 @@ hake
 hake's
 
 hakes
+
+hal 
 
 halal
 
@@ -152516,6 +154130,8 @@ harbours
 
 hard
 
+hard-coded
+
 hardback
 
 hardback's
@@ -152533,6 +154149,8 @@ hardboard's
 hardbound
 
 hardcode
+
+hardcoded
 
 hardcoded
 
@@ -152613,6 +154231,10 @@ hardliner
 hardliners
 
 hardlink
+
+hardlink
+
+hardlinks
 
 hardlinks
 
@@ -152991,6 +154613,10 @@ hashing's
 hashish
 
 hashish's
+
+hashtable
+
+hashtables
 
 hasn't
 
@@ -154508,11 +156134,15 @@ helpmeet's
 
 helps
 
+helpset
+
 helve
 
 helve's
 
 helves
+
+helvetica
 
 helvetica
 
@@ -154910,6 +156540,8 @@ hero
 
 hero's
 
+heroadurl
+
 heroes
 
 heroic
@@ -155110,6 +156742,8 @@ heyday's
 
 heydays
 
+hgap
+
 hgt
 
 hgwy
@@ -155263,6 +156897,8 @@ hieroglyphs
 hies
 
 high
+
+high-availability
 
 highball
 
@@ -155782,6 +157418,8 @@ hived
 
 hives
 
+hivex
+
 hiving
 
 hiya
@@ -156074,6 +157712,8 @@ hold
 
 holdability
 
+holdability
+
 holdable
 
 holdall
@@ -156235,6 +157875,8 @@ holstered
 holstering
 
 holsters
+
+holubec
 
 holy
 
@@ -157448,6 +159090,10 @@ hostly
 
 hostname
 
+hostname
+
+hostnames
+
 hosts
 
 hot
@@ -157541,6 +159187,8 @@ hotpot
 hotpot's
 
 hotpots
+
+hotrod 
 
 hots
 
@@ -157872,6 +159520,10 @@ hoydens
 
 hprof
 
+hprof
+
+href
+
 href
 
 hrs
@@ -157881,6 +159533,8 @@ hsl
 hsla
 
 hsql
+
+hsqldb
 
 hsqldb
 
@@ -157896,15 +159550,29 @@ hsvsaturation
 
 hsvvalue
 
+htm
+
 html
+
+html
+
+http
 
 http
 
 httpclient
 
+httpd
+
 httpinvoker
 
+httppass
+
 https
+
+https
+
+httpuser
 
 huarache
 
@@ -158746,6 +160414,8 @@ hybridizing
 
 hybrids
 
+hybris 
+
 hydrangea
 
 hydrangea's
@@ -159156,6 +160826,10 @@ hyperventilation
 
 hyperventilation's
 
+hypervisor
+
+hypervisors
+
 hypes
 
 hyphen
@@ -159368,6 +161042,12 @@ hysterically
 
 hysterics
 
+hystrix 
+
+iPod
+
+iSCSI
+
 iamb
 
 iamb's
@@ -159405,6 +161085,8 @@ ibis's
 ibises
 
 ibuprofen
+
+ica
 
 ice
 
@@ -159499,6 +161181,8 @@ ickier
 ickiest
 
 icky
+
+ico
 
 icon
 
@@ -159609,6 +161293,8 @@ ideas
 idem
 
 idempotent
+
+ident
 
 identical
 
@@ -159798,6 +161484,8 @@ idols
 
 idref
 
+ids 
+
 idyll
 
 idyll's
@@ -159810,6 +161498,8 @@ idylls
 
 if
 
+iface
+
 iffier
 
 iffiest
@@ -159817,6 +161507,8 @@ iffiest
 iffiness
 
 iffy
+
+iframe
 
 ifs
 
@@ -159901,6 +161593,8 @@ ii
 iife
 
 iii
+
+iis
 
 ikon's
 
@@ -160211,6 +161905,12 @@ imbued
 imbues
 
 imbuing
+
+img
+
+img
+
+img 
 
 imitable
 
@@ -161044,6 +162744,8 @@ impishness's
 
 impl
 
+impl
+
 implacability
 
 implacability's
@@ -161142,6 +162844,8 @@ implicitness
 
 implicitness's
 
+implicits
+
 implied
 
 impliedly
@@ -161221,6 +162925,8 @@ importer's
 importers
 
 importing
+
+importkeystore
 
 imports
 
@@ -161930,6 +163636,8 @@ inbounds
 
 inbox
 
+inbox
+
 inbred
 
 inbreds
@@ -161943,6 +163651,8 @@ inbreeding's
 inbreeds
 
 inbuilt
+
+inc 
 
 incalculable
 
@@ -162940,6 +164650,10 @@ indexes
 
 indexing
 
+indexterm
+
+indextype
+
 indextype
 
 indicant
@@ -162973,6 +164687,8 @@ indicator
 indicator's
 
 indicators
+
+indices
 
 indices
 
@@ -163908,6 +165624,8 @@ infighting's
 
 infile
 
+infile
+
 infill
 
 infill's
@@ -164566,6 +166284,10 @@ inhumanly
 
 inhumanness
 
+ini
+
+iniCtx
+
 inimical
 
 inimically
@@ -164585,6 +166307,8 @@ iniquitously
 iniquity
 
 iniquity's
+
+init
 
 init
 
@@ -164615,6 +166339,12 @@ initialize
 initialized
 
 initializer
+
+initializer
+
+initializers
+
+initializers 
 
 initializes
 
@@ -164661,6 +166391,10 @@ initiators
 initiatory
 
 initrans
+
+initrans
+
+initrd
 
 inject
 
@@ -164804,6 +166538,8 @@ inlier
 
 inline
 
+inline
+
 inlined
 
 inlining
@@ -164902,6 +166638,8 @@ innocuousness's
 
 innodb
 
+innodb
+
 innovate
 
 innovated
@@ -164966,6 +166704,10 @@ inoculation's
 
 inoculations
 
+inode
+
+inodes
+
 inoffensive
 
 inoffensively
@@ -164995,6 +166737,8 @@ inordinateness
 inorganic
 
 inorganically
+
+inout
 
 inout
 
@@ -165570,6 +167314,8 @@ instanter
 
 instantiable
 
+instantiable
+
 instantiatable
 
 instantiate
@@ -165601,6 +167347,8 @@ instates
 instating
 
 instead
+
+insteadof
 
 insteadof
 
@@ -166069,6 +167817,8 @@ intelligible
 intelligibleness
 
 intelligibly
+
+intellij
 
 intellij
 
@@ -167932,6 +169682,8 @@ iodizes
 
 iodizing
 
+ioe 
+
 ion
 
 ion's
@@ -167982,11 +169734,17 @@ ionospheric
 
 ions
 
+ios
+
 iota
 
 iota's
 
 iotas
+
+ipad
+
+ipaddress
 
 ipecac
 
@@ -167996,9 +169754,15 @@ ipecacs
 
 iphone
 
+iphone
+
+iphoneos
+
 iphoneos
 
 ipsum
+
+iptables
 
 irascibility
 
@@ -168378,7 +170142,13 @@ irrupts
 
 is
 
+isPrint
+
 iscolor
+
+iscsiadm
+
+isdb
 
 isem
 
@@ -168425,6 +170195,8 @@ isms
 isn't
 
 isnan
+
+isnull
 
 isnull
 
@@ -168990,6 +170762,8 @@ janitorial
 
 janitors
 
+janrain
+
 japanned
 
 japanning
@@ -169038,6 +170812,8 @@ jars
 
 jasmines
 
+jasperreports
+
 jasypt
 
 jato
@@ -169084,21 +170860,41 @@ java
 
 javabean
 
+javabean
+
 javabeans
+
+javabeans
+
+javac
 
 javac
 
 javadoc
 
+javadoc
+
+javaee
+
 javaee
 
 javafx
+
+javahelp
 
 javamail
 
 javascript
 
+javascript
+
+javascripts
+
+javase
+
 javassist
+
+javax
 
 javax
 
@@ -169143,6 +170939,8 @@ jaxb
 jaxen
 
 jaxrpc
+
+jaxws
 
 jay
 
@@ -169190,11 +170988,23 @@ jbehave
 
 jcache
 
+jconsole
+
+jconsole 
+
+jcr
+
+jcr 
+
 jcraft
 
 jct
 
 jdbc
+
+jdbcjcr
+
+jdbcx 
 
 jealous
 
@@ -169213,6 +171023,8 @@ jean
 jean's
 
 jeans
+
+jedis 
 
 jeep
 
@@ -169241,6 +171053,8 @@ jeeringly
 jeers
 
 jeez
+
+jeff
 
 jehad's
 
@@ -169406,6 +171220,8 @@ jet's
 
 jetbrains
 
+jetbrains
+
 jetliner
 
 jetliner's
@@ -169489,6 +171305,16 @@ jewels
 jg
 
 jg's
+
+jgnash
+
+jgoodies
+
+jhelpmap
+
+jhelptoc
+
+jhindexer
 
 jib
 
@@ -169697,6 +171523,8 @@ jiving
 jms
 
 jmx
+
+jndi
 
 jndi
 
@@ -170020,6 +171848,8 @@ journalese
 
 journalese's
 
+journaling
+
 journalism
 
 journalism's
@@ -170158,13 +171988,27 @@ joystick
 
 joysticks
 
+jpa 
+
 jpdl
 
 jpeg
 
+jpg
+
+jpg
+
 jqno
 
 jquery
+
+jquery
+
+jre
+
+js
+
+js
 
 jsch
 
@@ -170176,7 +172020,21 @@ jshint
 
 json
 
+json
+
 jsonpath
+
+jsp
+
+jsp
+
+jsp 
+
+jsps
+
+jspx
+
+jtds 
 
 jubilant
 
@@ -170642,6 +172500,12 @@ juxtaposition's
 
 juxtapositions
 
+jvisualvm 
+
+jvm 
+
+jxlayer
+
 kHz
 
 kHz's
@@ -170665,6 +172529,8 @@ kabuki's
 kaddish
 
 kaddishes
+
+kadmin
 
 kaffeeklatch
 
@@ -170746,6 +172612,8 @@ karma's
 
 karmic
 
+karnani
+
 kart
 
 kart's
@@ -170785,6 +172653,8 @@ kazoo's
 kazoos
 
 kc's
+
+kdump
 
 kebab
 
@@ -170839,6 +172709,8 @@ keenness's
 keens
 
 keep
+
+keepduplicates
 
 keepduplicates
 
@@ -170924,6 +172796,8 @@ kerb's
 
 kerbed
 
+kerberos
+
 kerbing
 
 kerbs
@@ -170992,6 +172866,8 @@ kettles
 
 key
 
+keyalg
+
 keyboard
 
 keyboard's
@@ -171010,7 +172886,15 @@ keyboardists
 
 keyboards
 
+keycap
+
+keycaps
+
 keychain
+
+keychain
+
+keychains
 
 keychains
 
@@ -171110,6 +172994,10 @@ keystones
 
 keystore
 
+keystoreFile
+
+keystorePass
+
 keystroke
 
 keystroke's
@@ -171119,6 +173007,8 @@ keystroked
 keystrokes
 
 keystroking
+
+keytab
 
 keytool
 
@@ -171217,6 +173107,12 @@ kickstand
 kickstand's
 
 kickstands
+
+kickstart
+
+kickstarting
+
+kickstarts
 
 kicky
 
@@ -171438,6 +173334,8 @@ kind
 
 kinda
 
+kinded
+
 kinder
 
 kindergarten
@@ -171557,6 +173455,8 @@ kings
 kingship
 
 kingship's
+
+kinit
 
 kink
 
@@ -171757,6 +173657,8 @@ klaxon
 klaxon's
 
 klaxons
+
+klemen
 
 kleptomania
 
@@ -172140,6 +174042,8 @@ koan
 
 koans
 
+kofax
+
 kohlrabi
 
 kohlrabi's
@@ -172196,6 +174100,8 @@ koshers
 
 kotlin
 
+kotlin
+
 kowtow
 
 kowtowed
@@ -172203,6 +174109,8 @@ kowtowed
 kowtowing
 
 kowtows
+
+kozel
 
 kph
 
@@ -172262,6 +174170,8 @@ kudzus
 
 kulaks
 
+kumar
+
 kumquat
 
 kumquat's
@@ -172275,6 +174185,8 @@ kvetched
 kvetches
 
 kvetching
+
+kvp
 
 kyles
 
@@ -172291,6 +174203,10 @@ label's
 labeled
 
 labeler
+
+labeler
+
+labelers
 
 labelers
 
@@ -173982,9 +175898,13 @@ lbs
 
 lbw
 
+lcgap
+
 lcov
 
 lcovonly
+
+ldap
 
 ldap
 
@@ -174422,6 +176342,8 @@ leeway's
 
 left
 
+left-click
+
 lefter
 
 leftest
@@ -174793,6 +176715,8 @@ lemur
 lemur's
 
 lemurs
+
+len 
 
 lend
 
@@ -175250,6 +177174,10 @@ lexis's
 
 lg
 
+lgap
+
+lgpl
+
 liabilities
 
 liability
@@ -175416,6 +177344,8 @@ liberty
 
 liberty's
 
+libguestfs
+
 libidinal
 
 libidinous
@@ -175457,6 +177387,10 @@ libretto's
 librettos
 
 libs
+
+libvirt
+
+libxml
 
 libxml
 
@@ -175630,6 +177564,8 @@ lifebuoys
 
 lifecycle
 
+lifecycle
+
 lifeforms
 
 lifeguard
@@ -175786,6 +177722,8 @@ lightface's
 
 lightfaced
 
+lightgray
+
 lightheaded
 
 lighthearted
@@ -175861,6 +177799,8 @@ likableness's
 like
 
 likeability's
+
+likec
 
 likec
 
@@ -176218,6 +178158,8 @@ linesmen
 
 linestring
 
+linestring
+
 lineup
 
 lineups
@@ -176304,6 +178246,8 @@ linker
 
 linkers
 
+linkify
+
 linking
 
 linkings
@@ -176313,6 +178257,8 @@ linkman
 linkman's
 
 linkmen
+
+linkplain
 
 linkplain
 
@@ -176978,7 +178924,13 @@ llanos
 
 lldb
 
+lldb
+
 llvm
+
+llvm
+
+lnk
 
 lo
 
@@ -177176,6 +179128,8 @@ lobstering
 
 lobsters
 
+loc 
+
 local
 
 locale
@@ -177185,6 +179139,8 @@ locale's
 localed
 
 locales
+
+localhost
 
 localhost
 
@@ -177210,6 +179166,10 @@ locality
 
 locality's
 
+localizable
+
+localizable
+
 localization
 
 localization's
@@ -177229,6 +179189,10 @@ locally
 locals
 
 localtime
+
+localtime
+
+localtimestamp
 
 localtimestamp
 
@@ -177255,6 +179219,8 @@ locations
 locative
 
 locatives
+
+locator
 
 locator
 
@@ -177464,6 +179430,8 @@ loges
 
 logfile
 
+logfile
+
 loggable
 
 logged
@@ -177520,6 +179488,8 @@ logiest
 
 login
 
+login
+
 logins
 
 logistic
@@ -177542,7 +179512,13 @@ logo's
 
 logoff
 
+logoff
+
 logon
+
+logon
+
+logons
 
 logos
 
@@ -177551,6 +179527,8 @@ logotype
 logotype's
 
 logotypes
+
+logout
 
 logout
 
@@ -177612,6 +179590,8 @@ lollops
 
 lolls
 
+lombok 
+
 lone
 
 lonelier
@@ -177643,6 +179623,8 @@ lonesomeness's
 lonesomes
 
 long
+
+longblob
 
 longblob
 
@@ -177728,6 +179710,8 @@ longsword
 
 longtext
 
+longtext
+
 longtime
 
 longueur
@@ -177779,6 +179763,8 @@ lookout's
 lookouts
 
 looks
+
+lookup
 
 lookup
 
@@ -178404,6 +180390,10 @@ lubricity's
 
 lucene
 
+lucene
+
+luci
+
 lucid
 
 lucidity
@@ -178952,7 +180942,15 @@ luxury's
 
 lvalue
 
+lvalue
+
 lvalues
+
+lvalues
+
+lvconvert
+
+lvcreate
 
 lvi
 
@@ -179233,6 +181231,8 @@ macrocosm
 macrocosm's
 
 macrocosms
+
+macrodef
 
 macrodef
 
@@ -180756,6 +182756,8 @@ manorial
 
 manors
 
+manpage
+
 manpower
 
 manpower's
@@ -181022,6 +183024,8 @@ marbling
 
 marbling's
 
+marcelo
+
 march
 
 marched
@@ -181099,6 +183103,10 @@ mariachi
 mariachi's
 
 mariachis
+
+mariadb
+
+mariadb 
 
 marigold
 
@@ -181381,6 +183389,8 @@ marshaler
 marshalers
 
 marshaling
+
+marshall 
 
 marshaller
 
@@ -182210,11 +184220,17 @@ maws
 
 max
 
+maxcode
+
+maxdatafiles
+
 maxdatafiles
 
 maxed
 
 maxes
+
+maxextents
 
 maxextents
 
@@ -182260,6 +184276,8 @@ maximising
 
 maximizable
 
+maximizable
+
 maximization
 
 maximization's
@@ -182290,17 +184308,31 @@ maxing
 
 maxinstances
 
+maxinstances
+
 maxis
+
+maxlogfiles
 
 maxlogfiles
 
 maxloghistory
 
+maxloghistory
+
+maxlogmembers
+
 maxlogmembers
 
 maxsize
 
+maxsize
+
 maxtrans
+
+maxtrans
+
+maxvalue
 
 maxvalue
 
@@ -182394,7 +184426,17 @@ mazurkas
 
 mbean
 
+md
+
+mdb
+
+mdd
+
+mdf
+
 mdpi
+
+mdraid
 
 mdse
 
@@ -182830,9 +184872,15 @@ medium's
 
 mediumblob
 
+mediumblob
+
+mediumint
+
 mediumint
 
 mediums
+
+mediumtext
 
 mediumtext
 
@@ -183128,6 +185176,8 @@ meltingly
 
 melts
 
+mem 
+
 member
 
 member's
@@ -183175,6 +185225,8 @@ memoir's
 memoirs
 
 memoize
+
+memoized 
 
 memorabilia
 
@@ -183454,6 +185506,8 @@ menu
 
 menu's
 
+menu-driven
+
 menus
 
 meow
@@ -183591,6 +185645,8 @@ merganser's
 mergansers
 
 merge
+
+mergeable
 
 merged
 
@@ -183897,6 +185953,8 @@ metacarpus's
 metacircular
 
 metacircularity
+
+metadata
 
 metadata
 
@@ -184568,6 +186626,8 @@ microsecond's
 
 microseconds
 
+microsoft
+
 microstore
 
 microsurgery
@@ -184621,6 +186681,8 @@ middlebrow's
 middlebrows
 
 middled
+
+middleint
 
 middleint
 
@@ -184685,6 +186747,8 @@ midnight's
 midnightly
 
 midnights
+
+midp
 
 midpoint
 
@@ -185194,6 +187258,8 @@ millipedes
 
 millis
 
+millis
+
 millisecond
 
 millisecond's
@@ -185293,6 +187359,12 @@ mimics
 miming
 
 mimosas
+
+min 
+
+mina
+
+minaj
 
 minaret
 
@@ -185415,6 +187487,8 @@ minesweeper's
 minesweepers
 
 mineworkers
+
+minextents
 
 minextents
 
@@ -185553,6 +187627,8 @@ minimiser's
 minimises
 
 minimising
+
+minimizable
 
 minimizable
 
@@ -185770,11 +187846,15 @@ minuting
 
 minvalue
 
+minvalue
+
 minx
 
 minx's
 
 minxes
+
+miny
 
 miny
 
@@ -185819,6 +187899,8 @@ mirier
 miriest
 
 miring
+
+miroslav
 
 mirror
 
@@ -186962,6 +189044,8 @@ mixes
 
 mixin
 
+mixin
+
 mixing
 
 mixture
@@ -186989,6 +189073,10 @@ mks
 ml
 
 mlslabel
+
+mlslabel
+
+mml
 
 mnemonic
 
@@ -187341,6 +189429,8 @@ modishly
 modishness
 
 modishness's
+
+modprobe
 
 mods
 
@@ -189366,6 +191456,8 @@ mouthwatering
 
 mouthy
 
+mov
+
 movable
 
 movableness
@@ -189426,6 +191518,8 @@ moxie
 
 moxie's
 
+moz
+
 mozzarella
 
 mozzarella's
@@ -189435,6 +191529,20 @@ mpg
 mph
 
 mqtt
+
+msec
+
+msg 
+
+msi
+
+msi
+
+msie
+
+mss
+
+mstypes
 
 mtg
 
@@ -189780,6 +191888,10 @@ mulls
 
 multi
 
+multi
+
+multibyte
+
 multicast
 
 multicaster
@@ -189842,6 +191954,8 @@ multiline
 
 multilinestring
 
+multilinestring
+
 multilingual
 
 multilingualism
@@ -189875,6 +191989,8 @@ multipane
 multipart
 
 multiparty
+
+multipath
 
 multiphase
 
@@ -189944,6 +192060,10 @@ multiplying
 
 multipoint
 
+multipoint
+
+multipolygon
+
 multipolygon
 
 multiprocess
@@ -189969,6 +192089,8 @@ multiprogrammings
 multipurpose
 
 multiracial
+
+multiset
 
 multiset
 
@@ -190576,6 +192698,10 @@ mutest
 
 mutex
 
+mutex
+
+mutexes
+
 mutexes
 
 mutilate
@@ -190664,6 +192790,8 @@ muumuu's
 
 muumuus
 
+mux
+
 muzzily
 
 muzziness
@@ -190683,6 +192811,14 @@ muzzles
 muzzling
 
 muzzy
+
+mvc
+
+mvc 
+
+mvn
+
+mweb
 
 mxml
 
@@ -190745,6 +192881,10 @@ mys
 myself
 
 mysql
+
+mysql
+
+mysqladmin
 
 mysteried
 
@@ -191018,7 +193158,15 @@ namesakes
 
 namespace
 
+namespace
+
+namespaced
+
 namespaces
+
+namespaces
+
+namespacing
 
 naming
 
@@ -191568,6 +193716,8 @@ navigator's
 
 navigators
 
+navneet
+
 navvies
 
 navvy
@@ -191592,7 +193742,13 @@ nbsp
 
 nchar
 
+nchar
+
 nclob
+
+nclob
+
+ndbcluster
 
 ndbcluster
 
@@ -192066,6 +194222,8 @@ neither
 
 nelsons
 
+nemail
+
 nematode
 
 nematode's
@@ -192258,9 +194416,15 @@ net
 
 net's
 
+netapp
+
 netball
 
 netball's
+
+netbios
+
+netflix 
 
 nether
 
@@ -192486,6 +194650,8 @@ nevus's
 
 new
 
+newarray
+
 newbie
 
 newbies
@@ -192505,6 +194671,10 @@ newed
 newel
 
 newel's
+
+newelem
+
+newelems
 
 newels
 
@@ -192595,6 +194765,8 @@ newsier
 newsiest
 
 newsing
+
+newsize
 
 newsletter
 
@@ -192696,6 +194868,10 @@ nexus's
 
 nexuses
 
+nfullname
+
+nfuse
+
 niacin
 
 niacin's
@@ -192769,6 +194945,8 @@ nickered
 nickering
 
 nickers
+
+nicki
 
 nicking
 
@@ -193080,6 +195258,8 @@ ninth
 
 ninths
 
+nio 
+
 niobium
 
 niobium's
@@ -193212,11 +195392,17 @@ nixes
 
 nixing
 
+nlgap
+
 nmtoken
 
 no
 
 noarchivelog
+
+noarchivelog
+
+noaudit
 
 noaudit
 
@@ -193276,9 +195462,17 @@ nobs
 
 nocache
 
+nocache
+
+nocompress
+
 nocompress
 
 nocopy
+
+nocopy
+
+nocreate
 
 nocreate
 
@@ -193291,6 +195485,8 @@ nocturne
 nocturne's
 
 nocturnes
+
+nocycle
 
 nocycle
 
@@ -193322,6 +195518,10 @@ node
 
 node's
 
+nodeType
+
+nodegroup
+
 nodegroup
 
 nodes
@@ -193350,9 +195550,17 @@ noggins
 
 nohistory
 
+nohistory
+
 nohow
 
+noinline
+
 noinspection
+
+noinspection
+
+noinspections
 
 noinspections
 
@@ -193398,6 +195606,8 @@ nokeys
 
 nologging
 
+nologging
+
 nomad
 
 nomad's
@@ -193407,6 +195617,10 @@ nomadic
 nomads
 
 nomapping
+
+nomapping
+
+nomaxvalue
 
 nomaxvalue
 
@@ -193453,6 +195667,10 @@ nominee's
 nominees
 
 nominvalue
+
+nominvalue
+
+nomonitoring
 
 nomonitoring
 
@@ -193525,6 +195743,8 @@ nonappearances
 nonassignable
 
 nonathletic
+
+nonatomic
 
 nonatomic
 
@@ -193603,6 +195823,8 @@ noncombustible
 noncommercial
 
 noncommercials
+
+noncommetcially
 
 noncommittal
 
@@ -193877,6 +196099,8 @@ nonindependent
 nonindustrial
 
 noninfectious
+
+noninfingement
 
 noninfingement
 
@@ -194166,6 +196390,8 @@ nonscheduled
 
 nonschema
 
+nonschema
+
 nonscientific
 
 nonscoring
@@ -194400,11 +196626,15 @@ noontime's
 
 noorder
 
+noorder
+
 noose
 
 noose's
 
 nooses
+
+noparallel
 
 noparallel
 
@@ -194424,7 +196654,13 @@ noradrenaline's
 
 norely
 
+norely
+
 noresetlogs
+
+noresetlogs
+
+noreverse
 
 noreverse
 
@@ -194493,6 +196729,8 @@ normed
 norming
 
 norms
+
+norowdependencies
 
 norowdependencies
 
@@ -194643,6 +196881,8 @@ nosiness's
 nosing
 
 nosing's
+
+nosort
 
 nosort
 
@@ -194852,6 +197092,8 @@ notnight
 
 notnull
 
+notnull
+
 notoriety
 
 notorious
@@ -194907,6 +197149,8 @@ nous
 nous's
 
 novae
+
+novalidate
 
 novalidate
 
@@ -194996,6 +197240,8 @@ nowadays
 
 nowait
 
+nowait
+
 noway
 
 noways
@@ -195005,6 +197251,8 @@ nowhere
 nowheres
 
 nowise
+
+nowrap
 
 nowrap
 
@@ -195174,11 +197422,17 @@ null
 
 nullabilities
 
+nullabilities
+
+nullability
+
 nullability
 
 nullable
 
 nulled
+
+nullif
 
 nullif
 
@@ -195209,6 +197463,8 @@ nullness
 nullptr
 
 nulls
+
+numactl
 
 numb
 
@@ -195548,6 +197804,8 @@ nuzzling
 
 nvarchar
 
+nvarchar
+
 nybble
 
 nybbled
@@ -195684,6 +197942,8 @@ oats
 
 oauth
 
+oauth
+
 obbligato
 
 obbligatos
@@ -195785,6 +198045,8 @@ obituary
 obituary's
 
 obj
+
+objc
 
 objc
 
@@ -196528,6 +198790,8 @@ odalisque's
 
 odalisques
 
+odc 
+
 odd
 
 oddball
@@ -196615,6 +198879,8 @@ odoured
 odourless
 
 odours
+
+odt
 
 odysseys
 
@@ -196958,6 +199224,8 @@ oi
 
 oidindex
 
+oidindex
+
 oik
 
 oik's
@@ -197226,6 +199494,8 @@ omniscient
 
 omnisciently
 
+omniture
+
 omnivore
 
 omnivore's
@@ -197253,6 +199523,10 @@ once
 oncer
 
 onchange
+
+onchange
+
+onclick
 
 onclick
 
@@ -197325,6 +199599,8 @@ onkeypress
 onkeyup
 
 onliest
+
+online
 
 online
 
@@ -197508,6 +199784,8 @@ openable
 
 opencast
 
+opencsv 
+
 opened
 
 opener
@@ -197518,6 +199796,8 @@ openers
 
 openest
 
+opengl
+
 openhanded
 
 openhandedness
@@ -197525,6 +199805,8 @@ openhandedness
 openhandedness's
 
 openhearted
+
+openid
 
 openid
 
@@ -197544,7 +199826,13 @@ opens
 
 openssl
 
+openssl
+
 opensymphony
+
+opentsdb 
+
+openwin
 
 openwork
 
@@ -198370,6 +200658,8 @@ orisons
 
 orly
 
+orm 
+
 ormolu
 
 ormolu's
@@ -198951,6 +201241,8 @@ outfight
 outfighting
 
 outfights
+
+outfile
 
 outfile
 
@@ -199798,6 +202090,8 @@ overcommitment
 
 overcommitments
 
+overcommitting
+
 overcompensate
 
 overcompensated
@@ -200438,6 +202732,10 @@ override
 
 overrider
 
+overrider
+
+overriders
+
 overriders
 
 overrides
@@ -201015,6 +203313,8 @@ oxidizers
 oxidizes
 
 oxidizing
+
+oxm 
 
 oxtail
 
@@ -202104,6 +204404,8 @@ panther's
 
 panthers
 
+pantherssl
+
 pantie
 
 pantie's
@@ -202490,6 +204792,8 @@ parallelism's
 
 parallelisms
 
+parallelizable
+
 parallelled
 
 parallelling
@@ -202531,6 +204835,8 @@ paralyzes
 paralyzing
 
 paralyzingly
+
+param
 
 param
 
@@ -202605,6 +204911,8 @@ paramour
 paramour's
 
 paramours
+
+params
 
 params
 
@@ -203522,11 +205830,15 @@ passmark
 
 passphrase
 
+passphrases
+
 passport
 
 passport's
 
 passports
+
+passthrough
 
 password
 
@@ -203713,6 +206025,10 @@ patchable
 patched
 
 patcher
+
+patcher
+
+patchers
 
 patchers
 
@@ -204316,13 +206632,33 @@ pct
 
 pctfree
 
+pctfree
+
 pctincrease
+
+pctincrease
+
+pctthreshold
 
 pctthreshold
 
 pctused
 
+pctused
+
 pctversion
+
+pctversion
+
+pda
+
+pdb
+
+pdf
+
+pdf
+
+pdp 
 
 pea
 
@@ -204832,6 +207168,8 @@ peer
 
 peer's
 
+peer-to-peer
+
 peerage
 
 peerage's
@@ -204985,6 +207323,8 @@ pelvis
 pelvis's
 
 pelvises
+
+pem
 
 pemmican
 
@@ -206010,6 +208350,8 @@ permafrost's
 
 permalink
 
+permalink
+
 permanence
 
 permanence's
@@ -206299,6 +208641,8 @@ personage's
 personages
 
 personal
+
+personal_ws-1.1 en 377
 
 personalisation
 
@@ -206691,6 +209035,8 @@ petered
 petering
 
 peters
+
+petersburg
 
 petersburg
 
@@ -207602,6 +209948,8 @@ phototypesetting's
 
 photovoltaic
 
+php
+
 phrasal
 
 phrase
@@ -207990,6 +210338,8 @@ picturesqueness's
 
 picturing
 
+pid 
+
 piddle
 
 piddled
@@ -208071,6 +210421,8 @@ piers
 pies
 
 pieties
+
+pietro
 
 piety
 
@@ -208506,6 +210858,8 @@ ping's
 
 pingable
 
+pingdom
+
 pinged
 
 pinger
@@ -208703,6 +211057,8 @@ piped
 pipeline
 
 pipeline's
+
+pipelined
 
 pipelined
 
@@ -209090,6 +211446,8 @@ pkg
 
 pkt
 
+pla
+
 placard
 
 placard's
@@ -209291,6 +211649,8 @@ plainspoken
 plaint
 
 plaint's
+
+plaintext
 
 plaintext
 
@@ -209726,6 +212086,8 @@ playings
 
 playlist
 
+playlist
+
 playmate
 
 playmate's
@@ -210030,6 +212392,8 @@ plinths
 
 plist
 
+plist
+
 plod
 
 plodded
@@ -210154,6 +212518,8 @@ ploys
 
 plsql
 
+plsql
+
 pluck
 
 plucked
@@ -210182,6 +212548,8 @@ plug
 
 plug's
 
+plug-in
+
 plugged
 
 plugging
@@ -210191,6 +212559,10 @@ plughole
 plugholes
 
 plugin
+
+plugin
+
+plugins
 
 plugins
 
@@ -210434,6 +212806,10 @@ pneumonia
 
 pneumonia's
 
+png
+
+png
+
 poach
 
 poached
@@ -210501,6 +212877,8 @@ pocks
 pod
 
 pod's
+
+podcast
 
 podded
 
@@ -210619,6 +212997,10 @@ point's
 pointblank
 
 pointcut
+
+pointcut
+
+pointcuts
 
 pointcuts
 
@@ -210837,6 +213219,8 @@ policing
 policy
 
 policy's
+
+policyClass
 
 policyholder
 
@@ -211077,6 +213461,8 @@ poltroons
 poly
 
 poly's
+
+polyadic
 
 polyadic
 
@@ -211590,6 +213976,8 @@ pop
 
 pop's
 
+pop-up
+
 popcorn
 
 popcorn's
@@ -211743,6 +214131,10 @@ populousness
 populousness's
 
 popup
+
+popup
+
+popups
 
 popups
 
@@ -211968,6 +214360,10 @@ portions
 
 portlet
 
+portlet's
+
+portlets
+
 portlier
 
 portliest
@@ -211983,6 +214379,8 @@ portmanteau
 portmanteau's
 
 portmanteaus
+
+portmap
 
 portrait
 
@@ -212018,9 +214416,13 @@ portrays
 
 ports
 
+portuguese
+
 portulaca
 
 portulaca's
+
+pos
 
 pose
 
@@ -212107,6 +214509,8 @@ positron's
 positrons
 
 posits
+
+posix
 
 posix
 
@@ -212250,6 +214654,8 @@ posters
 
 postfix
 
+postfix
+
 postfixes
 
 postgraduate
@@ -212259,6 +214665,10 @@ postgraduate's
 postgraduates
 
 postgres
+
+postgres
+
+postgresql
 
 posthaste
 
@@ -212365,6 +214775,10 @@ postponing
 postprandial
 
 postprocessing
+
+postprocessing
+
+postprocessor
 
 postprocessor
 
@@ -212802,11 +215216,17 @@ poxing
 
 poxy
 
+ppc
+
 ppm
 
 ppm's
 
 ppr
+
+ppt
+
+pptx
 
 practicabilities
 
@@ -212872,6 +215292,8 @@ praetors
 
 pragma
 
+pragma
+
 pragmatic
 
 pragmatical
@@ -212931,6 +215353,8 @@ pram
 pram's
 
 prams
+
+pranay
 
 prance
 
@@ -213048,6 +215472,8 @@ prays
 
 pre
 
+pre
+
 preach
 
 preached
@@ -213141,6 +215567,8 @@ preauthorize
 prebendary
 
 prebendary's
+
+prebuilt
 
 prebuilt
 
@@ -213421,6 +215849,8 @@ predecessor's
 predecessors
 
 predeclared
+
+predef
 
 predefine
 
@@ -213710,6 +216140,8 @@ prefers
 
 prefetch
 
+prefetch
+
 prefigure
 
 prefigured
@@ -213837,6 +216269,8 @@ preliterates
 preload
 
 preloaded
+
+preloader
 
 prelude
 
@@ -213976,6 +216410,8 @@ preordaining
 
 preordains
 
+preorder
+
 prep
 
 prep's
@@ -214040,6 +216476,10 @@ prepays
 
 prepend
 
+prepend
+
+prepended
+
 prepended
 
 prepender
@@ -214047,6 +216487,8 @@ prepender
 prependers
 
 prepending
+
+prepends
 
 prepends
 
@@ -214129,6 +216571,8 @@ preprints
 preprocessed
 
 preprocessing
+
+preprocessor
 
 preprocessor
 
@@ -214688,6 +217132,8 @@ pretzels
 
 prev
 
+prev
+
 prevail
 
 prevailed
@@ -214837,6 +217283,8 @@ pricker
 pricker's
 
 prickers
+
+prickett
 
 pricking
 
@@ -215117,6 +217565,8 @@ printout
 printouts
 
 prints
+
+printviewer
 
 prion
 
@@ -215498,6 +217948,8 @@ processions
 
 processlist
 
+processlist
+
 processor
 
 processor's
@@ -215808,6 +218260,8 @@ profiled
 
 profiler
 
+profiler
+
 profiler's
 
 profilers
@@ -215989,6 +218443,8 @@ programs
 progress
 
 progress's
+
+progressbar
 
 progressbar
 
@@ -217056,6 +219512,10 @@ protists
 
 proto
 
+protobuf 
+
+protoc 
+
 protocol
 
 protocol's
@@ -217165,6 +219625,8 @@ provably
 prove
 
 proved
+
+proven
 
 proven
 
@@ -217364,7 +219826,11 @@ proxy
 
 proxy's
 
+proxyhost
+
 proxying
+
+proxyport
 
 prude
 
@@ -217446,6 +219912,8 @@ psaltery
 
 psaltery's
 
+psd
+
 psephologist
 
 psephologist's
@@ -217459,6 +219927,8 @@ psephology's
 pseud
 
 pseudo
+
+pseudo-ops
 
 pseudonym
 
@@ -217495,6 +219965,8 @@ psis
 psittacosis
 
 psittacosis's
+
+psobject
 
 psoriasis
 
@@ -218904,6 +221376,16 @@ puzzlingly
 
 puzzlings
 
+pvd
+
+pwd
+
+pxeboot
+
+py
+
+pycharm
+
 pycharm
 
 pygmies
@@ -219020,7 +221502,13 @@ pyxing
 
 pzazz
 
+qdiskd
+
 qemu
+
+qna
+
+qos 
 
 qr
 
@@ -219647,6 +222135,8 @@ querulousness
 query
 
 query's
+
+querybuilder 
 
 querying
 
@@ -220349,6 +222839,8 @@ raddest
 radding
 
 raddled
+
+rade
 
 radial
 
@@ -221376,6 +223868,8 @@ rapturously
 
 rapturousness
 
+rar
+
 rare
 
 rarebit
@@ -221870,6 +224364,8 @@ rawness's
 
 raws
 
+rawtypes
+
 ray
 
 ray's
@@ -222036,6 +224532,8 @@ reacts
 
 read
 
+read-only
+
 readabilities
 
 readability
@@ -222067,6 +224565,8 @@ readership
 readership's
 
 readerships
+
+readf
 
 readied
 
@@ -222104,6 +224604,8 @@ readjusts
 
 readme
 
+readme
+
 readmission
 
 readmission's
@@ -222115,6 +224617,8 @@ readmits
 readmitted
 
 readmitting
+
+readonly
 
 readonly
 
@@ -222133,6 +224637,8 @@ readout's
 readouts
 
 reads
+
+readwrite
 
 readwrite
 
@@ -222163,6 +224669,8 @@ reagent's
 reagents
 
 real
+
+real-time
 
 realer
 
@@ -223944,6 +226452,8 @@ recs
 
 rect
 
+rect
+
 recta
 
 recta's
@@ -224306,6 +226816,8 @@ redevelopments
 
 redevelops
 
+redhat
+
 redhead
 
 redhead's
@@ -224395,6 +226907,8 @@ redistributing
 redistribution
 
 redistribution's
+
+redistributions
 
 redistributions
 
@@ -224884,9 +227398,17 @@ refacing
 
 refactor
 
+refactor
+
+refactored
+
 refactored
 
 refactoring
+
+refactoring
+
+refactorings
 
 refactorings
 
@@ -224919,6 +227441,8 @@ refectory's
 refelled
 
 refelling
+
+refentry
 
 refer
 
@@ -224985,6 +227509,8 @@ refers
 reffed
 
 reffing
+
+refid 
 
 refile
 
@@ -225560,6 +228086,10 @@ regents
 
 regex
 
+regex
+
+regexp
+
 regexp
 
 regexps
@@ -225914,15 +228444,29 @@ rehydrate
 
 reifiable
 
+reifiable
+
 reification
+
+reification
+
+reifications
 
 reifications
 
 reified
 
+reified
+
+reifies
+
 reifies
 
 reify
+
+reify
+
+reifying
 
 reifying
 
@@ -226012,6 +228556,8 @@ reindeer's
 
 reindex
 
+reindex
+
 reindexing
 
 reined
@@ -226097,6 +228643,8 @@ reinspecting
 reinspects
 
 reinstall
+
+reinstallation
 
 reinstalled
 
@@ -227166,7 +229714,11 @@ rend
 
 render
 
+renderables
+
 rendered
+
+renderer
 
 renderer
 
@@ -227836,6 +230388,8 @@ replying
 
 repo
 
+repo
+
 repopulate
 
 repopulated
@@ -227925,6 +230479,8 @@ reposting
 repostings
 
 reposts
+
+repr
 
 reprehend
 
@@ -228176,6 +230732,12 @@ reproving
 
 reprovingly
 
+reprovision
+
+reprovisioned
+
+reprovisioning
+
 reps
 
 reptile
@@ -228299,6 +230861,8 @@ reputedly
 reputes
 
 reputing
+
+req 
 
 request
 
@@ -228658,6 +231222,8 @@ reseting
 
 resetlogs
 
+resetlogs
+
 resets
 
 resettable
@@ -228886,6 +231452,8 @@ resizable
 
 resize
 
+resize
+
 resizeable
 
 resized
@@ -228893,6 +231461,8 @@ resized
 resizes
 
 resizing
+
+resmimetype
 
 resold
 
@@ -229548,6 +232118,8 @@ resuscitators
 
 resuspended
 
+resx
+
 resynchronisation
 
 resynchronise
@@ -229710,9 +232282,17 @@ rethreading
 
 rethrow
 
+rethrow
+
+rethrowing
+
 rethrowing
 
 rethrown
+
+rethrown
+
+rethrows
 
 rethrows
 
@@ -230752,6 +233332,10 @@ rezones
 
 rezoning
 
+rga
+
+rgap
+
 rgb
 
 rgba
@@ -230783,6 +233367,8 @@ rhapsody
 rhapsody's
 
 rheas
+
+rhel
 
 rhenium
 
@@ -230869,6 +233455,8 @@ rhizome
 rhizome's
 
 rhizomes
+
+rhn
 
 rho
 
@@ -230984,6 +233572,8 @@ ribosomes
 
 ribs
 
+ricci
+
 rice
 
 riced
@@ -230997,6 +233587,8 @@ ricers
 rices
 
 rich
+
+richFacesPortlet
 
 richen
 
@@ -231228,6 +233820,8 @@ rigging's
 
 right
 
+right-clickaccessor
+
 righted
 
 righten
@@ -231453,6 +234047,8 @@ rinser
 rinses
 
 rinsing
+
+rint
 
 riot
 
@@ -231761,6 +234357,8 @@ riyal
 riyal's
 
 riyals
+
+rlike
 
 rlike
 
@@ -232170,6 +234768,8 @@ rolls
 
 rollup
 
+rollup
+
 romaine
 
 romaine's
@@ -232377,6 +234977,8 @@ rooter
 rooter's
 
 rooters
+
+rootid
 
 rooting
 
@@ -232876,6 +235478,8 @@ rowboats
 
 rowdependencies
 
+rowdependencies
+
 rowdier
 
 rowdies
@@ -232950,11 +235554,21 @@ rpm
 
 rps
 
+rpx
+
 rrggbb
 
 rs
 
+rss
+
 rt
+
+rtf
+
+rtm
+
+rtree
 
 rtree
 
@@ -233085,6 +235699,8 @@ ruby
 ruby's
 
 rubying
+
+rubymine
 
 rubymine
 
@@ -233286,6 +235902,8 @@ rulers
 
 rules
 
+ruleset
+
 ruling
 
 ruling's
@@ -233472,6 +236090,8 @@ runlet's
 
 runlets
 
+runlevel/S
+
 runnable
 
 runnel
@@ -233502,6 +236122,8 @@ runoffs
 
 runs
 
+runspace
+
 runt
 
 runt's
@@ -233509,6 +236131,8 @@ runt's
 runtier
 
 runtiest
+
+runtime
 
 runtime
 
@@ -233698,11 +236322,21 @@ rutty
 
 rvalue
 
+rvalue
+
 rvalues
+
+rvalues
+
+ryantenney 
 
 rye
 
 rye's
+
+s-record
+
+sVirt
 
 saaj
 
@@ -235356,11 +237990,15 @@ savants
 
 save
 
+saveas
+
 saved
 
 saveloy
 
 saveloy's
+
+savepoint
 
 savepoint
 
@@ -235530,6 +238168,8 @@ says
 
 says's
 
+sbin
+
 scab
 
 scab's
@@ -235593,6 +238233,8 @@ scala
 scalability
 
 scalable
+
+scalac
 
 scalar
 
@@ -236135,6 +238777,8 @@ scheduling
 schema
 
 schema's
+
+schemas
 
 schemas
 
@@ -236820,6 +239464,8 @@ scowls
 
 scows
 
+scr 
+
 scrabbled
 
 scrabbler
@@ -237036,6 +239682,8 @@ screen
 
 screen's
 
+screencast
+
 screened
 
 screener
@@ -237185,6 +239833,10 @@ scripted
 scripting
 
 scriptlet
+
+scriptlet
+
+scriptlets
 
 scriptlets
 
@@ -237609,6 +240261,8 @@ scuzzier
 scuzziest
 
 scuzzy
+
+scvmm
 
 scythe
 
@@ -238166,6 +240820,8 @@ secured
 
 securefile
 
+securefile
+
 securely
 
 secureness
@@ -238186,7 +240842,11 @@ security
 
 security's
 
+securityDomain
+
 secy
+
+sed
 
 sedan
 
@@ -238667,6 +241327,8 @@ selfsame
 selfsameness
 
 sell
+
+sellable 
 
 seller
 
@@ -239428,6 +242090,10 @@ sequoia's
 
 sequoias
 
+ser
+
+ser 
+
 sera's
 
 seraglio
@@ -239542,6 +242208,8 @@ serialising
 
 serializable
 
+serializable
+
 serialization
 
 serialization's
@@ -239551,6 +242219,8 @@ serializations
 serialize
 
 serialized
+
+serializer
 
 serializer
 
@@ -239682,7 +242352,11 @@ server's
 
 servererror
 
+servererror
+
 serveries
+
+serverkeys
 
 servers
 
@@ -239755,6 +242429,8 @@ servitors
 servitude
 
 servitude's
+
+servlet
 
 servlet
 
@@ -240106,6 +242782,8 @@ shadeless
 
 shader
 
+shader
+
 shaderless
 
 shades
@@ -240438,6 +243116,8 @@ share's
 
 shareable
 
+sharealike
+
 sharecrop
 
 sharecropped
@@ -240593,6 +243273,8 @@ shawling
 shawls
 
 shays
+
+shc
 
 she
 
@@ -241268,6 +243950,8 @@ shivved
 
 shivving
 
+shld
+
 shlemiel's
 
 shoal
@@ -241462,6 +244146,8 @@ shoppe
 
 shopped
 
+shopped'in
+
 shopped's
 
 shopper
@@ -241483,6 +244169,10 @@ shoptalk
 shoptalk's
 
 shopworn
+
+shopyourway
+
+shopzilla
 
 shore
 
@@ -242298,6 +244988,8 @@ sicks
 
 sics
 
+sid
+
 side
 
 side's
@@ -242688,6 +245380,10 @@ significances
 
 significand
 
+significand
+
+significands
+
 significands
 
 significant
@@ -242715,6 +245411,8 @@ signifying
 signing
 
 signings
+
+signon
 
 signor
 
@@ -242755,6 +245453,8 @@ signposting
 signposts
 
 signs
+
+signum
 
 sigpipe
 
@@ -242835,6 +245535,8 @@ silently
 silentness
 
 silents
+
+silentshopin
 
 silhouette
 
@@ -243514,6 +246216,8 @@ site's
 
 sited
 
+sitemap
+
 sitemesh
 
 sitepreference
@@ -244070,6 +246774,8 @@ skoal
 
 skoals
 
+sku 
+
 skua
 
 skua's
@@ -244119,6 +246825,8 @@ skunked
 skunking
 
 skunks
+
+skus 
 
 sky
 
@@ -244994,6 +247702,8 @@ slivering
 
 slivers
 
+sln
+
 slob
 
 slob's
@@ -245165,6 +247875,8 @@ slowcoach
 slowcoach's
 
 slowcoaches
+
+slowcopy
 
 slowdown
 
@@ -245400,6 +248112,8 @@ smallest
 
 smallfile
 
+smallfile
+
 smallholder
 
 smallholders
@@ -245411,6 +248125,8 @@ smallholding's
 smallholdings
 
 smalling
+
+smallint
 
 smallint
 
@@ -245913,6 +248629,10 @@ snapdragon
 snapdragon's
 
 snapdragons
+
+snapin
+
+snapins
 
 snapped
 
@@ -246842,6 +249562,8 @@ soddenly
 
 sodding
 
+sodipodi
+
 sodium
 
 sodium's
@@ -247260,6 +249982,8 @@ solos
 
 solr
 
+solrj 
+
 sols
 
 solstice
@@ -247419,6 +250143,8 @@ somnolent
 son
 
 son's
+
+soname
 
 soname
 
@@ -247928,11 +250654,17 @@ source's
 
 sourcecode
 
+sourcecode
+
 sourced
 
 sourceforge
 
+sourceforge
+
 sourceless
+
+sourcepath
 
 sources
 
@@ -248222,6 +250954,8 @@ spaghetti's
 
 spake
 
+spam 
+
 spamblock
 
 spamblocks
@@ -248347,6 +251081,8 @@ sparkler's
 sparklers
 
 sparkles
+
+sparklines
 
 sparkling
 
@@ -248940,7 +251676,11 @@ spellcheck
 
 spellchecker
 
+spellchecker
+
 spellcheckers
+
+spellchecking
 
 spellchecking
 
@@ -249067,6 +251807,8 @@ sphincter's
 sphincters
 
 sphinxes
+
+spi 
 
 spic
 
@@ -250408,13 +253150,31 @@ spymaster
 
 spymasters
 
+sql
+
+sql 
+
 sqlcode
+
+sqlcode
+
+sqlerror
 
 sqlerror
 
 sqlexception
 
+sqlexception
+
+sqlite
+
+sqlite 
+
 sqlstate
+
+sqlstate
+
+sqlwarning
 
 sqlwarning
 
@@ -250806,9 +253566,25 @@ squishy
 
 src
 
+src
+
+srckeystore
+
+sscart
+
 ssh
 
 ssha
+
+ssl
+
+ssl
+
+ssl 
+
+sso
+
+sso
 
 stab
 
@@ -251564,6 +254340,8 @@ starts
 
 startup
 
+startup
+
 startup's
 
 startups
@@ -251611,6 +254389,8 @@ statecraft
 statecraft's
 
 stated
+
+stateful
 
 stateful
 
@@ -251748,6 +254528,8 @@ stators
 
 stats
 
+statsd 
+
 statuary
 
 statuary's
@@ -251842,11 +254624,17 @@ stays
 
 stdarg
 
+stdarg
+
 stderr
+
+stdev 
 
 stdin
 
 stdio
+
+stdlib
 
 stdlib
 
@@ -252831,6 +255619,10 @@ stitching
 stitching's
 
 stmt
+
+stmt
+
+stmtrs
 
 stoat
 
@@ -253922,6 +256714,8 @@ strictest
 
 strictfp
 
+strictfp
+
 strictly
 
 strictness
@@ -253992,6 +256786,8 @@ string
 
 string's
 
+stringadd
+
 stringed
 
 stringency
@@ -254009,6 +256805,8 @@ stringers
 stringier
 
 stringiest
+
+stringified 
 
 stringify
 
@@ -254632,6 +257430,10 @@ styles
 
 stylesheet
 
+stylesheet
+
+stylesheets
+
 stylesheets
 
 styli
@@ -255018,6 +257820,8 @@ subjunctive
 
 subjunctives
 
+subkey
+
 sublayer
 
 sublease
@@ -255035,6 +257839,8 @@ sublet
 sublets
 
 subletting
+
+sublicense
 
 sublicense
 
@@ -255188,6 +257994,8 @@ subnetwork's
 
 subnetworks
 
+subnode
+
 subnormal
 
 suboptimal
@@ -255232,9 +258040,15 @@ suborns
 
 subpackage
 
+subpackage
+
 subpackages
 
 subpartition
+
+subpartition
+
+subpartitions
 
 subpartitions
 
@@ -255474,6 +258288,8 @@ subspecies's
 
 subst
 
+subst
+
 substance
 
 substance's
@@ -255557,6 +258373,8 @@ substrates
 substratum
 
 substratum's
+
+substring
 
 substring
 
@@ -255680,6 +258498,8 @@ subtotals
 
 subtract
 
+subtractable
+
 subtracted
 
 subtracter
@@ -255710,7 +258530,11 @@ subtrahends
 
 subtree
 
+subtree
+
 subtree's
+
+subtrees
 
 subtrees
 
@@ -255793,6 +258617,10 @@ subverting
 subverts
 
 subview
+
+subview
+
+subviews
 
 subviews
 
@@ -255965,6 +258793,8 @@ suddenly
 suddenness
 
 suddenness's
+
+sudo
 
 suds
 
@@ -256814,7 +259644,11 @@ supercity
 
 superclass
 
+superclass
+
 superclass's
+
+superclasses
 
 superclasses
 
@@ -257155,6 +259989,10 @@ supervening
 supervention
 
 superview
+
+superview
+
+superviews
 
 superviews
 
@@ -257912,6 +260750,12 @@ svelter
 
 sveltest
 
+svg
+
+svgs
+
+svn
+
 swab
 
 swab's
@@ -258368,6 +261212,8 @@ swerves
 
 swerving
 
+swf
+
 swift
 
 swifted
@@ -258770,6 +261616,8 @@ sylphlike
 
 sylphs
 
+symbian
+
 symbiont
 
 symbiont's
@@ -258831,6 +261679,10 @@ symbolizing
 symbols
 
 symlink
+
+symlink
+
+symlinks
 
 symlinks
 
@@ -259208,13 +262060,23 @@ syrupy
 
 sys
 
+sys
+
 sysadmin
 
 sysadmins
 
+sysconfig
+
+sysctl
+
+sysdate
+
 sysdate
 
 sysimg
+
+sysinit
 
 syslog
 
@@ -259270,6 +262132,8 @@ systems
 
 systimestamp
 
+systimestamp
+
 systole
 
 systole's
@@ -259277,6 +262141,10 @@ systole's
 systoles
 
 systolic
+
+syw
+
+sywr
 
 tab
 
@@ -259337,6 +262205,10 @@ tablelands
 tables
 
 tablespace
+
+tablespace
+
+tablespaces
 
 tablespoon
 
@@ -259588,6 +262460,8 @@ tagliatelle's
 
 taglib
 
+taglib
+
 tags
 
 taiga
@@ -259615,6 +262489,8 @@ tailboards
 tailbone
 
 tailbones
+
+tailcall
 
 tailcoat
 
@@ -259683,6 +262559,8 @@ tailpipes
 tailplane
 
 tailplane's
+
+tailrec
 
 tails
 
@@ -260802,6 +263680,8 @@ taxpaying
 
 taxpaying's
 
+tbody
+
 tbs
 
 tbsp
@@ -261518,6 +264398,8 @@ telly
 
 telly's
 
+telnet
+
 tels
 
 temblor
@@ -261529,6 +264411,10 @@ temblors
 temerity
 
 temerity's
+
+temp
+
+temp 
 
 temped
 
@@ -261598,6 +264484,8 @@ tempestuousness
 
 tempestuousness's
 
+tempfile
+
 temping
 
 template
@@ -261605,6 +264493,8 @@ template
 template's
 
 templates
+
+templating
 
 temple
 
@@ -261665,6 +264555,8 @@ tempos
 temps
 
 tempt
+
+temptable
 
 temptable
 
@@ -262340,6 +265232,8 @@ testcard
 
 testcase
 
+testdata
+
 tested
 
 tester
@@ -262411,6 +265305,8 @@ testroot
 tests
 
 testsuite
+
+testworkbook
 
 testy
 
@@ -263386,6 +266282,8 @@ threading
 
 threadlike
 
+threadpool 
+
 threads
 
 threadsafe
@@ -263623,6 +266521,8 @@ throughput's
 throughway's
 
 throw
+
+throwable
 
 throwable
 
@@ -263896,6 +266796,8 @@ tiara's
 
 tiaras
 
+tibco 
+
 tibia
 
 tibia's
@@ -263903,6 +266805,8 @@ tibia's
 tibiae
 
 tibial
+
+tibjms 
 
 tic
 
@@ -264322,6 +267226,8 @@ timesharing
 
 timestamp
 
+timestamp
+
 timestamped
 
 timestamps
@@ -264556,7 +267462,13 @@ tiny
 
 tinyblob
 
+tinyblob
+
 tinyint
+
+tinyint
+
+tinytext
 
 tinytext
 
@@ -264836,6 +267748,10 @@ tizzy
 
 tizzy's
 
+tmp
+
+tmp
+
 tmpdir
 
 tnpk
@@ -264932,6 +267848,8 @@ tobogganing
 
 toboggans
 
+toc
+
 toccata
 
 toccata's
@@ -264965,6 +267883,8 @@ toddlers
 toddles
 
 toddling
+
+todo
 
 todo
 
@@ -265050,6 +267970,8 @@ toggle's
 
 toggleable
 
+toggleable
+
 toggled
 
 toggles
@@ -265102,13 +268024,21 @@ token
 
 token's
 
+token-ring
+
 tokenism
 
 tokenism's
 
 tokenize
 
+tokenize
+
 tokenizer
+
+tokenizer
+
+tokenizes
 
 tokens
 
@@ -265427,6 +268357,10 @@ toolmaking's
 tools
 
 tooltip
+
+tooltip
+
+tooltips
 
 tooltips
 
@@ -266356,6 +269290,10 @@ toys
 
 toyshop
 
+tparam
+
+tpl
+
 tr
 
 trace
@@ -266368,11 +269306,17 @@ traceable
 
 traceableness
 
+traceback
+
 traced
 
 traceless
 
 tracelessly
+
+tracepoint
+
+tracepoints
 
 tracer
 
@@ -267570,6 +270514,8 @@ traumatizes
 
 traumatizing
 
+trav
+
 travail
 
 travail's
@@ -267611,6 +270557,10 @@ travelogue
 travelogues
 
 travels
+
+traversable
+
+traversables
 
 traversal
 
@@ -267789,6 +270739,8 @@ trebled
 trebles
 
 trebling
+
+trebuchet
 
 trebuchet
 
@@ -269022,6 +271974,8 @@ trues
 
 truest
 
+trufanov
+
 truffle
 
 truffle's
@@ -269178,6 +272132,10 @@ trustingly
 
 trusts
 
+truststore
+
+truststores
+
 trustworthier
 
 trustworthiest
@@ -269261,6 +272219,10 @@ tsunami
 tsunami's
 
 tsunamis
+
+ttf
+
+ttl 
 
 tty
 
@@ -269598,7 +272560,11 @@ tuns
 
 tuple
 
+tuple
+
 tuple's
+
+tupled
 
 tuples
 
@@ -270266,6 +273232,8 @@ twitted
 
 twitter
 
+twitter
+
 twittered
 
 twitterer
@@ -270311,6 +273279,8 @@ twosome
 twosome's
 
 twosomes
+
+txt
 
 txt
 
@@ -270362,6 +273332,10 @@ typed
 
 typedef
 
+typedef
+
+typedefs
+
 typedefs
 
 typeface
@@ -270375,6 +273349,8 @@ typeless
 typename
 
 typeof
+
+typeparamref
 
 typer
 
@@ -270584,6 +273560,8 @@ udder's
 
 udders
 
+udp
+
 ufologist
 
 ufologists
@@ -270591,6 +273569,10 @@ ufologists
 ufology
 
 ufology's
+
+ugap
+
+ugc
 
 ugh
 
@@ -270617,6 +273599,12 @@ uh
 ui
 
 uiautomator
+
+uid
+
+uid
+
+uifx
 
 ukase
 
@@ -271018,6 +274006,8 @@ unappetising
 
 unappetizing
 
+unapply
+
 unappreciated
 
 unappreciative
@@ -271117,6 +274107,8 @@ unattributable
 unattributed
 
 unaudited
+
+unaugment
 
 unauthentic
 
@@ -271328,6 +274320,10 @@ unboundedness
 
 unbowed
 
+unbox
+
+unboxing
+
 unboxing
 
 unbraced
@@ -271526,6 +274522,8 @@ unchaster
 
 unchastest
 
+uncheck
+
 uncheckable
 
 unchecked
@@ -271699,6 +274697,10 @@ uncomfortably
 uncomforted
 
 uncomment
+
+uncomment
+
+uncommented
 
 uncommented
 
@@ -271993,6 +274995,8 @@ uncurled
 uncurling
 
 uncurls
+
+uncurried
 
 uncustomary
 
@@ -272682,6 +275686,8 @@ underwater
 
 underwave
 
+underwave
+
 underway
 
 underwear
@@ -272840,11 +275846,15 @@ undo
 
 undoable
 
+undoable
+
 undocumented
 
 undoer
 
 undoes
+
+undofile
 
 undofile
 
@@ -273018,6 +276028,8 @@ unenlightened
 
 unenlightening
 
+unenroll
+
 unentered
 
 unenterprising
@@ -273053,6 +276065,8 @@ unergonomic
 unerring
 
 unerringly
+
+unescape
 
 unescape
 
@@ -273552,6 +276566,8 @@ unhanding
 
 unhandled
 
+unhandled
+
 unhands
 
 unhandsomely
@@ -273865,6 +276881,8 @@ uninjured
 uninspired
 
 uninspiring
+
+uninstall
 
 uninstall
 
@@ -274404,6 +277422,8 @@ unmarried
 
 unmarrieds
 
+unmarshal 
+
 unmarshaller
 
 unmarshalling
@@ -274726,6 +277746,8 @@ unpins
 
 unpivot
 
+unpivot
+
 unplaced
 
 unplagued
@@ -274887,6 +277909,8 @@ unpropagated
 unpropertied
 
 unpropitious
+
+unprotect
 
 unprotect
 
@@ -275774,6 +278798,10 @@ unstudied
 
 unsubdued
 
+unsubscribe
+
+unsubscribed
+
 unsubscripted
 
 unsubsidised
@@ -275942,6 +278970,10 @@ unthinkingly
 
 unthoughtful
 
+untick
+
+unticking
+
 untidier
 
 untidiest
@@ -276070,6 +279102,8 @@ untruthfulness's
 
 untruths
 
+untupled
+
 unturned
 
 untutored
@@ -276146,6 +279180,8 @@ unvisited
 
 unvoiced
 
+unvote
+
 unwaged
 
 unwanted
@@ -276171,6 +279207,8 @@ unwary
 unwashed
 
 unwashedness
+
+unwatch
 
 unwatch
 
@@ -276374,6 +279412,8 @@ upcoming
 
 upcountry
 
+upd
+
 updatability
 
 updatable
@@ -276503,6 +279543,8 @@ uplifts
 upload
 
 uploaded
+
+uploader
 
 uploader
 
@@ -276896,6 +279938,10 @@ urine
 
 urine's
 
+url
+
+urlencoded
+
 urlencoded
 
 urn
@@ -276922,6 +279968,8 @@ urology's
 
 urowid
 
+urowid
+
 ursine
 
 urticaria
@@ -276944,6 +279992,8 @@ usages
 
 use
 
+useauth
+
 used
 
 useful
@@ -276962,13 +280012,19 @@ uselessness
 
 uselessness's
 
+useproxy
+
 user
 
 user's
 
+user-space
+
 userdata
 
 userland
+
+username
 
 username
 
@@ -276995,6 +280051,8 @@ ushering
 ushers
 
 using
+
+usr
 
 usu
 
@@ -277050,6 +280108,10 @@ uterus's
 
 utf
 
+utf
+
+util
+
 util
 
 utilisable
@@ -277096,6 +280158,8 @@ utilizing
 
 utils
 
+utils
+
 utmost
 
 utopian
@@ -277129,6 +280193,8 @@ utters
 uucp
 
 uucp's
+
+uuid
 
 uuid
 
@@ -277344,6 +280410,8 @@ vainglory's
 
 vainly
 
+val 
+
 valance
 
 valance's
@@ -277441,6 +280509,10 @@ validation's
 validations
 
 validator
+
+validator
+
+validators
 
 validators
 
@@ -277748,11 +280820,21 @@ var
 
 vararg
 
+vararg
+
+varargs
+
 varargs
 
 varbinary
 
+varbinary
+
 varchar
+
+varchar
+
+varcharacter
 
 varcharacter
 
@@ -277868,6 +280950,8 @@ varnishing
 
 varray
 
+varray
+
 vars
 
 varsities
@@ -277977,6 +281061,10 @@ vaunting
 vaunts
 
 vb
+
+vbproj
+
+vcxproj
 
 veal
 
@@ -278119,6 +281207,8 @@ veiled
 veiling
 
 veiling's
+
+veilleux
 
 veils
 
@@ -278480,6 +281570,8 @@ verbs
 
 verdana
 
+verdana
+
 verdant
 
 verdantly
@@ -278614,6 +281706,8 @@ verrucas
 
 versa
 
+versa
+
 versatile
 
 versatilely
@@ -278662,6 +281756,8 @@ version
 
 version's
 
+versionable
+
 versional
 
 versioncode
@@ -278709,6 +281805,8 @@ vertically
 verticalness
 
 verticals
+
+vertices
 
 vertices
 
@@ -278865,6 +281963,12 @@ vexedly
 vexes
 
 vexing
+
+vfs
+
+vfs 
+
+vgap
 
 vi
 
@@ -279099,6 +282203,8 @@ victuals
 vicuna
 
 vicunas
+
+vida
 
 videlicet
 
@@ -279356,6 +282462,8 @@ vinaigrette
 
 vinaigrette's
 
+vincent
+
 vincible
 
 vindaloos
@@ -279572,7 +282680,17 @@ virology
 
 virology's
 
+virsh
+
+virt
+
+virtio
+
 virtual
+
+virtualization
+
+virtualized
 
 virtually
 
@@ -280017,6 +283135,10 @@ vizier's
 viziers
 
 vizor's
+
+vmlinuz
+
+vmware
 
 vocab
 
@@ -280499,6 +283621,8 @@ voyeuristic
 voyeurs
 
 vs
+
+vsr
 
 vtlvariable
 
@@ -281250,6 +284374,8 @@ wantons
 
 wants
 
+wap
+
 wapiti
 
 wapiti's
@@ -281770,6 +284896,8 @@ watchings
 
 watchlist
 
+watchlist
+
 watchmaker
 
 watchmaker's
@@ -281986,6 +285114,8 @@ wattles
 
 wattling
 
+wav
+
 wave
 
 waveband
@@ -282157,6 +285287,8 @@ wazoo
 wazoos
 
 wchar
+
+wcm
 
 we
 
@@ -282424,6 +285556,12 @@ web
 
 web's
 
+webDAV
+
+webapp
+
+webapps
+
 webbed
 
 webbing
@@ -282439,6 +285577,8 @@ webfeet
 webfoot
 
 webfoot's
+
+webinar
 
 webjar
 
@@ -282462,9 +285602,13 @@ webs
 
 webservice
 
+webservice
+
 website
 
 websites
+
+webui
 
 wed
 
@@ -283670,6 +286814,10 @@ whites
 
 whitespace
 
+whitespace
+
+whitespaces
+
 whitespaces
 
 whitest
@@ -284078,6 +287226,8 @@ wifely
 
 wifi
 
+wifi
+
 wig
 
 wig's
@@ -284148,11 +287298,17 @@ wigwams
 
 wiki
 
+wiki
+
 wikipedia
 
 wild
 
 wildcard
+
+wildcard
+
+wildcards
 
 wildcards
 
@@ -284574,6 +287730,8 @@ wineskin
 
 wineskin's
 
+winfx
+
 wing
 
 wing's
@@ -284667,6 +287825,8 @@ winnowers
 winnowing
 
 winnows
+
+winnt
 
 wino
 
@@ -285095,6 +288255,10 @@ wizened
 wk
 
 wkly
+
+wlref
+
+wmode
 
 woad
 
@@ -285650,6 +288814,8 @@ wordsmiths
 
 wordwrap
 
+wordwrap
+
 wordy
 
 wore
@@ -285711,6 +288877,8 @@ worker's
 workers
 
 workfare
+
+workflow
 
 workflow
 
@@ -286058,7 +289226,13 @@ wowing
 
 wows
 
+wpd
+
+wpf
+
 wpm
+
+wps
 
 wrack
 
@@ -286324,6 +289498,8 @@ writable
 
 write
 
+writeback
+
 writeln
 
 writer
@@ -286424,6 +289600,10 @@ wryness's
 
 wsdl
 
+wsdl
+
+wsrp
+
 wt
 
 wunderkind
@@ -286452,6 +289632,14 @@ wussy
 
 www
 
+www
+
+xPath
+
+xalan
+
+xaml
+
 xci
 
 xcii
@@ -286461,6 +289649,10 @@ xciv
 xcix
 
 xcode
+
+xcode
+
+xcodeproj
 
 xcodeproj
 
@@ -286473,6 +289665,12 @@ xcvii
 xcworkspace
 
 xdpi
+
+xen
+
+xenapp
+
+xendesktop
 
 xenon
 
@@ -286490,15 +289688,25 @@ xenophobia's
 
 xenophobic
 
+xenserver
+
+xerces
+
 xerographic
 
 xerography
 
 xerography's
 
+xfbml
+
 xhdpi
 
 xhigh
+
+xhr
+
+xhtml
 
 xhtml
 
@@ -286520,7 +289728,17 @@ xlarge
 
 xliff
 
+xlink
+
 xls
+
+xls
+
+xlsx
+
+xlsx
+
+xml
 
 xml
 
@@ -286530,13 +289748,21 @@ xmlns
 
 xmlschema
 
+xmlschema
+
 xmlschemas
+
+xmlschemas
+
+xmltype
 
 xmltype
 
 xmpp
 
 xor
+
+xpath
 
 xpath
 
@@ -286552,7 +289778,13 @@ xrefs
 
 xsd
 
+xsd
+
 xslt
+
+xslt
+
+xss
 
 xstream
 
@@ -286561,6 +289793,8 @@ xterm
 xterm's
 
 xv
+
+xvf
 
 xvi
 
@@ -286811,6 +290045,8 @@ yawningly
 yawns
 
 yaws
+
+ycode
 
 yd
 
@@ -287184,6 +290420,10 @@ youthfulness's
 
 youths
 
+youtu
+
+youtube
+
 youtube
 
 yow
@@ -287205,6 +290445,8 @@ yows
 yr
 
 yrs
+
+ytplayer
 
 ytterbium
 
@@ -287280,9 +290522,15 @@ yurts
 
 yyyy
 
+yyyy
+
 yyyy-MM-dd
 
 yyyyMMdd
+
+yyyyMMddHHmmss
+
+zagar
 
 zanied
 
@@ -287360,6 +290608,8 @@ zeitgeists
 
 zend
 
+zend
+
 zenith
 
 zenith's
@@ -287391,6 +290641,8 @@ zeroed
 zeroed's
 
 zeroes
+
+zerofill
 
 zerofill
 
@@ -287663,4 +290915,6 @@ zygotic
 zymurgy
 
 zymurgyaccessor
+
+zymurgyasin
 
