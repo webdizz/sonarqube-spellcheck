@@ -18,11 +18,6 @@ public abstract class PluginParameter {
     public static final String REPOSITORY_NAME = PLUGIN_NAME + " Repository";
 
     /**
-     * The name of spell check profile
-     */
-    public static final String PROFILE_NAME = PLUGIN_NAME + " Profile";
-
-    /**
      * The language of spell check profile
      */
     public static final String PROFILE_LANGUAGE = CoreProperties.CATEGORY_JAVA;
@@ -60,11 +55,6 @@ public abstract class PluginParameter {
      * Action name for adding to dictionary
      */
     public static final String ADD_TO_DICT = "add-to-dict";
-
-    /**
-     * Add  to dictionary link caption
-     */
-    public static final String SONAR_SPELL_CHECK_ISSUE_DATA_PROPERTY_KEY = "spell-check-issue-key";
 
     /**
      * Separator for read and split alternate dictionary.
