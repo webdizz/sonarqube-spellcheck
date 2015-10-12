@@ -1,13 +1,13 @@
 package com.epam.sonarqube.spellcheck.plugin.rule;
 
-import com.epam.sonarqube.spellcheck.plugin.PluginParameter;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.BatchExtension;
 import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.rule.Severity;
 import org.sonar.api.server.rule.RulesDefinition;
+
+import com.epam.sonarqube.spellcheck.plugin.PluginParameter;
 
 /**
  * Declare rule meta-data in server repository of rules.
@@ -36,11 +36,9 @@ public class SpellCheckRulesDefinition implements RulesDefinition, BatchExtensio
                 .createRule(PluginParameter.SONAR_SPELL_CHECK_RULE_KEY)
                 .setName(PluginParameter.SONAR_SPELL_CHECK_RULE_NAME)
                 .setHtmlDescription(PluginParameter.SONAR_SPELL_CHECK_RULE_DESCRIPTION)
-                .setTags(PluginParameter.REPOSITORY_KEY)
                 .setStatus(RuleStatus.READY)
                 .setInternalKey(PluginParameter.SONAR_SPELL_CHECK_RULE_KEY)
                 .setSeverity(Severity.INFO);
-
 
         if (LOGGER.isDebugEnabled()){
             LOGGER.debug("Created new rule:{}", grammarRule);
