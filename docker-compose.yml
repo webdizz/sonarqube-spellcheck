@@ -9,7 +9,7 @@ sonar:
     - SONAR_DB_USERNAME=sonarqube
     - SONAR_DB_PASSWORD=sonarqube
   volumes:
-    - ./target/sonarqube-spellcheck-plugin-0.1-SNAPSHOT.jar:/opt/sonar/extensions/plugins/sonarqube-spellcheck-0.1.jar
+    - ./target/sonarqube-spellcheck-plugin-0.2-SNAPSHOT.jar:/opt/sonar/extensions/plugins/sonarqube-spellcheck-plugin-0.2.jar
 
 db:
   image: mysql:5.6
