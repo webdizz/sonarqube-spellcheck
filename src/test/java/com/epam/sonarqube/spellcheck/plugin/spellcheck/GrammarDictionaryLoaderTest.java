@@ -22,13 +22,50 @@ public class GrammarDictionaryLoaderTest {
     private GrammarDictionaryLoader grammarDictionaryLoader = new GrammarDictionaryLoader(settings);
 
     @BeforeClass
-    public static void initSettingsAndLoadDictionaryVeryTimeConsuming() {
+    public static void init() {
         when(settings.getBoolean(PluginParameter.SPELL_IGNORE_MIXED_CASE)).thenReturn(false);
         when(settings.getBoolean(PluginParameter.SPELL_IGNORE_UPPERCASE)).thenReturn(true);
         when(settings.getBoolean(PluginParameter.SPELL_IGNORE_DIGIT_WORDS)).thenReturn(false);
+        when(settings.getInt(PluginParameter.URL_DICTIONARY_TIMEOUT)).thenReturn(5000);
         when(settings.getBoolean(PluginParameter.SPELL_IGNORE_INTERNET_ADDRESSES)).thenReturn(true);
 
-        //dictionary = new GrammarDictionaryLoader(settings).loadMainDictionary();
+    }
+
+    @Test
+    public void shouldLoadURLDictionaryFromResources() throws Exception {
+        when(settings.getString(PluginParameter.URL_DICTIONARY_PATH)).thenReturn("https://raw.githubusercontent.com/GurVic/PizzaDelivery/master/english.0");
+        SpellDictionary dictionary = grammarDictionaryLoader.loadURLDictionary();
+        assertNotNull(dictionary);
+        assertFalse(dictionary.isCorrect("sekleklzsk"));
+        assertTrue(dictionary.isCorrect("ACCTTYPE"));
+    }
+
+    @Test(expected = UnableToLoadDictionary.class)
+    public void shouldThrowExceptionWhenURLDictionaryPathIsNull() {
+        when(settings.getString(PluginParameter.URL_DICTIONARY_PATH)).thenReturn(null);
+        SpellDictionary dictionary = grammarDictionaryLoader.loadURLDictionary();
+    }
+
+    @Test
+    public void shouldReturnLoadedURLDictionary() {
+        when(settings.getString(PluginParameter.URL_DICTIONARY_PATH)).thenReturn("https://raw.githubusercontent.com/GurVic/PizzaDelivery/master/english.0");
+        SpellDictionary dictionary = grammarDictionaryLoader.loadURLDictionary();
+        assertNotNull(dictionary);
+        dictionary = null;
+        dictionary = grammarDictionaryLoader.loadURLDictionary();
+        assertNotNull(dictionary);
+    }
+
+    @Test(expected = UnableToLoadDictionary.class)
+    public void shouldThrowExceptionWhenHaveNoURLDictionary() {
+        when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("https://raw.githubusercontent.com/GurVic/PizzaDelivery/master/english.1");
+        SpellDictionary dictionary = grammarDictionaryLoader.loadMainDictionary();
+    }
+
+    @Test(expected = UnableToLoadDictionary.class)
+    public void shouldThrowExceptionWhenHaveWrongURL() {
+        when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("https://rawqwe.githubusercontent.com/GurVic/PizzaDelivery/master/english.1");
+        SpellDictionary dictionary = grammarDictionaryLoader.loadMainDictionary();
     }
 
     @Test
