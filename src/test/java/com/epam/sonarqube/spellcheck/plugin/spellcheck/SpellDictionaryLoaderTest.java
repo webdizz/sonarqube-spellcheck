@@ -16,25 +16,62 @@ import static org.mockito.Mockito.when;
 /**
  * Created by Konstiantyn on 9/29/2015.
  */
-public class GrammarDictionaryLoaderTest {
+public class SpellDictionaryLoaderTest {
 
     private static Settings settings = mock(Settings.class);
-    private GrammarDictionaryLoader grammarDictionaryLoader = new GrammarDictionaryLoader(settings);
+    private SpellDictionaryLoader spellDictionaryLoader = new SpellDictionaryLoader(settings);
 
     @BeforeClass
-    public static void initSettingsAndLoadDictionaryVeryTimeConsuming() {
+    public static void init() {
         when(settings.getBoolean(PluginParameter.SPELL_IGNORE_MIXED_CASE)).thenReturn(false);
         when(settings.getBoolean(PluginParameter.SPELL_IGNORE_UPPERCASE)).thenReturn(true);
         when(settings.getBoolean(PluginParameter.SPELL_IGNORE_DIGIT_WORDS)).thenReturn(false);
+        when(settings.getInt(PluginParameter.URL_DICTIONARY_TIMEOUT)).thenReturn(5000);
         when(settings.getBoolean(PluginParameter.SPELL_IGNORE_INTERNET_ADDRESSES)).thenReturn(true);
 
-        //dictionary = new GrammarDictionaryLoader(settings).loadMainDictionary();
+    }
+
+    @Test
+    public void shouldLoadURLDictionaryFromResources() throws Exception {
+        when(settings.getString(PluginParameter.URL_DICTIONARY_PATH)).thenReturn("https://raw.githubusercontent.com/GurVic/PizzaDelivery/master/english.0");
+        SpellDictionary dictionary = spellDictionaryLoader.loadURLDictionary();
+        assertNotNull(dictionary);
+        assertFalse(dictionary.isCorrect("sekleklzsk"));
+        assertTrue(dictionary.isCorrect("ACCTTYPE"));
+    }
+
+    @Test(expected = UnableToLoadDictionary.class)
+    public void shouldThrowExceptionWhenURLDictionaryPathIsNull() {
+        when(settings.getString(PluginParameter.URL_DICTIONARY_PATH)).thenReturn(null);
+        SpellDictionary dictionary = spellDictionaryLoader.loadURLDictionary();
+    }
+
+    @Test
+    public void shouldReturnLoadedURLDictionary() {
+        when(settings.getString(PluginParameter.URL_DICTIONARY_PATH)).thenReturn("https://raw.githubusercontent.com/GurVic/PizzaDelivery/master/english.0");
+        SpellDictionary dictionary = spellDictionaryLoader.loadURLDictionary();
+        assertNotNull(dictionary);
+        dictionary = null;
+        dictionary = spellDictionaryLoader.loadURLDictionary();
+        assertNotNull(dictionary);
+    }
+
+    @Test(expected = UnableToLoadDictionary.class)
+    public void shouldThrowExceptionWhenHaveNoURLDictionary() {
+        when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("https://raw.githubusercontent.com/GurVic/PizzaDelivery/master/english.1");
+        SpellDictionary dictionary = spellDictionaryLoader.loadMainDictionary();
+    }
+
+    @Test(expected = UnableToLoadDictionary.class)
+    public void shouldThrowExceptionWhenHaveWrongURL() {
+        when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("https://rawqwe.githubusercontent.com/GurVic/PizzaDelivery/master/english.1");
+        SpellDictionary dictionary = spellDictionaryLoader.loadMainDictionary();
     }
 
     @Test
     public void shouldLoadMainDictionaryFromResources() throws Exception {
         when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("/dict/english.0");
-        SpellDictionary dictionary = grammarDictionaryLoader.loadMainDictionary();
+        SpellDictionary dictionary = spellDictionaryLoader.loadMainDictionary();
 
         assertNotNull(dictionary);
     }
@@ -42,13 +79,13 @@ public class GrammarDictionaryLoaderTest {
     @Test(expected = UnableToLoadDictionary.class)
     public void shouldThrowExceptionWhenDictionaryPathIsNull() throws Exception {
         when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn(null);
-        SpellDictionary dictionary = grammarDictionaryLoader.loadMainDictionary();
+        SpellDictionary dictionary = spellDictionaryLoader.loadMainDictionary();
     }
 
     @Test(expected = UnableToLoadDictionary.class)
     public void shouldThrowExceptionWhenHaveWrongDictionaryPath() throws Exception {
         when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("/res/res");
-        SpellDictionary dictionary = grammarDictionaryLoader.loadMainDictionary();
+        SpellDictionary dictionary = spellDictionaryLoader.loadMainDictionary();
     }
 
     @Test
@@ -56,7 +93,7 @@ public class GrammarDictionaryLoaderTest {
         String altDictionaryProperty = "first,second,third";
         when(settings.getString(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(altDictionaryProperty);
 
-        Optional<SpellDictionaryHashMap> dictionary = grammarDictionaryLoader.loadAlternateDictionary();
+        Optional<SpellDictionaryHashMap> dictionary = spellDictionaryLoader.loadAlternateDictionary();
 
         assertEquals(true, dictionary.get().isCorrect("first"));
         assertEquals(true, dictionary.get().isCorrect("second"));
@@ -68,7 +105,7 @@ public class GrammarDictionaryLoaderTest {
         String altDictionaryProperty = "  first , second  ,   third   ";
         when(settings.getString(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(altDictionaryProperty);
 
-        Optional<SpellDictionaryHashMap> dictionary = grammarDictionaryLoader.loadAlternateDictionary();
+        Optional<SpellDictionaryHashMap> dictionary = spellDictionaryLoader.loadAlternateDictionary();
 
         assertEquals(true, dictionary.get().isCorrect("first"));
         assertEquals(true, dictionary.get().isCorrect("second"));
@@ -79,7 +116,7 @@ public class GrammarDictionaryLoaderTest {
     public void shouldCreateEmptyDictionaryWhenAlternativeDictionaryPropertyKeyIsNull() throws Exception {
         when(settings.getString(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY)).thenReturn(null);
 
-        Optional<SpellDictionaryHashMap> dictionary = grammarDictionaryLoader.loadAlternateDictionary();
+        Optional<SpellDictionaryHashMap> dictionary = spellDictionaryLoader.loadAlternateDictionary();
 
         assertTrue(dictionary.asSet().isEmpty());
     }
@@ -87,8 +124,8 @@ public class GrammarDictionaryLoaderTest {
     @Test
     public void shouldReturnTheSameDictionaryWhenCallLoadDictionaryTwoTimes() throws Exception {
         when(settings.getString(PluginParameter.DICTIONARY_PATH)).thenReturn("/dict/english.0");
-        SpellDictionary dictionary = grammarDictionaryLoader.loadMainDictionary();
-        SpellDictionary dictionary2 = grammarDictionaryLoader.loadMainDictionary();
+        SpellDictionary dictionary = spellDictionaryLoader.loadMainDictionary();
+        SpellDictionary dictionary2 = spellDictionaryLoader.loadMainDictionary();
 
         assertEquals(dictionary, dictionary2);
     }

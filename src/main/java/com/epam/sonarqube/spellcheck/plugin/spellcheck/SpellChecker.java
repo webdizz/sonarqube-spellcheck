@@ -21,13 +21,13 @@ public class SpellChecker implements BatchExtension {
     private SpellCheckerFactory spellCheckerFactory;
     private SpellDictionary dictionary;
     private Optional<SpellDictionaryHashMap> alternateDictionary;
-    private GrammarDictionaryLoader dictionaryLoader;
+    private SpellDictionaryLoader dictionaryLoader;
 
     private JavaSourceCodeWordFinder javaSourceCodeWordFinder;
 
 
 
-    public SpellChecker(final GrammarDictionaryLoader dictionaryLoader,
+    public SpellChecker(final SpellDictionaryLoader dictionaryLoader,
                         JavaSourceCodeWordFinder javaSourceCodeWordFinder, SpellCheckerFactory spellCheckerFactory) {
         this.spellCheckerFactory = spellCheckerFactory;
         this.javaSourceCodeWordFinder = javaSourceCodeWordFinder;
