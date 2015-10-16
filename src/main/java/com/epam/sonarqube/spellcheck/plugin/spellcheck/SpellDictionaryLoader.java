@@ -33,12 +33,12 @@ public class SpellDictionaryLoader implements BatchExtension {
         this.settings = settings;
     }
 
-    public SpellDictionary loadURLDictionary() {
+    public SpellDictionary loadURLDictionary(boolean forceLoad) {
         String urlDictionaryPath = settings.getString(PluginParameter.URL_DICTIONARY_PATH);
         Integer timeout = settings.getInt(PluginParameter.URL_DICTIONARY_TIMEOUT);
         SpellDictionary spellURLDictionary = urlDictionary.get();
         // return existed dictionary
-        if(spellURLDictionary != null) {
+        if(!forceLoad && (spellURLDictionary != null)) {
             return spellURLDictionary;
         }
         URLConnection conn = null;

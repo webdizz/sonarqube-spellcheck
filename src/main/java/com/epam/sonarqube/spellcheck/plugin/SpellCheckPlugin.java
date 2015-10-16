@@ -3,6 +3,7 @@ package com.epam.sonarqube.spellcheck.plugin;
 import java.util.Arrays;
 import java.util.List;
 
+import com.epam.sonarqube.spellcheck.plugin.spellcheck.*;
 import org.sonar.api.PropertyType;
 import org.sonar.api.SonarPlugin;
 import org.sonar.api.config.PropertyDefinition;
@@ -13,10 +14,6 @@ import com.epam.sonarqube.spellcheck.plugin.issue.tracking.SpellCheckActionDefin
 import com.epam.sonarqube.spellcheck.plugin.metric.SpellCheckMetrics;
 import com.epam.sonarqube.spellcheck.plugin.rule.SpellCheckRulesDefinition;
 import com.epam.sonarqube.spellcheck.plugin.sensor.SpellCheckIssuesSensor;
-import com.epam.sonarqube.spellcheck.plugin.spellcheck.SpellDictionaryLoader;
-import com.epam.sonarqube.spellcheck.plugin.spellcheck.JavaSourceCodeWordFinder;
-import com.epam.sonarqube.spellcheck.plugin.spellcheck.SpellChecker;
-import com.epam.sonarqube.spellcheck.plugin.spellcheck.SpellCheckerFactory;
 
 
 public class SpellCheckPlugin extends SonarPlugin {
@@ -43,6 +40,7 @@ public class SpellCheckPlugin extends SonarPlugin {
                         SpellChecker.class,
                         SpellDictionaryLoader.class,
                         SpellCheckerFactory.class,
+                        SpellCheckGlobalPropertyHandler.class,
 
                         PropertyDefinition.builder(PluginParameter.SPELL_MINIMUM_WORD_LENGTH).name("Minimum word length")
                                 .type(PropertyType.INTEGER).description("Defines minimum word length to analyse")

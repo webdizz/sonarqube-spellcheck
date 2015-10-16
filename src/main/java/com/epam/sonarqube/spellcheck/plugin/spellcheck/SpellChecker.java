@@ -20,6 +20,7 @@ public class SpellChecker implements BatchExtension {
     private static final Logger LOGGER = LoggerFactory.getLogger(SpellChecker.class);
     private SpellCheckerFactory spellCheckerFactory;
     private SpellDictionary dictionary;
+    private SpellDictionary urlDictionary;
     private Optional<SpellDictionaryHashMap> alternateDictionary;
     private SpellDictionaryLoader dictionaryLoader;
 
@@ -37,6 +38,17 @@ public class SpellChecker implements BatchExtension {
     public void initialize() {
         dictionary = dictionaryLoader.loadMainDictionary();
         alternateDictionary = dictionaryLoader.loadAlternateDictionary();
+        urlDictionary = dictionaryLoader.loadURLDictionary(true);
+    }
+
+    /**
+     * Method reload URL-dictionary
+     * @return true if force loading url-dictionary is succeeded
+     */
+    public boolean reloadURLDictionary() {
+        urlDictionary = dictionaryLoader.loadURLDictionary(true);
+        if(urlDictionary != null) return true;
+        return false;
     }
 
     /**
@@ -79,6 +91,9 @@ public class SpellChecker implements BatchExtension {
 
         if (alternateDictionary.isPresent()) {
             spellCheck.addDictionary(alternateDictionary.get());
+        }
+        if(urlDictionary != null) {
+            spellCheck.addDictionary(urlDictionary);
         }
         return spellCheck;
     }

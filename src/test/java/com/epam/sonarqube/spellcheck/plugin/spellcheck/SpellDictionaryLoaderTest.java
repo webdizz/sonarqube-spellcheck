@@ -13,9 +13,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by Konstiantyn on 9/29/2015.
- */
+
 public class SpellDictionaryLoaderTest {
 
     private static Settings settings = mock(Settings.class);
@@ -34,7 +32,7 @@ public class SpellDictionaryLoaderTest {
     @Test
     public void shouldLoadURLDictionaryFromResources() throws Exception {
         when(settings.getString(PluginParameter.URL_DICTIONARY_PATH)).thenReturn("https://raw.githubusercontent.com/GurVic/PizzaDelivery/master/english.0");
-        SpellDictionary dictionary = spellDictionaryLoader.loadURLDictionary();
+        SpellDictionary dictionary = spellDictionaryLoader.loadURLDictionary(true);
         assertNotNull(dictionary);
         assertFalse(dictionary.isCorrect("sekleklzsk"));
         assertTrue(dictionary.isCorrect("ACCTTYPE"));
@@ -43,16 +41,16 @@ public class SpellDictionaryLoaderTest {
     @Test(expected = UnableToLoadDictionary.class)
     public void shouldThrowExceptionWhenURLDictionaryPathIsNull() {
         when(settings.getString(PluginParameter.URL_DICTIONARY_PATH)).thenReturn(null);
-        SpellDictionary dictionary = spellDictionaryLoader.loadURLDictionary();
+        SpellDictionary dictionary = spellDictionaryLoader.loadURLDictionary(true);
     }
 
     @Test
     public void shouldReturnLoadedURLDictionary() {
         when(settings.getString(PluginParameter.URL_DICTIONARY_PATH)).thenReturn("https://raw.githubusercontent.com/GurVic/PizzaDelivery/master/english.0");
-        SpellDictionary dictionary = spellDictionaryLoader.loadURLDictionary();
+        SpellDictionary dictionary = spellDictionaryLoader.loadURLDictionary(true);
         assertNotNull(dictionary);
         dictionary = null;
-        dictionary = spellDictionaryLoader.loadURLDictionary();
+        dictionary = spellDictionaryLoader.loadURLDictionary(true);
         assertNotNull(dictionary);
     }
 
