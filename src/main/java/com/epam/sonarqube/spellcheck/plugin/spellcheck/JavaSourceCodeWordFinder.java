@@ -3,6 +3,8 @@ package com.epam.sonarqube.spellcheck.plugin.spellcheck;
 import java.util.Iterator;
 import java.util.List;
 
+import com.epam.sonarqube.spellcheck.plugin.spellcheck.filter.DateFormatDaysWordFilter;
+import com.epam.sonarqube.spellcheck.plugin.spellcheck.filter.DateFormatHoursWordFilter;
 import org.sonar.api.BatchExtension;
 import org.sonar.api.config.Settings;
 
@@ -17,23 +19,22 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements
     private Settings settings;
     private List<String> words;
     private Iterator<String> wordsIterator;
-    
+
     private static final Word FAKE_WORD_PARAM_WHICH_IS_NOT_USED_IN_METHOD = null;
     private static final int FAKE_WORD_START_TO_SKIP_START_SENTENCE_CHECK = 1; // should != 0 
-    
+
     private String oldText;
 
     public JavaSourceCodeWordFinder(final Settings settings) {
         this.settings = settings;
     }
-    
+
     /**
-     * Method iterates over list of split words and returns 
+     * Method iterates over list of split words and returns
      * a new Word object corresponding to the next word.
      *
      * @return the next word.
-     * @throws com.swabunga.spell.event.WordNotFoundException
-     *             search string contains no more words.
+     * @throws com.swabunga.spell.event.WordNotFoundException search string contains no more words.
      */
     @Override
     public Word next() {
@@ -41,7 +42,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements
             minimumWordLength = settings
                     .getInt(PluginParameter.SPELL_MINIMUM_WORD_LENGTH);
         }
-        
+
         //if text for finding words was changed (e.g. via setText(...)),
         //then split it into separate words
         if (text != oldText) {
@@ -54,10 +55,10 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements
         }
 
         currentWord.copy(nextWord);
-        
+
         //need to call this method, to skip "Start Sentence Check" in Jazzy
         setSentenceIterator(FAKE_WORD_PARAM_WHICH_IS_NOT_USED_IN_METHOD);
-        
+
         nextWord = searchNextWord();
 
         return currentWord;
@@ -66,7 +67,7 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements
     private Word searchNextWord() {
         Word newNextWord = null;
         String word;
-        
+
         while (wordsIterator.hasNext()) {
             word = wordsIterator.next();
             if (isWordGreaterOrEqualThenMinLength(word)) {
@@ -74,16 +75,24 @@ public class JavaSourceCodeWordFinder extends AbstractWordFinder implements
                 break;
             }
         }
-        
+
         return newNextWord;
     }
-    
+
     private boolean isWordGreaterOrEqualThenMinLength(final String word) {
         return word.length() >= minimumWordLength;
     }
 
     private void eagerSplitTextIntoWords() {
-        words = new JavaSourceCodeSplitter().split(text);
+        JavaSourceCodeSplitter javaSourceCodeSplitter = createJavaSourceCodeSplitter();
+        words = javaSourceCodeSplitter.split(text);
         wordsIterator = words.iterator();
+    }
+
+    private JavaSourceCodeSplitter createJavaSourceCodeSplitter() {
+        JavaSourceCodeSplitter javaSourceCodeSplitter = new JavaSourceCodeSplitter();
+        javaSourceCodeSplitter.addWordFilter(new DateFormatDaysWordFilter());
+        javaSourceCodeSplitter.addWordFilter(new DateFormatHoursWordFilter());
+        return javaSourceCodeSplitter;
     }
 }
