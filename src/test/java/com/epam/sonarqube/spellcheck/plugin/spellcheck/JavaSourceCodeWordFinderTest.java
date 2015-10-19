@@ -31,7 +31,7 @@ public class JavaSourceCodeWordFinderTest {
     public static void initSettingsAndLoadDictionaryVeryTimeConsuming() {
         createDefaultSettingsMock();
         
-        dictionary = new GrammarDictionaryLoader(settings).loadMainDictionary();
+        dictionary = new SpellDictionaryLoader(settings).loadMainDictionary();
     }
 
     @Before
