@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 public class SpellCheckerTest {
 
     private SpellCheckerFactory spellCheckerFactory;
-    private GrammarDictionaryLoader grammarDictionaryLoader;
+    private SpellDictionaryLoader spellDictionaryLoader;
     private SpellCheckListener listener = mock(SpellCheckListener.class);
     private JavaSourceCodeWordFinder javaSourceCodeWordFinder;
     private SpellChecker spellChecker;
@@ -29,10 +29,10 @@ public class SpellCheckerTest {
         when(settings.getBoolean(PluginParameter.SPELL_IGNORE_INTERNET_ADDRESSES)).thenReturn(true);
 
         javaSourceCodeWordFinder = new JavaSourceCodeWordFinder(settings);
-        grammarDictionaryLoader = spy(new GrammarDictionaryLoader(settings));
+        spellDictionaryLoader = spy(new SpellDictionaryLoader(settings));
         spellCheckerFactory = new SpellCheckerFactory();
         spellCheckerFactory.setSettings(settings);
-        spellChecker = new SpellChecker(grammarDictionaryLoader,
+        spellChecker = new SpellChecker(spellDictionaryLoader,
                 javaSourceCodeWordFinder,spellCheckerFactory);
         spellChecker.initialize();
     }
@@ -62,13 +62,13 @@ public class SpellCheckerTest {
 
     @Test
     public void shouldReturnNewSpellCheckerTest() {
-        assertNotNull(new SpellChecker(grammarDictionaryLoader,
+        assertNotNull(new SpellChecker(spellDictionaryLoader,
                 javaSourceCodeWordFinder, spellCheckerFactory));
     }
 
     @Test
     public void shouldCallMethodsWhenInitializeSpellCheckerTest() {
-        verify(grammarDictionaryLoader).loadMainDictionary();
-        verify(grammarDictionaryLoader).loadAlternateDictionary();
+        verify(spellDictionaryLoader).loadMainDictionary();
+        verify(spellDictionaryLoader).loadAlternateDictionary();
     }
 }
