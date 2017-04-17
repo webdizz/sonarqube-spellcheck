@@ -78,6 +78,16 @@ public abstract class PluginParameter {
     public static final String DICTIONARY_PATH = "sonarqube-spellcheck.dictionary.path";
 
     /**
+     * path to url dictionary
+     **/
+    public static final String URL_DICTIONARY_PATH = "sonarqube-spellcheck.url.dictionary";
+
+    /**
+     * url dictionary load timeout
+     **/
+    public static final String URL_DICTIONARY_TIMEOUT = "sonarqube-spellcheck.url.dictionary.timeout";
+
+    /**
      * manual dictionary name
      */
     public static final String ALTERNATIVE_DICTIONARY_PROPERTY_KEY = "sonarqube-spellcheck.alternative.dictionary";

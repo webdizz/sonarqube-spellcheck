@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -23,8 +26,44 @@ public class GrammarDictionaryLoader implements BatchExtension {
     private Settings settings;
     private AtomicReference<SpellDictionary> dictionary = new AtomicReference<>();
 
+    // another dictionary for url
+    private AtomicReference<SpellDictionary> urlDictionary = new AtomicReference<>();
+
     public GrammarDictionaryLoader(Settings settings) {
         this.settings = settings;
+    }
+
+    public SpellDictionary loadURLDictionary() {
+        String urlDictionaryPath = settings.getString(PluginParameter.URL_DICTIONARY_PATH);
+        Integer timeout = settings.getInt(PluginParameter.URL_DICTIONARY_TIMEOUT);
+        SpellDictionary spellURLDictionary = urlDictionary.get();
+        // return existed dictionary
+        if(spellURLDictionary != null) {
+            return spellURLDictionary;
+        }
+        URLConnection conn = null;
+        InputStreamReader wordList = null;
+        URL url = null;
+        locker.lock();
+        try {
+            conn = new URL(urlDictionaryPath).openConnection();
+            conn.setConnectTimeout(timeout);
+            conn.setReadTimeout(timeout);
+            wordList = new InputStreamReader(conn.getInputStream());
+            spellURLDictionary = new SpellDictionaryHashMap(wordList);
+            urlDictionary.set(spellURLDictionary);
+            return spellURLDictionary;
+        } catch (MalformedURLException e) {
+            throw new UnableToLoadDictionary("Bad URL or there isn't such dictionary file", e);
+        } catch (IOException e) {
+            throw new UnableToLoadDictionary("Can't load dictionary from file", e);
+        } finally {
+            try {
+                if(wordList != null) wordList.close();
+            } catch (IOException e) {
+            }
+            locker.unlock();
+        }
     }
 
     public SpellDictionary loadMainDictionary() {

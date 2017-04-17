@@ -48,6 +48,10 @@ public class SpellCheckPlugin extends SonarPlugin {
                                 .type(PropertyType.INTEGER).description("Defines minimum word length to analyse")
                                 .defaultValue("3").subCategory(SPELL_CHECKER_CATEGORY).build(),
 
+                        PropertyDefinition.builder(PluginParameter.URL_DICTIONARY_TIMEOUT).name("URL dictionary load timeout")
+                                .type(PropertyType.INTEGER).description("Defines timeout (in ms) for dictionary load waiting")
+                                .defaultValue("5000").subCategory(DICTIONARY_CATEGORY).build(),
+
                         PropertyDefinition.builder(PluginParameter.SPELL_IGNORE_UPPERCASE).name("Ignore uppercase")
                                 .type(PropertyType.BOOLEAN).description("Words that are all upper case are not spell checked, example: 'CIA'")
                                 .defaultValue("true").subCategory(SPELL_CHECKER_CATEGORY).build(),
@@ -55,6 +59,11 @@ public class SpellCheckPlugin extends SonarPlugin {
                         PropertyDefinition.builder(PluginParameter.DICTIONARY_PATH).name("Default dictionary path")
                                 .type(PropertyType.STRING).description("Defines default dictionary path")
                                 .defaultValue("/dict/english.0").subCategory(DICTIONARY_CATEGORY).build(),
+
+                        PropertyDefinition.builder(PluginParameter.URL_DICTIONARY_PATH).name("URL dictionary path")
+                                .type(PropertyType.STRING).description("Defines url dictionary path")
+                                .subCategory(DICTIONARY_CATEGORY)
+                                .build(),
 
                         PropertyDefinition.builder(PluginParameter.ALTERNATIVE_DICTIONARY_PROPERTY_KEY)
                                 .name("Alternative dictionary").type(PropertyType.STRING)
